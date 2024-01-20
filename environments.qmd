@@ -1,0 +1,165 @@
+# Environmental data
+
+## ESA WorldCover {#sec-esa_worlcover}
+
+European Space Agency (ESA) released a freely accessible global land coverage data sets. These data sets are based on Sentinel-1 and Sentinel-2 data and contains 11 land cover classes with overall accuracy over 75%. The first set was released in 2021, the second, with higher quality, in 2022 [@zanagaESAWorldCover102021; @zanagaESAWorldCover102022]. The data is accessible thru AWS Open Data Registry, Zenodo and/or [Terrascope](https://terrascope.be/en). Terrascope provides the data as WM(T)S services as well, which can be used directly in QGIS:
+
+* WMTS: https://services.terrascope.be/wmts/v2
+* WMS: https://services.terrascope.be/wms/v2
+
+
+```{r}
+#| label: tbl-esa_world_cover_classes
+#| tbl-cap: "ESA WorldCover classes definition and color codes for layers [@vandekerchoveWorldCoverProductUser2022]"
+#| code-fold: true
+
+t <- tabulizer::extract_tables("https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/docs/WorldCover_PUM_V2.0.pdf",
+                               pages = 15,
+                               method = "stream",
+                               output = "data.frame")[[1]]
+
+colnames(t) <- c("map_code", "land_cover_class", "lccs_code", "definition", "color_code_rgb")
+t <- t[2:nrow(t),]
+t$map_code <- as.numeric(t$map_code)
+
+map_codes <- t$map_code[!is.na(t$map_code)]
+
+merge_cels <- function(column = "", start = 10) {
+  stop <- map_codes[which(map_codes == start)+1]
+  a <- which(t$map_code == start)
+  if(is.na(stop)) {
+    b <- nrow(t)
+  } else {
+    b <- which(t$map_code == stop)-1
+  }
+  t[a:b, column] |>
+    paste(collapse = " ") |>
+    stringr::str_trim()
+}
+
+n <- t[1:11,] 
+
+n$map_code <- map_codes
+
+n <- n |>
+  dplyr::rowwise() |>
+  dplyr::mutate(land_cover_class = merge_cels(column = "land_cover_class", start = map_code),
+                lccs_code = merge_cels(column = "lccs_code", start = map_code),
+                definition = merge_cels(column = "definition", start = map_code),
+                color_code_rgb = merge_cels(column = "color_code_rgb", start = map_code),
+                color = rgb(red = strsplit(color_code_rgb[[1]], split = "[,]")[[1]][1],
+                            green = strsplit(color_code_rgb[[1]], split = "[,]")[[1]][2],
+                            blue = strsplit(color_code_rgb[[1]], split = "[,]")[[1]][3],
+                            maxColorValue = 255)
+  )
+
+
+n[,1:5] |>
+  kableExtra::kable(escape = FALSE,
+                    col.names = c("Map code", "Land cover class",
+                                  "LCCS code", "Definition", "Color code (RGB)")) |>
+  kableExtra::kable_classic() |>
+  kableExtra::column_spec(5, background = n$color)
+
+```
+The data can be accessed from [AWS](https://registry.opendata.aws/esa-worldcover-vito/) using `aws cli`. To list the content of the storage you can use:
+
+    aws s3 ls --no-sign-request s3://esa-worldcover/
+    
+and to sync it with local filesystem:
+
+    aws s3 sync --no-sign-request s3://esa-worldcover/v200/2021/map /local/path
+
+The data is available as TIFF raster tiles in a regular grid (EPSG:4326) with the ellipsoid WGS 1984 (Terrestrial radius=6378 km). The resolution of the grid is 1/12000$\deg$ corresponding to ~ 10 m at equator. The individual tile cover 3x3 degrees of longitude/latitude, and the filenames are in form:
+
+    ESA_WorldCover_10m_2021_v200_N06E012_Map.tif
+    
+where `NxxExxx` (or `SxxWxxx`) corresponds to latitude (Nort or South) and longitude (West or East). The single file can be downloaded with:
+
+    aws s3 cp --no-sign-request s3://esa-worldcover/v200/2021/map/ESA_WorldCover_10m_2021_v200_N51E015_Map.tif /local/file.tif
+
+or from URL:
+
+    https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N51E015_Map.tif
+
+The AWS buckets can be accessed with {aws.s3} package [@aws.s3] however rasters can be accessed directly by `rast()` function from {terra} package [@terra] thanks to underlying [GDAL Virtual File Systems](https://gdal.org/user/virtual_file_systems.html). First of all we can download FlatGeobuf file containing a layer with tile names and their corresponding polygons:
+
+```{r}
+#| label: esa_worldcover_flat_geobufer
+#| message: false
+esa_tiles <- sf::st_read("https://esa-worldcover.s3.eu-central-1.amazonaws.com/esa_worldcover_grid.fgb")
+```
+
+```{r}
+#| label: esa_worldcover_flat_geobufer_list
+#| echo: false
+
+head(esa_tiles)
+```
+
+```{r}
+#| label: fig-esa_worldcover_flat_geobufer
+#| fig-cap: "Spatial coverage of WorlCover data"
+
+terra::plot(esa_tiles, main = "")
+```
+
+Having tile names (column `ll_tile` in `esa_tiles` sf data frame) we can easy find a requested tile(s) by filtering the data frame by our area of interest. Below an example for land cover classes for my village and surroundings. The first step is to find bounding box of the village (`getbb()` from {osmdata}):
+
+```{r}
+#| label: get_lubnow_bbox
+
+l <- osmdata::getbb("Lubnów, trzebnicki", format_out = "sf_polygon")
+```
+
+The next step is to subset our `esa_tiles` data frame by `l` to find the tile(s) which intersects with. It can be done by simple subseting:
+
+```{r}
+#| label: esa_tiles_subseting
+
+b <- esa_tiles[l, ,]
+tile_name <- b[[1, "ll_tile"]]
+tile_name
+```
+
+or by `st_filter()` function
+
+```{r}
+#| label: esa_tiles_subseting_with_filter
+
+tile_name <- esa_tiles |>
+  sf::st_filter(l) |>
+  sf::st_drop_geometry() |>
+  as.character()
+tile_name
+```
+
+In next step we have to get the proper raster, crop it to the village bounding box, (re)assign levels and table colors. Please note, the levels and colors corresponds to land cover classes and colors from @tbl-esa_world_cover_classes.
+
+```{r}
+#| label: esa_world_class_raster
+
+terra::setGDALconfig("AWS_NO_SIGN_REQUEST=YES")
+url <- paste0("s3://esa-worldcover/v200/2021/map/ESA_WorldCover_10m_2021_v200_", tile_name, "_Map.tif")
+r <- terra::rast(url)
+
+w <- terra::crop(r, terra::vect(l)) 
+
+levels(w) <- n[c("map_code", "land_cover_class")] |>
+  as.data.frame()
+terra::coltab(w) <- n[c("map_code", "color")] |>
+  as.data.frame()
+
+terra::plot(w)
+
+```
+
+It's worth to mention that {geodata} package have `landcover()` function, which can download downsampled to 30-seconds per pixel rasters for specific landcover class.
+    
+```{r}
+#| label: geodata_landcover
+#| eval: false
+
+geodata::landcover(var = "moss", path = tempdir())
+```
+

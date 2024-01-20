@@ -1,0 +1,50 @@
+project:
+  type: book
+  post-render: scripts/post_script.R
+
+book:
+  title: "Open Data sources and how to deal with it"
+  subtitle: "Not to short introduction"
+  author: "Grzegorz Sapijaszko"
+  date: "2024-01-07"
+  chapters:
+    - index.qmd
+#    - intro.qmd
+    - osm.qmd
+    - environments.qmd
+    - summary.qmd
+    - references.qmd
+
+bibliography: 
+    - references.bib
+    - packages.bib
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    number-depth: 3
+    link-external-newwindow: true
+    grid: 
+      body-width: 850px
+
+  pdf:
+    number-depth: 3
+    documentclass: scrreprt
+    include-in-header: 
+      text: |
+        \usepackage{makeidx}
+        \makeindex
+    include-after-body: 
+      text: |
+        \printindex
+
+editor: source
+
+jupyter: python3
+
+execute:
+  freeze: auto
+  cache: true
+
+

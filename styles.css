@@ -1,0 +1,55 @@
+/* css styles */
+:root {
+  --bs-body-font-size: 1.0rem;
+  --bs-body-text-align: justify;
+  --bs-body-line-height: 1.25;
+}
+
+.listing-description {
+  text-indent: 1em;
+}
+p {
+  text-indent: 1em;
+  hyphens: auto;
+  margin-bottom: 1rem;
+  orphans: 3;
+  widows: 3;
+}
+
+.img-fluid {
+  margin-left: -1em;
+}
+
+h2, .h2 {
+  padding-bottom: 0.3rem;
+}
+h1, .h1, h2, .h2 {
+  margin-bottom: 1.6rem;
+}
+
+.blockquote {
+  margin-top: 0.5rem;
+}
+.blockquote p {
+  text-indent: 0em;
+}
+
+figcaption {
+  margin-bottom: 0.2rem;
+  text-indent: 2em;
+}
+
+div.sourceCode {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  font-size: 11pt;
+}
+
+.quarto-figure {
+  text-indent: 0em;
+  width: 100%;
+}
+
+.cell-output-display {
+  margin-bottom: 1.5rem;
+}

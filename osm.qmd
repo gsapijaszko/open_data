@@ -1,0 +1,914 @@
+## OpenStreetMap as a universal spatial data source {#sec-openstreetmap}
+
+```{r}
+#| label: osm-prep
+#| echo: false
+#| output: false
+#| message: false
+#| warning: false
+#| eval: true
+
+library(tmap)
+```
+
+::: {.callout-warning collapse="true"}
+## OSM Data at a glance
+
+Lorem ipsum
+
+Detailed statistics in csv https://blackadder.dev.openstreetmap.org/OSMStats/
+
+```{r}
+#| label: fig-number_of_editors
+#| message: false
+#| warning: false
+#| code-fold: true
+#| fig-cap: "Number of editors (blue) and number of nodes per editor/week (black) based on statistics available online [https://blackadder.dev.openstreetmap.org/OSMStats/](https://blackadder.dev.openstreetmap.org/OSMStats/)"
+
+url <- "https://blackadder.dev.openstreetmap.org/OSMStats/"
+t <- rvest::read_html(url) |>
+  rvest::html_table()
+f <- t[[1]] |>
+  subset(grepl(".csv", Name), select = c(Name, `Last modified`)) |>
+  dplyr::mutate(date = as.Date(substr(`Last modified`, 1, 10))) |>
+  dplyr::arrange(date) |>
+  tail(1)
+
+osm_stats <- read.csv(paste0(url, f$Name))
+
+p <- osm_stats |>
+  subset(select = c(1:14)) |>
+  dplyr::mutate(Day.of.Month = as.Date(Day.of.Month, format = "%d/%m/%Y")) |>
+  subset(format(Day.of.Month, "%d") == "01")
+
+plot(p$Day.of.Month, p$Users,
+  pch = 18,
+  col = "blue",
+  log = "y",
+  xlim = c(
+    lubridate::as_date("2005-01-01"),
+    lubridate::as_date("2025-01-01")
+  ),
+  xlab = "year",
+  ylab = ""
+)
+lines(p$Day.of.Month, p$Nodes.editors.week)
+legend("topleft",
+  legend = c("# of users", "# of nodes editors/week"),
+  text.col = c("blue", "black")
+)
+  
+```
+:::
+
+Data quality was assessed in various scientific studies, beginning with the comparison of OSM roads network with official data sets. @haklayHowGoodVolunteered2010 conducted a study for England, while  @kounadiAssessingQualityOpenStreetMap2009 focused on Athens, Greece, examining positional accuracy, completeness and thematic accuracy. Subsequent studies such as @zielstraQuantitativeStudiesData2010, @ludwigComparisonStreetNetworks2011 and @neisStreetNetworkEvolution2011 delved into the quality of the road network in Germany.
+
+The quality of other features has also been assessed. For instance, @mooneyStudyDataRepresentation2010 compared land cover data with Ordnance Survey Ireland, while @girresQualityAssessmentFrench2010 evaluated data quality principles in accordance with [ISO 19113:2002](https://www.iso.org/standard/26018.html)[^osm-1] for France.
+
+[^osm-1]: replaced by ISO 19157:2013
+
+## Data access and available formats
+
+There are several ways to access the OpenStreetMap data. The entire planet data, currently approximately 73 GB in a binary (packed) PBF file, can be downloaded from planet.osm [@PlanetOSM]. Alternatively, smaller snapshots can be obtained from [GeoFabrik.de](http://download.geofabrik.de/) or [BBBike.org](https://download.bbbike.org/osm/). Those sources provide data in OSM XML and/or PBF formats. Subsequently, tools like [`osm2ppgsql`](https://osm2pgsql.org/) can be used to import the data into PostgreSQL/PostGIS database, [`osmosis`](https://wiki.openstreetmap.org/wiki/Osmosis) for data manipulation and filtering, or QGIS for direct processing. 
+
+For those seeking direct access to the data, the [Overpass API](https://www.overpass-api.de/) is available with [Overpass Turbo](https://overpass-turbo.eu/) serving as a front-end where users can build and execute the queries instantly. Further details about data access are described on the [wiki](https://wiki.openstreetmap.org/wiki/Planet.osm).
+
+To access OSM spatial data from R, there are several libraries available. The {osmextract} [@osmextract] library enables the download and import data extracts, for instance, from GeoFabrik. Additionally, the {osmdata} package [@osmdata] can be utilized, which leverages the Overpass API to import data as Simple Features {sf} or Spatial Objects {sp}.
+
+### osmextract
+
+As the name suggest, the package allows you to search, download and process the data extracts available online. Per default it uses 3 providers:
+
+```{r}
+#| label: oe_providers
+
+osmextract::oe_providers()
+```
+
+Each of these providers has a specific set of areas, for example BBBike.org offers data sets for the biggest cities around the globe, while GeoFabrik.de and openstreetmap.fr cover the entire world. @fig-oe_provider_zones visualizes the areas covered by these providers. The typical workflow consists of few steps:
+
+-   Find the area of interest by matching it with one of the files/areas stored by providers using `oe_match()`;
+-   Download the `.pbf` file with `oe_download()`;
+-   Convert the `.pbf` file to `.gpkg` file with `oe_vectortranslate()`;
+-   Read the data using `oe_read()` function.
+
+@sec-postal_code shows an example of {osmextract} usage for postal code areas around Leipzig, Germany.
+
+```{r}
+#| label: fig-oe_provider_zones
+#| echo: false
+#| code-fold: true
+#| fig-cap: "Area covered by different providers."
+#| fig-subcap: 
+#|    - "BBBike.org"
+#|    - "GeoFabrik.de"
+#|    - "openstreetmap.fr"
+#| layout-ncol: 3
+
+w <- tmap::World |>
+  tmap::tm_shape() +
+  tmap::tm_polygons()
+
+w +
+  tmap::tm_shape(osmextract::bbbike_zones) +
+  tmap::tm_polygons(col = "blue")
+
+w +
+  tmap::tm_shape(osmextract::geofabrik_zones) +
+  tmap::tm_borders(col = "darkgreen")
+
+w +
+  tmap::tm_shape(osmextract::openstreetmap_fr_zones) +
+  tmap::tm_borders(col = "orange")
+
+
+```
+
+### osmdata
+
+The {osmdata} package enables the construction of a query to retrieve data from Overpass server. The initial step involves creating a bounding box around the geographical area of interest. The `getbb()` function serves as a helper; it queries the Nominatim service for coordinates and downloads the bounding box for the specified location, as demonstrated in our example with the Czech Republic.
+
+```{r}
+#| label: osmdata_czech_republic_bbox
+#| message: false
+
+b <- osmdata::getbb("Czech Republic")
+```
+
+By default it returns a data in `matrix` form, like:
+
+```{r}
+#| label: display-bbox
+#| echo: false
+#| message: true
+
+b
+```
+
+The subsequent step involves generating an Overpass query using the `opq()` function, which searches for requested features within the specified bounding box. By utilizing `add_osm_feature()` function and specifying key-value pairs, we narrow down the search criteria. In our example, we focus on administrative boundaries at the 2nd level (corresponding to countries) and further narrow it to Czechia. The pipe `|>` functions as the **AND** operator in the query.
+
+```{r}
+#| label: osmdata_czech_republic
+#| message: false
+
+osm <- osmdata::opq(bbox = b, timeout = 60 * 20) |>
+  osmdata::add_osm_feature(key = "boundary", value = "administrative") |>
+  osmdata::add_osm_feature(key = "admin_level", value = "2") |>
+  osmdata::add_osm_feature(key = "name:en", value = "Czechia") |>
+  osmdata::osmdata_sf()
+```
+
+The OSM data set is extensive as Overpass returns all points, (multi)lines and (multi)polygons that are 'touched' by the query. Upon examining the `osm` object returned, we observe the details: 125 k points, 1 k linestrings and 1 multipolygon which constitutes the country.
+
+```         
+Object of class 'osmdata' with:
+               $bbox : 48.5518081,12.0905752,51.0556945,18.8592538
+      $overpass_call : The call submitted to the overpass API
+               $meta : metadata including timestamp and version numbers
+         $osm_points : 'sf' Simple Features Collection with 125030 points
+          $osm_lines : 'sf' Simple Features Collection with 1009 linestrings
+       $osm_polygons : 'sf' Simple Features Collection with 0 polygons
+     $osm_multilines : NULL
+  $osm_multipolygons : 'sf' Simple Features Collection with 1 multipolygons
+```
+
+Each variable contain particular set of features like points, (multi)lines or (multi)polygons. We can access them directly using `osm$osm_...` like:
+
+```{r}
+#| label: osm_features_example
+
+osm$osm_points |>
+  head(2) |>
+  subset(select = c("osm_id", "name", "geometry"))
+```
+
+Corresponding [Overpass query](https://overpass-turbo.eu/s/1FS3) for Czech Republic boundary looks like:
+
+``` json
+[out:json][timeout:25];
+  relation[boundary=administrative]
+  [admin_level=2]["name:en"='Czechia'];
+out geom;
+```
+
+## Boundaries
+
+### Administrative boundaries
+
+Let's proceed with our straightforward example of OSM-based spatial data: administrative boundaries. Typically, administrative areas are depicted as polygons, with their geometries highlighted by color or the shape of their borders. The examples of administrative borders are illustrated in the @fig-borders-example.
+
+::: {#fig-borders-example layout-ncol="2"}
+![Boder between Germany and Poland, on Polish auto map, 1937](images/auto_map_poland_1937.png)
+
+![Boders in Serbia, Chorvatia and Slovenia, 1924](images/fragment_KARTA_KRALJEVINA_SRBA_HRVATA_I_SLOVENACA_750K_1924_nj420ct1196.png)
+
+Examples of country boundaries on different maps, source: [Archiwum Map Wojskowego Instytutu Geograficznego 1919-1939](http://english.mapywig.org)
+:::
+
+There are several openly available datasets that offer administrative boundaries, such as `world` country polygons from the {spData} package [@spData], Natural Earth[^osm-2] accessible via {rnaturalearthdata} package [@rnaturalearthdata], {geodata} [@geodata], etc. For those who like point-and-click, there is a [osm-boundaries.com](https://osm-boundaries.com/) service, where you can pick the boundaries and download it in few different formats including GeoJSON. @fig-osm-czech-boundary displays few sets of freely available boundary data for a section of the Czech Republic boundary. You may observe a significant difference between these lines and the administrative boundary from the OpenStreetMap map layer below. Despite both datasets being prepared based on OSM data, they have undergone simplification. Please exercise caution when selecting your data set and utilize it judiciously.
+
+[^osm-2]: see [www.naturalearthdata.com](https://www.naturalearthdata.com/)
+
+::: {#fig-osm-czech-boundary}
+```{r}
+#| label: osm_boundary
+#| message: false
+#| code-fold: true
+
+data("World", package = "tmap")
+
+c <- World |>
+  subset(iso_a3 == "CZE")
+
+cze <- geodata::gadm("CZE", level = 0, path = "data") |>
+  sf::st_as_sf()
+
+b_box <- sf::st_bbox(c(xmin = 16, ymin = 50.1, xmax = 17.2, ymax = 50.6),
+  crs = "EPSG:4326"
+)
+
+tmap::tmap_mode("plot")
+
+tmpl <- tmap::tm_shape(c, bbox = b_box) +
+  tmap::tm_lines(col = "orange", lwd = 2) +
+  tmap::tm_basemap("OpenStreetMap") +
+  tmap::tm_shape(cze) +
+  tmap::tm_lines(col = "blue", lwd = 2)
+
+tmpl
+```
+
+Different boundary lines shown on OSM background: `World` data set from {tmap} package [@tmap] [in orange]{style="color:orange;"} and Czech Republic administrative boundary data from [GADM](https://gadm.org/) by {geodata} package [in blue]{style="color:blue;"}.
+:::
+
+Let's add the data extracted with {osmdata} to our previous plot:
+
+::: {#fig-osmdata-plot}
+```{r}
+#| label: osmdata_plot
+#| message: false
+#| code-fold: true
+
+osm <- osm |>
+  osmdata::unname_osmdata_sf()
+
+d <- osm$osm_multipolygons |>
+  subset(select = c("name", "geometry")) 
+  
+tmpl +
+  tmap::tm_shape(d) +
+  tmap::tm_lines(col = "darkgreen", lwd = 2) 
+
+```
+
+And with Czech Republic boundary based on OpenStreetMap data ([green]{style="color:darkgreen;"}).
+:::
+
+Please note the distinction. It's worth highlighting that the boundary obtained from the `geodata::gadm()` function is quite close to the original OSM line. Sometimes, simplicity translates to quicker outcomes. The choice of which data set to use depends entirely on the intended purpose and the desired level of accuracy.
+
+It's important to note that there are countries, such as Italy, whose borders incorporate territorial waters.
+
+::: {#fig-italy_with_territorial_waters}
+```{r}
+#| label: italy_with_territorial_waters
+#| code-fold: true
+
+it_bbox <- osmdata::getbb("Italy")
+it <- osmdata::opq(bbox = it_bbox, timeout = 60*20) |>
+  osmdata::add_osm_feature(key = "boundary", value = "administrative") |>
+  osmdata::add_osm_feature(key = "admin_level", value = "2") |>
+  osmdata::add_osm_feature(key = "name:en", value = "Italy") |>
+  osmdata::osmdata_sf() |>
+  osmdata::unname_osmdata_sf()
+
+it_border <- it$osm_multipolygons |>
+  subset(name == "Italia")
+
+tmap::tm_shape(it_border) +
+  tmap::tm_basemap("OpenStreetMap") +
+  tmap::tm_borders(lwd = 2, col = "orange")
+```
+
+Border of the Italy including territorial waters
+:::
+
+If there is a requirement to preserve landmass only boundaries, a useful 'trick' is to download lower-level areas and then combine them. For example:
+
+```{r}
+#| label: it_level_4
+
+it_regions <- osmdata::opq(bbox = it_bbox, timeout = 60*20) |>
+  osmdata::add_osm_feature(key = "boundary", value = "administrative") |>
+  osmdata::add_osm_feature(key = "admin_level", value = "4") |>
+  osmdata::add_osm_feature(key = "ISO3166-2", value = "IT", value_exact = FALSE) |>
+  osmdata::osmdata_sf() |>
+  osmdata::unname_osmdata_sf()
+
+it_land <- it_regions$osm_multipolygons |>
+  subset(admin_level == 4, select = c("name")) |>
+  sf::st_union() |>
+  sf::st_sf()
+```
+
+::: {#fig-italy_without_water}
+```{r}
+#| label: it_level4_plot
+#| echo: false
+
+tmap::tm_shape(it_land) +
+  tmap::tm_basemap("OpenStreetMap") +
+  tmap::tm_borders(lwd = 2, col = "orange")
+```
+
+Italy land border created with gluing the lower administrative boundaries with `st_union()`.
+:::
+
+::: column-margin
+[Overpass query](https://overpass-turbo.eu/s/1FeW)
+
+``` json
+    [out:json][timeout:25];
+    {{geocodeArea:Italy}};
+    relation[admin_level=4]
+      [boundary=administrative]
+      ["ISO3166-2"~"IT-"](area);
+    out geom;
+```
+:::
+
+Such trick will work for some countries like Italy, France or Spain, however it will not for all of them because their lower level boundaries may also include territorial waters like in Poland or Germany. For other countries you can try to use other `admin_level` (i.e. 7 for Greece will work). To deal with such *issue* one can use water polygons[^osm-3] and subtract it from boundaries.
+
+[^osm-3]: available on [osmdata.openstreetmap.de](https://osmdata.openstreetmap.de/data/water-polygons.html)
+
+### Below country level
+
+Sub-national borders like province, state, region, district, parish, municipality or any other country-specific administrative areas are marked with `admin_level = 3` to `11`. The details for almost all countries can be found on [wiki](https://wiki.openstreetmap.org/wiki/Tag:boundary%3Dadministrative#admin_level=*_Country_specific_values), but there is a general pattern across OSM data:
+
+```{r}
+#| label: tbl-admin_levels
+#| echo: false
+#| tbl-cap: "General administrative levels of OSM boundaries"
+
+df <- data.frame(admin_level = c('4', '6', '7', '8-9'),
+                 meaning = c("provinces, regions, prefectures", "counties, regions",
+                             "municipalities, towns", "villages, parts of town"))
+df |> 
+  kableExtra::kable(align = c("rl")) |>
+  kableExtra::kable_classic()
+  
+```
+
+The `geodata::gadm()` function allows to get the administrative boundaries up to municipality level, like the below example for Poland:
+
+```{r}
+#| label: gadm_3_poland
+#| message: false
+
+pl <- geodata::gadm("Poland", level = 3, path = "data")
+terra::plot(pl["GID_3"])
+```
+
+But what, if we want to go deeper with our analysis and look on single villages or even hamlets within one municipality? Let's try it on municipality of Prusice, Lower Silesia, Poland. After getting the bounding box we are requesting `boundary = administrative` objects, regardless of its level. We will use `admin_level` to filter out boundaries of municipality as a whole and the villages which constitute it.
+
+```{r}
+#| label: prusice_all
+#| 
+
+b <- osmdata::getbb("gmina Prusice")
+prusice <- osmdata::opq(bbox = b, timeout = 60*20) |>
+  osmdata::add_osm_feature(key = "boundary", value = "administrative") |>
+  osmdata::osmdata_sf()
+
+prusice_mun <- prusice$osm_multipolygons |>
+  subset(admin_level == 7 & name == "gmina Prusice") |>
+  sf::st_transform(crs = "EPSG:2180")
+
+willages <- prusice$osm_multipolygons |>
+  subset(admin_level == 8) |>
+  sf::st_transform(crs = "EPSG:2180")
+
+tmap::tm_shape(willages) +
+  tmap::tm_polygons(fill = "gray95") +
+  tmap::tm_shape(prusice_mun) +
+  tmap::tm_lines(lwd = 3, col = "blue") +
+  tmap::tm_grid(n.x = 5, n.y = 5, lwd = 0.5)
+
+```
+
+Not bad, however there is a lot of villages which surround the municipality. Please remember, the Overpass returns all features which intersects with query bounding box, including whole polygons. To get rid of those villages we will use `sf::st_filter()` function with `st_within` predicate to filter out only those villages, which are within municipality boundaries.
+
+```{r}
+#| label: prusice_filtered
+#| 
+
+willages <- prusice$osm_multipolygons |>
+  subset(admin_level == 8) |>
+  sf::st_transform(crs = "EPSG:2180") |>
+  sf::st_filter(prusice_mun, .predicate=sf::st_within)
+
+tmap::tm_shape(willages) +
+  tmap::tm_polygons(fill = "gray95") +
+  tmap::tm_text(text = "name", size = 0.7) +
+  tmap::tm_shape(prusice_mun) +
+  tmap::tm_lines(lwd = 3, col = "blue") +
+  tmap::tm_grid(n.x = 5, n.y = 5, lwd = 0.5)
+
+  
+```
+
+OpenStreetMap data it's not only spatial data base. It contain other information as well. For example, our boundaries of the villages are stored as a relation with ways as members. Additionally there might be `admin_center` pointing to node (point) which is marked as `place = village` or `town` with other tags, like:
+
+```{r}
+#| label: kopaszyn_details
+
+q <- osmdata::opq("Kopaszyn") |>
+  osmdata::add_osm_feature(key = "boundary", value = "administrative") |>
+  osmdata::add_osm_feature(key = "admin_level", value = "8") |>
+  osmdata::add_osm_feature(key = "name", value = "Kopaszyn")
+
+a <- q |>
+  osmdata::osmdata_xml() 
+
+a|>
+  xml2::xml_find_all(xpath = ".//node") |>
+  xml2::xml_children()
+```
+
+We can see `population`, `population:date` and `source:population` among others. We can use them and run a simple analysis of population density in our municipality. But please be aware, the data might be a bit obsolete (as `population:date` indicates), and there might be better source of up-to date data, like national statistical office or Wikipedia/Wikidata.
+
+```{r}
+#| label: fig-prusice_population
+#| code-fold: true
+#| fig-cap: Population and population density in Prusice municipality based on OSM data
+#| fig-subcap: 
+#|    - "population"
+#|    - "population density"
+#| layout-ncol: 2
+
+p <- prusice$osm_points |>
+  subset(place %in% c("village", "town")) |>
+  sf::st_transform(crs = "EPSG:2180")
+
+willages <- willages |>
+  sf::st_join(p) |>
+  subset(select = c("name.x", "population.y", "geometry")) |>
+  dplyr::mutate(area = sf::st_area(geometry),
+                population = as.numeric(population.y), 
+                density = population / as.numeric(area/10^6))
+  
+tmap::tm_shape(willages) +
+  tmap::tm_polygons(fill = "population", 
+                    fill.scale = tmap::tm_scale_continuous(values = "Blues"),
+                    fill.legend = tmap::tm_legend(title = "Population",
+                                                  position = c(0.3, 0.98),
+                                                  # position = c("center", "top"),
+                                                  orientation = "landscape"))
+
+tmap::tm_shape(willages) +
+  tmap::tm_polygons(fill = "density", 
+                    fill.scale = tmap::tm_scale_continuous(values = "Blues"),
+                    fill.legend = tmap::tm_legend(title = "Density per sq. km",
+                                                  position = c(0.3, 0.98),
+                                                  # position = c("center", "top"),
+                                                  orientation = "landscape"))
+```
+
+A very similar approach can be used for other administrative levels, like municipal arrondissements (subdivisions of the commune) of Paris, France, where boundaries are on `admin_level=9` (@fig-paris_france).
+
+::: {#fig-paris_france}
+```{r}
+#| label: paris_france
+#| code-fold: true
+
+paris_bbox <- osmdata::getbb("Paris, France")
+paris <- osmdata::opq(bbox = paris_bbox, timeout = 60*20) |>
+  osmdata::add_osm_feature(key = "boundary", value = "administrative") |>
+  osmdata::add_osm_feature(key = "admin_level", value = "9") |>
+  osmdata::osmdata_sf() |>
+  osmdata::unname_osmdata_sf()
+
+paris <- paris$osm_multipolygons |>
+  subset(grepl("Paris", name))
+
+tmap::tm_shape(paris) +
+  tmap::tm_basemap("Esri.WorldGrayCanvas") +
+  tmap::tm_borders(col = "blue")
+```
+
+Arrondissements of Paris
+:::
+
+::: column-margin
+Overpass query
+
+``` json
+[out:json][timeout:25];
+  {{geocodeArea:"Paris, France"}};
+  relation[admin_level=9]
+    [boundary=administrative](area);
+out geom;
+```
+:::
+
+### Other kind of boundaries
+
+In addition to administrative boundaries, OpenStreetMap has other types of boundaries. They can be shortlisted using the `osmdata::available_tags("boundary")` function. But to see the frequency of each tag, you can look at [taginfo](https://taginfo.openstreetmap.org/keys/boundary#values).
+
+```{r}
+#| label: tbl-other_boundaries
+#| code-fold: true
+#| tbl-cap: 10 most popular `boundary=` values in OpenStreetMap
+
+options(knitr.kable.NA = '')
+
+a <- jsonlite::read_json("https://taginfo.openstreetmap.org/api/4/key/values?key=boundary&filter=all&lang=en&sortname=count&sortorder=desc&rp=10&page=1", simplifyVector = TRUE)
+a$data |>
+  subset(select = c(value, count, fraction, description)) |>
+  kableExtra::kable(digits = 2, 
+                    format.args = list(decimal.mark = ".", big.mark = "")) |>
+  kableExtra::kable_classic()
+```
+
+#### Protected areas
+
+The second most popular type of borders are the borders of protected areas: national parks, reserves and other areas of cultural importance. They are mapped as `boundary = protected_area` together with `protect_class = 1` to `99`; the first 6 values corresponds to categories introduced by International Union for Conservation of Nature (IUCN) like Strict Nature Reserve (IUCN Category Ia), Wilderness Area (IUCN Category Ib), National Park (IUCN Category II), etc. You can find the details on [wiki](https://wiki.openstreetmap.org/wiki/Tag:boundary%3Dprotected_area). But please be aware there might be another tags combination used to map the boundaries of protected areas like `boundary = national_park` which corresponds to `boundary = protected_area` + `protect_class = 2`. In such case user has to extend the query, therefore in below example we will ask for all boundaries and filter it later using `subset()`[^osm-4].
+
+[^osm-4]: You can use `dplyr::filter()` as well.
+
+```{r}
+#| label: fig-national_parks_in_peru
+#| code-fold: true
+#| fig-cap: National parks in Peru
+
+peru <- osmdata::opq(osmdata::getbb("Peru"), timeout = 60*20) |>
+  osmdata::add_osm_feature(key = "boundary", value = "administrative") |>
+  osmdata::add_osm_feature(key = "admin_level", value = "2") |>
+  osmdata::add_osm_feature(key = "name:en", value = "Peru") |>
+  osmdata::osmdata_sf() |>
+  osmdata::unname_osmdata_sf()
+
+peru <- peru$osm_multipolygons
+
+nat_parks <- osmdata::opq(sf::st_bbox(peru), timeout = 60*20) |>
+  osmdata::add_osm_feature(key = "boundary") |>
+  osmdata::add_osm_feature(key = "protect_class", value = "2") |>
+  osmdata::osmdata_sf() |>
+  osmdata::unname_osmdata_sf()
+
+nat_parks <- nat_parks$osm_multipolygons |>
+  sf::st_filter(peru, .predicate=sf::st_within) |>
+  subset(boundary %in% c("national_park", "protected_area"))
+
+tmap::tm_shape(nat_parks) +
+  tmap::tm_basemap() +
+  tmap::tm_borders(col = "darkgreen", lwd = 2) +
+  tmap::tm_credits("(C) OpenStreetMap contributors", position =  c(0,0))
+
+```
+
+Using a bit of mathematics we can calculate the areas of those parks and arrange them accordingly. In the code below we convert the units from $m^2$ to $km^2$ using `set_units()` function from {units} package [@units].
+
+```{r}
+#| label: area_of_parks_in peru
+
+nat_parks <- nat_parks |>
+  dplyr::mutate(area = sf::st_area(geometry))
+
+nat_parks$area <- units::set_units(nat_parks$area, km^2)
+```
+
+```{r}
+#| label: tab-area_of_parks_in peru
+#| tbl-cap: National parks in Peru with their area
+#| echo: false
+
+nat_parks |>
+  sf::st_drop_geometry() |>
+  subset(select = c(name, area)) |>
+  dplyr::arrange(dplyr::desc(area)) |>
+  dplyr::mutate(area = as.numeric(area)) |>
+  kableExtra::kable(row.names = FALSE,
+                    col.names = c("name", "area [$km^2$]"),
+                    escape = TRUE,
+                    digits = 0,
+                    format.args = list(big.mark = " ")) |>
+  kableExtra::kable_classic(full_width = FALSE, 
+                            protect_latex = TRUE)
+
+```
+
+Let's have a look a bit deeper what kind of information is associated with those parks in OSM by displaying all column names:
+
+```{r}
+#| label: column_names
+#| echo: false
+
+colnames(nat_parks)
+```
+
+Let's take the **Parque Nacional Alto Purús** as an example and display some of those fields.
+
+```{r}
+#| label: tbl-park_details
+#| tbl-cap: Some details about Parque Nacional Alto Purús from OpenStreetMap data
+nat_parks |>
+  subset(name == "Parque Nacional Alto Purús") |>
+  subset(select = c("short_name", "operator", "related_law", "start_date", "wikipedia", "wikidata")) |>
+  sf::st_drop_geometry() |>
+  kableExtra::kable(row.names = FALSE) |>
+  kableExtra::kable_classic()
+```
+
+With `wikipedia` field we can create link to Wikipedia article but let's have a look on `wikidata` -- it host [Wikidata](https://www.wikidata.org/) entry for our national park. Using {wikidataR} package [@WikidataR] we can explore the information stored there. In first step we have to get information behind the item coded as `Q2812162`. Then we extract the image property (`P18`) for this item. In next step we build an URL to Wikimedia Commons to grab image, it's attributes and display it.
+
+```{r}
+#| label: wikidataR
+
+w <- WikidataR::get_item("Q2812162")
+x <- WikidataR::extract_claims(w, "P18")
+wiki_image <- x[[1]]$P18.x$mainsnak$datavalue$value |>
+  stringr::str_replace_all(" ", "_")
+
+url <- paste0("https://commons.wikimedia.org/wiki/File:", wiki_image)
+
+page <- xml2::read_html(url)
+image <- page |>
+  xml2::xml_find_first("/html/body/div[3]/div[3]/div[5]/div[1]/div/span") |>
+  xml2::xml_child() |>
+  xml2::xml_attr("href")
+
+licence <- page |>
+  xml2::xml_find_first("/html/body/div[3]/div[3]/div[5]/div[3]/div/div[2]/div/div[1]/div[2]/div/div[2]/div[2]/div[2]/div[1]") |>
+  xml2::xml_children() |>
+  xml2::xml_text() |>
+    paste(sep = " ", collapse = " ")
+
+licence_link <- page |>
+  xml2::xml_find_first("/html/body/div[3]/div[3]/div[5]/div[3]/div/div[2]/div/div[1]/div[2]/div/div[2]/div[2]/div[2]/div[1]/a[2]") |>
+  xml2::xml_attr("href")
+
+attribution <- page |>
+  xml2::xml_find_first("/html/body/div[3]/div[3]/div[5]/div[3]/div/div[2]/div/div[1]/div[2]/div/div[2]/div[2]/div[2]/div[2]/span") |>
+  xml2::xml_text()
+
+```
+
+![Image by `r attribution`, licence: [`r licence`](`r licence_link`)](`r image`)
+
+::: callout-note
+Have you realized how easy is to combine data from 2 sources: OpenStreetMap and Wikipedia?
+:::
+
+#### Postal code areas {#sec-postal_code}
+
+Postal code boundaries are the third most common in OSM, however please be aware, that such information doesn't exist in each country. @fig-postal_code_distribution_map display the distribution this tag -- mostly used in Belgium, Germany, Vietnam and in few other spots across the globe.
+
+```{r}
+#| label: postal_code_distribution_map
+#| echo: false
+
+url <- "https://taginfo.openstreetmap.org/tags/boundary=postal_code#map"
+page <- xml2::read_html(url)
+links <- 
+  page |>
+  xml2::xml_find_first("/html/body/main/div[3]/div[4]/div") |>
+  xml2::xml_children() |>
+  xml2::xml_find_all("//img[@class='map']") |>
+  xml2::xml_attr("src")
+
+links <- paste0("https://taginfo.openstreetmap.org", links)
+
+i1 <- imager::load.image(links[1])
+
+i2 <- imager::load.image(links[2]) |>
+  imager::resize(size_x = imager::width(i1), size_y = imager::height(i1)) |>
+  imager::cimg2magick()
+
+i3 <- imager::load.image(links[3]) |>
+  imager::resize(size_x = imager::width(i1), size_y = imager::height(i1)) |>
+  imager::cimg2magick()
+
+i1 <- imager::cimg2magick(i1)
+
+magick::image_composite(i1, 
+                        magick::image_composite(i1, i3)
+) |>
+  magick::image_flop() |>
+  magick::image_write(path = "images/postal_codes_distribution.png")
+```
+
+::: {#fig-postal_code_distribution_map}
+![](images/postal_codes_distribution.png)
+
+Postal code boundaries distribution, source: [taginfo](https://taginfo.openstreetmap.org/tags/boundary=postal_code#map)
+:::
+
+As an example we will use {osmextract} to deal with data. Let say, we are interested in data set around Leipzig, Germany. First, we can check if any data provider offers such set.
+
+```{r}
+#| label: oe_match_leipzig
+
+osmextract::oe_match(place = c("Leipzig"))
+
+```
+
+We can download and preprocess it using `oe_get()` function. In this step the file is downloaded and all closed linestrings or relations are converted to layer with geometry type MULTIPOLYGON and stored in corresponding `.gpkg` file.
+
+```{r}
+#| label: oe_get_leipzig
+#| message: false
+#| output: false
+
+l <- osmextract::oe_get("Leipzig", 
+                   layer = "multipolygons",
+                   download_directory = "data")
+
+```
+
+As the layer contains `r nrow (l)` different features (including land usage, buildings, parks, forests etc.) and it takes `r format(as.numeric(object.size(l)/10^6), digits = 1)` Mb, it not necessary make sense to load it in whole. As we are interested in postal area boundaries, let utilize `query=` parameter.[^osm-5]
+
+[^osm-5]: Other option would be load all fields including `other_tags` (which are like `hstore` type field in PostgreSQL) and then massage it a bit with `tidyverse` functions:
+
+    ```{=html}
+    <pre>
+      l <- osmextract::oe_read("data/bbbike_Leipzig.gpkg", 
+             query = "SELECT * FROM multipolygons WHERE boundary = 'postal_code'")
+
+      l |>
+        subset(select = other_tags) |>
+        tidyr::separate_rows(other_tags, sep = ",") |>
+        tidyr::separate(other_tags, into = c("key", "value"), sep = "=>") |>
+        dplyr::mutate_at(c("key", "value"), stringr::str_remove_all, '"') |>
+        tidyr::pivot_wider(names_from = "key", values_from = "value")
+      </pre>
+    ```
+
+```{r}
+#| label: oe_leipzig_addresses
+#| output: false
+
+l <- osmextract::oe_read("data/bbbike_Leipzig.gpkg", 
+       query = "SELECT osm_id, 
+                   hstore_get_value(other_tags, 'postal_code') AS p_code,
+                   hstore_get_value(other_tags, 'postal_code_level') AS p_level,
+                   geometry 
+                FROM multipolygons WHERE boundary = 'postal_code'")
+```
+
+```{r}
+#| label: oe_leipzig_details
+
+l
+
+```
+
+```{r}
+#| label: fig-oe_leipzig_addresses
+#| code-fold: true
+#| fig-cap: Postal prefixes in and around Lepizig
+
+l <- l |>
+  dplyr::mutate(post_prefix = substr(p_code, 1, 3))
+
+tmap::tm_shape(l) +
+  tmap::tm_polygons(fill = "post_prefix",
+                    fill.scale = tmap::tm_scale_categorical(values = "Blues"),
+                    fill.legend = tmap::tm_legend(title = "Postal prefix"))
+
+```
+
+::: callout-tip
+As stated previously, the post code areas are sparse and scattered. As an idea: we can collect the post code from `addr:postcode` tag assigned to places (osm_points or osm\_(multi)polygons) and/or buildings/addresses then map it to lowest level of administrative boundary, however this may work for villages or small settlements. But assumption that postal areas corresponds somehow to administrative boundaries might be wrong. In bigger towns the post code may change from block to block. Then having a addresses as POINT features one may try spatial kriging on them. https://rpubs.com/Dr_Gurpreet/spatial_interpolation_kriging_R. Other method -- voronoi polygons.
+
+<!--
+#TODO https://gis.stackexchange.com/questions/2682/seeking-sources-for-us-zip-code-boundaries
+-->
+
+:::
+
+## Land coverage and use {#land-coverage}
+
+```{=html}
+<!--- 
+https://giscienceblog.uni-heidelberg.de/2023/03/25/functionality-update-for-osm-landuse-landcover/
+https://github.com/ailich/MultiscaleDTM/ - sprawdzić
+-->
+```
+Land coverage (representation of physical surface on the Earth like grass, asphalt, trees, ground, water) and land use (how humans modified and managed the natural environment into arable fields, pastures or settlements) is another area where you can use OpenStreetMap data. In mid of 2010's Jacinto Estima and Marco Painho investigated the coverage of OSM data in Portugal [@estimaExploratoryAnalysisOpenStreetMap2013; @estimaInvestigatingPotentialOpenstreetmap2015], followed later by others [@schultzOpenLandCover2017a; @schottOpenstreetmapElementVectorisation2022a]. Based on those works there is even an [osmlanduse.org](https://osmlanduse.org/) service build and hosted by Heidelberg Institute for Geoinformation Technology. Recently the topic was discussed by @fonteUsingOpenStreetMapCreate2019 where they compared OSM data with two European LULC products: the Urban Atlas and CORINE Land Cover.
+
+The main keys which describes those features are `natural` and `landuse`. @tbl-corine-to-osm shows the mapping between Corine Land Cover database and OSM data. Corine data was used in the past to map the surface of Europe, nowadays the data is replaced by other sources, mainly ortophoto maps, however the table gives a good overview of tag-value combinations for area mapping.
+
+```{r}
+#| label: tbl-corine-to-osm
+#| code-fold: true
+#| tbl-cap: "Corine Land Cover classess and corresponding OpenStreetMap taging system. Source: [wiki](https://wiki.openstreetmap.org/wiki/Corine_Land_Cover)."
+
+tables <- rvest::read_html("https://wiki.openstreetmap.org/wiki/Corine_Land_Cover") |>
+  rvest::html_table()
+
+tables[[1]] |>
+  subset(select = c(Code, Description, Comment)) |>
+  dplyr::mutate(
+    Comment = stringi::stri_replace_all_regex(
+      Comment, 
+      pattern = "([a-z]+)=([a-z]+)", 
+      replacement = glue::glue("\`$1=$2\`")
+    )
+  )  |>
+  kableExtra::kable() |>
+  kableExtra::kable_classic_2()
+```
+
+Let's use already downloaded data set for Leipzig and see, what is there for land use.
+
+```{r}
+#| label: leipzig_land_use
+#| warning: false
+#| message: false
+sf::st_read("data/bbbike_Leipzig.gpkg", query = "SELECT DISTINCT natural
+            FROM multipolygons WHERE natural != '' ORDER BY natural") |>
+  as.list()
+
+sf::st_read("data/bbbike_Leipzig.gpkg", query = "SELECT DISTINCT landuse
+            FROM multipolygons WHERE landuse != '' ORDER BY landuse") |>
+  as.list()
+```
+
+You may observe that a forest can be described as either `natural = wood` or `landuse = forest` so, it's necessary to combine those pairs. Similarly, various classes of of industrial areas, such as `industrial`, `commercial`, `construction` etc., can be aggregated. It's important to note that there might be instances `boundary = forest_compartment` (refer to @tbl-other_boundaries), which should be examined and potentially included as well. The code chunk below is just one example of numerous possible ways to extract the information.Please note `query =` parameter, which consist of [SQL query](https://gdal.org/user/ogr_sql_dialect.html).
+
+```{r}
+#| label: lst-leipzig_land_use_read_data
+#| message: false
+#| output: false
+
+sf::sf_use_s2(FALSE)
+lu <- sf::st_read("data/bbbike_Leipzig.gpkg",
+          query = "SELECT osm_id, name, landuse, natural, 'forest' AS type, geometry \
+                     FROM multipolygons \
+                     WHERE landuse = 'forest' OR natural = 'wood' \
+                   UNION \
+                   SELECT osm_id, name, landuse, natural, 'residential' AS type, geometry \
+                     FROM multipolygons \
+                     WHERE landuse IN ('residential', 'education', 'religious') \
+                   UNION \
+                   SELECT osm_id, name, landuse, natural, 'commercial' AS type, geometry \
+                     FROM multipolygons \
+                     WHERE landuse IN ('industrial', 'commercial', 'construction')") |>
+  sf::st_make_valid() |>
+  sf::st_transform(crs = "EPSG:25832") |>
+  dplyr::group_by(type) |>
+  dplyr::summarise()
+```
+
+```{r}
+#| label: fig-leipzig_land_use
+#| fig-cap: Example of land use around Leipzig, Germany
+#| echo: false
+#| message: false
+
+tmap::tm_shape(lu) +
+  tmap::tm_polygons(fill = "type", 
+                    fill.scale = tmap::tm_scale(values = c("orange", "darkgreen", "blue"))
+  ) +
+  tmap::tm_basemap()
+```
+
+A freely accessible global land cover product at 10 m resolution, based on Sentinel-1 and Sentinel-2 data, containing 11 land cover classes, is available online at [https://esa-worldcover.org](https://esa-worldcover.org). More information in @sec-esa_worlcover.
+
+## Where the streets have no names
+
+
+::: column-margin
+{{< video https://www.youtube.com/watch?v=GzZWSrr5wFI >}}
+:::
+
+
+<!--
+https://gis.stackexchange.com/questions/363315/can-i-extract-the-highway-layer-using-rs-sf-package
+-->
+
+
+<!---
+## Addresses
+https://taginfo.openstreetmap.org/search?q=addr
+addr::housenumber + addr::street : punkty + budynki
+może być associated_street (w relacji)
+miasto, gmina - moze być w danych administracyjnych
+
+
+Z adresami związany geocoding i reversal - Nominatim + pakiety do tego
+
+#TODO przejrzeć https://gis.stackexchange.com/questions/95919/determining-accessibility-of-u-s-street-address
+
+--->
+
+```{r}
+#| label: write_bibliography
+#| echo: false
+#| include: false
+#| eval: false
+#| 
+file.remove("packages.bib")
+softbib::softbib(output = "packages.bib", output_dir = "/home/sapi/projekty/open_data/")
+```
+
