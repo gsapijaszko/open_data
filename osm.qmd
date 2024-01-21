@@ -445,12 +445,12 @@ We can see `population`, `population:date` and `source:population` among others.
 #|    - "population density"
 #| layout-ncol: 2
 
-p <- prusice$osm_points |>
+prusice_places <- prusice$osm_points |>
   subset(place %in% c("village", "town")) |>
   sf::st_transform(crs = "EPSG:2180")
 
 willages <- willages |>
-  sf::st_join(p) |>
+  sf::st_join(prusice_places) |>
   subset(select = c("name.x", "population.y", "geometry")) |>
   dplyr::mutate(area = sf::st_area(geometry),
                 population = as.numeric(population.y), 
@@ -661,7 +661,7 @@ Have you realized how easy is to combine data from 2 sources: OpenStreetMap and 
 
 #### Postal code areas {#sec-postal_code}
 
-Postal code boundaries are the third most common in OSM, however please be aware, that such information doesn't exist in each country. @fig-postal_code_distribution_map display the distribution this tag -- mostly used in Belgium, Germany, Vietnam and in few other spots across the globe.
+Postal code boundaries are the third most common boundaries in OSM, however please be aware, that such information doesn't exist in each country. @fig-postal_code_distribution_map displays the distribution of this tag --- mostly used in Belgium, Germany, Vietnam and in few other spots across the globe.
 
 ```{r}
 #| label: postal_code_distribution_map
@@ -757,6 +757,7 @@ l <- osmextract::oe_read("data/bbbike_Leipzig.gpkg",
 
 ```{r}
 #| label: oe_leipzig_details
+#| echo: false
 
 l
 
@@ -778,7 +779,7 @@ tmap::tm_shape(l) +
 ```
 
 ::: callout-tip
-As stated previously, the post code areas are sparse and scattered. As an idea: we can collect the post code from `addr:postcode` tag assigned to places (osm_points or osm\_(multi)polygons) and/or buildings/addresses then map it to lowest level of administrative boundary, however this may work for villages or small settlements. But assumption that postal areas corresponds somehow to administrative boundaries might be wrong. In bigger towns the post code may change from block to block. Then having a addresses as POINT features one may try spatial kriging on them. https://rpubs.com/Dr_Gurpreet/spatial_interpolation_kriging_R. Other method -- voronoi polygons.
+As stated previously, the post code areas are sparse and scattered. As an idea: we can collect the post code from `addr:postcode` tag assigned to places (osm_points or osm_(multi)polygons) and/or buildings/addresses then map it to lowest level of administrative boundary, however this may work for villages or small settlements. But assumption that postal areas corresponds somehow to administrative boundaries might be wrong. In bigger towns the post code may change from block to block. Other idea: having the addresses as POINT features one may try spatial kriging on them. https://rpubs.com/Dr_Gurpreet/spatial_interpolation_kriging_R. Other method -- voronoi polygons.
 
 <!--
 #TODO https://gis.stackexchange.com/questions/2682/seeking-sources-for-us-zip-code-boundaries
@@ -788,12 +789,6 @@ As stated previously, the post code areas are sparse and scattered. As an idea: 
 
 ## Land coverage and use {#land-coverage}
 
-```{=html}
-<!--- 
-https://giscienceblog.uni-heidelberg.de/2023/03/25/functionality-update-for-osm-landuse-landcover/
-https://github.com/ailich/MultiscaleDTM/ - sprawdzić
--->
-```
 Land coverage (representation of physical surface on the Earth like grass, asphalt, trees, ground, water) and land use (how humans modified and managed the natural environment into arable fields, pastures or settlements) is another area where you can use OpenStreetMap data. In mid of 2010's Jacinto Estima and Marco Painho investigated the coverage of OSM data in Portugal [@estimaExploratoryAnalysisOpenStreetMap2013; @estimaInvestigatingPotentialOpenstreetmap2015], followed later by others [@schultzOpenLandCover2017a; @schottOpenstreetmapElementVectorisation2022a]. Based on those works there is even an [osmlanduse.org](https://osmlanduse.org/) service build and hosted by Heidelberg Institute for Geoinformation Technology. Recently the topic was discussed by @fonteUsingOpenStreetMapCreate2019 where they compared OSM data with two European LULC products: the Urban Atlas and CORINE Land Cover.
 
 The main keys which describes those features are `natural` and `landuse`. @tbl-corine-to-osm shows the mapping between Corine Land Cover database and OSM data. Corine data was used in the past to map the surface of Europe, nowadays the data is replaced by other sources, mainly ortophoto maps, however the table gives a good overview of tag-value combinations for area mapping.
@@ -877,16 +872,89 @@ A freely accessible global land cover product at 10 m resolution, based on Senti
 
 ## Where the streets have no names
 
+Streets, roads or paths --- all have `highway` key within OSM. The main road types, their values and meaning is shown in @tbl-osm_highways. Except those highways, there is a bunch of others like `living_street` `pedestrian` or just a `track` in forest --- details are available on [wiki](https://wiki.openstreetmap.org/wiki/Key:highway). The OSM roads network data is probably most used data around the world. It's a base for different navigation systems (including OSMAnd), for visualization of bus routes, it is also used in online games.
 
 ::: column-margin
 {{< video https://www.youtube.com/watch?v=GzZWSrr5wFI >}}
 :::
 
+```{r}
+#| label: tbl-osm_highways
+#| echo: false
+#| tbl-cap: "Roads and their coding values in OpenStreetMap data. Source: [wiki](https://wiki.openstreetmap.org/wiki/Key:highway)"
 
-<!--
-https://gis.stackexchange.com/questions/363315/can-i-extract-the-highway-layer-using-rs-sf-package
+t <- rvest::read_html("https://wiki.openstreetmap.org/wiki/Key:highway") |>
+  rvest::html_table()
+
+t[[3]][3:9,] |>
+  subset(select = c("Key", "Value", "Comment")) |>
+  kableExtra::kable() |>
+  kableExtra::kable_classic()
+
+```
+
+Let's extend Prusice municipality data with highways and see, what's available.
+
+```{r}
+#| label: prusice_highways
+#| warning: false
+
+prusice_highways <- osmdata::opq(b, timeout = 60) |> 
+  osmdata::add_osm_feature(key = "highway") |>
+  osmdata::osmdata_sf()
+
+highways <- prusice_highways$osm_lines |>
+  subset(!is.na(highway)) |>
+  sf::st_transform(crs = "EPSG:2180") |>
+  sf::st_intersection(prusice_mun)
+
+unique(highways$highway)
+```
+
+Comparing with @tbl-osm_highways we can see `trunk` and `trunk_link` as the main road categories, followed by `secondary`, `tertiary`, etc. Let's add them to our map.
+
+```{r}
+#| label: fig-prusice_highways
+#| code-fold: true
+#| fig-cap: Different roads classes in Prusice municipality based on OSM data
+
+h <- highways |>
+  subset(highway %in% c("trunk", "trunk_link", "secondary", "tertiary", "residential", "track"))
+  
+linewidths <- data.frame(
+  highway = c("trunk", "trunk_link", "secondary", "tertiary", "residential", "track"),
+  lwd = c(2, 1.8, 1.6, 1, 0.8, 0.5)
+)
+
+h <- h |>
+  dplyr::left_join(linewidths, by = "highway")
+
+tmap::tm_shape(prusice_mun) +
+  tmap::tm_borders() +
+  tmap::tm_shape(h) +
+  tmap::tm_lines(
+    col = "highway",
+    lwd = "lwd",
+    col.legend = tmap::tm_legend(
+      position = c("left", "bottom"),
+      bg.color = "white"
+    ),
+    lwd.legend = tmap::tm_legend(
+      show = FALSE
+    )
+  )
+
+```
+
+::: column-margin
+For those who prefer to use QGIS for styling and maps production, there is couple of resources including Anita's Graser blog posts [@underdarkGuideAdvancedLabeling2011; @underdarkGoogleMapsStyle2011; @underdarkGuideGoogleMapslikeMaps2014]. Look around and you will find [nice examples](https://gitlab.com/champs-libres/public/champs-libres-qgis-osm-style).
+:::
+
+You can use other tags associated with highways to check if it goes over bridge (`bridge = yes` or `viaduct`) or in tunnel (`tunell = yes`), what's the max allowed speeds (various tags starting with `maxspeed`), what's the road number (`ref` tag) or `name`, what's the `surface` or `smoothness`, etc.
+
+<!-- 
+### Bike infrastructure in a town
 -->
-
 
 <!---
 ## Addresses
