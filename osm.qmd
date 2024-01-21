@@ -829,7 +829,7 @@ sf::st_read("data/bbbike_Leipzig.gpkg", query = "SELECT DISTINCT landuse
   as.list()
 ```
 
-You may observe that a forest can be described as either `natural = wood` or `landuse = forest` so, it's necessary to combine those pairs. Similarly, various classes of of industrial areas, such as `industrial`, `commercial`, `construction` etc., can be aggregated. It's important to note that there might be instances `boundary = forest_compartment` (refer to @tbl-other_boundaries), which should be examined and potentially included as well. The code chunk below is just one example of numerous possible ways to extract the information.Please note `query =` parameter, which consist of [SQL query](https://gdal.org/user/ogr_sql_dialect.html).
+You may observe that a forest can be described as either `natural = wood` or `landuse = forest` so, it's necessary to combine those pairs. Similarly, various classes of of industrial areas, such as `industrial`, `commercial`, `construction` etc., can be aggregated. It's important to note that there might be instances `boundary = forest_compartment` (refer to @tbl-other_boundaries), which should be examined and potentially included as well. The code chunk below is just one example of numerous possible ways to extract the information. Please note `query =` parameter, which consist of [SQL query](https://gdal.org/user/ogr_sql_dialect.html).
 
 ```{r}
 #| label: lst-leipzig_land_use_read_data
@@ -947,14 +947,90 @@ tmap::tm_shape(prusice_mun) +
 ```
 
 ::: column-margin
-For those who prefer to use QGIS for styling and maps production, there is couple of resources including Anita's Graser blog posts [@underdarkGuideAdvancedLabeling2011; @underdarkGoogleMapsStyle2011; @underdarkGuideGoogleMapslikeMaps2014]. Look around and you will find [nice examples](https://gitlab.com/champs-libres/public/champs-libres-qgis-osm-style).
+For those who prefer to use QGIS for styling and maps production, there is couple of resources to start with, including Anita's Graser blog posts [@underdarkGuideAdvancedLabeling2011; @underdarkGoogleMapsStyle2011; @underdarkGuideGoogleMapslikeMaps2014]. Look around and you will find [nice examples](https://gitlab.com/champs-libres/public/champs-libres-qgis-osm-style).
 :::
 
 You can use other tags associated with highways to check if it goes over bridge (`bridge = yes` or `viaduct`) or in tunnel (`tunell = yes`), what's the max allowed speeds (various tags starting with `maxspeed`), what's the road number (`ref` tag) or `name`, what's the `surface` or `smoothness`, etc.
 
-<!-- 
-### Bike infrastructure in a town
--->
+### Bike infrastructure
+
+In OpenStreetMap database the roads designated for bicycle can be described in different ways. The lanes can be separate, can be part of highway, or shared with pedestrians (and in some countries even with other vehicles). Let's have a quick overview of the used tags.
+
+::: {.callout-warning}
+This is non exhaustive list of all possible tags which can be used. For more information see wiki description of [cycleway](https://wiki.openstreetmap.org/wiki/Key:cycleway) and [bicycle infrastructure](https://wiki.openstreetmap.org/wiki/Bicycle).
+:::
+
+Separate ways for cycling usually are described as `highway = cycleway`, and in the field they are marked with white bicycle on blue background sign.[^osm-6]
+
+[^osm-6]: All signs shared from Wikimedia commons. For similar signs in other European countries have a look on [Comparison of European road signs](https://en.wikipedia.org/wiki/Comparison_of_European_road_signs).
+
+```
+highway = cycleway
+```
+
+::: column-margin
+![](https://upload.wikimedia.org/wikipedia/commons/3/30/PL_road_sign_C-13.svg){width="50px"}
+:::
+
+If the cycling lane is shared with pedestrians, the usual tagging is:
+
+    highway = footway | path
+    bicycle = designated
+    foot = designated
+
+::: column-margin
+![](https://upload.wikimedia.org/wikipedia/commons/e/ee/PL_road_sign_C-13-16.svg){width="50px"}
+
+![](https://upload.wikimedia.org/wikipedia/commons/2/2e/PL_road_sign_C-13-16a.svg){width="50px"}
+:::
+
+Another possibility is to share the lane with cars on any highway (primary, tertiary, residential, etc). It can be the lane in the same or opposite direction. Tagging
+
+    highway = *
+    cycleway = lane
+
+
+::: column-margin
+![](https://upload.wikimedia.org/wikipedia/commons/1/13/PL_road_sign_F-19.svg){height="50px"}
+
+![](https://upload.wikimedia.org/wikipedia/commons/c/c8/Znak_B-2+T-22.png){height="50px"}  ![](https://upload.wikimedia.org/wikipedia/commons/e/e2/Znak_D-3+T-22.png){height="50px"}
+:::
+
+is used to tag two-way streets where there are cycle lanes on both sides of the road, or one-way streets where the lane operating in the same direction as main traffic flow. `cycleway = opposite_lane` is used for contraflow; `cycleway = opposite` + `oneway:bicycle = no` where cyclist are permitted to travel in both direction on one-way street. For shared lanes with motor vehicles: `cycleway = shared_lane` and `cycleway=share_busway` with buses. For more specific tagging please check [wiki page](https://wiki.openstreetmap.org/wiki/Key:cycleway).
+
+In some countries additional tagging is in use. `highway = *` + `bicycle_road = yes` for signed roads and `cyclestreet = yes` for roads where other vehicles are allowed.[^osm-7]
+
+[^osm-7]: For details see [Key:bicycle_road](https://wiki.openstreetmap.org/wiki/Key:bicycle_road)
+
+::: column-margin
+![](https://upload.wikimedia.org/wikipedia/commons/4/4e/Zeichen_244.3_-_Beginn_einer_Fahrradzone,_StVO_2020.svg){width="50px"}
+:::
+
+#### Other features
+
+Bicycle shops are tagged with `shop = bicycle`, and those which provide additional repair services have `service:bicycle:pair = yes` tags. There might be a do-it-yourself service stations, equipped with pump, wrenches and other helpful tools --- in such case they are tagged with `amenity = bicycle_repair_station`. 
+
+Bicycle parkings are tagged with `amenity = bicycle_parking`. In towns where you can rent a bike, you will find `amenity = bicycle_rental` tags.
+
+#### Bicycle routes
+
+> Cycle routes or bicycle route are named or numbered or otherwise signed routes. May go along roads, trails or dedicated cycle paths.[^osm-8] 
+
+[^osm-8]: [https://wiki.openstreetmap.org/wiki/Cycle_routes](https://wiki.openstreetmap.org/wiki/Cycle_routes)
+
+They are tagged as a relations (several features grouped together with relation roles assigned)[^osm-9]; they can be of different network levels: `network = icn | ncn | rcn | lcn` which corresponds to international route, a national route, a regional route or a local route. Below an example of tagging of part of EuroVelo 9 route:
+
+    type = route
+    route = bicycle
+    network = icn
+    ref = EV9
+    colour = green
+    icn_ref = 9
+    
+[^osm-9]: [https://wiki.openstreetmap.org/wiki/Relation](https://wiki.openstreetmap.org/wiki/Relation)
+
+
+
 
 <!---
 ## Addresses
