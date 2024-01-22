@@ -388,10 +388,10 @@ willages <- prusice$osm_multipolygons |>
   sf::st_transform(crs = "EPSG:2180")
 
 tmap::tm_shape(willages) +
+  tmap::tm_grid(n.x = 5, n.y = 5, lwd = 0.5) +
   tmap::tm_polygons(fill = "gray95") +
   tmap::tm_shape(prusice_mun) +
-  tmap::tm_lines(lwd = 3, col = "blue") +
-  tmap::tm_grid(n.x = 5, n.y = 5, lwd = 0.5)
+  tmap::tm_lines(lwd = 3, col = "blue")
 
 ```
 
@@ -407,13 +407,12 @@ willages <- prusice$osm_multipolygons |>
   sf::st_filter(prusice_mun, .predicate=sf::st_within)
 
 tmap::tm_shape(willages) +
+  tmap::tm_grid(n.x = 5, n.y = 5, lwd = 0.5) +
   tmap::tm_polygons(fill = "gray95") +
   tmap::tm_text(text = "name", size = 0.7) +
   tmap::tm_shape(prusice_mun) +
-  tmap::tm_lines(lwd = 3, col = "blue") +
-  tmap::tm_grid(n.x = 5, n.y = 5, lwd = 0.5)
+  tmap::tm_lines(lwd = 3, col = "blue") 
 
-  
 ```
 
 OpenStreetMap data it's not only spatial data base. It contain other information as well. For example, our boundaries of the villages are stored as a relation with ways as members. Additionally there might be `admin_center` pointing to node (point) which is marked as `place = village` or `town` with other tags, like:
@@ -960,7 +959,7 @@ In OpenStreetMap database the roads designated for bicycle can be described in d
 This is non exhaustive list of all possible tags which can be used. For more information see wiki description of [cycleway](https://wiki.openstreetmap.org/wiki/Key:cycleway) and [bicycle infrastructure](https://wiki.openstreetmap.org/wiki/Bicycle).
 :::
 
-Separate ways for cycling usually are described as `highway = cycleway`, and in the field they are marked with white bicycle on blue background sign.[^osm-6]
+Separated ways for cycling usually are described as `highway = cycleway`, and in the field they are marked with white bicycle on blue background sign.[^osm-6]
 
 [^osm-6]: All signs shared from Wikimedia commons. For similar signs in other European countries have a look on [Comparison of European road signs](https://en.wikipedia.org/wiki/Comparison_of_European_road_signs).
 
@@ -1008,7 +1007,7 @@ In some countries additional tagging is in use. `highway = *` + `bicycle_road = 
 
 #### Other features
 
-Bicycle shops are tagged with `shop = bicycle`, and those which provide additional repair services have `service:bicycle:pair = yes` tags. There might be a do-it-yourself service stations, equipped with pump, wrenches and other helpful tools --- in such case they are tagged with `amenity = bicycle_repair_station`. 
+Bicycle shops are tagged with `shop = bicycle`, and those which provide additional repair services have `service:bicycle:repair = yes` tags. There might be a do-it-yourself service stations, equipped with pump, wrenches and other helpful tools --- in such case they are tagged with `amenity = bicycle_repair_station`. 
 
 Bicycle parkings are tagged with `amenity = bicycle_parking`. In towns where you can rent a bike, you will find `amenity = bicycle_rental` tags.
 
@@ -1018,7 +1017,7 @@ Bicycle parkings are tagged with `amenity = bicycle_parking`. In towns where you
 
 [^osm-8]: [https://wiki.openstreetmap.org/wiki/Cycle_routes](https://wiki.openstreetmap.org/wiki/Cycle_routes)
 
-They are tagged as a relations (several features grouped together with relation roles assigned)[^osm-9]; they can be of different network levels: `network = icn | ncn | rcn | lcn` which corresponds to international route, a national route, a regional route or a local route. Below an example of tagging of part of EuroVelo 9 route:
+They are tagged as a relations (several features grouped together with relation roles assigned)[^osm-9]; they can be of different network levels: `network = icn | ncn | rcn | lcn` which corresponds to international route, a national, a regional or a local route. Below an example of tagging of part of EuroVelo 9 route:
 
     type = route
     route = bicycle
@@ -1029,6 +1028,207 @@ They are tagged as a relations (several features grouped together with relation 
     
 [^osm-9]: [https://wiki.openstreetmap.org/wiki/Relation](https://wiki.openstreetmap.org/wiki/Relation)
 
+As we already know and understand the attributes of the data, let's play with it a bit. In next steps we will assess quantitatively the bicycle infrastructure in Leipzig, based on the data we already downloaded in @sec-postal_code.
+
+First step would be to extract points, lines and polygons related bo bike infrastructure and convert it to `.gpkg` file using `osmextract::oe_vectortranslate()` function.
+
+```{r}
+#| label: leipzig_bike_data_preparation
+#| message: false
+#| warning: false
+#| output: false
+#| code-fold: true
+
+osmextract::oe_vectortranslate("data/bbbike_Leipzig.osm.pbf", layer = "points",
+                               extra_tags = c("shop", "amenity"))
+
+osmextract::oe_vectortranslate("data/bbbike_Leipzig.osm.pbf", layer = "multipolygons",
+                               extra_tags = c("shop", "amenity"))
+
+osmextract::oe_vectortranslate("data/bbbike_Leipzig.osm.pbf", 
+                               layer = "lines",
+                               extra_tags = c("highway", "cycleway", "bicycle", "foot", "vehicle",
+                                              "cycleway:both", "cycleway:left", "cycleway:right", 
+                                              "bicycle_road", "cyclestreet", "oneway", "surface",
+                                              "network", "shop", "amenity"))
+
+osmextract::oe_vectortranslate("data/bbbike_Leipzig.osm.pbf", 
+                               layer = "multilinestrings",
+                               extra_tags = c("network"))
+
+```
+Having it prepared we can check what's there:
+
+```{r}
+#| label: leipzig_layers_list
+
+sf::st_layers("data/bbbike_Leipzig.gpkg", do_count = TRUE)
+```
+
+As the data provided by BBBike.org covers the whole bounding box surrounding Leipzig, we have to find a city boundary and cut off the data outside. We will read all lines, select particular columns, cut by boundary and store in the `.gpkg` file.
+
+```{r}
+#| label: leipzig_border_and_highways
+#| message: false
+#| output: false
+#| warning: false
+
+leipzig_border <- sf::st_read("data/bbbike_Leipzig.gpkg",
+            query = "SELECT name, geometry FROM multipolygons \
+                      WHERE boundary = 'administrative' AND \
+                      admin_level = 6 AND \
+                      name = 'Leipzig'") |>
+  sf::st_transform(crs = "EPSG:31468")
+
+
+hw <- sf::st_read("data/bbbike_Leipzig.gpkg", layer = "lines") |>
+  dplyr::select("osm_id", "name", "highway", "foot",
+                starts_with(c("bicycle", "cycleway")), "oneway", 
+                "surface", "vehicle") |>
+  sf::st_transform(crs = "EPSG:31468") |>
+  sf::st_intersection(leipzig_border)
+
+sf::st_write(hw, dsn = "data/bbbike_Leipzig.gpkg", layer = "highways", append = FALSE)
+
+```
+
+With the highways prepared, we can run simple analysis: count the length of the roads for bikes, bikes + pedestrians, and cars only.
+
+```{r}
+#| label: bikes_only
+
+bikes_only <- hw |>
+  subset(highway == "cycleway" | cycleway %in% c("lane", "track", "yes") | bicycle == "designated" | !is.na((bicycle_road))) |>
+  dplyr::summarise(geometry = sf::st_union(geometry)) |>
+  dplyr::mutate(length = units::set_units(sf::st_length(geometry), "km"),
+                category = "Bikes only") |>
+  sf::st_drop_geometry()
+
+```
+
+```{r}
+#| label: tbl-bikes_pedestrians_cars
+#| code-fold: true
+#| tbl-cap: "Total length of roads by it's type"
+
+bikes_ped <- hw |>
+  subset(highway %in% c("path", "footway") & bicycle == "designated") |>
+  dplyr::summarise(geometry = sf::st_union(geometry)) |>
+  dplyr::mutate(length = units::set_units(sf::st_length(geometry), "km")) |>
+  dplyr::mutate(category = "Bikes + Pedestrians") |>
+  sf::st_drop_geometry()
+
+cars_only <- hw |>
+  subset(!is.na(highway) & !highway %in% c("cycleway", "path", "footway")) |>
+  subset(is.na(cycleway_left) | is.na(cycleway_right)) |>
+  dplyr::summarise(geometry = sf::st_union(geometry)) |>
+  dplyr::mutate(length = units::set_units(sf::st_length(geometry), "km")) |>
+  dplyr::mutate(category = "Cars only") |>
+  sf::st_drop_geometry()
+
+bikes_only |>
+  rbind(bikes_ped) |>
+  rbind(cars_only) |>
+  dplyr::mutate(l = "Total length") |>
+  tidyr::pivot_wider(names_from = category, values_from = length) |>
+  dplyr::mutate(across(2:4, ~format(round(.x, 1), nsmall = 1))) |>
+  kableExtra::kbl(booktabs = TRUE, escape = F, linesep = "",
+                  col.names = kableExtra::linebreak(c("", "Bikes only",
+                                                      "Bikes + Pedestrians",
+                                                      "Cars only"), align = "c"),
+                  align = c("crrr")) |>
+  kableExtra::kable_classic()
+```
+
+If you would like to split it by surface (asphalt, concrete, etc), then we can just group our highways by that column. @tbl-bike_only_by_surface provides the data.
+
+```{r}
+#| label: tbl-bike_only_by_surface
+#| tbl-cap: "Length of bike only roads by surface"
+#| code-fold: true
+#| 
+
+hw |>
+subset(highway == "cycleway" | cycleway %in% c("lane", "track", "yes") | bicycle == "designated" | !is.na((bicycle_road))) |>
+  dplyr::group_by(surface) |>
+  dplyr::summarise(geometry = sf::st_union(geometry)) |>
+  dplyr::mutate(length = units::set_units(sf::st_length(geometry), "km")) |> 
+  sf::st_drop_geometry() |>
+  units::drop_units() |>
+  subset(length >= 1) |>
+  dplyr::arrange(dplyr::desc(length)) |>
+  kableExtra::kbl(booktabs = TRUE, escape = F, digits = 2, linesep = "",
+                  col.names = c("Surface", "Length [km]"),
+                  align = c("lr")) |>
+  kableExtra::kable_classic()
+
+```
+
+@fig-leipzig_plots visualizes road networks and the density of it.
+
+```{r}
+#| label: fig-leipzig_plots
+#| layout-ncol: 2
+#| column: page
+#| fig-cap: Highways in Leipzig
+#| fig-subcap: 
+#|   - for bikes
+#|   - for cars
+#| echo: false
+#| 
+
+ddr <- hw |>
+  subset(highway == "cycleway" | cycleway %in% c("lane", "track", "yes") | bicycle == "designated" | !is.na((bicycle_road)))
+
+ar <- hw |>
+  subset(!is.na(highway) & !highway %in% c("cycleway", "path", "footway")) |>
+  subset(!cycleway_left %in% c(NA, "no") | !cycleway_right %in% c(NA, "no"))
+
+ddrip <- hw |>
+  subset(highway %in% c("path", "footway") & bicycle == "designated")
+
+bb <- hw |>
+  dplyr::filter(!highway %in% c("path", "footway")) |>
+  dplyr::group_by(highway)
+
+drogi <- ddr |>
+  dplyr::mutate(name = "ddr")
+drogi <- ar |>
+  dplyr::mutate(name = "ar") |>
+  rbind(drogi)
+drogi <- ddrip |>
+  dplyr::mutate(name = "ddrip") |>
+  rbind(drogi)
+
+drogi <- drogi |>
+  dplyr::group_by(name) |>
+  dplyr::summarise(geometry = sf::st_union(geometry)) |>
+  sf::st_simplify()
+
+drogi$labels <- c("Car + Bicycle", "Bicycle only", "Bicycle + Pedestrian")
+
+tmap::tm_shape(leipzig_border) +
+  tmap::tm_grid(n.x = 5, n.y = 5, lwd = 0.5, labels.show = FALSE) +
+  tmap::tm_polygons() +
+  tmap::tm_shape(drogi) +
+  tmap::tm_lines(col = "labels", 
+                 col.scale = tmap::tm_scale_categorical(
+                   values = c("orange", "blue", "black")),
+                 col.legend = tmap::tm_legend(
+                   title = "",
+                   position = c("left", "top"),
+                   bg.color = "gray90")
+                 ) +
+  tmap::tm_credits(text = "(C) OpenStreetMap contributors")
+  
+tmap::tm_shape(leipzig_border) +
+  tmap::tm_grid(n.x = 5, n.y = 5, lwd = 0.5, labels.show = FALSE) +
+  tmap::tm_polygons() +
+  tmap::tm_shape(bb) +
+  tmap::tm_lines(lwd = 0.3) +
+  tmap::tm_credits(text = "(C) OpenStreetMap contributors")
+
+```
 
 
 

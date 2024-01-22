@@ -1,7 +1,17 @@
-colnames(highways)
+sf::st_delete(dsn = "data/bbbike_Leipzig.gpkg", layer = "highways")
 
-highways$tunnel |>
-  unique()
+c_osm <- tmaptools::read_osm(leipzig_border, ext = 1.1, zoom = 10)
+
+tmap::tm_shape(c_osm, crs = "EPSG:4839", bbox = sf::st_bbox(sf::st_buffer(leipzig_border, 150))) +
+  tmap::tm_raster(col = tmap::tm_mv_dim("band", c("red", "green", "blue")), 
+                  col.scale = tmap::tm_scale_rgb()) +
+  tmap::tm_shape(leipzig_border) + 
+  tmap::tm_borders() +
+  tmap::tm_shape(hw) +
+  tmap::tm_lines(lwd = 0.2)
+map_c
+tmap_save(map_c, filename="map_c.png")
+
 
 # -------------------------------------------------------------------------------------------------------
 
