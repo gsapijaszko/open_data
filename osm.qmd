@@ -69,7 +69,7 @@ The quality of other features has also been assessed. For instance, @mooneyStudy
 
 ## Data access and available formats
 
-There are several ways to access the OpenStreetMap data. The entire planet data, currently approximately 73 GB in a binary (packed) PBF file, can be downloaded from planet.osm [@PlanetOSM]. Alternatively, smaller snapshots can be obtained from [GeoFabrik.de](http://download.geofabrik.de/) or [BBBike.org](https://download.bbbike.org/osm/). Those sources provide data in OSM XML and/or PBF formats. Subsequently, tools like [`osm2ppgsql`](https://osm2pgsql.org/) can be used to import the data into PostgreSQL/PostGIS database, [`osmosis`](https://wiki.openstreetmap.org/wiki/Osmosis) for data manipulation and filtering, or QGIS for direct processing. 
+There are several ways to access the OpenStreetMap data. The entire planet data, currently approximately 73 GB in a binary (packed) PBF file, can be downloaded from planet.osm [@PlanetOSM]. Alternatively, smaller snapshots can be obtained from [GeoFabrik.de](http://download.geofabrik.de/) or [BBBike.org](https://download.bbbike.org/osm/). Those sources provide data in OSM XML and/or PBF formats. Subsequently, tools like [`osm2ppg`](https://osm2pg.org/) can be used to import the data into Postgre/PostGIS database, [`osmosis`](https://wiki.openstreetmap.org/wiki/Osmosis) for data manipulation and filtering, or QGIS for direct processing. 
 
 For those seeking direct access to the data, the [Overpass API](https://www.overpass-api.de/) is available with [Overpass Turbo](https://overpass-turbo.eu/) serving as a front-end where users can build and execute the queries instantly. Further details about data access are described on the [wiki](https://wiki.openstreetmap.org/wiki/Planet.osm).
 
@@ -726,7 +726,7 @@ l <- osmextract::oe_get("Leipzig",
 
 As the layer contains `r nrow (l)` different features (including land usage, buildings, parks, forests etc.) and it takes `r format(as.numeric(object.size(l)/10^6), digits = 1)` Mb, it not necessary make sense to load it in whole. As we are interested in postal area boundaries, let utilize `query=` parameter.[^osm-5]
 
-[^osm-5]: Other option would be load all fields including `other_tags` (which are like `hstore` type field in PostgreSQL) and then massage it a bit with `tidyverse` functions:
+[^osm-5]: Other option would be load all fields including `other_tags` (which are like `hstore` type field in Postgre) and then massage it a bit with `tidyverse` functions:
 
     ```{=html}
     <pre>
@@ -828,7 +828,7 @@ sf::st_read("data/bbbike_Leipzig.gpkg", query = "SELECT DISTINCT landuse
   as.list()
 ```
 
-You may observe that a forest can be described as either `natural = wood` or `landuse = forest` so, it's necessary to combine those pairs. Similarly, various classes of of industrial areas, such as `industrial`, `commercial`, `construction` etc., can be aggregated. It's important to note that there might be instances `boundary = forest_compartment` (refer to @tbl-other_boundaries), which should be examined and potentially included as well. The code chunk below is just one example of numerous possible ways to extract the information. Please note `query =` parameter, which consist of [SQL query](https://gdal.org/user/ogr_sql_dialect.html).
+You may observe that a forest can be described as either `natural = wood` or `landuse = forest` so, it's necessary to combine those pairs. Similarly, various classes of of industrial areas, such as `industrial`, `commercial`, `construction` etc., can be aggregated. It's important to note that there might be instances `boundary = forest_compartment` (refer to @tbl-other_boundaries), which should be examined and potentially included as well. The code chunk below is just one example of numerous possible ways to extract the information. Please note `query =` parameter, which consist of [query](https://gdal.org/user/ogr__dialect.html).
 
 ```{r}
 #| label: lst-leipzig_land_use_read_data
