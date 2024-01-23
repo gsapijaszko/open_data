@@ -1230,7 +1230,89 @@ tmap::tm_shape(leipzig_border) +
 
 ```
 
+## Power grid
 
+OSM is not just roads. There are several other features mapped, one of them is power grid. You can see the grid features mapped on [Open Infrastructure Map](https://openinframap.org/#6.13/57.227/14.383/L,P,S). 
+
+```{r}
+#| label: tbl-grid_featues
+#| code-fold: true
+#| tbl-cap: 10 most popular `power=` values in OpenStreetMap
+
+options(knitr.kable.NA = '')
+
+a <- jsonlite::read_json("https://taginfo.openstreetmap.org/api/4/key/values?key=power&filter=all&lang=en&sortname=count&sortorder=desc&rp=10&page=1", simplifyVector = TRUE)
+a$data |>
+  subset(select = c(value, count, fraction, description)) |>
+  kableExtra::kable(digits = 2, 
+                    format.args = list(decimal.mark = ".", big.mark = "")) |>
+  kableExtra::kable_classic()
+```
+
+
+This section was inspired by OpenData StackExchange [question](https://opendata.stackexchange.com/questions/19973/is-there-a-publicly-accessible-map-of-the-swedish-medium-voltage-electricity-gri/20658#20658).
+
+```{r}
+#| label: fig-power_grid_sweden
+#| code-fold: true
+#| fig-cap: Power grid of Sweden
+#| warning: false
+#| message: false
+
+bbox <- osmdata::getbb("Sweden", featuretype = "country")
+
+sw <- osmdata::opq(bbox, timeout = 60*20) |>
+  osmdata::add_osm_feature(key = "boundary", value = "administrative") |>
+  osmdata::add_osm_feature(key = "admin_level", value = "2") |>
+  osmdata::add_osm_feature(key = "name:en", value = "Sweden") |>
+  osmdata::osmdata_sf() |>
+  osmdata::unique_osmdata() |>
+  osmdata::unname_osmdata_sf()
+
+sw_boundary <- sw$osm_multipolygons[sw$osm_multipolygons$`ISO3166-1` == "SE",][, c("name", "geometry")]
+
+p <- osmdata::opq(bbox, timeout = 60*20) |>
+  osmdata::add_osm_feature(key = "power") |>
+  osmdata::osmdata_sf() |>
+  osmdata::unique_osmdata()
+
+grid <- p$osm_lines |>
+  subset(power %in% c("line", "minor_line")) |>
+  sf::st_filter(sw_boundary) |>
+  subset(select = c("osm_id", "voltage")) |>
+  tidyr::separate_rows(voltage) |>
+  dplyr::distinct(.keep_all = TRUE) |>
+  dplyr::mutate(voltage = as.numeric(voltage)/10^3)
+
+substations <- p$osm_polygons |>
+  sf::st_filter(sw_boundary) |>
+  subset(power == "substation") |>
+  subset(select = c("osm_id", "power", "voltage", "name")) |>
+  tidyr::separate_rows(voltage) |>
+  dplyr::distinct(.keep_all = TRUE) |>
+  dplyr::mutate(voltage = as.numeric(voltage)/10^3)
+
+substations <- p$osm_points |>
+  sf::st_filter(sw_boundary) |>
+  subset(power == "substation") |>
+  subset(select = c("osm_id", "power", "voltage", "name")) |>
+  tidyr::separate_rows(voltage) |>
+  dplyr::distinct(.keep_all = TRUE) |>
+  dplyr::mutate(voltage = as.numeric(voltage)/10^3) |>
+  rbind(substations)
+
+tmap::tm_shape(sw_boundary) +
+  tmap::tm_polygons(fill = "gray95") +
+  tmap::tm_shape(grid) +
+  tmap::tm_lines("voltage", col.legend = tmap::tm_legend(title = "Power grid [kV]")) +
+  tmap::tm_shape(substations) +
+  tmap::tm_dots(size = 0.1)
+
+```
+
+<!--
+#TODO https://gis.stackexchange.com/questions/474669/qgis-finding-intersection-of-points-and-lines-layers-in-electricity-grid
+-->
 
 <!---
 ## Addresses
