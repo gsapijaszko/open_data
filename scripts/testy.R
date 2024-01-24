@@ -1,3 +1,6 @@
+# -------------------------------------------------------------------------------------------------------
+
+
 sf::st_delete(dsn = "data/bbbike_Leipzig.gpkg", layer = "highways")
 
 c_osm <- tmaptools::read_osm(leipzig_border, ext = 1.1, zoom = 10)

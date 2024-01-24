@@ -759,7 +759,6 @@ l <- osmextract::oe_read("data/bbbike_Leipzig.gpkg",
 #| echo: false
 
 l
-
 ```
 
 ```{r}
@@ -778,13 +777,99 @@ tmap::tm_shape(l) +
 ```
 
 ::: callout-tip
-As stated previously, the post code areas are sparse and scattered. As an idea: we can collect the post code from `addr:postcode` tag assigned to places (osm_points or osm_(multi)polygons) and/or buildings/addresses then map it to lowest level of administrative boundary, however this may work for villages or small settlements. But assumption that postal areas corresponds somehow to administrative boundaries might be wrong. In bigger towns the post code may change from block to block. Other idea: having the addresses as POINT features one may try spatial kriging on them. https://rpubs.com/Dr_Gurpreet/spatial_interpolation_kriging_R. Other method -- voronoi polygons.
+As stated previously, the post code areas are sparse and scattered. As an idea: we can collect the post code from `addr:postcode` tag assigned to places (osm_points or osm_(multi)polygons) and/or buildings/addresses then map it to lowest level of administrative boundary, however this may work for villages or small settlements. But assumption that postal areas corresponds somehow to administrative boundaries might be wrong. In bigger towns the post code may change from block to block. Other idea: having the addresses as POINT features one may try [spatial kriging](https://rpubs.com/Dr_Gurpreet/spatial_interpolation_kriging_R) on them. Other method might be to use voronoi polygons.
+
+:::
+
+Below an approach to add the postal codes to village boundaries using Wikidata as source.
+
+```{r}
+#| label: postal_code_from_wikidata
+#| code-fold: true
+#| message: false
+#| output: false
+
+adm_b <- osmextract::oe_read("data/bbbike_Leipzig.gpkg",
+  query = "SELECT osm_id, boundary, admin_level, name, 
+                  hstore_get_value(other_tags, 'postal_code') AS p_code, 
+                  hstore_get_value(other_tags, 'wikidata') AS wikidata,
+                  geometry
+              FROM multipolygons
+              WHERE boundary = 'administrative'"
+)
+
+adm_b <- adm_b |>
+  subset(admin_level %in% c(8:10) & is.na(p_code))
+
+```
+
+The function which grabs the data is based on {WikidataR} package:
+
+```{r}
+#| label: get_postal_code_function
+
+get_postal_code_from_wikidata <- function(q = "") {
+  if (q != "" & !is.na(q)) {
+    w <- WikidataR::get_item(q)
+    x <- WikidataR::extract_claims(w, "P281")
+    if (length(x[[1]]$P281.x) > 1) {
+      a <- x[[1]]$P281.x$mainsnak$datavalue$value
+      if (length(a > 1)) {
+        a <- a |>
+          paste0(str = ",", collapse = " ")
+      }
+    } else {
+      a <- ""
+    }
+  } else {
+    a <- ""
+  }
+  return(stringr::str_replace(a, ",$", ""))
+}
+
+adm_b <- adm_b |>
+  dplyr::rowwise() |>
+  dplyr::mutate(postal_code = get_postal_code_from_wikidata(wikidata))
+
+```
+
+```{r}
+#| label: tbl-with_postal_codes
+#| tbl-cap: "Example of administrative areas with postal code assigned"
+#| echo: false
+
+adm_b |>
+  head(12) |>
+  subset(select = c("name", "admin_level", "postal_code")) |>
+  sf::st_drop_geometry() |>
+  kableExtra::kable() |>
+  kableExtra::kable_classic()
+
+```
+
+```{r}
+#| label: fig-administrative_areas_by_code_prefixes
+#| echo: false
+#| fig-cap: "Administrative areas with postal codes from Wikidata, grouped by prefix"
+
+adm_b <- adm_b |>
+  dplyr::mutate(post_prefix = substr(postal_code, 1, 3)) |>
+  subset(!is.na(post_prefix) & post_prefix != "") 
+
+tmap::tm_shape(adm_b) +
+  tmap::tm_polygons(fill = "post_prefix",
+                    fill.scale = tmap::tm_scale_categorical(values = "Blues"),
+                    fill.legend = tmap::tm_legend(title = "Postal prefix"))
+
+
+```
+
 
 <!--
 #TODO https://gis.stackexchange.com/questions/2682/seeking-sources-for-us-zip-code-boundaries
 -->
 
-:::
+
 
 ## Land coverage and use {#land-coverage}
 
