@@ -1,3 +1,63 @@
+sf::sf_use_s2(FALSE)
+lu <- sf::st_read("data/bbbike_Leipzig.gpkg",
+                  query = "SELECT osm_id, name, landuse, natural, 'forest' AS type, geometry \
+                     FROM multipolygons \
+                     WHERE landuse = 'forest' OR natural = 'wood' \
+                   UNION \
+                   SELECT osm_id, name, landuse, natural, 'residential' AS type, geometry \
+                     FROM multipolygons \
+                     WHERE landuse IN ('residential', 'education', 'religious') \
+                   UNION \
+                   SELECT osm_id, name, landuse, natural, 'commercial' AS type, geometry \
+                     FROM multipolygons \
+                     WHERE landuse IN ('industrial', 'commercial', 'construction')") |>
+  sf::st_make_valid() |>
+  sf::st_transform(crs = "EPSG:25832") |>
+  dplyr::group_by(type) |>
+  dplyr::summarise()
+
+
+tmap::tm_shape(lu) +
+  tmap::tm_polygons(fill = "type", 
+                    fill.scale = tmap::tm_scale(values = c("orange", "darkgreen", "gray20")),
+                    col = "white", col_alpha = 0
+
+  ) +
+  tmap::tm_basemap()
+
+
+
+
+
+
+
+
+l <- sf::read_sf("data/bbbike_Leipzig.gpkg",
+                 query = "SELECT osm_id, boundary, admin_level, name, 
+                  hstore_get_value(other_tags, 'postal_code') AS p_code, 
+                  hstore_get_value(other_tags, 'wikidata') AS wikidata,
+                  geometry
+              FROM multipolygons
+              WHERE boundary = 'administrative'"
+)
+
+l$wikidata[!is.na(l$wikidata)][1:20] |>
+  WikidataR::get_item()  |>
+  WikidataR::extract_claims(claims = "P281")
+
+
+sparql_query <- "SELECT
+  ?softwareVersion ?publicationDate
+WHERE {
+  BIND(wd:Q206904 AS ?R)
+  ?R p:P348 [
+    ps:P348 ?softwareVersion;
+    pq:P577 ?publicationDate
+  ] .
+}"
+
+WikidataQueryServiceR::query_wikidata(sparql_query)
+
 # -------------------------------------------------------------------------------------------------------
 
 

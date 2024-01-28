@@ -69,7 +69,7 @@ The quality of other features has also been assessed. For instance, @mooneyStudy
 
 ## Data access and available formats
 
-There are several ways to access the OpenStreetMap data. The entire planet data, currently approximately 73 GB in a binary (packed) PBF file, can be downloaded from planet.osm [@PlanetOSM]. Alternatively, smaller snapshots can be obtained from [GeoFabrik.de](http://download.geofabrik.de/) or [BBBike.org](https://download.bbbike.org/osm/). Those sources provide data in OSM XML and/or PBF formats. Subsequently, tools like [`osm2ppg`](https://osm2pg.org/) can be used to import the data into Postgre/PostGIS database, [`osmosis`](https://wiki.openstreetmap.org/wiki/Osmosis) for data manipulation and filtering, or QGIS for direct processing. 
+There are several ways to access the OpenStreetMap data. The entire planet data, currently approximately 73 GB in a binary (packed) PBF file, can be downloaded from planet.osm [@PlanetOSM]. Alternatively, smaller snapshots can be obtained from [GeoFabrik.de](http://download.geofabrik.de/) or [BBBike.org](https://download.bbbike.org/osm/). Those sources provide data in OSM XML and/or PBF formats. Subsequently, tools like [`osm2pgsql`](https://osm2pgsql.org/) can be used to import the data into Postgresql/PostGIS database, [`osmosis`](https://wiki.openstreetmap.org/wiki/Osmosis) for data manipulation and filtering, or QGIS for direct processing. 
 
 For those seeking direct access to the data, the [Overpass API](https://www.overpass-api.de/) is available with [Overpass Turbo](https://overpass-turbo.eu/) serving as a front-end where users can build and execute the queries instantly. Further details about data access are described on the [wiki](https://wiki.openstreetmap.org/wiki/Planet.osm).
 
@@ -202,7 +202,7 @@ Let's proceed with our straightforward example of OSM-based spatial data: admini
 
 ![Boders in Serbia, Chorvatia and Slovenia, 1924](images/fragment_KARTA_KRALJEVINA_SRBA_HRVATA_I_SLOVENACA_750K_1924_nj420ct1196.png)
 
-Examples of country boundaries on different maps, source: [Archiwum Map Wojskowego Instytutu Geograficznego 1919-1939](http://english.mapywig.org)
+Examples of country boundaries on different maps, source: [Archiwum Map WIG 1919-1939](http://english.mapywig.org)
 :::
 
 There are several openly available datasets that offer administrative boundaries, such as `world` country polygons from the {spData} package [@spData], Natural Earth[^osm-2] accessible via {rnaturalearthdata} package [@rnaturalearthdata], {geodata} [@geodata], etc. For those who like point-and-click, there is a [osm-boundaries.com](https://osm-boundaries.com/) service, where you can pick the boundaries and download it in few different formats including GeoJSON. @fig-osm-czech-boundary displays few sets of freely available boundary data for a section of the Czech Republic boundary. You may observe a significant difference between these lines and the administrative boundary from the OpenStreetMap map layer below. Despite both datasets being prepared based on OSM data, they have undergone simplification. Please exercise caution when selecting your data set and utilize it judiciously.
@@ -610,9 +610,12 @@ Let's take the **Parque Nacional Alto Purús** as an example and display some of
 ```{r}
 #| label: tbl-park_details
 #| tbl-cap: Some details about Parque Nacional Alto Purús from OpenStreetMap data
+#| tbl-column: body-outset-right
+
 nat_parks |>
   subset(name == "Parque Nacional Alto Purús") |>
-  subset(select = c("short_name", "operator", "related_law", "start_date", "wikipedia", "wikidata")) |>
+  subset(select = c("short_name", "operator", "related_law", 
+                    "start_date", "wikipedia", "wikidata")) |>
   sf::st_drop_geometry() |>
   kableExtra::kable(row.names = FALSE) |>
   kableExtra::kable_classic()
@@ -724,9 +727,9 @@ l <- osmextract::oe_get("Leipzig",
 
 ```
 
-As the layer contains `r nrow (l)` different features (including land usage, buildings, parks, forests etc.) and it takes `r format(as.numeric(object.size(l)/10^6), digits = 1)` Mb, it not necessary make sense to load it in whole. As we are interested in postal area boundaries, let utilize `query=` parameter.[^osm-5]
+As the layer contains `r nrow (l)` different features (including land usage, buildings, parks, forests etc.) and it takes `r format(as.numeric(object.size(l)/10^6), digits = 1)` Mb, it not necessary make sense to load it in whole. As we are interested in postal area boundaries, let utilize `query=` parameter and `hstore_get_value()` function.[^osm-5]
 
-[^osm-5]: Other option would be load all fields including `other_tags` (which are like `hstore` type field in Postgre) and then massage it a bit with `tidyverse` functions:
+[^osm-5]: Other option would be load all fields including `other_tags` (which are like `hstore` type field in Postgresql) and then massage it a bit with `tidyverse` functions:
 
     ```{=html}
     <pre>
@@ -781,7 +784,9 @@ As stated previously, the post code areas are sparse and scattered. As an idea: 
 
 :::
 
-Below an approach to add the postal codes to village boundaries using Wikidata as source.
+Below an approach to add the postal codes to village boundaries using Wikidata as source.[^wikidata-postcodes]
+
+[^wikidata-postcodes]:It's a extension of [GIS Stackexchange answer](https://gis.stackexchange.com/questions/473142/how-to-extract-also-a-zip-code-with-overpass-turbo/474765#474765)
 
 ```{r}
 #| label: postal_code_from_wikidata
@@ -947,7 +952,9 @@ lu <- sf::st_read("data/bbbike_Leipzig.gpkg",
 
 tmap::tm_shape(lu) +
   tmap::tm_polygons(fill = "type", 
-                    fill.scale = tmap::tm_scale(values = c("orange", "darkgreen", "blue"))
+                    fill.scale = tmap::tm_scale(values = c("orange", "darkgreen", "gray20")),
+                    col = "white", col_alpha = 0
+
   ) +
   tmap::tm_basemap()
 ```
@@ -1063,9 +1070,7 @@ If the cycling lane is shared with pedestrians, the usual tagging is:
     foot = designated
 
 ::: column-margin
-![](https://upload.wikimedia.org/wikipedia/commons/e/ee/PL_road_sign_C-13-16.svg){width="50px"}
-
-![](https://upload.wikimedia.org/wikipedia/commons/2/2e/PL_road_sign_C-13-16a.svg){width="50px"}
+![](https://upload.wikimedia.org/wikipedia/commons/e/ee/PL_road_sign_C-13-16.svg){width="50px"}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![](https://upload.wikimedia.org/wikipedia/commons/2/2e/PL_road_sign_C-13-16a.svg){width="50px"}
 :::
 
 Another possibility is to share the lane with cars on any highway (primary, tertiary, residential, etc). It can be the lane in the same or opposite direction. Tagging
@@ -1233,23 +1238,30 @@ If you would like to split it by surface (asphalt, concrete, etc), then we can j
 #| code-fold: true
 #| 
 
+opts <- options(knitr.kable.NA = "[ no data ]")
+
 hw |>
 subset(highway == "cycleway" | cycleway %in% c("lane", "track", "yes") | bicycle == "designated" | !is.na((bicycle_road))) |>
   dplyr::group_by(surface) |>
+  dplyr::mutate(
+    surface = stringi::stri_replace_all_fixed(
+      surface, 
+      pattern = "_", 
+      replacement = " ")) |>
   dplyr::summarise(geometry = sf::st_union(geometry)) |>
   dplyr::mutate(length = units::set_units(sf::st_length(geometry), "km")) |> 
   sf::st_drop_geometry() |>
   units::drop_units() |>
   subset(length >= 1) |>
   dplyr::arrange(dplyr::desc(length)) |>
-  kableExtra::kbl(booktabs = TRUE, escape = F, digits = 2, linesep = "",
+  kableExtra::kbl(booktabs = TRUE, escape = FALSE, digits = 2, linesep = "",
                   col.names = c("Surface", "Length [km]"),
                   align = c("lr")) |>
   kableExtra::kable_classic()
 
 ```
 
-@fig-leipzig_plots visualizes road networks and the density of it.
+@fig-leipzig_plots visualizes road networks and it's density.
 
 ```{r}
 #| label: fig-leipzig_plots
@@ -1334,8 +1346,11 @@ a$data |>
   kableExtra::kable_classic()
 ```
 
+This section is inspired by OpenData StackExchange [question](https://opendata.stackexchange.com/questions/19973/is-there-a-publicly-accessible-map-of-the-swedish-medium-voltage-electricity-gri/20658#20658). The queries are build around `power` tag. A very similar approach can be applied for oil and gas pipelines or other utilities. For details of usage see [oil and gas infrastructure](https://wiki.openstreetmap.org/wiki/Oil_and_Gas_Infrastructure) or [`pipeline`](https://wiki.openstreetmap.org/wiki/Tag:man_made%3Dpipeline) tag.
 
-This section was inspired by OpenData StackExchange [question](https://opendata.stackexchange.com/questions/19973/is-there-a-publicly-accessible-map-of-the-swedish-medium-voltage-electricity-gri/20658#20658).
+::: column-margin
+Other sources of open data for power transmission lines are listed on [openmod](https://wiki.openmod-initiative.org/wiki/Transmission_network_datasets).
+:::
 
 ```{r}
 #| label: fig-power_grid_sweden
@@ -1362,7 +1377,7 @@ p <- osmdata::opq(bbox, timeout = 60*20) |>
   osmdata::unique_osmdata()
 
 grid <- p$osm_lines |>
-  subset(power %in% c("line", "minor_line")) |>
+  subset(power %in% c("cable", "line", "minor_line")) |>
   sf::st_filter(sw_boundary) |>
   subset(select = c("osm_id", "voltage")) |>
   tidyr::separate_rows(voltage) |>

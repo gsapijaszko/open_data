@@ -154,7 +154,7 @@ terra::plot(w)
 
 ```
 
-It's worth to mention that {geodata} package have `landcover()` function, which can download downsampled to 30-seconds per pixel rasters for specific landcover class.
+It's worth to mention that {geodata} package have `landcover()` function, which can download downsampled to 30-seconds per pixel rasters for specific land coverage class.
     
 ```{r}
 #| label: geodata_landcover
@@ -163,3 +163,14 @@ It's worth to mention that {geodata} package have `landcover()` function, which 
 geodata::landcover(var = "moss", path = tempdir())
 ```
 
+
+<!---
+hydro:
+https://www.hydrosheds.org/hydrosheds-core-downloads
+-->
+
+<!--
+soil:
+
+https://data.isric.org/geonetwork/srv/eng/catalog.search#/home
+-->

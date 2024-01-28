@@ -53,3 +53,7 @@ div.sourceCode {
 .cell-output-display {
   margin-bottom: 1.5rem;
 }
+
+pre, code {
+  font-size: 11pt;
+}
