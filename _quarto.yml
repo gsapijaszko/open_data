@@ -1,6 +1,6 @@
 project:
   type: book
-# post-render: scripts/post_script.R
+  post-render: scripts/post_script.R
 
 book:
   title: "Open Data sources and how to deal with it"
