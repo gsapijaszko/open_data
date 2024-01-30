@@ -1,4 +1,165 @@
 
+b <- osmdata::getbb("Uganda")
+a <- osmdata::opq(b, timeout = 60*20) |>
+  osmdata::add_osm_feature(key = "amenity", value = "doctors") |>
+  osmdata::osmdata_sf()
+
+poi <- a$osm_points[1:10, "amenity"=='doctors', ] |>
+  sf::st_coordinates()
+
+tmaptools::rev_geocode_OSM(x=poi[, "X"], y = poi[, "Y"])
+
+poi[1,]
+
+a$osm_points |>
+  subset(amenity == "doctors")
+
+tidygeocoder::reverse_geo(long = poi[, "X"], lat = poi[, "Y"], method = "osm")
+
+
+
+# -----------------------------------------------------------------------------------------------------------------
+#' https://stackoverflow.com/questions/75791459/r-calculating-the-distance-between-two-geographical-points/75859028#75859028
+#' https://github.com/Project-OSRM/osrm-backend
+
+library(osrm)
+options("osrm.server" = "http://127.0.0.1:5000/")
+options("osrm.profile" = "car") # Easiest to set this here as well
+
+osrmRoute(src = c(-78.70202146, 46.31710423), dst = c( -77.78705358, 45.01146376), overview = "full") |>
+  sf::st_write(dsn = "/home/sapi/Downloads/dupa2.gpkg", append = FALSE)
+
+osrmIsochrone(loc = c(-78.70202146, 46.31710423), breaks = c(10, 20, 30, 60), res = 40) 
+
+
+b <- osmdata::getbb("gmina Prusice")
+prusice <- osmdata::opq(bbox = b, timeout = 60*20) |>
+  osmdata::add_osm_feature(key = "boundary", value = "administrative") |>
+  osmdata::osmdata_sf()
+
+prusice_mun <- prusice$osm_multipolygons |>
+  subset(admin_level == 7 & name == "gmina Prusice") |>
+  sf::st_transform(crs = "EPSG:2180")
+
+willages <- prusice$osm_multipolygons |>
+  subset(admin_level == 8) |>
+  sf::st_transform(crs = "EPSG:2180")
+
+tmap::tm_shape(willages) +
+  tmap::tm_grid(n.x = 5, n.y = 5, lwd = 0.5) +
+  tmap::tm_polygons(fill = "gray95") +
+  tmap::tm_shape(prusice_mun) +
+  tmap::tm_lines(lwd = 3, col = "blue")
+
+willages <- prusice$osm_multipolygons |>
+  subset(admin_level == 8) |>
+  sf::st_transform(crs = "EPSG:2180") |>
+  sf::st_filter(prusice_mun, .predicate=sf::st_within)
+
+tmap::tm_shape(willages) +
+  tmap::tm_grid(n.x = 5, n.y = 5, lwd = 0.5) +
+  tmap::tm_polygons(fill = "gray95") +
+  tmap::tm_text(text = "name", size = 0.7) +
+  tmap::tm_shape(prusice_mun) +
+  tmap::tm_lines(lwd = 3, col = "blue") 
+
+prusice_highways <- osmdata::opq(b, timeout = 60) |> 
+  osmdata::add_osm_feature(key = "highway") |>
+  osmdata::osmdata_sf()
+
+highways <- prusice_highways$osm_lines |>
+  subset(!is.na(highway)) |>
+  sf::st_transform(crs = "EPSG:2180") |>
+  sf::st_intersection(prusice_mun)
+
+h <- highways |>
+  #  subset(highway %in% c("trunk", "trunk_link", "secondary", "tertiary", "residential", "track"))
+  subset(highway %in% c("trunk", "trunk_link", "secondary", "tertiary", "residential"))
+
+linewidths <- data.frame(
+  highway = c("trunk", "trunk_link", "secondary", "tertiary", "residential", "track"),
+  lwd = c(2, 1.8, 1.6, 1, 0.8, 0.5)
+)
+
+h <- h |>
+  dplyr::left_join(linewidths, by = "highway")
+
+tm <- tmap::tm_shape(prusice_mun) +
+  tmap::tm_borders() +
+  tmap::tm_shape(h) +
+  tmap::tm_lines(
+    col = "highway",
+    lwd = "lwd",
+    col.legend = tmap::tm_legend(
+      position = c("left", "bottom"),
+      bg.color = "white"
+    ),
+    lwd.legend = tmap::tm_legend(
+      show = FALSE
+    )
+  )
+
+fire_stations <- osmdata::opq(b, timeout = 60) |> 
+  osmdata::add_osm_feature(key = "amenity", value = "fire_station") |>
+  osmdata::osmdata_sf()
+
+osp <- fire_stations$osm_polygons[, "amenity" == "fire_station"] |>
+  sf::st_centroid()
+
+osp <- fire_stations$osm_points[, "amenity" == "fire_station"] |>
+  sf::st_centroid() |>
+  rbind(osp)
+
+osp <- osp |>
+  sf::st_transform(crs = sf::st_crs(prusice_mun)) |>
+  sf::st_filter(prusice_mun, .predicate=sf::st_within)
+
+osp
+
+tm +
+  tmap::tm_shape(osp) +
+  tmap::tm_dots()
+
+library(osrm)
+options("osrm.server" = "http://127.0.0.1:5000/")
+options("osrm.profile" = "car") # Easiest to set this here as well
+
+osrmIsochrone(loc = c(-78.70202146, 46.31710423), breaks = c(10, 20, 30, 60), res = 40) 
+
+locations <- osp |>
+  sf::st_transform(crs = "EPSG:4326") 
+
+locations
+
+c <- locations
+c <- c[0,]
+
+for (i in 1:nrow(locations)) {
+  a <- osrmIsochrone(loc = locations[i, ], breaks = c(0, 2, 4, 6, 8, 10), res = 40)
+  a$num <- i
+  c <- a |>
+    rbind(c)
+}
+
+tm +
+  tmap::tm_shape(osp) +
+  tmap::tm_dots(size = 0.5) +
+  tmap::tm_shape(c) + 
+  tmap::tm_polygons("isomax", fill_alpha = 0.3,
+                    col = "white", col_alpha = 0,
+                    fill.legend = tmap::tm_legend(
+                      position = c("left", "top"),
+                      bg.color = "white"
+                    ),
+  )
+
+options("osrm.server" = "http://127.0.0.1:5000/")
+options("osrm.profile" = "car") # Easiest to set this here as well
+
+osrmRoute(src = c(-78.70202146, 46.31710423), dst = c( -77.78705358, 45.01146376), overview = "full") |>
+  sf::st_write(dsn = "/home/sapi/Downloads/a.gpkg", append = FALSE)
+
+
 # do przejrzenia ----------------------------------------------------------------------------------------
 
 https://github.com/ryanstraight/resources
