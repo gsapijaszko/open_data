@@ -1327,6 +1327,11 @@ tmap::tm_shape(leipzig_border) +
 
 ```
 
+### Routing and accessibility
+
+But roads are not just lines on a map. It is also a network of connections that allow you to move from city to city, from one point to another. A network of connections that can be represented using graphs. It can be used both for routing and for analyzing the accessibility of various goods and resources: school, work or library.
+
+
 ## Power grid
 
 OSM is not just roads. There are several other features mapped, one of them is power grid. You can see the grid features mapped on [Open Infrastructure Map](https://openinframap.org/#6.13/57.227/14.383/L,P,S). 

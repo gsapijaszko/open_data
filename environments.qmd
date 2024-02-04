@@ -1,3 +1,7 @@
+<!---
+https://openlandmap.github.io/book/012-compendium.html
+-->
+
 # Environmental data
 
 ## ESA WorldCover {#sec-esa_worlcover}
@@ -69,7 +73,11 @@ The data can be accessed from [AWS](https://registry.opendata.aws/esa-worldcover
 and to sync it with local filesystem:
 
     aws s3 sync --no-sign-request s3://esa-worldcover/v200/2021/map /local/path
+    
+The other option would be to mount it as a local file system using `s3fs`:
 
+    s3fs esa-worldcover /local/path -o public_bucket=1
+    
 The data is available as TIFF raster tiles in a regular grid (EPSG:4326) with the ellipsoid WGS 1984 (Terrestrial radius=6378 km). The resolution of the grid is 1/12000$\deg$ corresponding to ~ 10 m at equator. The individual tile cover 3x3 degrees of longitude/latitude, and the filenames are in form:
 
     ESA_WorldCover_10m_2021_v200_N06E012_Map.tif
