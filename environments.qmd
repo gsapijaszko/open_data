@@ -95,6 +95,8 @@ The AWS buckets can be accessed with {aws.s3} package [@aws.s3] however rasters 
 ```{r}
 #| label: esa_worldcover_flat_geobufer
 #| message: false
+#| output: false
+
 esa_tiles <- sf::st_read("https://esa-worldcover.s3.eu-central-1.amazonaws.com/esa_worldcover_grid.fgb")
 ```
 
@@ -108,6 +110,7 @@ head(esa_tiles)
 ```{r}
 #| label: fig-esa_worldcover_flat_geobufer
 #| fig-cap: "Spatial coverage of WorlCover data"
+#| echo: false
 
 terra::plot(esa_tiles, main = "")
 ```

@@ -1,4 +1,7 @@
 
+# -------------------------------------------------------------------------------------------------------
+
+
 b <- osmdata::getbb("Uganda")
 a <- osmdata::opq(b, timeout = 60*20) |>
   osmdata::add_osm_feature(key = "amenity", value = "doctors") |>
