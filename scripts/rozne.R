@@ -1,3 +1,10 @@
+isd_stations <- read.csv("https://www.ncei.noaa.gov/pub/data/noaa/isd-history.csv")
+
+isd_stations |>
+  dplyr::slice_sample(n = 10) |>
+  kableExtra::kable() |>
+  kableExtra::kable_classic_2()
+
 
 # -------------------------------------------------------------------------------------------------------
 

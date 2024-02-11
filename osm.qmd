@@ -876,7 +876,7 @@ tmap::tm_shape(adm_b) +
 
 
 
-## Land coverage and use {#land-coverage}
+## Land coverage and use {#sec-land_coverage}
 
 Land coverage (representation of physical surface on the Earth like grass, asphalt, trees, ground, water) and land use (how humans modified and managed the natural environment into arable fields, pastures or settlements) is another area where you can use OpenStreetMap data. In mid of 2010's Jacinto Estima and Marco Painho investigated the coverage of OSM data in Portugal [@estimaExploratoryAnalysisOpenStreetMap2013; @estimaInvestigatingPotentialOpenstreetmap2015], followed later by others [@schultzOpenLandCover2017a; @schottOpenstreetmapElementVectorisation2022a]. Based on those works there is even an [osmlanduse.org](https://osmlanduse.org/) service build and hosted by Heidelberg Institute for Geoinformation Technology. Recently the topic was discussed by @fonteUsingOpenStreetMapCreate2019 where they compared OSM data with two European LULC products: the Urban Atlas and CORINE Land Cover.
 

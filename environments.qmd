@@ -4,7 +4,11 @@ https://openlandmap.github.io/book/012-compendium.html
 
 # Environmental data
 
-## ESA WorldCover {#sec-esa_worlcover}
+## Land Cover and Land Use
+
+Land coverage and use was touched in @sec-land_coverage, where the focus was mainly on OpenStreetMap data as a source. However there is more datasets available, based on satellite observations.
+
+### ESA WorldCover {#sec-esa_worlcover}
 
 European Space Agency (ESA) released a freely accessible global land coverage data sets. These data sets are based on Sentinel-1 and Sentinel-2 data and contains 11 land cover classes with overall accuracy over 75%. The first set was released in 2021, the second, with higher quality, in 2022 [@zanagaESAWorldCover102021; @zanagaESAWorldCover102022]. The data is accessible thru AWS Open Data Registry, Zenodo and/or [Terrascope](https://terrascope.be/en). Terrascope provides the data as WM(T)S services as well, which can be used directly in QGIS:
 
@@ -173,6 +177,69 @@ It's worth to mention that {geodata} package have `landcover()` function, which 
 
 geodata::landcover(var = "moss", path = tempdir())
 ```
+
+
+## Climate
+
+Key climatic variables of interest are usually:
+
+* temperature (&deg;C) (minimum, maximum, average, above ground or at 2&nbsp;m height)
+* precipitation (mm),
+* solar radiation (kJ m^-2^ day^-1^),
+* wind speed (m s^-1^),
+* water vapor (cm liquid water) and water vapor pressure (kPa),
+* probability of occurrence of snow, snow thickness (cm),
+* soil moisture (cm liquid water),
+
+Those data can be provided as point data sets (per station) or as gridded data sets obtained from analysis or modeling of the past and current climate data. 
+
+### Stations data
+
+#### Integrated Surface Database
+
+The Integrated Surface Database (ISD) [@smithIntegratedSurfaceDatabase2011; @delgrecoSurfaceDataIntegration2006; @lottQualityControlIntegrated2004] is a global database that consists of hourly surface observations compiled from numerous sources into a single common ASCII format and common data model. It integrated data from numerous data sources and provides many parameters like temperature and dew point, wind speed and direction, precipitation etc. Data can be accessed from [ncei.noaa.gov](https://www.ncei.noaa.gov/products/land-based-station/integrated-surface-database) portal or directly from [server](https://www.ncei.noaa.gov/pub/data/noaa/) where the data is divided by year, and for every station a gziped text file is provided. Data format, described in @FederalClimateComplex2018, covers among others: date and time of observation, longitude, latitude and elevation of station, wind direction and speed, sky conditions, visibility distance, air temperature and dev point temperature, atmospheric pressure, precipitation and snow depth. Stations, coded like `040180-16201` can be translated to station names and their physical locations using [isd-history.csv](https://www.ncei.noaa.gov/pub/data/noaa/isd-history.csv) file.
+
+
+```{r}
+#| label: tbl-isd_stations
+#| code-fold: true
+#| tbl-cap: "A sample of ISD stations description file which can be used to translate station code to its location"
+
+isd_stations <- read.csv("https://www.ncei.noaa.gov/pub/data/noaa/isd-history.csv")
+
+isd_stations |>
+  dplyr::slice_sample(n = 10) |>
+  kableExtra::kable() |>
+  kableExtra::kable_classic_2()
+
+```
+
+There is a {worldmet} [@worldmet] package which can be used to find the appropriate stations and import the data. Let's  use it to find a stations close to coordinates 15.5&deg;E, 51.5&deg;N and extract the data for one of them:
+
+```{r}
+#| label: worldmet_example
+#| 
+a <- worldmet::getMeta(lon = 15.5, lat = 51.5)
+
+a[, c(1, 3, 9:11, 15)]
+```
+
+```{r}
+#| label: worldmet_extract_data
+
+stations <- worldmet::importNOAA(code = "124150-99999",
+                     year = c(2023:2024),
+                     hourly = TRUE,
+                     n.cores = 4,
+                     path = "data")
+
+stations |>
+  subset(select = c(3, 7:13)) |>
+  tail()
+
+
+```
+
 
 
 <!---
