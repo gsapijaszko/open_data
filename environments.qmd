@@ -223,21 +223,49 @@ a <- worldmet::getMeta(lon = 15.5, lat = 51.5)
 
 a[, c(1, 3, 9:11, 15)]
 ```
+By adding `returnMap = TRUE` parameter we can see the locations of stations returned:
+
+```{r}
+#| label: worldmet_return_map
+
+worldmet::getMeta(lon = 15.5, lat = 51.5, returnMap = TRUE)
+```
+
+Let's download a data for one station and see what's inside:
 
 ```{r}
 #| label: worldmet_extract_data
 
-stations <- worldmet::importNOAA(code = "124150-99999",
-                     year = c(2023:2024),
+station_data <- worldmet::importNOAA(code = "124240-99999",
+                     year = 2022,
                      hourly = TRUE,
                      n.cores = 4,
                      path = "data")
 
-stations |>
+station_data |>
   subset(select = c(3, 7:13)) |>
   tail()
 
+```
 
+Having data on hand we can perform analysis. A very simple wind rose and temperature diagram for Wrocław-Strachowice station is shown in @fig-station_data_examples.
+
+```{r}
+#| label: fig-station_data_examples
+#| code-fold: true
+#| fig-cap: "Examples of wizualization of data: direction and wind speed (a) and temperature (b)"
+#| fig-subcap: 
+#|    - ""
+#|    - ""
+#| layout-ncol: 2
+
+openair::windRose(station_data)
+
+openair::timePlot(station_data, pollutant = "air_temp",
+                  auto.text = FALSE,
+                  ylab = "Temperature [\u00B0C]",
+                  key = FALSE
+                  )
 ```
 
 

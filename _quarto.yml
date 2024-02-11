@@ -3,8 +3,8 @@ project:
   post-render: scripts/post_script.R
 
 book:
-  title: "Open Data sources and how to deal with it"
-  subtitle: "Not to short introduction"
+  title: "Open Data sources"
+  subtitle: "(and how to deal with it)"
   author: "Grzegorz Sapijaszko"
   date: "2024-01-07"
   site-url: http:://www.sapijaszko.net/open/
