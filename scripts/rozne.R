@@ -1,10 +1,33 @@
-isd_stations <- read.csv("https://www.ncei.noaa.gov/pub/data/noaa/isd-history.csv")
+b <- osmdata::getbb("gmina Oborniki Śląskie")
 
-isd_stations |>
-  dplyr::slice_sample(n = 10) |>
-  kableExtra::kable() |>
-  kableExtra::kable_classic_2()
+a <- osmdata::opq(b, timeout = 60*20) |>
+  osmdata::add_osm_feature(key = "boundary", value = "administrative") |>
+  osmdata::add_osm_feature(key = "admin_level", value = "7") |>
+  osmdata::osmdata_sf() |>
+  osmdata::unname_osmdata_sf() |>
+  osmdata::unique_osmdata()
 
+ob <- a$osm_multipolygons[a$osm_multipolygons$name == "gmina Oborniki Śląskie",] |>
+  subset(select = c(name, geometry))
+
+ob |>
+#  cartography::getPencilLayer(buffer = 0.1, size = 1200) |>
+  cartography::hatchedLayer(pattern = "zigzag",
+                            density = 4,
+                            mode = "sfc") |>
+  sf::st_transform(crs = "EPSG:2180") |>
+  terra::plot(lwd = 0.3, col = "blue")
+
+
+
+tm <- pmetar::ourairports |>
+  subset(iso_country == "PL", select =c(type, name, longitude_deg, latitude_deg)) |>
+  sf::st_as_sf(coords = c("longitude_deg", "latitude_deg"), crs = "EPSG:4326") |>
+  tmap::tm_shape() +
+  tmap::tm_dots(size = 0.5)
+
+tmap::tmap_leaflet(tm, show = TRUE)
+  
 
 # -------------------------------------------------------------------------------------------------------
 

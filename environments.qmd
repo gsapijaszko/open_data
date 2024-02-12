@@ -254,7 +254,7 @@ Having data on hand we can perform analysis. A very simple wind rose and tempera
 ```{r}
 #| label: fig-station_data_examples
 #| code-fold: true
-#| fig-cap: "Examples of wizualization of data: direction and wind speed (a) and temperature (b)"
+#| fig-cap: "Examples of station's data vizualization: direction and wind speed (a) and temperature (b)"
 #| fig-subcap: 
 #|    - ""
 #|    - ""
@@ -269,9 +269,41 @@ openair::timePlot(station_data, pollutant = "air_temp",
                   )
 ```
 
-#### METAR data from airports
+#### Meteorological Aerodrome Report (METAR) data
 
 You may have noticed in @tbl-isd_stations, some stations have ICAO (International Civil Aviation Organization) codes. It means, that such hourly data is provided by station located at airport. Copernicus airport at Wrocław-Strachowice is designated with `EPWR`. The data can be obtained from [Aviation Weather Center](https://aviationweather.gov/data/metar/), historical data is available from [ogimet](https://www.ogimet.com/index.phtml.en) (up to past 20 years) or [ASOS Network](https://mesonet.agron.iastate.edu/request/download.phtml)^[The Automated Surface Observing System]. In R we can use {pmetar} package [@pmetar]. 
+
+```{r}
+#| label: pmetar
+#| message: false
+
+library(pmetar)
+epwr <- pmetar::metar_get(airport = "EPWR")
+epwr
+```
+
+From the above report we can read: it was issued on `r pmetar::metar_day(epwr)` day current month at `r pmetar::metar_hour(epwr)` UTC. The wind was blowing from the direction of `r pmetar::metar_dir(epwr, numeric_only = TRUE)` degree and the speed was `r pmetar::metar_speed(epwr, metric = FALSE)` knots, etc, etc [@milradMETARCode2018].
+
+```{r}
+#| label: tbl-pmetar_EPWR
+#| code-fold: true
+#| message: false
+#| tbl-cap: Decoded METARs for Wrocław-Strachowice airport
+
+old <- pmetar::metar_get_historical(airport = "EPWR",
+                             start_date = "2022-12-30",
+                             end_date = "2022-12-31") |>
+  pmetar::metar_decode() 
+
+old |>
+  dplyr::mutate(date = as.POSIXct(paste(METAR_Date, " ", Hour, ":00"))) |>
+  subset(select = c(date, Wind_speed, Wind_direction, Temperature, Pressure, Dew_point), 
+         date >= as.POSIXct("2022-12-31 18:00:00")) |>
+  kableExtra::kable() |>
+  kableExtra::kable_classic_2()
+```
+
+Comparing the data with ISD we can see the METAR reports are issued every 30 minutes.
 
 
 
