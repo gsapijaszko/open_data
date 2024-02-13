@@ -1499,7 +1499,7 @@ Z adresami związany geocoding i reversal - Nominatim + pakiety do tego
 #| label: write_bibliography
 #| echo: false
 #| include: false
-#| eval: true
+#| eval: false
 #| 
 file.remove("packages.bib")
 softbib::softbib(output = "packages.bib", output_dir = "/home/sapi/projekty/open_data/")
