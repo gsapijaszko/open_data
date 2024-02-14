@@ -305,7 +305,9 @@ old |>
 
 Comparing the data with ISD we can see the METAR reports are issued every 30 minutes.
 
-#### Gridded data
+### Gridded data
+
+[CHELSA](https://chelsa-climate.org/) (Climatologies at High resolution for the Earth’s Land Surface Areas) is a data set hosted by the Swiss Federal Institute for Forest, Snow and Landscape Research WSL. It contains downscaled to 30 arc sec, ~&nbsp;1&nbsp;km global climate data. [@brunGlobalClimaterelatedPredictors2022; @kargerClimatologiesHighResolution2021; @kargerClimatologiesHighResolution2017]
 
 <!---
 hydro:
