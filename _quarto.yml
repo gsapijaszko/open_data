@@ -53,4 +53,9 @@ execute:
   freeze: auto
   cache: true
 
+comments:
+  giscus: 
+    repo: gsapijaszko/open_data
+ 
+  hypothesis: true
 
