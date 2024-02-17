@@ -1,1 +1,1 @@
-zip("book.zip", files = "_book/")
+zip("book.zip", files = "docs/")

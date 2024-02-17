@@ -8,5 +8,6 @@ _book
 book.zip
 _freeze
 data
-*_cache
-*_files
+!docs/*
+*_cache/*
+*_files/*
