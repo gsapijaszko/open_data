@@ -10,7 +10,7 @@ Land coverage and use was touched in @sec-land_coverage, where the focus was mai
 
 ### ESA WorldCover {#sec-esa_worlcover}
 
-European Space Agency (ESA) released a freely accessible global land coverage data sets. These data sets are based on Sentinel-1 and Sentinel-2 data and contains 11 land cover classes with overall accuracy over 75%. The first set was released in 2021, the second, with higher quality, in 2022 [@zanagaESAWorldCover102021; @zanagaESAWorldCover102022]. The data is accessible thru AWS Open Data Registry, Zenodo and/or [Terrascope](https://terrascope.be/en). Terrascope provides the data as WM(T)S services as well, which can be used directly in QGIS:
+European Space Agency (ESA) released a freely accessible global land coverage data sets. These data sets are based on Sentinel-1 and Sentinel-2 data and contains 11 land cover classes with overall accuracy over 75%. The first set was released in 2021, the second, with higher quality, in 2022 [@zanagaESAWorldCover102021; @zanagaESAWorldCover102022]. The data is accessible through AWS Open Data Registry, Zenodo and/or [Terrascope](https://terrascope.be/en). Terrascope provides the data as WM(T)S services as well, which can be used directly in QGIS:
 
 * WMTS: https://services.terrascope.be/wmts/v2
 * WMS: https://services.terrascope.be/wms/v2
@@ -307,7 +307,87 @@ Comparing the data with ISD we can see the METAR reports are issued every 30 min
 
 ### Gridded data
 
-[CHELSA](https://chelsa-climate.org/) (Climatologies at High resolution for the Earth’s Land Surface Areas) is a data set hosted by the Swiss Federal Institute for Forest, Snow and Landscape Research WSL. It contains downscaled to 30 arc sec, ~&nbsp;1&nbsp;km global climate data. [@brunGlobalClimaterelatedPredictors2022; @kargerClimatologiesHighResolution2021; @kargerClimatologiesHighResolution2017]
+#### CHELSA
+
+[CHELSA](https://chelsa-climate.org/) (Climatologies at High resolution for the Earth’s Land Surface Areas) is a data set hosted by the Swiss Federal Institute for Forest, Snow and Landscape Research WSL. The data is based on ERA-Interim climatic reanalysis and contains downscaled to 30 arc sec, ~&nbsp;1&nbsp;km global climate data. [@kargerClimatologiesHighResolution2017; @kargerClimatologiesHighResolution2021]. Ver. 2.1 of the data covers monthly datasets of temperatures and precipitation climatologies for years 1979--2019.
+
+Files can be accessed directly from [Envicloud server](https://envicloud.wsl.ch/#/?prefix=chelsa%2Fchelsa_V2%2FGLOBAL%2F). The filename of each CHELSA data product follows a similar structure including the respective model used, the variable short name, the respective time variables, and the accumulation (or mean) period in the following basic format:
+
+```
+CHELSA_[short_name]_[timeperiod]_[Version].tif
+```
+
+For CMIP6 data: 
+
+```
+CHELSA_[short_name]_[timeperiod]_[model] _[ssp] _[Version].tif
+```
+
+Available variable names are listed in @tbl-chelsa_variable_names. TREELIM model and details (variables: `gsl`, `gsp ... fgd` was described by @paulsenClimatebasedModelPredict2014. Köppen-Geiger `kg0` and `kg1` after @koeppenGeographischeSystemKlimate1936, `kg2` classification was updated by @peelUpdatedWorldMap2007, `kg3` according to @wissmannKlimaundVegetationsgebieteEurasiens1939, `kg4` --- new classification by @thornthwaiteClimatesNorthAmerica1931 and for details of `kg5` see [@trollKarteJahreszeitenKlimateErde1964]. Miami model for `npp` variable was described by @liethModelingPrimaryProductivity1975.
+
+```{r}
+#| label: tbl-chelsa_variable_names
+#| echo: false
+#| tbl-cap: "Chelsa variable names [@kargerCHELSAV2Technical2021]"
+#| column: body-outset
+#| output: markup
+
+options(knitr.kable.NA = '')
+
+tables <- rvest::read_html("https://chelsa-climate.org/bioclim/") |>
+  rvest::html_table(header = TRUE)
+
+t <- tables[[1]] |>
+  dplyr::rowwise() |>
+  dplyr::mutate(
+    longname = tolower(longname),
+    longname = stringr::str_replace(longname, pattern = "köppen-geiger", replacement = "Köppen-Geiger"),
+    unit = stringr::str_replace(unit, pattern = "°C/100", 
+                                replacement = "°C"),
+    unit = stringr::str_replace(unit, pattern = "m-2", 
+                                replacement = "m<sup>-2</sup>"),
+    unit = stringr::str_replace(unit, pattern = "m−2", 
+                                replacement = "m<sup>-2</sup>"),
+    unit = stringr::str_replace(unit, pattern = "yr−1", 
+                                replacement = "yr<sup>-1</sup>"),
+    scale = as.numeric(stringr::str_remove(scale, pattern = "–$")),
+    offset = as.numeric(stringr::str_remove(offset, pattern = "–$")),
+    explanation = paste0(toupper(substr(explanation, 1, 1)), substr(explanation, 2, nchar(explanation))),
+    explanation = stringr::str_remove(explanation, "(https://doi.org/10.1007/s00035-014-0124-0)")
+    )
+
+if(!file.exists("data/chelsa_bioklim.rds")) {
+  saveRDS(t, file = "data/chelsa_bioklim.rds")  
+}
+
+t |>
+  kableExtra::kbl(
+    col.names = c("Short name", "Long name", "Unit", "Scale", "Offset", "Explanation"),
+    escape = FALSE) |>
+  kableExtra::kable_classic_2()
+  
+```
+
+Later the data was extended by new variables and got the name BIOCLIM+ [@brunGlobalClimaterelatedPredictors2022; @brunCHELSABIOCLIMNovelSet2022]. The variables provides:
+
+- near-surface relative humidity (hurs)
+- cloud area fraction (clt)
+- near-surface wind speed (sfcWind)
+- vapour pressure deficit (vpd)
+- surface downwelling shortwave radiation (rsds)
+- potential evapotranspiration (pet)
+- climate moisture index (cmi)
+- site water balance (swb)
+
+Detailed description of the variables were provided by @kargerBIOCLIMNovelSet2022.
+
+And finally, there is a [daily sets of data ](https://chelsa-climate.org/chelsa-w5e5-v1-0-daily-climate-data-at-1km-resolution/) [@kargerCHELSAW5E5V1W5E52022] which covers the entire globe (except the Arctic Ocean beyond 84&deg;N) at 30 arcsec horizontal and daily temporal resolution from 1979 to 2016. Variables (with short names and units in brackets) included in the CHELSA-W5E5 dataset are: Daily Mean Precipitation (pr) [kg m^-2^ s^-1^], Daily Mean Surface Downwelling Shortwave Radiation (rsds) [W m^-2^], Daily Mean Near-Surface Air Temperature (tas) [K], Daily Maximum Near Surface Air Temperature (tasmax) [K], Daily Minimum Near Surface Air Temperature (tasmin) [K], Surface Altitude (orog) [m], and the CHELSA-W5E5 land-sea mask (mask).
+
+<!--
+There are few R packages which helps to download and manage CHELSA data: {climatedata} [@climatedata], {chelsaDL} [@chelsaDL] and {ClimDatDownloadR} [@ClimDatDownloadR].
+-->
+
+To download CHELSA data in R you can use {ClimDatDownloadR} [@ClimDatDownloadR] package.
 
 <!---
 hydro:
@@ -319,3 +399,5 @@ soil:
 
 https://data.isric.org/geonetwork/srv/eng/catalog.search#/home
 -->
+
+

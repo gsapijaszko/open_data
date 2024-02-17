@@ -326,3 +326,27 @@ UKJ32 <- sp::Polygon(cbind(c(-1.477037449999955, -1.366895449999959, -1.36515944
 a <- tibble::tibble(lon = c(-1.4, 10), lat = c(50.9, 10))
 
 sp::point.in.polygon(a$lon, a$lat, UKJ32@Polygons[[1]]@coords[,1], UKJ32@Polygons[[1]]@coords[,2])
+
+
+# -------------------------------------------------------------------------------------------------------
+
+options("download.file.method" = "wget")
+options("download.file.extra" = "--no-check-certificate -c --progress=bar:force -T 5 -t 3")
+options(timeout=3600*10)
+ClimDatDownloadR::Chelsa.Clim.download(save.location = "data",
+                                       parameter = "temp",
+                                       month.var = 1,
+                                       version.var = "2.1")
+
+
+trace(ClimDatDownloadR::Chelsa.Clim.download, edit=TRUE)
+
+r <- terra::rast("data/temp/ChelsaV2.1Climatologies/CHELSA_tas_01_1981-2010_V2.1.tif")
+
+terra::plot(r)
+library(tidyverse)
+chelsaDL::ch_queries(variables = "temp", layers = 1, timeframes = "1979-2013")
+
+as.numeric(httr::HEAD("https://os.zhdk.cloud.switch.ch/envicloud/chelsa/chelsa_V2/GLOBAL/climatologies/1981-2010/tas/CHELSA_tas_01_1981-2010_V.2.1.tif")$headers$`content-length`)
+
+file.size("/home/sapi/projekty/open_data/data/temp/ChelsaV2.1Climatologies/CHELSA_tas_01_1981-2010_V2.1.tif")
