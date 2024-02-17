@@ -4,8 +4,10 @@ Open Data is powerful concept that embodies freedom. Freedom of choice, access t
 
 These few chapters aim to illustrate the availability and possibilities of working with open data, particularly focusing on spatial data.
 
-1.  [OpenStreetMap](https://www.openstreetmap.org/) as a universal spatial data source - data exploration
+1.  [OpenStreetMap](https://www.openstreetmap.org/) as a universal spatial data source - data exploration: any kind of boundaries, land coverage and use, streets and bike infrastructure, bit of routing, power grid...
 
-2.  Environmental data -- just started...
+2.  Environmental data 
+  - Land coverage and use: [ESA World Cover](https://gsapijaszko.github.io/open_data/environments.html#sec-esa_worlcover)
+  - Climate: [ISD and METAR](https://gsapijaszko.github.io/open_data/environments.html#stations-data) as stations (points) data, [CHELSA](https://gsapijaszko.github.io/open_data/environments.html#chelsa) - grid data set
 
-Work in progress
+Work in progress.
