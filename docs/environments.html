@@ -1,0 +1,1989 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Open Data sources – 2&nbsp; Environmental data</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./references.html" rel="next">
+<link href="./osm.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="site_libs/leaflet-1.3.1/leaflet.css" rel="stylesheet">
+<script src="site_libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="site_libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet">
+<script src="site_libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="site_libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="site_libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet">
+<script src="site_libs/leaflet-binding-2.2.1/leaflet.js"></script>
+<script src="site_libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js"></script>
+<script src="site_libs/leaflet-providers-plugin-2.2.1/leaflet-providers-plugin.js"></script>
+<link href="site_libs/leaflet-markercluster-1.0.5/MarkerCluster.css" rel="stylesheet">
+<link href="site_libs/leaflet-markercluster-1.0.5/MarkerCluster.Default.css" rel="stylesheet">
+<script src="site_libs/leaflet-markercluster-1.0.5/leaflet.markercluster.js"></script>
+<script src="site_libs/leaflet-markercluster-1.0.5/leaflet.markercluster.freezable.js"></script>
+<script src="site_libs/leaflet-markercluster-1.0.5/leaflet.markercluster.layersupport.js"></script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./environments.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Environmental data</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Open Data sources</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/gsapijaszko/open_data" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./osm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">OpenStreetMap as a universal spatial data source</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./environments.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Environmental data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#land-cover-and-land-use" id="toc-land-cover-and-land-use" class="nav-link active" data-scroll-target="#land-cover-and-land-use"><span class="header-section-number">2.1</span> Land Cover and Land Use</a>
+  <ul>
+  <li><a href="#sec-esa_worlcover" id="toc-sec-esa_worlcover" class="nav-link" data-scroll-target="#sec-esa_worlcover"><span class="header-section-number">2.1.1</span> ESA WorldCover</a></li>
+  </ul></li>
+  <li><a href="#climate" id="toc-climate" class="nav-link" data-scroll-target="#climate"><span class="header-section-number">2.2</span> Climate</a>
+  <ul>
+  <li><a href="#stations-data" id="toc-stations-data" class="nav-link" data-scroll-target="#stations-data"><span class="header-section-number">2.2.1</span> Stations data</a>
+  <ul class="collapse">
+  <li><a href="#integrated-surface-database" id="toc-integrated-surface-database" class="nav-link" data-scroll-target="#integrated-surface-database">Integrated Surface Database</a></li>
+  <li><a href="#meteorological-aerodrome-report-metar-data" id="toc-meteorological-aerodrome-report-metar-data" class="nav-link" data-scroll-target="#meteorological-aerodrome-report-metar-data">Meteorological Aerodrome Report (METAR) data</a></li>
+  </ul></li>
+  <li><a href="#gridded-data" id="toc-gridded-data" class="nav-link" data-scroll-target="#gridded-data"><span class="header-section-number">2.2.2</span> Gridded data</a>
+  <ul class="collapse">
+  <li><a href="#chelsa" id="toc-chelsa" class="nav-link" data-scroll-target="#chelsa">CHELSA</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/gsapijaszko/open_data/edit/main/environments.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/gsapijaszko/open_data/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Environmental data</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<!---
+https://openlandmap.github.io/book/012-compendium.html
+-->
+<section id="land-cover-and-land-use" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="land-cover-and-land-use"><span class="header-section-number">2.1</span> Land Cover and Land Use</h2>
+<p>Land coverage and use was touched in <a href="osm.html#sec-land_coverage" class="quarto-xref"><span>Section 1.3</span></a>, where the focus was mainly on OpenStreetMap data as a source. However there is more datasets available, based on satellite observations.</p>
+<section id="sec-esa_worlcover" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="sec-esa_worlcover"><span class="header-section-number">2.1.1</span> ESA WorldCover</h3>
+<p>European Space Agency (ESA) released a freely accessible global land coverage data sets. These data sets are based on Sentinel-1 and Sentinel-2 data and contains 11 land cover classes with overall accuracy over 75%. The first set was released in 2021, the second, with higher quality, in 2022 <span class="citation" data-cites="zanagaESAWorldCover102021 zanagaESAWorldCover102022">(<a href="references.html#ref-zanagaESAWorldCover102021" role="doc-biblioref">Zanaga et al. 2021</a>, <a href="references.html#ref-zanagaESAWorldCover102022" role="doc-biblioref">2022</a>)</span>. The data is accessible through AWS Open Data Registry, Zenodo and/or <a href="https://terrascope.be/en">Terrascope</a>. Terrascope provides the data as WM(T)S services as well, which can be used directly in QGIS:</p>
+<ul>
+<li>WMTS: https://services.terrascope.be/wmts/v2</li>
+<li>WMS: https://services.terrascope.be/wms/v2</li>
+</ul>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> tabulizer<span class="sc">::</span><span class="fu">extract_tables</span>(<span class="st">"https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/docs/WorldCover_PUM_V2.0.pdf"</span>,</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                               <span class="at">pages =</span> <span class="dv">15</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>                               <span class="at">method =</span> <span class="st">"stream"</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>                               <span class="at">output =</span> <span class="st">"data.frame"</span>)[[<span class="dv">1</span>]]</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(t) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"map_code"</span>, <span class="st">"land_cover_class"</span>, <span class="st">"lccs_code"</span>, <span class="st">"definition"</span>, <span class="st">"color_code_rgb"</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> t[<span class="dv">2</span><span class="sc">:</span><span class="fu">nrow</span>(t),]</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>t<span class="sc">$</span>map_code <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(t<span class="sc">$</span>map_code)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>map_codes <span class="ot">&lt;-</span> t<span class="sc">$</span>map_code[<span class="sc">!</span><span class="fu">is.na</span>(t<span class="sc">$</span>map_code)]</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>merge_cels <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">column =</span> <span class="st">""</span>, <span class="at">start =</span> <span class="dv">10</span>) {</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  stop <span class="ot">&lt;-</span> map_codes[<span class="fu">which</span>(map_codes <span class="sc">==</span> start)<span class="sc">+</span><span class="dv">1</span>]</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  a <span class="ot">&lt;-</span> <span class="fu">which</span>(t<span class="sc">$</span>map_code <span class="sc">==</span> start)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">is.na</span>(stop)) {</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    b <span class="ot">&lt;-</span> <span class="fu">nrow</span>(t)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    b <span class="ot">&lt;-</span> <span class="fu">which</span>(t<span class="sc">$</span>map_code <span class="sc">==</span> stop)<span class="sc">-</span><span class="dv">1</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  t[a<span class="sc">:</span>b, column] <span class="sc">|&gt;</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste</span>(<span class="at">collapse =</span> <span class="st">" "</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    stringr<span class="sc">::</span><span class="fu">str_trim</span>()</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> t[<span class="dv">1</span><span class="sc">:</span><span class="dv">11</span>,] </span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>n<span class="sc">$</span>map_code <span class="ot">&lt;-</span> map_codes</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> n <span class="sc">|&gt;</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">rowwise</span>() <span class="sc">|&gt;</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">land_cover_class =</span> <span class="fu">merge_cels</span>(<span class="at">column =</span> <span class="st">"land_cover_class"</span>, <span class="at">start =</span> map_code),</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>                <span class="at">lccs_code =</span> <span class="fu">merge_cels</span>(<span class="at">column =</span> <span class="st">"lccs_code"</span>, <span class="at">start =</span> map_code),</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>                <span class="at">definition =</span> <span class="fu">merge_cels</span>(<span class="at">column =</span> <span class="st">"definition"</span>, <span class="at">start =</span> map_code),</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>                <span class="at">color_code_rgb =</span> <span class="fu">merge_cels</span>(<span class="at">column =</span> <span class="st">"color_code_rgb"</span>, <span class="at">start =</span> map_code),</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>                <span class="at">color =</span> <span class="fu">rgb</span>(<span class="at">red =</span> <span class="fu">strsplit</span>(color_code_rgb[[<span class="dv">1</span>]], <span class="at">split =</span> <span class="st">"[,]"</span>)[[<span class="dv">1</span>]][<span class="dv">1</span>],</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>                            <span class="at">green =</span> <span class="fu">strsplit</span>(color_code_rgb[[<span class="dv">1</span>]], <span class="at">split =</span> <span class="st">"[,]"</span>)[[<span class="dv">1</span>]][<span class="dv">2</span>],</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>                            <span class="at">blue =</span> <span class="fu">strsplit</span>(color_code_rgb[[<span class="dv">1</span>]], <span class="at">split =</span> <span class="st">"[,]"</span>)[[<span class="dv">1</span>]][<span class="dv">3</span>],</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>                            <span class="at">maxColorValue =</span> <span class="dv">255</span>)</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>n[,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>] <span class="sc">|&gt;</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable</span>(<span class="at">escape =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>                    <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Map code"</span>, <span class="st">"Land cover class"</span>,</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">"LCCS code"</span>, <span class="st">"Definition"</span>, <span class="st">"Color code (RGB)"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_classic</span>() <span class="sc">|&gt;</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">column_spec</span>(<span class="dv">5</span>, <span class="at">background =</span> n<span class="sc">$</span>color)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="tbl-esa_world_cover_classes" class="cell quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-esa_world_cover_classes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2.1: ESA WorldCover classes definition and color codes for layers <span class="citation" data-cites="vandekerchoveWorldCoverProductUser2022">(<a href="references.html#ref-vandekerchoveWorldCoverProductUser2022" role="doc-biblioref">Van De Kerchove 2022</a>)</span>
+</figcaption>
+<div aria-describedby="tbl-esa_world_cover_classes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div>
+<table class="lightable-classic do-not-create-environment cell table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: right;" data-quarto-table-cell-role="th">Map code</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Land cover class</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">LCCS code</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Definition</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Color code (RGB)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">10</td>
+<td style="text-align: left;">Tree cover</td>
+<td style="text-align: left;">A12A3 // A11A1 A24A3C1(C2)- R1(R2)</td>
+<td style="text-align: left;">This class includes any geographic area dominated by trees with a cover of 10% or more. Other land cover classes (shrubs and/or herbs in the understorey, built-up, permanent water bodies, ...) can be present below the canopy, even with a density higher than trees. Areas planted with trees for afforestation purposes and plantations (e.g. oil palm, olive trees) are included in this class. This class also includes tree covered areas seasonally or permanently flooded with fresh water except for mangroves.</td>
+<td style="text-align: left; background-color: rgba(0, 100, 0, 255) !important;">0,100,0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">20</td>
+<td style="text-align: left;">Shrubland</td>
+<td style="text-align: left;">A12A4 // A11A2</td>
+<td style="text-align: left;">This class includes any geographic area dominated by natural shrubs having a cover of 10% or more. Shrubs are defined as woody perennial plants with persistent and woody stems and without any defined main stem being less than 5 m tall. Trees can be present in scattered form if their cover is less than 10%. Herbaceous plants can also be present at any density. The shrub foliage can be either evergreen or deciduous.</td>
+<td style="text-align: left; background-color: rgba(255, 187, 34, 255) !important;">255, 187, 34</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">30</td>
+<td style="text-align: left;">Grassland</td>
+<td style="text-align: left;">A12A2</td>
+<td style="text-align: left;">This class includes any geographic area dominated by natural herbaceous plants (Plants without persistent stem or shoots above ground and lacking definite firm structure): (grasslands, prairies, steppes, savannahs, pastures) with a cover of 10% or more, irrespective of different human and/or animal activities, such as: grazing, selective fire management etc. Woody plants (trees and/or shrubs) can be present assuming their cover is less than 10%. It may also contain uncultivated cropland areas (without harvest/ bare soil period) in the reference year</td>
+<td style="text-align: left; background-color: rgba(255, 255, 76, 255) !important;">255, 255, 76</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">40</td>
+<td style="text-align: left;">Cropland</td>
+<td style="text-align: left;">A11A3(A4)(A5) // A23</td>
+<td style="text-align: left;">Land covered with annual cropland that is sowed/planted and harvestable at least once within the 12 months after the sowing/planting date. The annual cropland produces an herbaceous cover and is sometimes combined with some tree or woody vegetation. Note that perennial woody crops will be classified as the appropriate tree cover or shrub land cover type. Greenhouses are considered as built-up.</td>
+<td style="text-align: left; background-color: rgba(240, 150, 255, 255) !important;">240, 150, 255</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">50</td>
+<td style="text-align: left;">Built-up</td>
+<td style="text-align: left;">B15A1</td>
+<td style="text-align: left;">Land covered by buildings, roads and other man-made structures such as railroads. Buildings include both residential and industrial building. Urban green (parks, sport facilities) is not included in this class. Waste dump deposits and extraction sites are considered as bare.</td>
+<td style="text-align: left; background-color: rgba(250, 0, 0, 255) !important;">250, 0, 0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">60</td>
+<td style="text-align: left;">Bare / sparse vegetation</td>
+<td style="text-align: left;">B16A1(A2) // B15A2</td>
+<td style="text-align: left;">Lands with exposed soil, sand, or rocks and never has more than 10 % vegetated cover during any time of the year</td>
+<td style="text-align: left; background-color: rgba(180, 180, 180, 255) !important;">180, 180, 180</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">70</td>
+<td style="text-align: left;">Snow and Ice</td>
+<td style="text-align: left;">B28A2(A3)</td>
+<td style="text-align: left;">This class includes any geographic area covered by snow or glaciers persistently</td>
+<td style="text-align: left; background-color: rgba(240, 240, 240, 255) !important;">240, 240, 240</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">80</td>
+<td style="text-align: left;">Permanent water bodies</td>
+<td style="text-align: left;">B28A1(B1) // B27A1(B1)</td>
+<td style="text-align: left;">This class includes any geographic area covered for most of the year (more than 9 months) by water bodies: lakes, reservoirs, and rivers. Can be either fresh or salt-water bodies. In some cases the water can be frozen for part of the year (less than 9 months).</td>
+<td style="text-align: left; background-color: rgba(0, 100, 200, 255) !important;">0, 100, 200</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">90</td>
+<td style="text-align: left;">Herbaceous wetland</td>
+<td style="text-align: left;">A24A2</td>
+<td style="text-align: left;">Land dominated by natural herbaceous vegetation (cover of 10% or more) that is permanently or regularly flooded by fresh, brackish or salt water. It excludes unvegetated sediment (see 60), swamp forests (classified as tree cover) and mangroves see 95)</td>
+<td style="text-align: left; background-color: rgba(0, 150, 160, 255) !important;">0, 150, 160</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">95</td>
+<td style="text-align: left;">Mangroves</td>
+<td style="text-align: left;">A24A3C5-R3</td>
+<td style="text-align: left;">Taxonomically diverse, salt-tolerant tree and other plant species which thrive in intertidal zones of sheltered tropical shores, overwash islands, and estuaries.</td>
+<td style="text-align: left; background-color: rgba(0, 207, 117, 255) !important;">0, 207, 117</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">100</td>
+<td style="text-align: left;">Moss and lichen</td>
+<td style="text-align: left;">A12A7</td>
+<td style="text-align: left;">Land covered with lichens and/or mosses. Lichens are composite organisms formed from the symbiotic association of fungi and algae. Mosses contain photo-autotrophic land plants without true leaves, stems, roots but with leaf-and stemlike organs.</td>
+<td style="text-align: left; background-color: rgba(250, 230, 160, 255) !important;">250, 230, 160</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>The data can be accessed from <a href="https://registry.opendata.aws/esa-worldcover-vito/">AWS</a> using <code>aws cli</code>. To list the content of the storage you can use:</p>
+<pre><code>aws s3 ls --no-sign-request s3://esa-worldcover/</code></pre>
+<p>and to sync it with local filesystem:</p>
+<pre><code>aws s3 sync --no-sign-request s3://esa-worldcover/v200/2021/map /local/path</code></pre>
+<p>The other option would be to mount it as a local file system using <code>s3fs</code>:</p>
+<pre><code>s3fs esa-worldcover /local/path -o public_bucket=1</code></pre>
+<p>The data is available as TIFF raster tiles in a regular grid (EPSG:4326) with the ellipsoid WGS 1984 (Terrestrial radius=6378 km). The resolution of the grid is 1/12000<span class="math inline">\(\deg\)</span> corresponding to ~ 10 m at equator. The individual tile cover 3x3 degrees of longitude/latitude, and the filenames are in form:</p>
+<pre><code>ESA_WorldCover_10m_2021_v200_N06E012_Map.tif</code></pre>
+<p>where <code>NxxExxx</code> (or <code>SxxWxxx</code>) corresponds to latitude (Nort or South) and longitude (West or East). The single file can be downloaded with:</p>
+<pre><code>aws s3 cp --no-sign-request s3://esa-worldcover/v200/2021/map/ESA_WorldCover_10m_2021_v200_N51E015_Map.tif /local/file.tif</code></pre>
+<p>or from URL:</p>
+<pre><code>https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N51E015_Map.tif</code></pre>
+<p>The AWS buckets can be accessed with {aws.s3} package <span class="citation" data-cites="aws.s3">(<a href="references.html#ref-aws.s3" role="doc-biblioref">Leeper 2024</a>)</span> however rasters can be accessed directly by <code>rast()</code> function from {terra} package <span class="citation" data-cites="terra">(<a href="references.html#ref-terra" role="doc-biblioref">Hijmans 2024</a>)</span> thanks to underlying <a href="https://gdal.org/user/virtual_file_systems.html">GDAL Virtual File Systems</a>. First of all we can download FlatGeobuf file containing a layer with tile names and their corresponding polygons:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>esa_tiles <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_read</span>(<span class="st">"https://esa-worldcover.s3.eu-central-1.amazonaws.com/esa_worldcover_grid.fgb"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Simple feature collection with 6 features and 1 field
+Geometry type: POLYGON
+Dimension:     XY
+Bounding box:  xmin: 144 ymin: -57 xmax: 171 ymax: -42
+Geodetic CRS:  WGS 84
+  ll_tile                       geometry
+1 S54E168 POLYGON ((168 -54, 168 -51,...
+2 S54E165 POLYGON ((165 -54, 165 -51,...
+3 S57E159 POLYGON ((159 -57, 159 -54,...
+4 S57E156 POLYGON ((156 -57, 156 -54,...
+5 S45E144 POLYGON ((144 -45, 144 -42,...
+6 S45E147 POLYGON ((147 -45, 147 -42,...</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-esa_worldcover_flat_geobufer" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-esa_worldcover_flat_geobufer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="environments_files/figure-html/fig-esa_worldcover_flat_geobufer-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-esa_worldcover_flat_geobufer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.1: Spatial coverage of WorlCover data
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Having tile names (column <code>ll_tile</code> in <code>esa_tiles</code> sf data frame) we can easy find a requested tile(s) by filtering the data frame by our area of interest. Below an example for land cover classes for my village and surroundings. The first step is to find bounding box of the village (<code>getbb()</code> from {osmdata}):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>l <span class="ot">&lt;-</span> osmdata<span class="sc">::</span><span class="fu">getbb</span>(<span class="st">"Lubnów, trzebnicki"</span>, <span class="at">format_out =</span> <span class="st">"sf_polygon"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The next step is to subset our <code>esa_tiles</code> data frame by <code>l</code> to find the tile(s) which intersects with. It can be done by simple subseting:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> esa_tiles[l, ,]</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>tile_name <span class="ot">&lt;-</span> b[[<span class="dv">1</span>, <span class="st">"ll_tile"</span>]]</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>tile_name</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "N51E015"</code></pre>
+</div>
+</div>
+<p>or by <code>st_filter()</code> function</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>tile_name <span class="ot">&lt;-</span> esa_tiles <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_filter</span>(l) <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_drop_geometry</span>() <span class="sc">|&gt;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.character</span>()</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>tile_name</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "N51E015"</code></pre>
+</div>
+</div>
+<p>In next step we have to get the proper raster, crop it to the village bounding box, (re)assign levels and table colors. Please note, the levels and colors corresponds to land cover classes and colors from <a href="#tbl-esa_world_cover_classes" class="quarto-xref">Table&nbsp;<span>2.1</span></a>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>terra<span class="sc">::</span><span class="fu">setGDALconfig</span>(<span class="st">"AWS_NO_SIGN_REQUEST=YES"</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"s3://esa-worldcover/v200/2021/map/ESA_WorldCover_10m_2021_v200_"</span>, tile_name, <span class="st">"_Map.tif"</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">rast</span>(url)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>w <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">crop</span>(r, terra<span class="sc">::</span><span class="fu">vect</span>(l)) </span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(w) <span class="ot">&lt;-</span> n[<span class="fu">c</span>(<span class="st">"map_code"</span>, <span class="st">"land_cover_class"</span>)] <span class="sc">|&gt;</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>()</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>terra<span class="sc">::</span><span class="fu">coltab</span>(w) <span class="ot">&lt;-</span> n[<span class="fu">c</span>(<span class="st">"map_code"</span>, <span class="st">"color"</span>)] <span class="sc">|&gt;</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>()</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>terra<span class="sc">::</span><span class="fu">plot</span>(w)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="environments_files/figure-html/esa_world_class_raster-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>It’s worth to mention that {geodata} package have <code>landcover()</code> function, which can download downsampled to 30-seconds per pixel rasters for specific land coverage class.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>geodata<span class="sc">::</span><span class="fu">landcover</span>(<span class="at">var =</span> <span class="st">"moss"</span>, <span class="at">path =</span> <span class="fu">tempdir</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="climate" class="level2 page-columns page-full" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="climate"><span class="header-section-number">2.2</span> Climate</h2>
+<p>Key climatic variables of interest are usually:</p>
+<ul>
+<li>temperature (°C) (minimum, maximum, average, above ground or at 2&nbsp;m height)</li>
+<li>precipitation (mm),</li>
+<li>solar radiation (kJ m<sup>-2</sup> day<sup>-1</sup>),</li>
+<li>wind speed (m s<sup>-1</sup>),</li>
+<li>water vapor (cm liquid water) and water vapor pressure (kPa),</li>
+<li>probability of occurrence of snow, snow thickness (cm),</li>
+<li>soil moisture (cm liquid water),</li>
+</ul>
+<p>Those data can be provided as point data sets (per station) or as gridded data sets obtained from analysis or modeling of the past and current climate data.</p>
+<section id="stations-data" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="stations-data"><span class="header-section-number">2.2.1</span> Stations data</h3>
+<section id="integrated-surface-database" class="level4">
+<h4 class="anchored" data-anchor-id="integrated-surface-database">Integrated Surface Database</h4>
+<p>The Integrated Surface Database (ISD) <span class="citation" data-cites="smithIntegratedSurfaceDatabase2011 delgrecoSurfaceDataIntegration2006 lottQualityControlIntegrated2004">(<a href="references.html#ref-smithIntegratedSurfaceDatabase2011" role="doc-biblioref">Smith, Lott, and Vose 2011</a>; <a href="references.html#ref-delgrecoSurfaceDataIntegration2006" role="doc-biblioref">Del Greco et al. 2006</a>; <a href="references.html#ref-lottQualityControlIntegrated2004" role="doc-biblioref">Lott 2004</a>)</span> is a global database that consists of hourly surface observations compiled from numerous sources into a single common ASCII format and common data model. It integrated data from numerous data sources and provides many parameters like temperature and dew point, wind speed and direction, precipitation etc. Data can be accessed from <a href="https://www.ncei.noaa.gov/products/land-based-station/integrated-surface-database">ncei.noaa.gov</a> portal or directly from <a href="https://www.ncei.noaa.gov/pub/data/noaa/">server</a> where the data is divided by year, and for every station a gziped text file is provided. Data format, described in <span class="citation" data-cites="FederalClimateComplex2018"><span>“Federal Climate Complex Data Documentation for <span>Integrated Surface Data</span> (<span>ISD</span>)”</span> (<a href="references.html#ref-FederalClimateComplex2018" role="doc-biblioref">2018</a>)</span>, covers among others: date and time of observation, longitude, latitude and elevation of station, wind direction and speed, sky conditions, visibility distance, air temperature and dev point temperature, atmospheric pressure, precipitation and snow depth. Stations, coded like <code>040180-16201</code> can be translated to station names and their physical locations using <a href="https://www.ncei.noaa.gov/pub/data/noaa/isd-history.csv">isd-history.csv</a> file.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>isd_stations <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://www.ncei.noaa.gov/pub/data/noaa/isd-history.csv"</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>isd_stations <span class="sc">|&gt;</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">|&gt;</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable</span>() <span class="sc">|&gt;</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_classic_2</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="tbl-isd_stations" class="cell quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-isd_stations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2.2: A sample of ISD stations description file which can be used to translate station code to its location
+</figcaption>
+<div aria-describedby="tbl-isd_stations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div>
+<table class="lightable-classic-2 do-not-create-environment cell table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">USAF</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">WBAN</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">STATION.NAME</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">CTRY</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">STATE</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">ICAO</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">LAT</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">LON</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">ELEV.M.</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">BEGIN</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">END</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">577930</td>
+<td style="text-align: right;">99999</td>
+<td style="text-align: left;">YICHUN</td>
+<td style="text-align: left;">CH</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">27.800</td>
+<td style="text-align: right;">114.383</td>
+<td style="text-align: right;">129.0</td>
+<td style="text-align: right;">19560820</td>
+<td style="text-align: right;">20240209</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">749009</td>
+<td style="text-align: right;">99999</td>
+<td style="text-align: left;">RAF BLYTON</td>
+<td style="text-align: left;">UK</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">53.467</td>
+<td style="text-align: right;">-0.700</td>
+<td style="text-align: right;">240.0</td>
+<td style="text-align: right;">19430301</td>
+<td style="text-align: right;">19430630</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">103490</td>
+<td style="text-align: right;">99999</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">19360508</td>
+<td style="text-align: right;">19431231</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">043390</td>
+<td style="text-align: right;">99999</td>
+<td style="text-align: left;">SCORESBYSUND</td>
+<td style="text-align: left;">GL</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">BGSC</td>
+<td style="text-align: right;">70.483</td>
+<td style="text-align: right;">-21.950</td>
+<td style="text-align: right;">69.0</td>
+<td style="text-align: right;">19360501</td>
+<td style="text-align: right;">20231014</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">723425</td>
+<td style="text-align: right;">373</td>
+<td style="text-align: left;">HARRELL FIELD AIRPORT</td>
+<td style="text-align: left;">US</td>
+<td style="text-align: left;">AR</td>
+<td style="text-align: left;">KCDH</td>
+<td style="text-align: right;">33.617</td>
+<td style="text-align: right;">-92.767</td>
+<td style="text-align: right;">40.2</td>
+<td style="text-align: right;">20070501</td>
+<td style="text-align: right;">20240210</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">103710</td>
+<td style="text-align: right;">99999</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">19400501</td>
+<td style="text-align: right;">19411231</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">671980</td>
+<td style="text-align: right;">99999</td>
+<td style="text-align: left;">ILE AMSTERDAM</td>
+<td style="text-align: left;">FS</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">-37.833</td>
+<td style="text-align: right;">77.567</td>
+<td style="text-align: right;">28.0</td>
+<td style="text-align: right;">19500201</td>
+<td style="text-align: right;">20210502</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">724455</td>
+<td style="text-align: right;">99999</td>
+<td style="text-align: left;">KIRKSVILLE RGNL</td>
+<td style="text-align: left;">US</td>
+<td style="text-align: left;">MO</td>
+<td style="text-align: left;">KIRK</td>
+<td style="text-align: right;">40.083</td>
+<td style="text-align: right;">-92.533</td>
+<td style="text-align: right;">294.0</td>
+<td style="text-align: right;">20000101</td>
+<td style="text-align: right;">20031231</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">999999</td>
+<td style="text-align: right;">26529</td>
+<td style="text-align: left;">TANANA RALPH M CALHOUN MEM AP</td>
+<td style="text-align: left;">US</td>
+<td style="text-align: left;">AK</td>
+<td style="text-align: left;">PATA</td>
+<td style="text-align: right;">65.175</td>
+<td style="text-align: right;">-152.107</td>
+<td style="text-align: right;">67.1</td>
+<td style="text-align: right;">19480701</td>
+<td style="text-align: right;">19710311</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">324080</td>
+<td style="text-align: right;">99999</td>
+<td style="text-align: left;">UST'-KAMCHATSK</td>
+<td style="text-align: left;">RS</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">56.217</td>
+<td style="text-align: right;">162.717</td>
+<td style="text-align: right;">27.0</td>
+<td style="text-align: right;">19480101</td>
+<td style="text-align: right;">20240209</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>There is a {worldmet} <span class="citation" data-cites="worldmet">(<a href="references.html#ref-worldmet" role="doc-biblioref">Carslaw 2023</a>)</span> package which can be used to find the appropriate stations and import the data. Let’s use it to find a stations close to coordinates 15.5°E, 51.5°N and extract the data for one of them:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> worldmet<span class="sc">::</span><span class="fu">getMeta</span>(<span class="at">lon =</span> <span class="fl">15.5</span>, <span class="at">lat =</span> <span class="fl">51.5</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>a[, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">6</span>, <span class="dv">9</span><span class="sc">:</span><span class="dv">11</span>, <span class="dv">15</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 7
+   usaf   station         call  `elev(m)` begin      end         dist
+   &lt;chr&gt;  &lt;chr&gt;           &lt;chr&gt;     &lt;dbl&gt; &lt;date&gt;     &lt;date&gt;     &lt;dbl&gt;
+ 1 124000 ZIELONA GORA    &lt;NA&gt;      192   1931-01-01 2024-02-09  48.2
+ 2 124150 LEGNICA         &lt;NA&gt;      124   1937-04-01 2024-02-09  59.0
+ 3 125000 JELENIA GORA    &lt;NA&gt;      344   1933-06-01 2024-02-09  69.9
+ 4 123120 BABIMOST        EPZG       59.1 2002-06-03 2024-02-09  74.0
+ 5 116530 SNEZKA          &lt;NA&gt;     1602   2009-05-01 2024-02-09  86.8
+ 6 125100 SNIEZKA         &lt;NA&gt;     1613   1952-01-01 2024-02-09  86.8
+ 7 116030 LIBEREC         &lt;NA&gt;      402.  1937-03-02 2024-02-09  88.2
+ 8 116430 PEC POD SNEZKOU &lt;NA&gt;      821.  1931-01-01 2024-02-09  90.4
+ 9 124240 STRACHOWICE     EPWR      123.  1939-01-02 2024-02-09 106. 
+10 123100 SLUBICE         &lt;NA&gt;       24   1952-01-02 2024-02-09 113. </code></pre>
+</div>
+</div>
+<p>By adding <code>returnMap = TRUE</code> parameter we can see the locations of stations returned:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-f39dcce68c589c921e3b" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-f39dcce68c589c921e3b">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["OpenStreetMap",null,"OpenStreetMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addProviderTiles","args":["Esri.WorldImagery",null,"Esri.WorldImagery",{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addMarkers","args":[[51.933,51.2,50.9,52.139,50.733,50.733,50.767,50.7,51.103,52.35],[15.533,16.2,15.8,15.799,15.733,15.733,15.017,15.733,16.886,14.6],null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["<b>ZIELONA GORA<\/b><br/><hr><b>Code:<\/b> 124000-99999<br/><b>Start:<\/b> 1931-01-01<br/><b>End:<\/b> 2024-02-09<br/><b>Distance:<\/b> 48.2 km","<b>LEGNICA<\/b><br/><hr><b>Code:<\/b> 124150-99999<br/><b>Start:<\/b> 1937-04-01<br/><b>End:<\/b> 2024-02-09<br/><b>Distance:<\/b> 59 km","<b>JELENIA GORA<\/b><br/><hr><b>Code:<\/b> 125000-99999<br/><b>Start:<\/b> 1933-06-01<br/><b>End:<\/b> 2024-02-09<br/><b>Distance:<\/b> 69.9 km","<b>BABIMOST<\/b><br/><hr><b>Code:<\/b> 123120-99999<br/><b>Start:<\/b> 2002-06-03<br/><b>End:<\/b> 2024-02-09<br/><b>Distance:<\/b> 74 km","<b>SNEZKA<\/b><br/><hr><b>Code:<\/b> 116530-99999<br/><b>Start:<\/b> 2009-05-01<br/><b>End:<\/b> 2024-02-09<br/><b>Distance:<\/b> 86.8 km","<b>SNIEZKA<\/b><br/><hr><b>Code:<\/b> 125100-99999<br/><b>Start:<\/b> 1952-01-01<br/><b>End:<\/b> 2024-02-09<br/><b>Distance:<\/b> 86.8 km","<b>LIBEREC<\/b><br/><hr><b>Code:<\/b> 116030-99999<br/><b>Start:<\/b> 1937-03-02<br/><b>End:<\/b> 2024-02-09<br/><b>Distance:<\/b> 88.2 km","<b>PEC POD SNEZKOU<\/b><br/><hr><b>Code:<\/b> 116430-99999<br/><b>Start:<\/b> 1931-01-01<br/><b>End:<\/b> 2024-02-09<br/><b>Distance:<\/b> 90.4 km","<b>STRACHOWICE<\/b><br/><hr><b>Code:<\/b> 124240-99999<br/><b>Start:<\/b> 1939-01-02<br/><b>End:<\/b> 2024-02-09<br/><b>Distance:<\/b> 106 km","<b>SLUBICE<\/b><br/><hr><b>Code:<\/b> 123100-99999<br/><b>Start:<\/b> 1952-01-02<br/><b>End:<\/b> 2024-02-09<br/><b>Distance:<\/b> 112.9 km"],null,{"showCoverageOnHover":true,"zoomToBoundsOnClick":true,"spiderfyOnMaxZoom":true,"removeOutsideVisibleBounds":true,"spiderLegPolylineOptions":{"weight":1.5,"color":"#222","opacity":0.5},"freezeAtZoom":false},null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addCircles","args":[51.5,15.5,200,null,null,{"interactive":true,"className":"","stroke":true,"color":"red","weight":20,"opacity":0.5,"fill":true,"fillColor":"red","fillOpacity":0.2},["Search location<br/>Lat = 51.933<br/>Lon = 15.533","Search location<br/>Lat = 51.2<br/>Lon = 16.2","Search location<br/>Lat = 50.9<br/>Lon = 15.8","Search location<br/>Lat = 52.139<br/>Lon = 15.799","Search location<br/>Lat = 50.733<br/>Lon = 15.733","Search location<br/>Lat = 50.733<br/>Lon = 15.733","Search location<br/>Lat = 50.767<br/>Lon = 15.017","Search location<br/>Lat = 50.7<br/>Lon = 15.733","Search location<br/>Lat = 51.103<br/>Lon = 16.886","Search location<br/>Lat = 52.35<br/>Lon = 14.6"],null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null,null]},{"method":"addLayersControl","args":[["OpenStreetMap","Esri.WorldImagery"],[],{"collapsed":false,"autoZIndex":false,"position":"topright"}]}],"limits":{"lat":[50.7,52.35],"lng":[14.6,16.886]}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>Let’s download a data for one station and see what’s inside:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>station_data <span class="ot">&lt;-</span> worldmet<span class="sc">::</span><span class="fu">importNOAA</span>(<span class="at">code =</span> <span class="st">"124240-99999"</span>,</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">year =</span> <span class="dv">2022</span>,</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">hourly =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">n.cores =</span> <span class="dv">4</span>,</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">path =</span> <span class="st">"data"</span>)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>station_data <span class="sc">|&gt;</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(<span class="at">select =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">7</span><span class="sc">:</span><span class="dv">13</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tail</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 8
+  date                   ws    wd air_temp atmos_pres visibility dew_point    RH
+  &lt;dttm&gt;              &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;
+1 2022-12-31 18:00:00  5.4   227.     15.5      1016.     23267.     10.0   70.0
+2 2022-12-31 19:00:00  5.43  234.     15.2      1016.     23267.      9.33  68.4
+3 2022-12-31 20:00:00  6.3   230      15.8      1016.     23267.      9.2   65.0
+4 2022-12-31 21:00:00  5.8   227.     15.1      1016.     23267.      9.1   67.7
+5 2022-12-31 22:00:00  4.07  224.     14.3      1016.     23267.      8.57  68.7
+6 2022-12-31 23:00:00  3.9   220.     14.0      1016.     23267.      8.17  68.0</code></pre>
+</div>
+</div>
+<p>Having data on hand we can perform analysis. A very simple wind rose and temperature diagram for Wrocław-Strachowice station is shown in <a href="#fig-station_data_examples" class="quarto-xref">Figure&nbsp;<span>2.2</span></a>.</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>openair<span class="sc">::</span><span class="fu">windRose</span>(station_data)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>openair<span class="sc">::</span><span class="fu">timePlot</span>(station_data, <span class="at">pollutant =</span> <span class="st">"air_temp"</span>,</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">auto.text =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">ylab =</span> <span class="st">"Temperature [\u00B0C]"</span>,</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">key =</span> <span class="cn">FALSE</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>                  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-station_data_examples" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-station_data_examples-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-station_data_examples" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-station_data_examples-1" class="quarto-figure quarto-figure-center quarto-float anchored" width="672">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-station_data_examples-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="environments_files/figure-html/fig-station_data_examples-1.png" id="fig-station_data_examples-1" class="img-fluid figure-img" data-ref-parent="fig-station_data_examples" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-station_data_examples-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a)
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-station_data_examples" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-station_data_examples-2" class="quarto-figure quarto-figure-center quarto-float anchored" width="672">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-station_data_examples-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="environments_files/figure-html/fig-station_data_examples-2.png" id="fig-station_data_examples-2" class="img-fluid figure-img" data-ref-parent="fig-station_data_examples" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-station_data_examples-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-station_data_examples-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.2: Examples of station’s data vizualization: direction and wind speed (a) and temperature (b)
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="meteorological-aerodrome-report-metar-data" class="level4">
+<h4 class="anchored" data-anchor-id="meteorological-aerodrome-report-metar-data">Meteorological Aerodrome Report (METAR) data</h4>
+<p>You may have noticed in <a href="#tbl-isd_stations" class="quarto-xref">Table&nbsp;<span>2.2</span></a>, some stations have ICAO (International Civil Aviation Organization) codes. It means, that such hourly data is provided by station located at airport. Copernicus airport at Wrocław-Strachowice is designated with <code>EPWR</code>. The data can be obtained from <a href="https://aviationweather.gov/data/metar/">Aviation Weather Center</a>, historical data is available from <a href="https://www.ogimet.com/index.phtml.en">ogimet</a> (up to past 20 years) or <a href="https://mesonet.agron.iastate.edu/request/download.phtml">ASOS Network</a><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. In R we can use {pmetar} package <span class="citation" data-cites="pmetar">(<a href="references.html#ref-pmetar" role="doc-biblioref">Cwiek 2023</a>)</span>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pmetar)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>epwr <span class="ot">&lt;-</span> pmetar<span class="sc">::</span><span class="fu">metar_get</span>(<span class="at">airport =</span> <span class="st">"EPWR"</span>)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>epwr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "EPWR 122000Z 26007KT CAVOK 07/04 Q1006"</code></pre>
+</div>
+</div>
+<p>From the above report we can read: it was issued on 12 day current month at 20:00 UTC. The wind was blowing from the direction of 260 degree and the speed was 7 knots, etc, etc <span class="citation" data-cites="milradMETARCode2018">(<a href="references.html#ref-milradMETARCode2018" role="doc-biblioref">Milrad 2018</a>)</span>.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>old <span class="ot">&lt;-</span> pmetar<span class="sc">::</span><span class="fu">metar_get_historical</span>(<span class="at">airport =</span> <span class="st">"EPWR"</span>,</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>                             <span class="at">start_date =</span> <span class="st">"2022-12-30"</span>,</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>                             <span class="at">end_date =</span> <span class="st">"2022-12-31"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  pmetar<span class="sc">::</span><span class="fu">metar_decode</span>() </span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>old <span class="sc">|&gt;</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">as.POSIXct</span>(<span class="fu">paste</span>(METAR_Date, <span class="st">" "</span>, Hour, <span class="st">":00"</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(<span class="at">select =</span> <span class="fu">c</span>(date, Wind_speed, Wind_direction, Temperature, Pressure, Dew_point), </span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>         date <span class="sc">&gt;=</span> <span class="fu">as.POSIXct</span>(<span class="st">"2022-12-31 18:00:00"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable</span>() <span class="sc">|&gt;</span></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_classic_2</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="tbl-pmetar_EPWR" class="cell quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-pmetar_EPWR-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2.3: Decoded METARs for Wrocław-Strachowice airport
+</figcaption>
+<div aria-describedby="tbl-pmetar_EPWR-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div>
+<table class="lightable-classic-2 do-not-create-environment cell table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">date</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Wind_speed</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Wind_direction</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Temperature</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Pressure</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Dew_point</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">2022-12-31 18:00:00</td>
+<td style="text-align: right;">5.144447</td>
+<td style="text-align: left;">220</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">1016</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2022-12-31 18:30:00</td>
+<td style="text-align: right;">5.144447</td>
+<td style="text-align: left;">230; variable from 200 to 260</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">1016</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2022-12-31 19:00:00</td>
+<td style="text-align: right;">4.630002</td>
+<td style="text-align: left;">230; variable from 200 to 260</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">1016</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2022-12-31 19:30:00</td>
+<td style="text-align: right;">5.658892</td>
+<td style="text-align: left;">230</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">1016</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2022-12-31 20:00:00</td>
+<td style="text-align: right;">6.173336</td>
+<td style="text-align: left;">230</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">1016</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2022-12-31 20:30:00</td>
+<td style="text-align: right;">5.658892</td>
+<td style="text-align: left;">230</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">1016</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2022-12-31 21:00:00</td>
+<td style="text-align: right;">5.658892</td>
+<td style="text-align: left;">230</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">1016</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2022-12-31 21:30:00</td>
+<td style="text-align: right;">5.658892</td>
+<td style="text-align: left;">220</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">1016</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2022-12-31 22:00:00</td>
+<td style="text-align: right;">4.630002</td>
+<td style="text-align: left;">230</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">1016</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2022-12-31 22:30:00</td>
+<td style="text-align: right;">3.601113</td>
+<td style="text-align: left;">210; variable from 180 to 240</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">1016</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2022-12-31 23:00:00</td>
+<td style="text-align: right;">4.115558</td>
+<td style="text-align: left;">210</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">1016</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2022-12-31 23:30:00</td>
+<td style="text-align: right;">3.601113</td>
+<td style="text-align: left;">220</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">1016</td>
+<td style="text-align: right;">8</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>Comparing the data with ISD we can see the METAR reports are issued every 30 minutes.</p>
+</section>
+</section>
+<section id="gridded-data" class="level3 page-columns page-full" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="gridded-data"><span class="header-section-number">2.2.2</span> Gridded data</h3>
+<section id="chelsa" class="level4 page-columns page-full">
+<h4 class="anchored" data-anchor-id="chelsa">CHELSA</h4>
+<p><a href="https://chelsa-climate.org/">CHELSA</a> (Climatologies at High resolution for the Earth’s Land Surface Areas) is a data set hosted by the Swiss Federal Institute for Forest, Snow and Landscape Research WSL. The data is based on ERA-Interim climatic reanalysis and contains downscaled to 30 arc sec, ~&nbsp;1&nbsp;km global climate data. <span class="citation" data-cites="kargerClimatologiesHighResolution2017 kargerClimatologiesHighResolution2021">(<a href="references.html#ref-kargerClimatologiesHighResolution2017" role="doc-biblioref">Dirk Nikolaus Karger et al. 2017</a>, <a href="references.html#ref-kargerClimatologiesHighResolution2021" role="doc-biblioref">2021</a>)</span>. Ver. 2.1 of the data covers monthly datasets of temperatures and precipitation climatologies for years 1979–2019.</p>
+<p>Files can be accessed directly from <a href="https://envicloud.wsl.ch/#/?prefix=chelsa%2Fchelsa_V2%2FGLOBAL%2F">Envicloud server</a>. The filename of each CHELSA data product follows a similar structure including the respective model used, the variable short name, the respective time variables, and the accumulation (or mean) period in the following basic format:</p>
+<pre><code>CHELSA_[short_name]_[timeperiod]_[Version].tif</code></pre>
+<p>For CMIP6 data:</p>
+<pre><code>CHELSA_[short_name]_[timeperiod]_[model] _[ssp] _[Version].tif</code></pre>
+<p>Available variable names are listed in <a href="#tbl-chelsa_variable_names" class="quarto-xref">Table&nbsp;<span>2.4</span></a>. TREELIM model and details (variables: <code>gsl</code>, <code>gsp ... fgd</code> was described by <span class="citation" data-cites="paulsenClimatebasedModelPredict2014">Paulsen and Körner (<a href="references.html#ref-paulsenClimatebasedModelPredict2014" role="doc-biblioref">2014</a>)</span>. Köppen-Geiger <code>kg0</code> and <code>kg1</code> after <span class="citation" data-cites="koeppenGeographischeSystemKlimate1936">Köppen (<a href="references.html#ref-koeppenGeographischeSystemKlimate1936" role="doc-biblioref">1936</a>)</span>, <code>kg2</code> classification was updated by <span class="citation" data-cites="peelUpdatedWorldMap2007">Peel, Finlayson, and McMahon (<a href="references.html#ref-peelUpdatedWorldMap2007" role="doc-biblioref">2007</a>)</span>, <code>kg3</code> according to <span class="citation" data-cites="wissmannKlimaundVegetationsgebieteEurasiens1939">Wissmann (<a href="references.html#ref-wissmannKlimaundVegetationsgebieteEurasiens1939" role="doc-biblioref">1939</a>)</span>, <code>kg4</code> — new classification by <span class="citation" data-cites="thornthwaiteClimatesNorthAmerica1931">Thornthwaite (<a href="references.html#ref-thornthwaiteClimatesNorthAmerica1931" role="doc-biblioref">1931</a>)</span> and for details of <code>kg5</code> see <span class="citation" data-cites="trollKarteJahreszeitenKlimateErde1964">(<a href="references.html#ref-trollKarteJahreszeitenKlimateErde1964" role="doc-biblioref">Troll 1964</a>)</span>. Miami model for <code>npp</code> variable was described by <span class="citation" data-cites="liethModelingPrimaryProductivity1975">Lieth (<a href="references.html#ref-liethModelingPrimaryProductivity1975" role="doc-biblioref">1975</a>)</span>.</p>
+<div class="cell page-columns page-full">
+<div id="tbl-chelsa_variable_names" class="cell quarto-float anchored page-columns page-full">
+<figure class="quarto-float quarto-float-tbl figure page-columns page-full">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-chelsa_variable_names-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2.4: Chelsa variable names <span class="citation" data-cites="kargerCHELSAV2Technical2021">(<a href="references.html#ref-kargerCHELSAV2Technical2021" role="doc-biblioref">Dirk Nikolaus Karger and Zimmermann 2021</a>)</span>
+</figcaption>
+<div aria-describedby="tbl-chelsa_variable_names-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
+<div class="cell-output-display column-body-outset">
+<div>
+<table class="lightable-classic-2 do-not-create-environment cell table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Short name</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Long name</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Unit</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Scale</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Offset</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">bio1</td>
+<td style="text-align: left;">mean annual air temperature</td>
+<td style="text-align: left;">°C</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">-273.15</td>
+<td style="text-align: left;">Mean annual daily mean air temperatures averaged over 1 year</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">bio2</td>
+<td style="text-align: left;">mean diurnal air temperature range</td>
+<td style="text-align: left;">°C</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: left;">Mean diurnal range of temperatures averaged over 1 year</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">bio3</td>
+<td style="text-align: left;">isothermality</td>
+<td style="text-align: left;">°C</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: left;">Ratio of diurnal variation to annual variation in temperatures</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">bio4</td>
+<td style="text-align: left;">temperature seasonality</td>
+<td style="text-align: left;">°C</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: left;">Standard deviation of the monthly mean temperatures</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">bio5</td>
+<td style="text-align: left;">mean daily maximum air temperature of the warmest month</td>
+<td style="text-align: left;">°C</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">-273.15</td>
+<td style="text-align: left;">The highest temperature of any monthly daily mean maximum temperature</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">bio6</td>
+<td style="text-align: left;">mean daily minimum air temperature of the coldest month</td>
+<td style="text-align: left;">°C</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">-273.15</td>
+<td style="text-align: left;">The lowest temperature of any monthly daily mean maximum temperature</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">bio7</td>
+<td style="text-align: left;">annual range of air temperature</td>
+<td style="text-align: left;">°C</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: left;">The difference between the Maximum Temperature of Warmest month and the Minimum Temperature of Coldest month</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">bio8</td>
+<td style="text-align: left;">mean daily mean air temperatures of the wettest quarter</td>
+<td style="text-align: left;">°C</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">-273.15</td>
+<td style="text-align: left;">The wettest quarter of the year is determined (to the nearest month)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">bio9</td>
+<td style="text-align: left;">mean daily mean air temperatures of the driest quarter</td>
+<td style="text-align: left;">°C</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">-273.15</td>
+<td style="text-align: left;">The driest quarter of the year is determined (to the nearest month)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">bio10</td>
+<td style="text-align: left;">mean daily mean air temperatures of the warmest quarter</td>
+<td style="text-align: left;">°C</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">-273.15</td>
+<td style="text-align: left;">The warmest quarter of the year is determined (to the nearest month)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">bio11</td>
+<td style="text-align: left;">mean daily mean air temperatures of the coldest quarter</td>
+<td style="text-align: left;">°C</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">-273.15</td>
+<td style="text-align: left;">The coldest quarter of the year is determined (to the nearest month)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">bio12</td>
+<td style="text-align: left;">annual precipitation amount</td>
+<td style="text-align: left;">kg m<sup>-2</sup></td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: left;">Accumulated precipitation amount over 1 year</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">bio13</td>
+<td style="text-align: left;">precipitation amount of the wettest month</td>
+<td style="text-align: left;">kg m<sup>-2</sup></td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: left;">The precipitation of the wettest month.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">bio14</td>
+<td style="text-align: left;">precipitation amount of the driest month</td>
+<td style="text-align: left;">kg m<sup>-2</sup></td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: left;">The precipitation of the driest month.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">bio15</td>
+<td style="text-align: left;">precipitation seasonality</td>
+<td style="text-align: left;">kg m<sup>-2</sup></td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: left;">The Coefficient of Variation is the standard deviation of the monthly precipitation estimates expressed as a percentage of the mean of those estimates (i.e. the annual mean)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">bio16</td>
+<td style="text-align: left;">mean monthly precipitation amount of the wettest quarter</td>
+<td style="text-align: left;">kg m<sup>-2</sup></td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: left;">The wettest quarter of the year is determined (to the nearest month)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">bio17</td>
+<td style="text-align: left;">mean monthly precipitation amount of the driest quarter</td>
+<td style="text-align: left;">kg m<sup>-2</sup></td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: left;">The driest quarter of the year is determined (to the nearest month)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">bio18</td>
+<td style="text-align: left;">mean monthly precipitation amount of the warmest quarter</td>
+<td style="text-align: left;">kg m<sup>-2</sup></td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: left;">The warmest quarter of the year is determined (to the nearest month)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">bio19</td>
+<td style="text-align: left;">mean monthly precipitation amount of the coldest quarter</td>
+<td style="text-align: left;">kg m<sup>-2</sup></td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: left;">The coldest quarter of the year is determined (to the nearest month)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">gdgfgd0</td>
+<td style="text-align: left;">first growing degree day above 0°c</td>
+<td style="text-align: left;">julian day</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: left;">First day of the year above 0°C</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">gdgfgd5</td>
+<td style="text-align: left;">first growing degree day above 5°c</td>
+<td style="text-align: left;">julian day</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: left;">First day of the year above 5°C</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">gdgfgd10</td>
+<td style="text-align: left;">first growing degree day above 10°c</td>
+<td style="text-align: left;">julian day</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: left;">First day of the year above 10°C</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">fcf</td>
+<td style="text-align: left;">frost change frequency</td>
+<td style="text-align: left;">count</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: left;">Number of events in which tmin or tmax go above, or below 0°C</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">gdd0</td>
+<td style="text-align: left;">growing degree days heat sum above 0°c</td>
+<td style="text-align: left;">°C</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: left;">Heat sum of all days above the 0°C temperature accumulated over 1 year.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">gdd5</td>
+<td style="text-align: left;">growing degree days heat sum above 5°c</td>
+<td style="text-align: left;">°C</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: left;">Heat sum of all days above the 5°C temperature accumulated over 1 year.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">gdd10</td>
+<td style="text-align: left;">growing degree days heat sum above 10°c</td>
+<td style="text-align: left;">°C</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: left;">Heat sum of all days above the 10°C temperature accumulated over 1 year.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">gddlgd0</td>
+<td style="text-align: left;">last growing degree day above 0°c</td>
+<td style="text-align: left;">julian day</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: left;">Last day of the year above 0°C</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">gddlgd5</td>
+<td style="text-align: left;">last growing degree day above 5°c</td>
+<td style="text-align: left;">julian day</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: left;">Last day of the year above 5°C</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">gddlgd10</td>
+<td style="text-align: left;">last growing degree day above 10°c</td>
+<td style="text-align: left;">julian day</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: left;">Last day of the year above 10°C</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">gsl</td>
+<td style="text-align: left;">growing season length treelim</td>
+<td style="text-align: left;">number of days</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: left;">Length of the growing season</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">gsp</td>
+<td style="text-align: left;">accumulated precipiation amount on growing season days treelim</td>
+<td style="text-align: left;">kg m<sup>-2</sup></td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: left;">Precipitation sum accumulated on all days during the growing season based on TREELIM ()</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">gst</td>
+<td style="text-align: left;">mean temperature of the growing season treelim</td>
+<td style="text-align: left;">°C</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">-273.15</td>
+<td style="text-align: left;">Mean temperature of all growing season days based on TREELIM ()</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">lgd</td>
+<td style="text-align: left;">last day of the growing season treelim</td>
+<td style="text-align: left;">julian day</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: left;">Last day of the growing season according to TREELIM ()</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">fgd</td>
+<td style="text-align: left;">first day of the growing season treelim</td>
+<td style="text-align: left;">julian day</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: left;">First day of the growing season according to TREELIM ()</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ngd0</td>
+<td style="text-align: left;">number of growing degree days</td>
+<td style="text-align: left;">number of days</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: left;">Number of days at which tas &gt; 0°C</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ngd5</td>
+<td style="text-align: left;">number of growing degree days</td>
+<td style="text-align: left;">number of days</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: left;">Number of days at which tas &gt; 5°C</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ngd10</td>
+<td style="text-align: left;">number of growing degree days</td>
+<td style="text-align: left;">number of days</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: left;">Number of days at which tas &gt; 10°C</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">kg0</td>
+<td style="text-align: left;">Köppen-Geiger climate classification</td>
+<td style="text-align: left;">category</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: left;">Köppen Geiger &nbsp; Koeppen, W., Geiger, R. (1936): Handbuch der Klimatologie. Gebrüder Borntraeger, Berlin. Wikimedia.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">kg1</td>
+<td style="text-align: left;">Köppen-Geiger climate classification</td>
+<td style="text-align: left;">category</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: left;">Köppen Geiger without As/Aw differentiation &nbsp; Koeppen, W., Geiger, R. (1936): Handbuch der Klimatologie. Gebrüder Borntraeger, Berlin. Wikimedia.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">kg2</td>
+<td style="text-align: left;">Köppen-Geiger climate classification</td>
+<td style="text-align: left;">category</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: left;">Köppen Geiger after Peel et al. 2007 &nbsp; Peel, M. C., Finlayson, B. L., McMahon, T. A. (2007): Updated world map of the Koeppen-Geiger climate classification. Hydrology and earth system sciences discussions, 4(2), 439-473. Free Access.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">kg3</td>
+<td style="text-align: left;">Köppen-Geiger climate classification</td>
+<td style="text-align: left;">category</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: left;">Wissmann 1939 &nbsp; Wissmann, H. (1939): Die Klima-und Vegetationsgebiete Eurasiens: Begleitworte zu einer Karte der Klimagebiete Eurasiens. Z. Ges. Erdk. Berlin, p.81-92.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">kg4</td>
+<td style="text-align: left;">Köppen-Geiger climate classification</td>
+<td style="text-align: left;">category</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: left;">Thornthwaite 1931 &nbsp; Thornthwaite, C. W. (1931): The climates of North America: according to a new classification. Geographical review, 21(4), 633-655. JSTOR.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">kg5</td>
+<td style="text-align: left;">Köppen-Geiger climate classification</td>
+<td style="text-align: left;">category</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: left;">Troll-Pfaffen &nbsp; Troll, C. &amp; Paffen, K.H. (1964): Karte der Jahreszeitenklimate der Erde. Erdkunde 18, p5-28 Free Access.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">scd</td>
+<td style="text-align: left;">snow cover days</td>
+<td style="text-align: left;">count</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: left;">Number of days with snowcover calculated using the snowpack model implementation in from TREELIM ()</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">swe</td>
+<td style="text-align: left;">snow water equivalent</td>
+<td style="text-align: left;">kg m<sup>-2</sup></td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: left;">Amount of luquid water if snow is melted</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">npp</td>
+<td style="text-align: left;">net primary productivity</td>
+<td style="text-align: left;">g C m<sup>-2</sup> yr<sup>-1</sup></td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: left;">Calculated based on the ‘Miami model’, Lieth, H., 1972. “Modelling the primary productivity of the earth. Nature and resources”, UNESCO, VIII, 2:5-10.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">pr</td>
+<td style="text-align: left;">precipitation amount</td>
+<td style="text-align: left;">kg m<sup>-2</sup></td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: left;">“Amount” means mass per unit area. “Precipitation” in the earth’s atmosphere means precipitation of water in all phases.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">tasmax</td>
+<td style="text-align: left;">mean daily maximum 2m air temperature</td>
+<td style="text-align: left;">°C</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">-273.15</td>
+<td style="text-align: left;">Daily maximum air temperatures at 2 metres from hourly ERA5 data</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">tas</td>
+<td style="text-align: left;">mean daily air temperature</td>
+<td style="text-align: left;">°C</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">-273.15</td>
+<td style="text-align: left;">Daily mean air temperatures at 2 metres from hourly ERA5 data</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">tasmin</td>
+<td style="text-align: left;">mean daily minimum air temperature</td>
+<td style="text-align: left;">°C</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">-273.15</td>
+<td style="text-align: left;">Daily minimum air temperatures at 2 metres from hourly ERA5 data</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>Later the data was extended by new variables and got the name BIOCLIM+ <span class="citation" data-cites="brunGlobalClimaterelatedPredictors2022 brunCHELSABIOCLIMNovelSet2022">(<a href="references.html#ref-brunGlobalClimaterelatedPredictors2022" role="doc-biblioref">Brun et al. 2022b</a>, <a href="references.html#ref-brunCHELSABIOCLIMNovelSet2022" role="doc-biblioref">2022a</a>)</span>. The variables provides:</p>
+<ul>
+<li>near-surface relative humidity (hurs)</li>
+<li>cloud area fraction (clt)</li>
+<li>near-surface wind speed (sfcWind)</li>
+<li>vapour pressure deficit (vpd)</li>
+<li>surface downwelling shortwave radiation (rsds)</li>
+<li>potential evapotranspiration (pet)</li>
+<li>climate moisture index (cmi)</li>
+<li>site water balance (swb)</li>
+</ul>
+<p>Detailed description of the variables were provided by <span class="citation" data-cites="kargerBIOCLIMNovelSet2022">Dirk Nikolaus Karger, Brun, and Zimmermann (<a href="references.html#ref-kargerBIOCLIMNovelSet2022" role="doc-biblioref">2022</a>)</span>.</p>
+<p>And finally, there is a <a href="https://chelsa-climate.org/chelsa-w5e5-v1-0-daily-climate-data-at-1km-resolution/">daily sets of data</a> <span class="citation" data-cites="kargerCHELSAW5E5V1W5E52022">(<a href="references.html#ref-kargerCHELSAW5E5V1W5E52022" role="doc-biblioref">Dirk N. Karger et al. 2022</a>)</span> which covers the entire globe (except the Arctic Ocean beyond 84°N) at 30 arcsec horizontal and daily temporal resolution from 1979 to 2016. Variables (with short names and units in brackets) included in the CHELSA-W5E5 dataset are: Daily Mean Precipitation (pr) [kg m<sup>-2</sup> s<sup>-1</sup>], Daily Mean Surface Downwelling Shortwave Radiation (rsds) [W m<sup>-2</sup>], Daily Mean Near-Surface Air Temperature (tas) [K], Daily Maximum Near Surface Air Temperature (tasmax) [K], Daily Minimum Near Surface Air Temperature (tasmin) [K], Surface Altitude (orog) [m], and the CHELSA-W5E5 land-sea mask (mask).</p>
+<!--
+There are few R packages which helps to download and manage CHELSA data: {climatedata} [@climatedata], {chelsaDL} [@chelsaDL] and {ClimDatDownloadR} [@ClimDatDownloadR].
+-->
+<p>To download CHELSA data in R you can use {ClimDatDownloadR} <span class="citation" data-cites="ClimDatDownloadR">(<a href="references.html#ref-ClimDatDownloadR" role="doc-biblioref">Jentsch, Bobrowski, and Weidinger 2024</a>)</span> package.</p>
+<!---
+hydro:
+https://www.hydrosheds.org/hydrosheds-core-downloads
+-->
+<!--
+soil:
+
+https://data.isric.org/geonetwork/srv/eng/catalog.search#/home
+-->
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-brunCHELSABIOCLIMNovelSet2022" class="csl-entry" role="listitem">
+Brun, Philipp, Niklaus E. Zimmermann, Chantal Hari, Loïc Pellissier, and Dirk Nikolaus Karger. 2022a. <span>“<span>CHELSA-BIOCLIM</span>+ <span>A</span> Novel Set of Global Climate-Related Predictors at Kilometre-Resolution.”</span> <span>EnviDat</span>. https://doi.org/<a href="http://dx.doi.org/10.16904/envidat.332">http://dx.doi.org/10.16904/envidat.332</a>.
+</div>
+<div id="ref-brunGlobalClimaterelatedPredictors2022" class="csl-entry" role="listitem">
+———. 2022b. <span>“Global Climate-Related Predictors at Kilometer Resolution for the Past and Future.”</span> <em>Earth System Science Data</em> 14 (12): 5573–603. <a href="https://doi.org/10.5194/essd-14-5573-2022">https://doi.org/10.5194/essd-14-5573-2022</a>.
+</div>
+<div id="ref-worldmet" class="csl-entry" role="listitem">
+Carslaw, David. 2023. <em>Worldmet: Import Surface Meteorological Data from NOAA Integrated Surface Database (ISD)</em>. <a href="https://CRAN.R-project.org/package=worldmet">https://CRAN.R-project.org/package=worldmet</a>.
+</div>
+<div id="ref-pmetar" class="csl-entry" role="listitem">
+Cwiek, Pawel. 2023. <em>Pmetar: Processing METAR Weather Reports</em>. <a href="https://CRAN.R-project.org/package=pmetar">https://CRAN.R-project.org/package=pmetar</a>.
+</div>
+<div id="ref-delgrecoSurfaceDataIntegration2006" class="csl-entry" role="listitem">
+Del Greco, Stephen A., Neal Lott, Kathy Hawkins, Rich Baldwin, Dee Dee Anders, Ron Ray, Dan Dellinger, Pete Jones, and Fred Smith. 2006. <span>“Surface Data Integration at <span>NOAA</span>’s <span>National Climatic Data Center</span>: Data Format, Processing, <span>QC</span>, and Product Generation.”</span> In. <span>Georgia</span>. <a href="https://ams.confex.com/ams/Annual2006/webprogram/Paper100500.html">https://ams.confex.com/ams/Annual2006/webprogram/Paper100500.html</a>.
+</div>
+<div id="ref-FederalClimateComplex2018" class="csl-entry" role="listitem">
+<span>“Federal Climate Complex Data Documentation for <span>Integrated Surface Data</span> (<span>ISD</span>).”</span> 2018. <span>NOAA - National Centers for Environmental Information US Air Force - 14th Weather Squadron</span>. <a href="https://www.ncei.noaa.gov/pub/data/noaa/isd-format-document.pdf">https://www.ncei.noaa.gov/pub/data/noaa/isd-format-document.pdf</a>.
+</div>
+<div id="ref-terra" class="csl-entry" role="listitem">
+Hijmans, Robert J. 2024. <em>Terra: Spatial Data Analysis</em>. <a href="https://CRAN.R-project.org/package=terra">https://CRAN.R-project.org/package=terra</a>.
+</div>
+<div id="ref-ClimDatDownloadR" class="csl-entry" role="listitem">
+Jentsch, Helge, Maria Bobrowski, and Johannes Weidinger. 2024. <em>ClimDatDownloadR: Downloads Climate Data from Chelsa and WorldClim</em>. <a href="https://doi.org/10.5281/zenodo.7924343">https://doi.org/10.5281/zenodo.7924343</a>.
+</div>
+<div id="ref-kargerBIOCLIMNovelSet2022" class="csl-entry" role="listitem">
+Karger, Dirk Nikolaus, Philipp Brun, and Niklaus E. Zimmermann. 2022. <span>“<span>BIOCLIM</span>+ <span>A</span> Novel Set of Global Climate-Related Predictors at Kilometre-Resolution: <span>Technical</span> Specification.”</span> <span>Swiss Federal Research Institute WSL</span>. <a href="https://www.envidat.ch/dataset/21d662b7-9c59-41da-aa82-7d8a879b8db7/resource/aa676d1f-5f7f-479b-af20-26066b0537d1/download/chelsa_file_specification_bioclim_plus.pdf">https://www.envidat.ch/dataset/21d662b7-9c59-41da-aa82-7d8a879b8db7/resource/aa676d1f-5f7f-479b-af20-26066b0537d1/download/chelsa_file_specification_bioclim_plus.pdf</a>.
+</div>
+<div id="ref-kargerClimatologiesHighResolution2017" class="csl-entry" role="listitem">
+Karger, Dirk Nikolaus, Olaf Conrad, Jürgen Böhner, Tobias Kawohl, Holger Kreft, Rodrigo Wilber Soria-Auza, Niklaus E. Zimmermann, H. Peter Linder, and Michael Kessler. 2017. <span>“Climatologies at High Resolution for the Earth’s Land Surface Areas.”</span> <em>Scientific Data</em> 4 (1, 1): 170122. <a href="https://doi.org/10.1038/sdata.2017.122">https://doi.org/10.1038/sdata.2017.122</a>.
+</div>
+<div id="ref-kargerClimatologiesHighResolution2021" class="csl-entry" role="listitem">
+———. 2021. <span>“Climatologies at High Resolution for the Earth’s Land Surface Areas.”</span> <span>EnviDat</span>. https://doi.org/<a href="http://dx.doi.org/10.16904/envidat.228">http://dx.doi.org/10.16904/envidat.228</a>.
+</div>
+<div id="ref-kargerCHELSAV2Technical2021" class="csl-entry" role="listitem">
+Karger, Dirk Nikolaus, and Niklaus E. Zimmermann. 2021. <span>“<span>CHELSA V2</span>.1: <span>Technical</span> Specification.”</span> <span>Swiss Federal Research Institute WSL</span>. <a href="https://www.envidat.ch/dataset/2adb0c83-4653-4337-af28-f75c63ab7c74/resource/61fff0a7-6abb-45f7-a5f6-48f6e2c24851/download/chelsa_file_specification.pdf">https://www.envidat.ch/dataset/2adb0c83-4653-4337-af28-f75c63ab7c74/resource/61fff0a7-6abb-45f7-a5f6-48f6e2c24851/download/chelsa_file_specification.pdf</a>.
+</div>
+<div id="ref-kargerCHELSAW5E5V1W5E52022" class="csl-entry" role="listitem">
+Karger, Dirk N., Stefan Lange, Chantal Hari, Christopher P. O. Reyer, and Niklaus E. Zimmermann. 2022. <span>“<span>CHELSA-W5E5</span> V1.0: <span>W5E5</span> V1.0 Downscaled with <span>CHELSA</span> V2.0.”</span> <span>ISIMIP Repository</span>. <a href="https://doi.org/10.48364/ISIMIP.836809.3">https://doi.org/10.48364/ISIMIP.836809.3</a>.
+</div>
+<div id="ref-koeppenGeographischeSystemKlimate1936" class="csl-entry" role="listitem">
+Köppen, Wladimir Peter. 1936. <span>“Das geographische System der Klimate (1936).”</span> In <em>Handbuch der Klimatologie</em>, edited by Wladimir Peter Köppen and Rudolf Geiger, Band I, Teil C:44. <span>Berlin</span>: <span>Verlag von Gebrüder Borntraeger</span>. <a href="https://koeppen-geiger.vu-wien.ac.at/pdf/Koppen_1936.pdf">https://koeppen-geiger.vu-wien.ac.at/pdf/Koppen_1936.pdf</a>.
+</div>
+<div id="ref-aws.s3" class="csl-entry" role="listitem">
+Leeper, Thomas J. 2024. <em>Aws.s3: AWS S3 Client Package</em>. <a href="https://github.com/cloudyr/aws.s3">https://github.com/cloudyr/aws.s3</a>.
+</div>
+<div id="ref-liethModelingPrimaryProductivity1975" class="csl-entry" role="listitem">
+Lieth, Helmut. 1975. <span>“Modeling the <span>Primary Productivity</span> of the <span>World</span>.”</span> In <em>Primary <span>Productivity</span> of the <span>Biosphere</span></em>, edited by Helmut Lieth and Robert H. Whittaker, 14:237–63. Ecological <span>Studies</span>. <span>Berlin, Heidelberg</span>: <span>Springer Berlin Heidelberg</span>. <a href="https://doi.org/10.1007/978-3-642-80913-2">https://doi.org/10.1007/978-3-642-80913-2</a>.
+</div>
+<div id="ref-lottQualityControlIntegrated2004" class="csl-entry" role="listitem">
+Lott, Neal. 2004. <span>“The Quality Control of the <span>Integrated Surface Hourly</span> Database.”</span> In. <a href="https://ams.confex.com/ams/84Annual/webprogram/Paper71929.html">https://ams.confex.com/ams/84Annual/webprogram/Paper71929.html</a>.
+</div>
+<div id="ref-milradMETARCode2018" class="csl-entry" role="listitem">
+Milrad, Shawn. 2018. <span>“<span>METAR Code</span>.”</span> In <em>Synoptic <span>Analysis</span> and <span>Forecasting</span></em>, edited by Shawn Milrad, 23–39. <span>Elsevier</span>. <a href="https://doi.org/10.1016/B978-0-12-809247-7.00003-X">https://doi.org/10.1016/B978-0-12-809247-7.00003-X</a>.
+</div>
+<div id="ref-paulsenClimatebasedModelPredict2014" class="csl-entry" role="listitem">
+Paulsen, Jens, and Christian Körner. 2014. <span>“A Climate-Based Model to Predict Potential Treeline Position Around the Globe.”</span> <em>Alpine Botany</em> 124 (1): 1–12. <a href="https://doi.org/10.1007/s00035-014-0124-0">https://doi.org/10.1007/s00035-014-0124-0</a>.
+</div>
+<div id="ref-peelUpdatedWorldMap2007" class="csl-entry" role="listitem">
+Peel, M. C., B. L. Finlayson, and T. A. McMahon. 2007. <span>“Updated World Map of the <span>Köppen-Geiger</span> Climate Classification.”</span> <em>Hydrology and Earth System Sciences</em> 11 (5): 1633–44. <a href="https://doi.org/10.5194/hess-11-1633-2007">https://doi.org/10.5194/hess-11-1633-2007</a>.
+</div>
+<div id="ref-smithIntegratedSurfaceDatabase2011" class="csl-entry" role="listitem">
+Smith, Adam, Neal Lott, and Russ Vose. 2011. <span>“The <span>Integrated Surface Database</span>: <span>Recent Developments</span> and <span>Partnerships</span>.”</span> <em>Bulletin of the American Meteorological Society</em> 92 (6): 704–8. <a href="https://doi.org/10.1175/2011BAMS3015.1">https://doi.org/10.1175/2011BAMS3015.1</a>.
+</div>
+<div id="ref-thornthwaiteClimatesNorthAmerica1931" class="csl-entry" role="listitem">
+Thornthwaite, C. Warren. 1931. <span>“The <span>Climates</span> of <span>North America</span>: <span>According</span> to a <span>New Classification</span>.”</span> <em>Geographical Review</em> 21 (4): 633–55. <a href="https://doi.org/10.2307/209372">https://doi.org/10.2307/209372</a>.
+</div>
+<div id="ref-trollKarteJahreszeitenKlimateErde1964" class="csl-entry" role="listitem">
+Troll, Carl. 1964. <span>“Karte Der <span>Jahreszeiten-Klimate</span> Der <span>Erde</span> (<span>The Map</span> of the <span>Seasonal Climates</span> of the <span>Earth</span>).”</span> <em>Erdkunde</em> 18 (1): 5–28. <a href="https://doi.org/10.3112/erdkunde.1964.01.02">https://doi.org/10.3112/erdkunde.1964.01.02</a>.
+</div>
+<div id="ref-vandekerchoveWorldCoverProductUser2022" class="csl-entry" role="listitem">
+Van De Kerchove, Ruben, ed. 2022. <span>“<span>WorldCover Product User Manual</span>.”</span> <span>VITO</span>. <a href="https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/docs/WorldCover_PUM_V2.0.pdf">https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/docs/WorldCover_PUM_V2.0.pdf</a>.
+</div>
+<div id="ref-wissmannKlimaundVegetationsgebieteEurasiens1939" class="csl-entry" role="listitem">
+Wissmann, Hermann von. 1939. <span>“Die <span class="nocase">Klima-und Vegetationsgebiete Eurasiens</span>: <span>Begleitworte</span> Zu Einer <span>Karte</span> Der <span>Klimagebiete Eurasiens</span>.”</span> <em>Zeitschrift Der Gesellschaft Für Erdkunde Zu Berlin</em>, 81–92.
+</div>
+<div id="ref-zanagaESAWorldCover102022" class="csl-entry" role="listitem">
+Zanaga, Daniele, Ruben Van De Kerchove, Dirk Daems, Wanda De Keersmaecker, Carsten Brockmann, Grit Kirches, Jan Wevers, et al. 2022. <span>“<span>ESA WorldCover</span> 10 m 2021 V200.”</span> <span>Zenodo</span>. October 28, 2022. <a href="https://doi.org/10.5281/zenodo.7254221">https://doi.org/10.5281/zenodo.7254221</a>.
+</div>
+<div id="ref-zanagaESAWorldCover102021" class="csl-entry" role="listitem">
+Zanaga, Daniele, Ruben Van De Kerchove, Wanda De Keersmaecker, Niels Souverijns, Carsten Brockmann, Ralf Quast, Jan Wevers, et al. 2021. <span>“<span>ESA WorldCover</span> 10 m 2020 V100.”</span> <span>Zenodo</span>. October 20, 2021. <a href="https://doi.org/10.5281/zenodo.5571936">https://doi.org/10.5281/zenodo.5571936</a>.
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>The Automated Surface Observing System<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("http::\/\/www\.sapijaszko\.net\/open\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./osm.html" class="pagination-link" aria-label="OpenStreetMap as a universal spatial data source">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">OpenStreetMap as a universal spatial data source</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./references.html" class="pagination-link" aria-label="References">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/gsapijaszko/open_data/edit/main/environments.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/gsapijaszko/open_data/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
