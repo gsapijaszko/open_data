@@ -392,14 +392,14 @@ And finally, there is a [daily sets of data ](https://chelsa-climate.org/chelsa-
 There are few R packages which helps to download and manage CHELSA data: {climatedata} [@climatedata], {chelsaDL} [@chelsaDL] and {ClimDatDownloadR} [@ClimDatDownloadR].
 -->
 
-To download CHELSA data in R you can use {ClimDatDownloadR} [@ClimDatDownloadR] package.
+To download CHELSA data in R you can use {ClimDatDownloadR} [@ClimDatDownloadR] or {climenv} [@climenv] packages.
 
 
 #### WorldClim
 
 [WorldClim](https://www.worldclim.org/data/index.html) is a database of high spatial resolution global weather and climate data [@fickWorldClimNew1km2017]. It contains monthly data: temperature (minimum, maximum and average), precipitation, solar radiation, vapour pressure and wind speed, aggregated across a target temporal range of 1970–2000. Historical climate data section covers 19 bioclimatic variables `BIO1...BIO19`. They are average for years 1970--2000. [Historical monthly weather data](https://www.worldclim.org/data/monthlywth.html) covers monthly weather data for years 1960--2021 downscaled from [@harrisVersionCRUTS2020]. The spatial resolution is 2.5 minutes (~21 km^2^ at the equator), 5 minutes or 10 minutes. Each `zip` file contains 120 GeoTiff (.tif) files, for each month of the year (January is 1; December is 12), for a 10 year period. The variables available are average minimum temperature [&deg;C], average maximum temperature [&deg;C] and total precipitation [mm].
 
-To download data in R you can use `WorldClim.xxx` set of functions in {ClimDatDownloadR} package or `worldclim_xxx` and `cmip6_xxx` sets of functions in {geodata} package [@geodata].
+To download data in R you can use `WorldClim.xxx` set of functions in {ClimDatDownloadR} package or `worldclim_xxx` and `cmip6_xxx` sets of functions in {geodata} package [@geodata]. There is `worldclim()` function in {climenv} package as well, it uses `geodata::worldclim_tile()` function for download.
 
 <!---
 hydro:

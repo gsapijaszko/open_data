@@ -1470,12 +1470,12 @@ Table&nbsp;2.4: Chelsa variable names <span class="citation" data-cites="kargerC
 <!--
 There are few R packages which helps to download and manage CHELSA data: {climatedata} [@climatedata], {chelsaDL} [@chelsaDL] and {ClimDatDownloadR} [@ClimDatDownloadR].
 -->
-<p>To download CHELSA data in R you can use {ClimDatDownloadR} <span class="citation" data-cites="ClimDatDownloadR">(<a href="references.html#ref-ClimDatDownloadR" role="doc-biblioref">Jentsch, Bobrowski, and Weidinger 2024</a>)</span> package.</p>
+<p>To download CHELSA data in R you can use {ClimDatDownloadR} <span class="citation" data-cites="ClimDatDownloadR">(<a href="references.html#ref-ClimDatDownloadR" role="doc-biblioref">Jentsch, Bobrowski, and Weidinger 2024</a>)</span> or {climenv} <span class="citation" data-cites="climenv">(<a href="references.html#ref-climenv" role="doc-biblioref">Tsakalos et al. 2024</a>)</span> packages.</p>
 </section>
 <section id="worldclim" class="level4">
 <h4 class="anchored" data-anchor-id="worldclim">WorldClim</h4>
 <p><a href="https://www.worldclim.org/data/index.html">WorldClim</a> is a database of high spatial resolution global weather and climate data <span class="citation" data-cites="fickWorldClimNew1km2017">(<a href="references.html#ref-fickWorldClimNew1km2017" role="doc-biblioref">Fick and Hijmans 2017</a>)</span>. It contains monthly data: temperature (minimum, maximum and average), precipitation, solar radiation, vapour pressure and wind speed, aggregated across a target temporal range of 1970–2000. Historical climate data section covers 19 bioclimatic variables <code>BIO1...BIO19</code>. They are average for years 1970–2000. <a href="https://www.worldclim.org/data/monthlywth.html">Historical monthly weather data</a> covers monthly weather data for years 1960–2021 downscaled from <span class="citation" data-cites="harrisVersionCRUTS2020">(<a href="references.html#ref-harrisVersionCRUTS2020" role="doc-biblioref">Harris et al. 2020</a>)</span>. The spatial resolution is 2.5 minutes (~21 km<sup>2</sup> at the equator), 5 minutes or 10 minutes. Each <code>zip</code> file contains 120 GeoTiff (.tif) files, for each month of the year (January is 1; December is 12), for a 10 year period. The variables available are average minimum temperature [°C], average maximum temperature [°C] and total precipitation [mm].</p>
-<p>To download data in R you can use <code>WorldClim.xxx</code> set of functions in {ClimDatDownloadR} package or <code>worldclim_xxx</code> and <code>cmip6_xxx</code> sets of functions in {geodata} package <span class="citation" data-cites="geodata">(<a href="references.html#ref-geodata" role="doc-biblioref">Hijmans et al. 2023</a>)</span>.</p>
+<p>To download data in R you can use <code>WorldClim.xxx</code> set of functions in {ClimDatDownloadR} package or <code>worldclim_xxx</code> and <code>cmip6_xxx</code> sets of functions in {geodata} package <span class="citation" data-cites="geodata">(<a href="references.html#ref-geodata" role="doc-biblioref">Hijmans et al. 2023</a>)</span>. There is <code>worldclim()</code> function in {climenv} package as well, it uses <code>geodata::worldclim_tile()</code> function for download.</p>
 <!---
 hydro:
 https://www.hydrosheds.org/hydrosheds-core-downloads
@@ -1565,6 +1565,9 @@ Thornthwaite, C. Warren. 1931. <span>“The <span>Climates</span> of <span>North
 </div>
 <div id="ref-trollKarteJahreszeitenKlimateErde1964" class="csl-entry" role="listitem">
 Troll, Carl. 1964. <span>“Karte Der <span>Jahreszeiten-Klimate</span> Der <span>Erde</span> (<span>The Map</span> of the <span>Seasonal Climates</span> of the <span>Earth</span>).”</span> <em>Erdkunde</em> 18 (1): 5–28. <a href="https://doi.org/10.3112/erdkunde.1964.01.02">https://doi.org/10.3112/erdkunde.1964.01.02</a>.
+</div>
+<div id="ref-climenv" class="csl-entry" role="listitem">
+Tsakalos, James L., Martin R. Smith, Federico Luebert, and Ladislav Mucina. 2024. <em>Climenv: Download, Extract and Visualise Climate and Elevation Data</em>. <a href="https://github.com/jamestsakalos/climenv">https://github.com/jamestsakalos/climenv</a>.
 </div>
 <div id="ref-vandekerchoveWorldCoverProductUser2022" class="csl-entry" role="listitem">
 Van De Kerchove, Ruben, ed. 2022. <span>“<span>WorldCover Product User Manual</span>.”</span> <span>VITO</span>. <a href="https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/docs/WorldCover_PUM_V2.0.pdf">https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/docs/WorldCover_PUM_V2.0.pdf</a>.
