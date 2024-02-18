@@ -1,17 +1,10 @@
-```{r}
-#| label: global_options
-#| echo: false
-
-options(knitr.kable.NA = '')
-```
-
-# Preface {.unnumbered}
+# Introduction {.unnumbered}
 
 Open Data is powerful concept that embodies freedom. Freedom of choice, access to information, and, after processing --- the attainment of knowledge. It grants us the ability to gain insights into the world around us and understand the processes occurring within it. The accessibility of data also signifies the capacity to discover connections between disparate pieces of information and seamlessly integrate them.
 
 These few chapters aim to illustrate the availability and possibilities of working with open data, particularly focusing on spatial data.
 
-The book may have a focus on R [@base], however in certain cases I have attempted to show alternative methods for obtaining and working with data. But, to be candid: in my humble opinion R stands out as a holy grail in the realm of data mining, wrangling, and visualization. With quarto (or bookdown/rmarkdown/latex) as the backbone, it provides fantastic environment not only to exploring data but also for sharing the output. What's even more crucial is its reproducibility. This implies that when you play with provided examples, you should achieve the same (or at least very similar results). Keep in mind that OpenStreetMap which is used to acquire spatial data in @sec-openstreetmap is growing every day (with around 4 million map changes per day according to [wiki](https://wiki.openstreetmap.org/wiki/Stats)) and some data might have already changed or become obsolete.
+The book may have a focus on R [@base], however in certain cases I have attempted to show alternative methods for obtaining and working with data. But, to be candid: in my humble opinion R stands out as a holy grail in the realm of data mining, wrangling, and visualization. With quarto (or bookdown/rmarkdown/latex) as the backbone, it provides fantastic environment not only to exploring data but also for sharing the output. What's even more crucial is its reproducibility. This implies that when you play with provided examples, you should achieve the same (or at least very similar results). Keep in mind that OpenStreetMap which is used to acquire spatial data in chapter [-@sec-openstreetmap] is growing every day (with around 4 million map changes per day according to [wiki](https://wiki.openstreetmap.org/wiki/Stats)) and some data might have already changed or become obsolete.
 
 ::: callout-warning
 ## Work in progress

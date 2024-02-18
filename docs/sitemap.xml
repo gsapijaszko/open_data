@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http:://www.sapijaszko.net/open/index.html</loc>
-    <lastmod>2024-01-22T18:53:12.731Z</lastmod>
+    <loc>https://gsapijaszko.github.io/open_data/index.html</loc>
+    <lastmod>2024-02-18T16:28:54.105Z</lastmod>
   </url>
   <url>
-    <loc>http:://www.sapijaszko.net/open/osm.html</loc>
-    <lastmod>2024-02-12T18:00:05.000Z</lastmod>
+    <loc>https://gsapijaszko.github.io/open_data/osm.html</loc>
+    <lastmod>2024-02-18T17:46:21.470Z</lastmod>
   </url>
   <url>
-    <loc>http:://www.sapijaszko.net/open/environments.html</loc>
-    <lastmod>2024-02-17T21:04:42.969Z</lastmod>
+    <loc>https://gsapijaszko.github.io/open_data/environments.html</loc>
+    <lastmod>2024-02-18T17:58:07.004Z</lastmod>
   </url>
   <url>
-    <loc>http:://www.sapijaszko.net/open/references.html</loc>
+    <loc>https://gsapijaszko.github.io/open_data/references.html</loc>
     <lastmod>2024-01-08T12:52:46.000Z</lastmod>
   </url>
 </urlset>

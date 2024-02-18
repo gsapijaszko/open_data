@@ -8,7 +8,7 @@ book:
   subtitle: "(and how to deal with it)"
   author: "Grzegorz Sapijaszko"
   date: "2024-01-07"
-  site-url: http:://www.sapijaszko.net/open/
+  site-url: https://gsapijaszko.github.io/open_data/
   repo-url: https://github.com/gsapijaszko/open_data
   repo-actions: [edit, issue]
   chapters:
@@ -59,3 +59,4 @@ comments:
  
   hypothesis: true
 
+# reference-location: margin
