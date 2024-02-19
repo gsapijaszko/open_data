@@ -403,7 +403,7 @@ To download data in R you can use `WorldClim.xxx` set of functions in {ClimDatDo
 
 #### ERA5 hourly data  
 
-[ERA5](https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-single-levels) is the fifth generation ECMWF reanalysis for the global climate and weather for the past 8 decades [@hersbachERA5HourlyData]. Data is available from 1940 onwards with hourly temporal resolution. Horizontal resolution is 0.25 x 0.25&deg; (atmosphere) and  0.5&deg; x 0.5&deg; (ocean waves). You can download it via [Copernicus portal](https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-single-levels?tab=form) or use {KrigR} package [@kuschKrigRToolDownloading2022]
+[ERA5](https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-single-levels) is the fifth generation ECMWF reanalysis for the global climate and weather for the past 8 decades [@hersbachERA5GlobalReanalysis2020; @hersbachERA5HourlyData2023]. Data is available from 1940 onwards with hourly temporal resolution. Horizontal resolution is 0.25 x 0.25&deg; (atmosphere) and  0.5&deg; x 0.5&deg; (ocean waves). You can download it via [Copernicus portal](https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-single-levels?tab=form) or use {KrigR} package [@kuschKrigRToolDownloading2022]. There is a complementary data set named ERA5-Land [@munoz-sabaterERA5LandStateoftheartGlobal2021] covering time period from 1981 till today with spatial of 11 km and 1 hour temporal resolutions.
 
 
 <!---
