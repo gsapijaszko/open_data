@@ -401,6 +401,11 @@ To download CHELSA data in R you can use {ClimDatDownloadR} [@ClimDatDownloadR] 
 
 To download data in R you can use `WorldClim.xxx` set of functions in {ClimDatDownloadR} package or `worldclim_xxx` and `cmip6_xxx` sets of functions in {geodata} package [@geodata]. There is `worldclim()` function in {climenv} package as well, it uses `geodata::worldclim_tile()` function for download.
 
+#### ERA5 hourly data  
+
+[ERA5](https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-single-levels) is the fifth generation ECMWF reanalysis for the global climate and weather for the past 8 decades [@hersbachERA5HourlyData]. Data is available from 1940 onwards with hourly temporal resolution. Horizontal resolution is 0.25 x 0.25&deg; (atmosphere) and  0.5&deg; x 0.5&deg; (ocean waves). You can download it via [Copernicus portal](https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-single-levels?tab=form) or use {KrigR} package [@kuschKrigRToolDownloading2022]
+
+
 <!---
 hydro:
 https://www.hydrosheds.org/hydrosheds-core-downloads

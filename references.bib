@@ -1076,3 +1076,44 @@ Database (ISD)},
   note = {R package version 1.0.0.9000},
   url = {https://github.com/jamestsakalos/climenv},
 }
+
+@dataset{hersbachERA5HourlyData,
+  title = {{{ERA5}} Hourly Data on Single Levels from 1940 to Present. {{Copernicus Climate Change Service}} ({{C3S}}) {{Climate Data Store}} ({{CDS}})},
+  author = {Hersbach, H. and Bell, B. and Berrisford, P. and Biavati, G. and Horányi, A. and Muñoz Sabater, J. and Nicolas, J. and Peubey, C. and Radu, R. and Rozum, I. and Schepers, D. and Simmons, A. and Soci, D. and Dee, D. and Thépaut, J-N.},
+  doi = {10.24381/cds.adbb2d47}
+}
+
+@article{kuschKrigRToolDownloading2022,
+  title = {{{KrigR}}—a Tool for Downloading and Statistically Downscaling Climate Reanalysis Data},
+  author = {Kusch, Erik and Davy, Richard},
+  date = {2022-01},
+  journaltitle = {Environmental Research Letters},
+  shortjournal = {Environ. Res. Lett.},
+  volume = {17},
+  number = {2},
+  pages = {024005},
+  publisher = {{IOP Publishing}},
+  issn = {1748-9326},
+  doi = {10.1088/1748-9326/ac48b3},
+  url = {https://dx.doi.org/10.1088/1748-9326/ac48b3},
+  urldate = {2024-02-19},
+  abstract = {Advances in climate science have rendered obsolete the gridded observation data widely used in downstream applications. Novel climate reanalysis products outperform legacy data products in accuracy, temporal resolution, and provision of uncertainty metrics. Consequently, there is an urgent need to develop a workflow through which to integrate these improved data into biological analyses. The ERA5 product family (ERA5 and ERA5-Land) are the latest and most advanced global reanalysis products created by the European Center for Medium-range Weather Forecasting. These data products offer up to 83 essential climate variables at hourly intervals for the time-period of 1981 to today with preliminary back-extensions being available for 1950–1981. Spatial resolutions range from 30 × 30 km (ERA5) to 11 × 11 km (ERA5-Land) and can be statistically downscaled to study-requirements at finer spatial resolutions. Kriging is one such method to interpolate data to finer resolutions and has the advantages that one can leverage additional covariate information and obtain the uncertainty associated with the downscaling. The KrigR R-package enables users to (a) download ERA5(-Land) climate reanalysis data for a user-specified region, and time-period, (b) aggregate these climate products to desired temporal resolutions and metrics, (c) acquire topographical co-variates, and (d) statistically downscale spatial data to a user-specified resolution using co-variate data via kriging. KrigR can execute all these tasks in a single function call, thus enabling the user to obtain any of 83 (ERA5)/50 (ERA5-Land) climate variables at high spatial and temporal resolution with a single R-command. Additionally, KrigR contains functionality for computation of bioclimatic variables and aggregate metrics from the variables offered by ERA5(-Land). This R-package provides an easy-to-implement workflow for implementation of state-of-the-art climate data while avoiding issues of storage limitations at high temporal and spatial resolutions by providing data according to user-needs rather than in global data sets. Consequently, KrigR provides a toolbox to obtain a wide range of tailored climate data at unprecedented combinations of high temporal and spatial resolutions thus enabling the use of world-leading climate data through the R-interface and beyond.},
+  langid = {english},
+  file = {/home/sapi/Zotero/storage/7KX39PH5/Kusch and Davy - 2022 - KrigR—a tool for downloading and statistically dow.pdf}
+}
+
+@Manual{ecmwfr,
+  title = {ecmwfr: Interface to ECMWF and CDS Data Web Services},
+  author = {Koen Hufkens},
+  year = {2023},
+  note = {R package version 1.5.0},
+  url = {https://github.com/bluegreen-labs/ecmwfr},
+}
+
+@Misc{ecmwfr2019,
+  title = {The ecwmfr package: an interface to ECMWF API endpoints},
+  author = {Koen Hufkens and Reto Stauffer and Elio Campitelli},
+  year = {2019},
+  doi = {10.5281/zenodo.2647531},
+  url = {https://bluegreen-labs.github.io/ecmwfr/},
+}
