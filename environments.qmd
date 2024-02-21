@@ -530,6 +530,20 @@ legend("bottomright",
 #| echo: false
 #| fig-cap: "Precipitation in Remagen, Germany during April and May 1945"
 
+m <- matrix(c(
+  remagen_lon, remagen_lat),
+  byrow = TRUE, ncol = 2,
+  dimnames = list(c("rem"),
+                  c("lon", "lat")))
+
+p <- m |>
+  terra::vect(m, type = "points", crs = "EPSG:4326")
+
+nc <- "data/download.nc"
+r <- terra::sds(nc)
+
+t_timestamp <- terra::time(r["tp"])
+
 tp <- terra::extract(r["tp"], p, ID = TRUE, bind = TRUE) |>
   as.data.frame()
 
@@ -540,18 +554,23 @@ f <- f*1000
 f <- f |>
   as.data.frame()
 f$t_timestamp <- t_timestamp
-f |>
-  head()
 
 daily_tp <- f |> 
   dplyr::mutate(day = as.Date(t_timestamp)) |>
   dplyr::group_by(day) |>
   dplyr::summarise_at("f", sum)
-# |>
-#   dplyr::mutate(day = as.POSIXct(paste(day, "00:00:00")))
+
 barplot(f ~ day, data = daily_tp,
         xlab = "1945",
-        ylab = "Precipitation [mm]")
+        ylab = "Precipitation [mm]",
+        axes = TRUE,
+        names.arg = "")
+axis(1,
+     at = c(0, 36.1, nrow(daily_tp)+12.1),
+     pos = 0,
+     labels = c("Apr", "May", "Jun"),
+     las = 1, lwd = 0, lwd.ticks = 1, line = -0.5, cex = 1.1)
+
 
 ```
 
