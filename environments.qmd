@@ -476,7 +476,7 @@ Please note that preparing the data on server side and downloading it might take
 ```{r}
 #| label: fig-remagen_plot
 #| code-fold: true
-#| fig-cap: Temperature in Remagen, Germany in April and May 1945
+#| fig-cap: "Temperature in Remagen, Germany during April and May 1945"
 
 K <- -273.15
 
@@ -524,6 +524,38 @@ legend("bottomright",
        )
 
 ```
+
+```{r}
+#| label: fig-remagen_precipitation
+#| echo: false
+#| fig-cap: "Precipitation in Remagen, Germany during April and May 1945"
+
+tp <- terra::extract(r["tp"], p, ID = TRUE, bind = TRUE) |>
+  as.data.frame()
+
+f <- t(tp)
+f <- f[3:nrow(f), ]
+f <- f*1000
+
+f <- f |>
+  as.data.frame()
+f$t_timestamp <- t_timestamp
+f |>
+  head()
+
+daily_tp <- f |> 
+  dplyr::mutate(day = as.Date(t_timestamp)) |>
+  dplyr::group_by(day) |>
+  dplyr::summarise_at("f", sum)
+# |>
+#   dplyr::mutate(day = as.POSIXct(paste(day, "00:00:00")))
+barplot(f ~ day, data = daily_tp,
+        xlab = "1945",
+        ylab = "Precipitation [mm]")
+
+```
+
+
 
 <!---
 hydro:
