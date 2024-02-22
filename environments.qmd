@@ -186,7 +186,7 @@ geodata::landcover(var = "moss", path = tempdir())
 
 ## Climate
 
-Key climatic variables of interest are usually:
+Key climatic variables are:
 
 * temperature (&deg;C) (minimum, maximum, average, above ground or at 2&nbsp;m height)
 * precipitation (mm),
@@ -405,7 +405,7 @@ To download data in R you can use `WorldClim.xxx` set of functions in {ClimDatDo
 
 [ERA5](https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-single-levels) is the fifth generation ECMWF reanalysis for the global climate and weather for the past 8 decades [@hersbachERA5GlobalReanalysis2020; @hersbachERA5HourlyData2023]. Data is available from 1940 onwards with hourly temporal resolution. Horizontal resolution is 0.25 x 0.25&deg; (atmosphere) and  0.5&deg; x 0.5&deg; (ocean waves). You can download it via [Copernicus portal](https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-single-levels?tab=form). There is a complementary data set named ERA5-Land [@munoz-sabaterERA5LandStateoftheartGlobal2021] covering time period from 1981 till today with spatial of 11 km and 1 hour temporal resolutions.
 
-There are few packages which can be used to download the data: {KrigR} [@kuschKrigRToolDownloading2022] and {ecmwfr} [@ecmwfr; @ecmwfr2019]. In below an example, based on {ecmwfr}, we are going to check weather conditions in April and May of 1945 in Remagen, Germany.^[Thats an response to [Open Data](https://opendata.stackexchange.com/questions/20999/weather-conditions-for-remagen-germany-in-spring-of-1945) question] After creating ECMWF account and setting up the key in keyring using `wf_set_key()`^[for details please check package documentation] function we can create data request and download it.
+There are few packages which can be used to download the data: {KrigR} [@kuschKrigRToolDownloading2022] and {ecmwfr} [@ecmwfr; @ecmwfr2019]. In below example, using {ecmwfr}, we are going to check weather conditions in April and May of 1945 in Remagen, Germany.^[This is a response to [Open Data](https://opendata.stackexchange.com/questions/20999/weather-conditions-for-remagen-germany-in-spring-of-1945) question] After creating ECMWF account and setting up the key in keyring using `wf_set_key()`^[for details please check package documentation] function we can create data request and download it.
 
 ```{r}
 #| label: remgen_bbox
@@ -571,10 +571,19 @@ axis(1,
      labels = c("Apr", "May", "Jun"),
      las = 1, lwd = 0, lwd.ticks = 1, line = -0.5, cex = 1.1)
 
-
 ```
 
+#### TerraClimate
 
+TerraClimate [@abatzoglouTerraClimateHighresolutionGlobal2018] is a dataset of monthly climate and climatic water balance for global terrestrial surfaces from 1958 to 2023. All data have monthly temporal resolution and a ~4-km (1/24th degree) spatial resolution. 
+
+Primary climate variables covers: maximum and minimum temperature, vapor pressure, precipitation accumulation, downward surface shortwave radiation and wind-speed. Derived variables are: reference evapotranspiration (ASCE Penman-Montieth), runoff, actual evapotranspiration, climate water deficit, soil moisture, snow water equivalent, palmer drought severity index and vapor pressure deficit. Detailed description is provided on [Climatology Lab](https://www.climatologylab.org/terraclimate.html). The data is available as netCDF files from [THREDDS web server](http://thredds.northwestknowledge.net:8080/thredds/catalog/TERRACLIMATE_ALL/data/catalog.html). 
+
+#### Global Maps from NASA Earth Observatory and other products
+
+[Earth Observatory](https://earthobservatory.nasa.gov/global-maps) by NASA provides global monthly images at 10 km spatial resolution and covers years 2000-2022.
+
+Based on ERA5 precipitation archive and MODIS monthly cloud cover frequency @kargerGlobalDailyKm2021 produced global daily 1km land surface [precipitation set](https://www.earthenv.org/precipitation) for the years 2003-2016 [@kargerGlobalDaily1km2021]
 
 <!---
 hydro:
