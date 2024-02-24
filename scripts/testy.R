@@ -1,63 +1,3 @@
-sf::sf_use_s2(FALSE)
-lu <- sf::st_read("data/bbbike_Leipzig.gpkg",
-                  query = "SELECT osm_id, name, landuse, natural, 'forest' AS type, geometry \
-                     FROM multipolygons \
-                     WHERE landuse = 'forest' OR natural = 'wood' \
-                   UNION \
-                   SELECT osm_id, name, landuse, natural, 'residential' AS type, geometry \
-                     FROM multipolygons \
-                     WHERE landuse IN ('residential', 'education', 'religious') \
-                   UNION \
-                   SELECT osm_id, name, landuse, natural, 'commercial' AS type, geometry \
-                     FROM multipolygons \
-                     WHERE landuse IN ('industrial', 'commercial', 'construction')") |>
-  sf::st_make_valid() |>
-  sf::st_transform(crs = "EPSG:25832") |>
-  dplyr::group_by(type) |>
-  dplyr::summarise()
-
-
-tmap::tm_shape(lu) +
-  tmap::tm_polygons(fill = "type", 
-                    fill.scale = tmap::tm_scale(values = c("orange", "darkgreen", "gray20")),
-                    col = "white", col_alpha = 0
-
-  ) +
-  tmap::tm_basemap()
-
-
-
-
-
-
-
-
-l <- sf::read_sf("data/bbbike_Leipzig.gpkg",
-                 query = "SELECT osm_id, boundary, admin_level, name, 
-                  hstore_get_value(other_tags, 'postal_code') AS p_code, 
-                  hstore_get_value(other_tags, 'wikidata') AS wikidata,
-                  geometry
-              FROM multipolygons
-              WHERE boundary = 'administrative'"
-)
-
-l$wikidata[!is.na(l$wikidata)][1:20] |>
-  WikidataR::get_item()  |>
-  WikidataR::extract_claims(claims = "P281")
-
-
-sparql_query <- "SELECT
-  ?softwareVersion ?publicationDate
-WHERE {
-  BIND(wd:Q206904 AS ?R)
-  ?R p:P348 [
-    ps:P348 ?softwareVersion;
-    pq:P577 ?publicationDate
-  ] .
-}"
-
-WikidataQueryServiceR::query_wikidata(sparql_query)
-
 # -------------------------------------------------------------------------------------------------------
 
 
@@ -133,17 +73,6 @@ legend("topleft",
 
 # -------------------------------------------------------------------------------------------------------
 
-
-lu <- sf::st_read("data/bbbike_Leipzig.gpkg",
-                  query = "SELECT osm_id, name, landuse, natural, \
-                    'forest' AS type, ST_Area(ST_Transform(geometry, 25832)) AS area,
-                     ST_Transform(geometry, 25832) \
-                     FROM multipolygons \
-                     WHERE landuse = 'forest' OR natural = 'wood' ")
-
-lu
-# -------------------------------------------------------------------------------------------------------
-
 # - source: project
 # quarto-pub:
 #   - id: "5f3abafe-68f9-4c1d-835b-9d668b892001"
@@ -160,34 +89,13 @@ b <- RefManageR::ReadBib(file = "references.bib")
 c <- a+b
 RefManageR::WriteBib(c, file = "references.bib")
 
-
 # ------------------------------------------------------------------------------------------------------
 
-l <- list.files(path = "data/bibliography/new/", pattern = ".bib", full.names = TRUE)
-
-a <- RefManageR::ReadBib(l[1])
-
-for (i in 2:length(l)) {
-  print(paste(i, "-", l[i]))
-  b <- RefManageR::ReadBib(l[i])
-  a <- b + a 
-}
-
-b <- RefManageR::ReadBib(file = "data/bibliography/all.bib")
-
-c <- b |>
+b <- RefManageR::ReadBib(file = "data/bibliography/OpenStreetMap.bib") |>
   as.data.frame()
 
-c |>
-  str()
-
-library(quanteda)
-
-corp <- c$title |>
+corp <- b$title |>
   quanteda::corpus()
-
-c$title |>
-  subset(grepl("LIDAR", c$title))
 
 t <- quanteda::tokens(corp, what = "word",
                       remove_numbers = TRUE,
@@ -214,13 +122,23 @@ myDFM <- quanteda::dfm(t) |>
 
 a <- quanteda::topfeatures(myDFM, 100)
 set.seed(100)
-a
+
 wordcloud::wordcloud(words = names(a), 
                      freq = a,
                      min.freq = 6,
                      random.order = FALSE,
                      colors = RColorBrewer::brewer.pal(8, "Dark2")
                      )
+
+d <- c |>
+  dplyr::mutate(date = as.numeric(substr(date, 1, 4))) |>
+  dplyr::group_by(date) |>
+  dplyr::count() |>
+  dplyr::arrange(date)
+
+barplot(d$n ~ d$date,
+        xlab = "Year",
+        ylab = "Number of publications")
 
 
 #' TODO -- częstość słów w tytułach, zmiany w poszczególnych latach

@@ -61,6 +61,73 @@ legend("topleft",
 ```
 :::
 
+OpenStreetMap has grown enormously. It's data is used quite often by researchers of various fields. File `data/OpenStreetMap.bib` contains bibliography where either OSM, OpenStreetMap or Volunteered Geographic Information appears in title and/or abstract. The articled published in first years concentrated mostly on data quality and volunteered phenomenon of spatial data collection. Few years later we can observe shift from assessment to use of the OSM data as base spatial set in the analyses. @fig-osm_bibliography_per_year display the number of scientific papers by year, while [@fig-osm_most_common_words] shows most common words used in titles.
+
+```{r}
+#| label: fig-osm_bibliography_per_year
+#| fig-cap: "OpenStreetMap related bibliography by year"
+#| echo: false
+#| warning: false
+
+b <- RefManageR::ReadBib(file = "data/OpenStreetMap.bib") |>
+  as.data.frame()
+
+d <- b |>
+  dplyr::mutate(date = as.numeric(substr(date, 1, 4))) |>
+  dplyr::group_by(date) |>
+  dplyr::count() |>
+  dplyr::arrange(date)
+
+barplot(d$n ~ d$date,
+        xlab = "Year",
+        ylab = "Number of publications")
+
+```
+
+
+```{r}
+#| label: fig-osm_most_common_words
+#| fig-cap: "Most common words in OSM bibliography"
+#| echo: false
+
+corp <- b$title |>
+  quanteda::corpus()
+
+t <- quanteda::tokens(corp, what = "word",
+                      remove_numbers = TRUE,
+                      remove_punct = TRUE,
+                      remove_symbols = TRUE,
+                      remove_separators = TRUE,
+                      split_hyphens = TRUE
+                      )
+  
+st <- c(
+  quanteda::stopwords(language = "english"),
+  "name", "hello",
+  unique(weekdays(.leap.seconds)),
+  letters[1:26],
+  LETTERS[1:26],
+  "openstreetmap", "OpenStreetMap",
+  "OSM", "osm"
+)
+
+t <- quanteda::tokens_remove(t, pattern = st)
+
+myDFM <- quanteda::dfm(t) |>
+  quanteda::dfm_remove(st)
+
+a <- quanteda::topfeatures(myDFM, 100)
+set.seed(100)
+
+wordcloud::wordcloud(words = names(a), 
+                     freq = a,
+                     min.freq = 6,
+                     random.order = FALSE,
+                     colors = RColorBrewer::brewer.pal(8, "Dark2")
+                     )
+
+```
+
 Data quality was assessed in various scientific studies, beginning with the comparison of OSM roads network with official data sets. @haklayHowGoodVolunteered2010 conducted a study for England, while  @kounadiAssessingQualityOpenStreetMap2009 focused on Athens, Greece, examining positional accuracy, completeness and thematic accuracy. Subsequent studies such as @zielstraQuantitativeStudiesData2010, @ludwigComparisonStreetNetworks2011 and @neisStreetNetworkEvolution2011 delved into the quality of the road network in Germany.
 
 The quality of other features has also been assessed. For instance, @mooneyStudyDataRepresentation2010 compared land cover data with Ordnance Survey Ireland, while @girresQualityAssessmentFrench2010 evaluated data quality principles in accordance with [ISO 19113:2002](https://www.iso.org/standard/26018.html)[^osm-1] for France.
