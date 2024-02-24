@@ -1194,15 +1194,82 @@ Database (ISD)},
   keywords = {Atmospheric science,Climate and Earth system modelling}
 }
 
-@online{kargerGlobalDaily1km2021,
-  title = {Global Daily 1km Land Surface Precipitation Based on Cloud Cover-Informed Downscaling},
-  author = {Karger, Dirk Nikolaus and Wilson, Adam M. and Mahony, Colin and Zimmermann, Niklaus E. and Jetz, Walter},
-  date = {2021-10-12},
-  eprint = {2012.10108},
-  eprinttype = {arxiv},
-  eprintclass = {physics},
-  doi = {10.48550/arXiv.2012.10108},
-  abstract = {High-resolution climatic data are essential to many applications in environmental research. Here we develop a new semi-mechanistic downscaling approach for daily precipitation that incorporates high resolution (30 arc sec) satellite-derived cloud frequency. The downscaling algorithm incorporates orographic predictors such as wind fields, valley exposition, and boundary layer height, with a subsequent bias correction. We apply the method to the ERA5 precipitation archive and MODIS monthly cloud cover frequency to develop a daily gridded precipitation time series in 1km resolution for the years 2003 onward. Comparison of the predictions with existing gridded products and station data indicates an improvement in the spatio-temporal performance of the downscaled data in predicting precipitation. Regional scrutiny of the cloud cover correction from a topographically highly heterogeneous area further confirms that CHELSA-EarthEnv performs well in comparison to other precipitation products such as numerical weather models. The presented CHELSA-EarthEnv daily precipitation product improves the temporal accuracy compared to ERA5 with an additional improved in spatial accuracy and much better representation of precipitation in complex terrain},
-  pubstate = {preprint},
-  keywords = {Physics - Atmospheric and Oceanic Physics}
+@article{zhangGlobalSeamlessThinsp2022,
+  title = {A Global Seamless 1\&thinsp;Km Resolution Daily Land Surface Temperature Dataset (2003–2020)},
+  author = {Zhang, Tao and Zhou, Yuyu and Zhu, Zhengyuan and Li, Xiaoma and Asrar, Ghassem R.},
+  date = {2022-02-15},
+  journaltitle = {Earth System Science Data},
+  volume = {14},
+  number = {2},
+  pages = {651--664},
+  publisher = {{Copernicus GmbH}},
+  issn = {1866-3508},
+  doi = {10.5194/essd-14-651-2022},
+  abstract = {Land surface temperature (LST) is one of the most important and widely used parameters for studying land surface processes. Moderate Resolution Imaging Spectroradiometer (MODIS) LST products (e.g., MOD11A1 and MYD11A1) can provide this information with moderate spatiotemporal resolution with global coverage. However, the applications of these data are hampered because of missing values caused by factors such as cloud contamination, indicating the necessity to produce a seamless global MODIS-like LST dataset, which is still not available. In this study, we used a spatiotemporal gap-filling framework to generate a seamless global 1 km daily (mid-daytime and mid-nighttime) MODIS-like LST dataset from 2003 to 2020 based on standard MODIS LST products. The method includes two steps: (1) data pre-processing and (2) spatiotemporal fitting. In the data pre-processing, we filtered pixels with low data quality and filled gaps using the observed LST at another three time points of the same day. In the spatiotemporal fitting, first we fitted the temporal trend (overall mean) of observations based on the day of year (independent variable) in each pixel using the smoothing spline function. Then we spatiotemporally interpolated residuals between observations and overall mean values for each day. Finally, we estimated missing values of LST by adding the overall mean and interpolated residuals. The results show that the missing values in the original MODIS LST were effectively and efficiently filled with reduced computational cost, and there is no obvious block effect caused by large areas of missing values, especially near the boundary of tiles, which might exist in other seamless LST datasets. The cross-validation with different missing rates at the global scale indicates that the gap-filled LST data have high accuracies with the average root mean squared error (RMSE) of 1.88 and 1.33∘, respectively, for mid-daytime (13:30) and mid-nighttime (01:30). The seamless global daily (mid-daytime and mid-nighttime) LST dataset at a 1 km spatial resolution is of great use in global studies of urban systems, climate research and modeling, and terrestrial ecosystem studies. The data are available at Iowa State University's DataShare at https://doi.org/10.25380/iastate.c.5078492 (T. Zhang et al., 2021).},
+  langid = {english}
+}
+
+@article{yaoGlobalSeamlessHighresolution2023,
+  title = {Global Seamless and High-Resolution Temperature Dataset ({{GSHTD}}), 2001–2020},
+  author = {Yao, Rui and Wang, Lunche and Huang, Xin and Cao, Qian and Wei, Jing and He, Panxing and Wang, Shaoqiang and Wang, Lizhe},
+  date = {2023-03-01},
+  journaltitle = {Remote Sensing of Environment},
+  shortjournal = {Remote Sensing of Environment},
+  volume = {286},
+  pages = {113422},
+  issn = {0034-4257},
+  doi = {10.1016/j.rse.2022.113422},
+  abstract = {Land surface temperature (Ts) and near-surface air temperature (Ta) are key parameters in multiple research fields. In this study, a global seamless (without missing values) and high-resolution (30 arcsecond spatial resolution) temperature (for both Ts and Ta) dataset (GSHTD) from 2001 to 2020 was developed. First, a method called the estimation of the temperature difference (ETD) was proposed to reconstruct both clear- and cloudy-sky Ts. A global seamless 8-day and monthly average all- and clear-sky Ts data were then created using the MODIS Ts data and the ETD method. The seamless monthly average of the mean, maximum and minimum Ta data were further developed using the seamless Ts data, in situ Ta data and Cubist machine learning algorithm. GSHTD has four main advantages. First, GSHTD includes seven types of temperature data: clear-sky daytime and nighttime Ts, all-sky daytime and nighttime Ts, and mean, maximum and minimum Ta. Second, it has global coverage and high spatial resolution. Third, using the ETD method proposed in this study, GSHTD has no missing values. Fourth, the accuracy of GSHTD is high; the average mean absolute errors (MAEs) of ETD in reconstructing the 25~×~25 and 150~×~150 pixel clear-sky daytime (nighttime) Ts data were 0.724 (0.552) and 1.024 (0.895) °C, respectively. The MAEs of ETD were on average 23.2\% and 23.7\% lower than those of Remotely Sensed DAily land Surface Temperature reconstruction (RSDAST) and interpolation of the mean anomalies (IMAs). The MAEs of the estimated monthly average of the mean, maximum and minimum Ta data were 0.797, 0.994 and 1.056~°C, respectively. The developed GSHTD is freely available at Middle Yangtze River Geoscience Date Center (https://cjgeodata.cug.edu.cn/\#/pageDetail?id=97), which will be useful in many studies related to climate change, environmental science and ecology, and epidemiology and human health.},
+  keywords = {Gapfilling,Land surface temperature,Machine learning,Near-surface air temperature,Reconstruction,Remote sensing}
+}
+
+@article{maGlobalLongterm19812020,
+  title = {A Global Long-Term (1981–2000) Land Surface Temperature Product for {{NOAA AVHRR}}},
+  author = {Ma, Jin and Zhou, Ji and Göttsche, Frank-Michael and Liang, Shunlin and Wang, Shaofei and Li, Mingsong},
+  date = {2020-12-09},
+  journaltitle = {Earth System Science Data},
+  volume = {12},
+  number = {4},
+  pages = {3247--3268},
+  publisher = {{Copernicus GmbH}},
+  issn = {1866-3508},
+  doi = {10.5194/essd-12-3247-2020},
+  abstract = {Land surface temperature (LST) plays an important role in the research of climate change and various land surface processes. Before 2000, global LST products with relatively high temporal and spatial resolutions are scarce, despite a variety of operational satellite LST products. In this study, a global 0.05∘×0.05∘ historical LST product is generated from NOAA advanced very-high-resolution radiometer (AVHRR) data (1981–2000), which includes three data layers: (1) instantaneous LST, a product generated by integrating several split-window algorithms with a random forest (RF-SWA); (2) orbital-drift-corrected (ODC) LST, a drift-corrected version of RF-SWA LST; and (3) monthly averages of ODC LST. For an assumed maximum uncertainty in emissivity and column water vapor content of 0.04 and 1.0\&thinsp;g\&thinsp;cm−2, respectively, evaluated against the simulation dataset, the RF-SWA method has a mean bias error (MBE) of less than 0.10\&thinsp;K and a standard deviation (SD) of 1.10\&thinsp;K. To compensate for the influence of orbital drift on LST, the retrieved RF-SWA LST was normalized with an improved ODC method. The RF-SWA LST were validated with in situ LST from Surface Radiation Budget (SURFRAD) sites and water temperatures obtained from the National Data Buoy Center (NDBC). Against the in situ LST, the RF-SWA LST has a MBE of 0.03\&thinsp;K with a range of −1.59–2.71\&thinsp;K, and SD is 1.18\&thinsp;K with a range of 0.84–2.76\&thinsp;K. Since water temperature only changes slowly, the validation of ODC LST was limited to SURFRAD sites, for which the MBE is 0.54\&thinsp;K with a range of −1.05 to 3.01\&thinsp;K and SD is 3.57\&thinsp;K with a range of 2.34 to 3.69\&thinsp;K, indicating good product accuracy. As global historical datasets, the new AVHRR LST products are useful for filling the gaps in long-term LST data. Furthermore, the new LST products can be used as input to related land surface models and environmental applications. Furthermore, in support of the scientific research community, the datasets are freely available at https://doi.org/10.5281/zenodo.3934354 for RF-SWA LST (Ma et al., 2020a), https://doi.org/10.5281/zenodo.3936627 for ODC LST (Ma et al., 2020c), and https://doi.org/10.5281/zenodo.3936641 for monthly averaged LST (Ma et al., 2020b).},
+  langid = {english}
+}
+
+@dataset{maGLASSLandSurface2020,
+  title = {{{GLASS Land Surface Temperature}} Product (1981-2000): Instantaneous {{LST}}},
+  shorttitle = {{{GLASS Land Surface Temperature}} Product (1981-2000)},
+  author = {Ma, Jin and Zhou, Ji and Göttsche, Frank-Michael and Liang, Shunlin and Wang, Shaofei},
+  date = {2020-05-17},
+  publisher = {{Zenodo}},
+  doi = {10.5281/zenodo.3934354},
+  abstract = {GLASS Land Surface Temperature product (1981-2000): instantaneous LST have been produced from historical NOAA AVHRR data. The LST data were generated by integrating several Split-Window Algorithms with the Random Forest method (RF-SWA). The individual SWAs and the RF-SWA were trained and tested on simulation datasets obtained from globally representative atmospheric profiles. The validation against in-situ LST shows that the GLASS LST product has a precision of 1.18 K. The dataset is organized by year and a sample data is provided in simple.zip Further details can be found in the readme.pdf.},
+  version = {V1.0},
+  keywords = {NOAA AVHRR Land Surface Temperature Random Forest method Multiple Split-Window Algorithms}
+}
+
+@dataset{maGLASSLandSurface2020a,
+  title = {{{GLASS Land Surface Temperature}} Product (1981-2000): {{Orbital Drift Corrected LST}}},
+  shorttitle = {{{GLASS Land Surface Temperature}} Product (1981-2000)},
+  author = {Ma, Jin and Zhou, Ji and Liang, Shunlin and Li, Mingsong},
+  date = {2020-05-17},
+  publisher = {{Zenodo}},
+  doi = {10.5281/zenodo.3936627},
+  abstract = {GLASS Land Surface Temperature product (1981-2000): the ODC LST product is an orbital drift corrected (ODC) version of the instantaneous GLASS LST product. To compensate the effect of orbital drift on LST, an improved ODC method was used to normalize the instantaneous GLASS LSTs to 14:30 solar time. The dataset is organized by year and a sample data is provided in simple.zip Further details can be found in the readme.pdf.},
+  version = {V1,0},
+  keywords = {NOAA AVHRR land surface temperature orbital drift correction}
+}
+
+@dataset{maGLASSLandSurface2020b,
+  title = {{{GLASS Land Surface Temperature}} Product (1981-2000): Monthly Averaged {{LST}}},
+  shorttitle = {{{GLASS Land Surface Temperature}} Product (1981-2000)},
+  author = {Ma, Jin and Zhou, Ji and Liang, Shunlin},
+  date = {2020-05-17},
+  publisher = {{Zenodo}},
+  doi = {10.5281/zenodo.3936641},
+  abstract = {The LST product contains monthly averages of GLASS ODC LST. The dataset is organized by year and a sample data is provided in simple.zip Further details can be found in the readme.pdf.},
+  version = {V1.0},
+  keywords = {NOAA AVHRR land surface temperature monthly averages}
 }

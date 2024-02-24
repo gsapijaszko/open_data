@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Open Data sources – 2&nbsp; Environmental data</title>
+<title>Open Data sources – 3&nbsp; Environmental data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -189,7 +189,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./environments.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Environmental data</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./environments.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Environmental data</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -220,19 +220,19 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introduction</span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./osm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">OpenStreetMap as a universal spatial data source</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">OpenStreetMap as a universal spatial data source</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./environments.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Environmental data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Environmental data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -251,18 +251,18 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#land-cover-and-land-use" id="toc-land-cover-and-land-use" class="nav-link active" data-scroll-target="#land-cover-and-land-use"><span class="header-section-number">2.1</span> Land Cover and Land Use</a>
+  <li><a href="#sec-land_cover" id="toc-sec-land_cover" class="nav-link active" data-scroll-target="#sec-land_cover"><span class="header-section-number">3.1</span> Land Cover and Land Use</a>
   <ul>
-  <li><a href="#sec-esa_worlcover" id="toc-sec-esa_worlcover" class="nav-link" data-scroll-target="#sec-esa_worlcover"><span class="header-section-number">2.1.1</span> ESA WorldCover</a></li>
+  <li><a href="#sec-esa_worldcover" id="toc-sec-esa_worldcover" class="nav-link" data-scroll-target="#sec-esa_worldcover"><span class="header-section-number">3.1.1</span> ESA WorldCover</a></li>
   </ul></li>
-  <li><a href="#climate" id="toc-climate" class="nav-link" data-scroll-target="#climate"><span class="header-section-number">2.2</span> Climate</a>
+  <li><a href="#sec-climate" id="toc-sec-climate" class="nav-link" data-scroll-target="#sec-climate"><span class="header-section-number">3.2</span> Climate</a>
   <ul>
-  <li><a href="#stations-data" id="toc-stations-data" class="nav-link" data-scroll-target="#stations-data"><span class="header-section-number">2.2.1</span> Stations data</a>
+  <li><a href="#stations-data" id="toc-stations-data" class="nav-link" data-scroll-target="#stations-data"><span class="header-section-number">3.2.1</span> Stations data</a>
   <ul class="collapse">
   <li><a href="#integrated-surface-database" id="toc-integrated-surface-database" class="nav-link" data-scroll-target="#integrated-surface-database">Integrated Surface Database</a></li>
   <li><a href="#meteorological-aerodrome-report-metar-data" id="toc-meteorological-aerodrome-report-metar-data" class="nav-link" data-scroll-target="#meteorological-aerodrome-report-metar-data">Meteorological Aerodrome Report (METAR) data</a></li>
   </ul></li>
-  <li><a href="#gridded-data" id="toc-gridded-data" class="nav-link" data-scroll-target="#gridded-data"><span class="header-section-number">2.2.2</span> Gridded data</a>
+  <li><a href="#gridded-data" id="toc-gridded-data" class="nav-link" data-scroll-target="#gridded-data"><span class="header-section-number">3.2.2</span> Gridded data</a>
   <ul class="collapse">
   <li><a href="#chelsa" id="toc-chelsa" class="nav-link" data-scroll-target="#chelsa">CHELSA</a></li>
   <li><a href="#worldclim" id="toc-worldclim" class="nav-link" data-scroll-target="#worldclim">WorldClim</a></li>
@@ -279,7 +279,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Environmental data</span></h1>
+<h1 class="title"><span id="sec-environmental_data" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Environmental data</span></span></h1>
 </div>
 
 
@@ -299,11 +299,11 @@ window.Quarto = {
 <!---
 https://openlandmap.github.io/book/012-compendium.html
 -->
-<section id="land-cover-and-land-use" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="land-cover-and-land-use"><span class="header-section-number">2.1</span> Land Cover and Land Use</h2>
-<p>Land coverage and use was touched in <a href="osm.html#sec-land_coverage" class="quarto-xref"><span>Section 1.3</span></a>, where the focus was mainly on OpenStreetMap data as a source. However there is more datasets available, based on satellite observations.</p>
-<section id="sec-esa_worlcover" class="level3" data-number="2.1.1">
-<h3 data-number="2.1.1" class="anchored" data-anchor-id="sec-esa_worlcover"><span class="header-section-number">2.1.1</span> ESA WorldCover</h3>
+<section id="sec-land_cover" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="sec-land_cover"><span class="header-section-number">3.1</span> Land Cover and Land Use</h2>
+<p>Land coverage and use was touched in <a href="osm.html#sec-land_coverage" class="quarto-xref"><span>Section 2.3</span></a>, where the focus was mainly on OpenStreetMap data as a source. However there is more datasets available, based on satellite observations.</p>
+<section id="sec-esa_worldcover" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="sec-esa_worldcover"><span class="header-section-number">3.1.1</span> ESA WorldCover</h3>
 <p>European Space Agency (ESA) released a freely accessible global land coverage data sets. These data sets are based on Sentinel-1 and Sentinel-2 data and contains 11 land cover classes with overall accuracy over 75%. The first set was released in 2021, the second, with higher quality, in 2022 <span class="citation" data-cites="zanagaESAWorldCover102021 zanagaESAWorldCover102022">(<a href="references.html#ref-zanagaESAWorldCover102021" role="doc-biblioref">Zanaga et al. 2021</a>, <a href="references.html#ref-zanagaESAWorldCover102022" role="doc-biblioref">2022</a>)</span>. The data is accessible through AWS Open Data Registry, Zenodo and/or <a href="https://terrascope.be/en">Terrascope</a>. Terrascope provides the data as WM(T)S services as well, which can be used directly in QGIS:</p>
 <ul>
 <li>WMTS: https://services.terrascope.be/wmts/v2</li>
@@ -368,7 +368,7 @@ https://openlandmap.github.io/book/012-compendium.html
 <div id="tbl-esa_world_cover_classes" class="cell quarto-float anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-esa_world_cover_classes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;2.1: ESA WorldCover classes definition and color codes for layers <span class="citation" data-cites="vandekerchoveWorldCoverProductUser2022">(<a href="references.html#ref-vandekerchoveWorldCoverProductUser2022" role="doc-biblioref">Van De Kerchove 2022</a>)</span>
+Table&nbsp;3.1: ESA WorldCover classes definition and color codes for layers <span class="citation" data-cites="vandekerchoveWorldCoverProductUser2022">(<a href="references.html#ref-vandekerchoveWorldCoverProductUser2022" role="doc-biblioref">Van De Kerchove 2022</a>)</span>
 </figcaption>
 <div aria-describedby="tbl-esa_world_cover_classes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -511,7 +511,7 @@ Geodetic CRS:  WGS 84
 <img src="environments_files/figure-html/fig-esa_worldcover_flat_geobufer-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-esa_worldcover_flat_geobufer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.1: Spatial coverage of WorlCover data
+Figure&nbsp;3.1: Spatial coverage of WorlCover data
 </figcaption>
 </figure>
 </div>
@@ -541,7 +541,7 @@ Figure&nbsp;2.1: Spatial coverage of WorlCover data
 <pre><code>[1] "N51E015"</code></pre>
 </div>
 </div>
-<p>In next step we have to get the proper raster, crop it to the village bounding box, (re)assign levels and table colors. Please note, the levels and colors corresponds to land cover classes and colors from <a href="#tbl-esa_world_cover_classes" class="quarto-xref">Table&nbsp;<span>2.1</span></a>.</p>
+<p>In next step we have to get the proper raster, crop it to the village bounding box, (re)assign levels and table colors. Please note, the levels and colors corresponds to land cover classes and colors from <a href="#tbl-esa_world_cover_classes" class="quarto-xref">Table&nbsp;<span>3.1</span></a>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>terra<span class="sc">::</span><span class="fu">setGDALconfig</span>(<span class="st">"AWS_NO_SIGN_REQUEST=YES"</span>)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"s3://esa-worldcover/v200/2021/map/ESA_WorldCover_10m_2021_v200_"</span>, tile_name, <span class="st">"_Map.tif"</span>)</span>
@@ -569,8 +569,8 @@ Figure&nbsp;2.1: Spatial coverage of WorlCover data
 </div>
 </section>
 </section>
-<section id="climate" class="level2 page-columns page-full" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="climate"><span class="header-section-number">2.2</span> Climate</h2>
+<section id="sec-climate" class="level2 page-columns page-full" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="sec-climate"><span class="header-section-number">3.2</span> Climate</h2>
 <p>Key climatic variables are:</p>
 <ul>
 <li>temperature (°C) (minimum, maximum, average, above ground or at 2&nbsp;m height)</li>
@@ -582,8 +582,8 @@ Figure&nbsp;2.1: Spatial coverage of WorlCover data
 <li>soil moisture (cm liquid water),</li>
 </ul>
 <p>Those data can be provided as point data sets (per station) or as gridded data sets obtained from analysis or modeling of the past and current climate data.</p>
-<section id="stations-data" class="level3" data-number="2.2.1">
-<h3 data-number="2.2.1" class="anchored" data-anchor-id="stations-data"><span class="header-section-number">2.2.1</span> Stations data</h3>
+<section id="stations-data" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="stations-data"><span class="header-section-number">3.2.1</span> Stations data</h3>
 <section id="integrated-surface-database" class="level4">
 <h4 class="anchored" data-anchor-id="integrated-surface-database">Integrated Surface Database</h4>
 <p>The Integrated Surface Database (ISD) <span class="citation" data-cites="smithIntegratedSurfaceDatabase2011 delgrecoSurfaceDataIntegration2006 lottQualityControlIntegrated2004">(<a href="references.html#ref-smithIntegratedSurfaceDatabase2011" role="doc-biblioref">Smith, Lott, and Vose 2011</a>; <a href="references.html#ref-delgrecoSurfaceDataIntegration2006" role="doc-biblioref">Del Greco et al. 2006</a>; <a href="references.html#ref-lottQualityControlIntegrated2004" role="doc-biblioref">Lott 2004</a>)</span> is a global database that consists of hourly surface observations compiled from numerous sources into a single common ASCII format and common data model. It integrated data from numerous data sources and provides many parameters like temperature and dew point, wind speed and direction, precipitation etc. Data can be accessed from <a href="https://www.ncei.noaa.gov/products/land-based-station/integrated-surface-database">ncei.noaa.gov</a> portal or directly from <a href="https://www.ncei.noaa.gov/pub/data/noaa/">server</a> where the data is divided by year, and for every station a gziped text file is provided. Data format, described in <span class="citation" data-cites="FederalClimateComplex2018"><span>“Federal Climate Complex Data Documentation for <span>Integrated Surface Data</span> (<span>ISD</span>)”</span> (<a href="references.html#ref-FederalClimateComplex2018" role="doc-biblioref">2018</a>)</span>, covers among others: date and time of observation, longitude, latitude and elevation of station, wind direction and speed, sky conditions, visibility distance, air temperature and dev point temperature, atmospheric pressure, precipitation and snow depth. Stations, coded like <code>040180-16201</code> can be translated to station names and their physical locations using <a href="https://www.ncei.noaa.gov/pub/data/noaa/isd-history.csv">isd-history.csv</a> file.</p>
@@ -600,7 +600,7 @@ Figure&nbsp;2.1: Spatial coverage of WorlCover data
 <div id="tbl-isd_stations" class="cell quarto-float anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-isd_stations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;2.2: A sample of ISD stations description file which can be used to translate station code to its location
+Table&nbsp;3.2: A sample of ISD stations description file which can be used to translate station code to its location
 </figcaption>
 <div aria-describedby="tbl-isd_stations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -813,7 +813,7 @@ Table&nbsp;2.2: A sample of ISD stations description file which can be used to t
 6 2022-12-31 23:00:00  3.9   220.     14.0      1016.     23267.      8.17  68.0</code></pre>
 </div>
 </div>
-<p>Having data on hand we can perform analysis. A very simple wind rose and temperature diagram for Wrocław-Strachowice station is shown in <a href="#fig-station_data_examples" class="quarto-xref">Figure&nbsp;<span>2.2</span></a>.</p>
+<p>Having data on hand we can perform analysis. A very simple wind rose and temperature diagram for Wrocław-Strachowice station is shown in <a href="#fig-station_data_examples" class="quarto-xref">Figure&nbsp;<span>3.2</span></a>.</p>
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>openair<span class="sc">::</span><span class="fu">windRose</span>(station_data)</span>
@@ -855,14 +855,14 @@ Table&nbsp;2.2: A sample of ISD stations description file which can be used to t
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-station_data_examples-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.2: Examples of station’s data vizualization: direction and wind speed (a) and temperature (b)
+Figure&nbsp;3.2: Examples of station’s data vizualization: direction and wind speed (a) and temperature (b)
 </figcaption>
 </figure>
 </div>
 </section>
 <section id="meteorological-aerodrome-report-metar-data" class="level4">
 <h4 class="anchored" data-anchor-id="meteorological-aerodrome-report-metar-data">Meteorological Aerodrome Report (METAR) data</h4>
-<p>You may have noticed in <a href="#tbl-isd_stations" class="quarto-xref">Table&nbsp;<span>2.2</span></a>, some stations have ICAO (International Civil Aviation Organization) codes. It means, that such hourly data is provided by station located at airport. Copernicus airport at Wrocław-Strachowice is designated with <code>EPWR</code>. The data can be obtained from <a href="https://aviationweather.gov/data/metar/">Aviation Weather Center</a>, historical data is available from <a href="https://www.ogimet.com/index.phtml.en">ogimet</a> (up to past 20 years) or <a href="https://mesonet.agron.iastate.edu/request/download.phtml">ASOS Network</a><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. In R we can use {pmetar} package <span class="citation" data-cites="pmetar">(<a href="references.html#ref-pmetar" role="doc-biblioref">Cwiek 2023</a>)</span>.</p>
+<p>You may have noticed in <a href="#tbl-isd_stations" class="quarto-xref">Table&nbsp;<span>3.2</span></a>, some stations have ICAO (International Civil Aviation Organization) codes. It means, that such hourly data is provided by station located at airport. Copernicus airport at Wrocław-Strachowice is designated with <code>EPWR</code>. The data can be obtained from <a href="https://aviationweather.gov/data/metar/">Aviation Weather Center</a>, historical data is available from <a href="https://www.ogimet.com/index.phtml.en">ogimet</a> (up to past 20 years) or <a href="https://mesonet.agron.iastate.edu/request/download.phtml">ASOS Network</a><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. In R we can use {pmetar} package <span class="citation" data-cites="pmetar">(<a href="references.html#ref-pmetar" role="doc-biblioref">Cwiek 2023</a>)</span>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pmetar)</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>epwr <span class="ot">&lt;-</span> pmetar<span class="sc">::</span><span class="fu">metar_get</span>(<span class="at">airport =</span> <span class="st">"EPWR"</span>)</span>
@@ -890,7 +890,7 @@ Figure&nbsp;2.2: Examples of station’s data vizualization: direction and wind 
 <div id="tbl-pmetar_EPWR" class="cell quarto-float anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-pmetar_EPWR-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;2.3: Decoded METARs for Wrocław-Strachowice airport
+Table&nbsp;3.3: Decoded METARs for Wrocław-Strachowice airport
 </figcaption>
 <div aria-describedby="tbl-pmetar_EPWR-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -1016,8 +1016,8 @@ Table&nbsp;2.3: Decoded METARs for Wrocław-Strachowice airport
 <p>Comparing the data with ISD we can see the METAR reports are issued every 30 minutes.</p>
 </section>
 </section>
-<section id="gridded-data" class="level3 page-columns page-full" data-number="2.2.2">
-<h3 data-number="2.2.2" class="anchored" data-anchor-id="gridded-data"><span class="header-section-number">2.2.2</span> Gridded data</h3>
+<section id="gridded-data" class="level3 page-columns page-full" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="gridded-data"><span class="header-section-number">3.2.2</span> Gridded data</h3>
 <section id="chelsa" class="level4 page-columns page-full">
 <h4 class="anchored" data-anchor-id="chelsa">CHELSA</h4>
 <p><a href="https://chelsa-climate.org/">CHELSA</a> (Climatologies at High resolution for the Earth’s Land Surface Areas) is a data set hosted by the Swiss Federal Institute for Forest, Snow and Landscape Research WSL. The data is based on ERA-Interim climatic reanalysis and contains downscaled to 30 arc sec, ~&nbsp;1&nbsp;km global climate data. <span class="citation" data-cites="kargerClimatologiesHighResolution2017 kargerClimatologiesHighResolution2021">(<a href="references.html#ref-kargerClimatologiesHighResolution2017" role="doc-biblioref">Dirk Nikolaus Karger et al. 2017</a>, <a href="references.html#ref-kargerClimatologiesHighResolution2021" role="doc-biblioref">2021</a>)</span>. Ver. 2.1 of the data covers monthly datasets of temperatures and precipitation climatologies for years 1979–2019.</p>
@@ -1025,12 +1025,12 @@ Table&nbsp;2.3: Decoded METARs for Wrocław-Strachowice airport
 <pre><code>CHELSA_[short_name]_[timeperiod]_[Version].tif</code></pre>
 <p>For CMIP6 data:</p>
 <pre><code>CHELSA_[short_name]_[timeperiod]_[model] _[ssp] _[Version].tif</code></pre>
-<p>Available variable names are listed in <a href="#tbl-chelsa_variable_names" class="quarto-xref">Table&nbsp;<span>2.4</span></a>. TREELIM model and details (variables: <code>gsl</code>, <code>gsp ... fgd</code> was described by <span class="citation" data-cites="paulsenClimatebasedModelPredict2014">Paulsen and Körner (<a href="references.html#ref-paulsenClimatebasedModelPredict2014" role="doc-biblioref">2014</a>)</span>. Köppen-Geiger <code>kg0</code> and <code>kg1</code> after <span class="citation" data-cites="koeppenGeographischeSystemKlimate1936">Köppen (<a href="references.html#ref-koeppenGeographischeSystemKlimate1936" role="doc-biblioref">1936</a>)</span>, <code>kg2</code> classification was updated by <span class="citation" data-cites="peelUpdatedWorldMap2007">Peel, Finlayson, and McMahon (<a href="references.html#ref-peelUpdatedWorldMap2007" role="doc-biblioref">2007</a>)</span>, <code>kg3</code> according to <span class="citation" data-cites="wissmannKlimaundVegetationsgebieteEurasiens1939">Wissmann (<a href="references.html#ref-wissmannKlimaundVegetationsgebieteEurasiens1939" role="doc-biblioref">1939</a>)</span>, <code>kg4</code> — new classification by <span class="citation" data-cites="thornthwaiteClimatesNorthAmerica1931">Thornthwaite (<a href="references.html#ref-thornthwaiteClimatesNorthAmerica1931" role="doc-biblioref">1931</a>)</span> and for details of <code>kg5</code> see <span class="citation" data-cites="trollKarteJahreszeitenKlimateErde1964">(<a href="references.html#ref-trollKarteJahreszeitenKlimateErde1964" role="doc-biblioref">Troll 1964</a>)</span>. Miami model for <code>npp</code> variable was described by <span class="citation" data-cites="liethModelingPrimaryProductivity1975">Lieth (<a href="references.html#ref-liethModelingPrimaryProductivity1975" role="doc-biblioref">1975</a>)</span>.</p>
+<p>Available variable names are listed in <a href="#tbl-chelsa_variable_names" class="quarto-xref">Table&nbsp;<span>3.4</span></a>. TREELIM model and details (variables: <code>gsl</code>, <code>gsp ... fgd</code> was described by <span class="citation" data-cites="paulsenClimatebasedModelPredict2014">Paulsen and Körner (<a href="references.html#ref-paulsenClimatebasedModelPredict2014" role="doc-biblioref">2014</a>)</span>. Köppen-Geiger <code>kg0</code> and <code>kg1</code> after <span class="citation" data-cites="koeppenGeographischeSystemKlimate1936">Köppen (<a href="references.html#ref-koeppenGeographischeSystemKlimate1936" role="doc-biblioref">1936</a>)</span>, <code>kg2</code> classification was updated by <span class="citation" data-cites="peelUpdatedWorldMap2007">Peel, Finlayson, and McMahon (<a href="references.html#ref-peelUpdatedWorldMap2007" role="doc-biblioref">2007</a>)</span>, <code>kg3</code> according to <span class="citation" data-cites="wissmannKlimaundVegetationsgebieteEurasiens1939">Wissmann (<a href="references.html#ref-wissmannKlimaundVegetationsgebieteEurasiens1939" role="doc-biblioref">1939</a>)</span>, <code>kg4</code> — new classification by <span class="citation" data-cites="thornthwaiteClimatesNorthAmerica1931">Thornthwaite (<a href="references.html#ref-thornthwaiteClimatesNorthAmerica1931" role="doc-biblioref">1931</a>)</span> and for details of <code>kg5</code> see <span class="citation" data-cites="trollKarteJahreszeitenKlimateErde1964">(<a href="references.html#ref-trollKarteJahreszeitenKlimateErde1964" role="doc-biblioref">Troll 1964</a>)</span>. Miami model for <code>npp</code> variable was described by <span class="citation" data-cites="liethModelingPrimaryProductivity1975">Lieth (<a href="references.html#ref-liethModelingPrimaryProductivity1975" role="doc-biblioref">1975</a>)</span>.</p>
 <div class="cell page-columns page-full">
 <div id="tbl-chelsa_variable_names" class="cell quarto-float anchored page-columns page-full">
 <figure class="quarto-float quarto-float-tbl figure page-columns page-full">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-chelsa_variable_names-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;2.4: Chelsa variable names <span class="citation" data-cites="kargerCHELSAV2Technical2021">(<a href="references.html#ref-kargerCHELSAV2Technical2021" role="doc-biblioref">Dirk Nikolaus Karger and Zimmermann 2021</a>)</span>
+Table&nbsp;3.4: Chelsa variable names <span class="citation" data-cites="kargerCHELSAV2Technical2021">(<a href="references.html#ref-kargerCHELSAV2Technical2021" role="doc-biblioref">Dirk Nikolaus Karger and Zimmermann 2021</a>)</span>
 </figcaption>
 <div aria-describedby="tbl-chelsa_variable_names-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
 <div class="cell-output-display column-body-outset">
@@ -1583,7 +1583,7 @@ Downloading file
 <img src="environments_files/figure-html/fig-remagen_plot-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-remagen_plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.3: Temperature in Remagen, Germany during April and May 1945
+Figure&nbsp;3.3: Temperature in Remagen, Germany during April and May 1945
 </figcaption>
 </figure>
 </div>
@@ -1597,7 +1597,7 @@ Figure&nbsp;2.3: Temperature in Remagen, Germany during April and May 1945
 <img src="environments_files/figure-html/fig-remagen_precipitation-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-remagen_precipitation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.4: Precipitation in Remagen, Germany during April and May 1945
+Figure&nbsp;3.4: Precipitation in Remagen, Germany during April and May 1945
 </figcaption>
 </figure>
 </div>
@@ -1612,7 +1612,14 @@ Figure&nbsp;2.4: Precipitation in Remagen, Germany during April and May 1945
 <section id="global-maps-from-nasa-earth-observatory-and-other-products" class="level4">
 <h4 class="anchored" data-anchor-id="global-maps-from-nasa-earth-observatory-and-other-products">Global Maps from NASA Earth Observatory and other products</h4>
 <p><a href="https://earthobservatory.nasa.gov/global-maps">Earth Observatory</a> by NASA provides global monthly images at 10 km spatial resolution and covers years 2000-2022.</p>
-<p>Based on ERA5 precipitation archive and MODIS monthly cloud cover frequency <span class="citation" data-cites="kargerGlobalDailyKm2021">Dirk Nikolaus Karger, Wilson, et al. (<a href="references.html#ref-kargerGlobalDailyKm2021" role="doc-biblioref">2021b</a>)</span> produced global daily 1km land surface <a href="https://www.earthenv.org/precipitation">precipitation set</a> for the years 2003-2016 <span class="citation" data-cites="kargerGlobalDaily1km2021">(<a href="references.html#ref-kargerGlobalDaily1km2021" role="doc-biblioref">Dirk Nikolaus Karger, Wilson, et al. 2021a</a>)</span></p>
+<p><span class="citation" data-cites="maGlobalLongterm19812020">Ma, Zhou, Göttsche, Liang, Wang, and Li (<a href="references.html#ref-maGlobalLongterm19812020" role="doc-biblioref">2020</a>)</span> created global land surface temperature (LST) dataset, which was generated from NOAA advanced very-high-resolution radiometer (AVHRR) data (1981–2000) and includes three data layers:</p>
+<ul>
+<li><p>instantaneous LST, a product generated by integrating several split-window algorithms with a random forest (RF-SWA)<span class="citation" data-cites="maGLASSLandSurface2020">(<a href="references.html#ref-maGLASSLandSurface2020" role="doc-biblioref">Ma, Zhou, Göttsche, Liang, and Wang 2020</a>)</span>;</p></li>
+<li><p>orbital-drift-corrected (ODC) LST, a drift-corrected version of RF-SWA LST <span class="citation" data-cites="maGLASSLandSurface2020a">(<a href="references.html#ref-maGLASSLandSurface2020a" role="doc-biblioref">Ma, Zhou, Liang, et al. 2020</a>)</span>;</p></li>
+<li><p>monthly averages of ODC LST <span class="citation" data-cites="maGLASSLandSurface2020b">(<a href="references.html#ref-maGLASSLandSurface2020b" role="doc-biblioref">Ma, Zhou, and Liang 2020</a>)</span>.</p></li>
+</ul>
+<p>The resolution is 0.05° spatially and 1-day temporal. In addition to Zenodo, the data is available at <a href="http://glass.umd.edu/LST/">http://glass.umd.edu/LST/</a> in HDF files.</p>
+<p>Based on ERA5 precipitation archive and MODIS monthly cloud cover frequency <span class="citation" data-cites="kargerGlobalDailyKm2021">Dirk Nikolaus Karger, Wilson, et al. (<a href="references.html#ref-kargerGlobalDailyKm2021" role="doc-biblioref">2021</a>)</span> produced global daily 1km land surface <a href="https://www.earthenv.org/precipitation">precipitation set</a> for the years 2003-2016. In 2021 <span class="citation" data-cites="zhangGlobalSeamlessThinsp2022">Zhang et al. (<a href="references.html#ref-zhangGlobalSeamlessThinsp2022" role="doc-biblioref">2022</a>)</span> published land surface temperature dataset for 2003-2020 with 1km spatial resolution and on daily (mid-daytime and mid-nightime) basis. The dataset is based on MODIS LST and spatiotemporal gap-filling framework. The data is available for download from <a href="https://doi.org/10.25380/iastate.c.5078492.v3">Iowa State University</a> in GeoTIFF format. Another approach was taken by <span class="citation" data-cites="yaoGlobalSeamlessHighresolution2023">Yao et al. (<a href="references.html#ref-yaoGlobalSeamlessHighresolution2023" role="doc-biblioref">2023</a>)</span> who produced global seamless and high-resolution (30 arcsecond spatial) temperature (with land surface temperature (Ts) and near-surface air temperature (Ta)) dataset for 2001-2020. The data is available at <a href="https://cjgeodata.cug.edu.cn/#/pageDetail?id=97">Middle Yangtze River Geoscience Date Center</a> (in Chinese).</p>
 <!---
 hydro:
 https://www.hydrosheds.org/hydrosheds-core-downloads
@@ -1682,11 +1689,8 @@ Karger, Dirk Nikolaus, Olaf Conrad, Jürgen Böhner, Tobias Kawohl, Holger Kreft
 <div id="ref-kargerClimatologiesHighResolution2021" class="csl-entry" role="listitem">
 ———. 2021. <span>“Climatologies at High Resolution for the Earth’s Land Surface Areas.”</span> <span>EnviDat</span>. https://doi.org/<a href="http://dx.doi.org/10.16904/envidat.228">http://dx.doi.org/10.16904/envidat.228</a>.
 </div>
-<div id="ref-kargerGlobalDaily1km2021" class="csl-entry" role="listitem">
-Karger, Dirk Nikolaus, Adam M. Wilson, Colin Mahony, Niklaus E. Zimmermann, and Walter Jetz. 2021a. <span>“Global Daily 1km Land Surface Precipitation Based on Cloud Cover-Informed Downscaling.”</span> October 12, 2021. <a href="https://doi.org/10.48550/arXiv.2012.10108">https://doi.org/10.48550/arXiv.2012.10108</a>.
-</div>
 <div id="ref-kargerGlobalDailyKm2021" class="csl-entry" role="listitem">
-———. 2021b. <span>“Global Daily 1 Km Land Surface Precipitation Based on Cloud Cover-Informed Downscaling.”</span> <em>Scientific Data</em> 8 (1, 1): 307. <a href="https://doi.org/10.1038/s41597-021-01084-6">https://doi.org/10.1038/s41597-021-01084-6</a>.
+Karger, Dirk Nikolaus, Adam M. Wilson, Colin Mahony, Niklaus E. Zimmermann, and Walter Jetz. 2021. <span>“Global Daily 1 Km Land Surface Precipitation Based on Cloud Cover-Informed Downscaling.”</span> <em>Scientific Data</em> 8 (1, 1): 307. <a href="https://doi.org/10.1038/s41597-021-01084-6">https://doi.org/10.1038/s41597-021-01084-6</a>.
 </div>
 <div id="ref-kargerCHELSAV2Technical2021" class="csl-entry" role="listitem">
 Karger, Dirk Nikolaus, and Niklaus E. Zimmermann. 2021. <span>“<span>CHELSA V2</span>.1: <span>Technical</span> Specification.”</span> <span>Swiss Federal Research Institute WSL</span>. <a href="https://www.envidat.ch/dataset/2adb0c83-4653-4337-af28-f75c63ab7c74/resource/61fff0a7-6abb-45f7-a5f6-48f6e2c24851/download/chelsa_file_specification.pdf">https://www.envidat.ch/dataset/2adb0c83-4653-4337-af28-f75c63ab7c74/resource/61fff0a7-6abb-45f7-a5f6-48f6e2c24851/download/chelsa_file_specification.pdf</a>.
@@ -1708,6 +1712,18 @@ Lieth, Helmut. 1975. <span>“Modeling the <span>Primary Productivity</span> of 
 </div>
 <div id="ref-lottQualityControlIntegrated2004" class="csl-entry" role="listitem">
 Lott, Neal. 2004. <span>“The Quality Control of the <span>Integrated Surface Hourly</span> Database.”</span> In. <a href="https://ams.confex.com/ams/84Annual/webprogram/Paper71929.html">https://ams.confex.com/ams/84Annual/webprogram/Paper71929.html</a>.
+</div>
+<div id="ref-maGLASSLandSurface2020" class="csl-entry" role="listitem">
+Ma, Jin, Ji Zhou, Frank-Michael Göttsche, Shunlin Liang, and Shaofei Wang. 2020. <span>“<span>GLASS Land Surface Temperature</span> Product (1981-2000): Instantaneous <span>LST</span>.”</span> <span>Zenodo</span>. <a href="https://doi.org/10.5281/zenodo.3934354">https://doi.org/10.5281/zenodo.3934354</a>.
+</div>
+<div id="ref-maGlobalLongterm19812020" class="csl-entry" role="listitem">
+Ma, Jin, Ji Zhou, Frank-Michael Göttsche, Shunlin Liang, Shaofei Wang, and Mingsong Li. 2020. <span>“A Global Long-Term (1981–2000) Land Surface Temperature Product for <span>NOAA AVHRR</span>.”</span> <em>Earth System Science Data</em> 12 (4): 3247–68. <a href="https://doi.org/10.5194/essd-12-3247-2020">https://doi.org/10.5194/essd-12-3247-2020</a>.
+</div>
+<div id="ref-maGLASSLandSurface2020b" class="csl-entry" role="listitem">
+Ma, Jin, Ji Zhou, and Shunlin Liang. 2020. <span>“<span>GLASS Land Surface Temperature</span> Product (1981-2000): Monthly Averaged <span>LST</span>.”</span> <span>Zenodo</span>. <a href="https://doi.org/10.5281/zenodo.3936641">https://doi.org/10.5281/zenodo.3936641</a>.
+</div>
+<div id="ref-maGLASSLandSurface2020a" class="csl-entry" role="listitem">
+Ma, Jin, Ji Zhou, Shunlin Liang, and Mingsong Li. 2020. <span>“<span>GLASS Land Surface Temperature</span> Product (1981-2000): <span>Orbital Drift Corrected LST</span>.”</span> <span>Zenodo</span>. <a href="https://doi.org/10.5281/zenodo.3936627">https://doi.org/10.5281/zenodo.3936627</a>.
 </div>
 <div id="ref-milradMETARCode2018" class="csl-entry" role="listitem">
 Milrad, Shawn. 2018. <span>“<span>METAR Code</span>.”</span> In <em>Synoptic <span>Analysis</span> and <span>Forecasting</span></em>, edited by Shawn Milrad, 23–39. <span>Elsevier</span>. <a href="https://doi.org/10.1016/B978-0-12-809247-7.00003-X">https://doi.org/10.1016/B978-0-12-809247-7.00003-X</a>.
@@ -1739,11 +1755,17 @@ Van De Kerchove, Ruben, ed. 2022. <span>“<span>WorldCover Product User Manual<
 <div id="ref-wissmannKlimaundVegetationsgebieteEurasiens1939" class="csl-entry" role="listitem">
 Wissmann, Hermann von. 1939. <span>“Die <span class="nocase">Klima-und Vegetationsgebiete Eurasiens</span>: <span>Begleitworte</span> Zu Einer <span>Karte</span> Der <span>Klimagebiete Eurasiens</span>.”</span> <em>Zeitschrift Der Gesellschaft Für Erdkunde Zu Berlin</em>, 81–92.
 </div>
+<div id="ref-yaoGlobalSeamlessHighresolution2023" class="csl-entry" role="listitem">
+Yao, Rui, Lunche Wang, Xin Huang, Qian Cao, Jing Wei, Panxing He, Shaoqiang Wang, and Lizhe Wang. 2023. <span>“Global Seamless and High-Resolution Temperature Dataset (<span>GSHTD</span>), 2001–2020.”</span> <em>Remote Sensing of Environment</em> 286 (March): 113422. <a href="https://doi.org/10.1016/j.rse.2022.113422">https://doi.org/10.1016/j.rse.2022.113422</a>.
+</div>
 <div id="ref-zanagaESAWorldCover102022" class="csl-entry" role="listitem">
 Zanaga, Daniele, Ruben Van De Kerchove, Dirk Daems, Wanda De Keersmaecker, Carsten Brockmann, Grit Kirches, Jan Wevers, et al. 2022. <span>“<span>ESA WorldCover</span> 10 m 2021 V200.”</span> <span>Zenodo</span>. October 28, 2022. <a href="https://doi.org/10.5281/zenodo.7254221">https://doi.org/10.5281/zenodo.7254221</a>.
 </div>
 <div id="ref-zanagaESAWorldCover102021" class="csl-entry" role="listitem">
 Zanaga, Daniele, Ruben Van De Kerchove, Wanda De Keersmaecker, Niels Souverijns, Carsten Brockmann, Ralf Quast, Jan Wevers, et al. 2021. <span>“<span>ESA WorldCover</span> 10 m 2020 V100.”</span> <span>Zenodo</span>. October 20, 2021. <a href="https://doi.org/10.5281/zenodo.5571936">https://doi.org/10.5281/zenodo.5571936</a>.
+</div>
+<div id="ref-zhangGlobalSeamlessThinsp2022" class="csl-entry" role="listitem">
+Zhang, Tao, Yuyu Zhou, Zhengyuan Zhu, Xiaoma Li, and Ghassem R. Asrar. 2022. <span>“A Global Seamless 1&amp;thinsp;km Resolution Daily Land Surface Temperature Dataset (2003–2020).”</span> <em>Earth System Science Data</em> 14 (2): 651–64. <a href="https://doi.org/10.5194/essd-14-651-2022">https://doi.org/10.5194/essd-14-651-2022</a>.
 </div>
 </div>
 </section>
@@ -2171,7 +2193,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./osm.html" class="pagination-link" aria-label="OpenStreetMap as a universal spatial data source">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">OpenStreetMap as a universal spatial data source</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">OpenStreetMap as a universal spatial data source</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

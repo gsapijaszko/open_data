@@ -958,7 +958,7 @@ tmap::tm_shape(lu) +
   tmap::tm_basemap()
 ```
 
-A freely accessible global land cover product at 10 m resolution, based on Sentinel-1 and Sentinel-2 data, containing 11 land cover classes, is available online at [https://esa-worldcover.org](https://esa-worldcover.org). More information in @sec-esa_worlcover.
+A freely accessible global land cover product at 10 m resolution, based on Sentinel-1 and Sentinel-2 data, containing 11 land cover classes, is available online at [https://esa-worldcover.org](https://esa-worldcover.org). More information in @sec-esa_worldcover.
 
 ## Where the streets have no names
 

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Open Data sources – 1&nbsp; OpenStreetMap as a universal spatial data source</title>
+<title>Open Data sources – 2&nbsp; OpenStreetMap as a universal spatial data source</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -144,7 +144,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./osm.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">OpenStreetMap as a universal spatial data source</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./osm.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">OpenStreetMap as a universal spatial data source</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -175,19 +175,19 @@ div.csl-indent {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introduction</span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./osm.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">OpenStreetMap as a universal spatial data source</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">OpenStreetMap as a universal spatial data source</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./environments.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Environmental data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Environmental data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -206,32 +206,32 @@ div.csl-indent {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#data-access-and-available-formats" id="toc-data-access-and-available-formats" class="nav-link active" data-scroll-target="#data-access-and-available-formats"><span class="header-section-number">1.1</span> Data access and available formats</a>
+  <li><a href="#data-access-and-available-formats" id="toc-data-access-and-available-formats" class="nav-link active" data-scroll-target="#data-access-and-available-formats"><span class="header-section-number">2.1</span> Data access and available formats</a>
   <ul>
-  <li><a href="#osmextract" id="toc-osmextract" class="nav-link" data-scroll-target="#osmextract"><span class="header-section-number">1.1.1</span> osmextract</a></li>
-  <li><a href="#osmdata" id="toc-osmdata" class="nav-link" data-scroll-target="#osmdata"><span class="header-section-number">1.1.2</span> osmdata</a></li>
+  <li><a href="#osmextract" id="toc-osmextract" class="nav-link" data-scroll-target="#osmextract"><span class="header-section-number">2.1.1</span> osmextract</a></li>
+  <li><a href="#osmdata" id="toc-osmdata" class="nav-link" data-scroll-target="#osmdata"><span class="header-section-number">2.1.2</span> osmdata</a></li>
   </ul></li>
-  <li><a href="#boundaries" id="toc-boundaries" class="nav-link" data-scroll-target="#boundaries"><span class="header-section-number">1.2</span> Boundaries</a>
+  <li><a href="#boundaries" id="toc-boundaries" class="nav-link" data-scroll-target="#boundaries"><span class="header-section-number">2.2</span> Boundaries</a>
   <ul>
-  <li><a href="#administrative-boundaries" id="toc-administrative-boundaries" class="nav-link" data-scroll-target="#administrative-boundaries"><span class="header-section-number">1.2.1</span> Administrative boundaries</a></li>
-  <li><a href="#below-country-level" id="toc-below-country-level" class="nav-link" data-scroll-target="#below-country-level"><span class="header-section-number">1.2.2</span> Below country level</a></li>
-  <li><a href="#other-kind-of-boundaries" id="toc-other-kind-of-boundaries" class="nav-link" data-scroll-target="#other-kind-of-boundaries"><span class="header-section-number">1.2.3</span> Other kind of boundaries</a>
+  <li><a href="#administrative-boundaries" id="toc-administrative-boundaries" class="nav-link" data-scroll-target="#administrative-boundaries"><span class="header-section-number">2.2.1</span> Administrative boundaries</a></li>
+  <li><a href="#below-country-level" id="toc-below-country-level" class="nav-link" data-scroll-target="#below-country-level"><span class="header-section-number">2.2.2</span> Below country level</a></li>
+  <li><a href="#other-kind-of-boundaries" id="toc-other-kind-of-boundaries" class="nav-link" data-scroll-target="#other-kind-of-boundaries"><span class="header-section-number">2.2.3</span> Other kind of boundaries</a>
   <ul class="collapse">
   <li><a href="#protected-areas" id="toc-protected-areas" class="nav-link" data-scroll-target="#protected-areas">Protected areas</a></li>
   <li><a href="#sec-postal_code" id="toc-sec-postal_code" class="nav-link" data-scroll-target="#sec-postal_code">Postal code areas</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#sec-land_coverage" id="toc-sec-land_coverage" class="nav-link" data-scroll-target="#sec-land_coverage"><span class="header-section-number">1.3</span> Land coverage and use</a></li>
-  <li><a href="#where-the-streets-have-no-names" id="toc-where-the-streets-have-no-names" class="nav-link" data-scroll-target="#where-the-streets-have-no-names"><span class="header-section-number">1.4</span> Where the streets have no names</a>
+  <li><a href="#sec-land_coverage" id="toc-sec-land_coverage" class="nav-link" data-scroll-target="#sec-land_coverage"><span class="header-section-number">2.3</span> Land coverage and use</a></li>
+  <li><a href="#where-the-streets-have-no-names" id="toc-where-the-streets-have-no-names" class="nav-link" data-scroll-target="#where-the-streets-have-no-names"><span class="header-section-number">2.4</span> Where the streets have no names</a>
   <ul>
-  <li><a href="#bike-infrastructure" id="toc-bike-infrastructure" class="nav-link" data-scroll-target="#bike-infrastructure"><span class="header-section-number">1.4.1</span> Bike infrastructure</a>
+  <li><a href="#bike-infrastructure" id="toc-bike-infrastructure" class="nav-link" data-scroll-target="#bike-infrastructure"><span class="header-section-number">2.4.1</span> Bike infrastructure</a>
   <ul class="collapse">
   <li><a href="#other-features" id="toc-other-features" class="nav-link" data-scroll-target="#other-features">Other features</a></li>
   <li><a href="#bicycle-routes" id="toc-bicycle-routes" class="nav-link" data-scroll-target="#bicycle-routes">Bicycle routes</a></li>
   </ul></li>
-  <li><a href="#routing-and-accessibility" id="toc-routing-and-accessibility" class="nav-link" data-scroll-target="#routing-and-accessibility"><span class="header-section-number">1.4.2</span> Routing and accessibility</a></li>
+  <li><a href="#routing-and-accessibility" id="toc-routing-and-accessibility" class="nav-link" data-scroll-target="#routing-and-accessibility"><span class="header-section-number">2.4.2</span> Routing and accessibility</a></li>
   </ul></li>
-  <li><a href="#power-grid" id="toc-power-grid" class="nav-link" data-scroll-target="#power-grid"><span class="header-section-number">1.5</span> Power grid</a></li>
+  <li><a href="#power-grid" id="toc-power-grid" class="nav-link" data-scroll-target="#power-grid"><span class="header-section-number">2.5</span> Power grid</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/gsapijaszko/open_data/edit/main/osm.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/gsapijaszko/open_data/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -240,7 +240,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-openstreetmap" class="quarto-section-identifier"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">OpenStreetMap as a universal spatial data source</span></span></h1>
+<h1 class="title"><span id="sec-openstreetmap" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">OpenStreetMap as a universal spatial data source</span></span></h1>
 </div>
 
 
@@ -314,7 +314,7 @@ OSM Data at a glance
 <img src="osm_files/figure-html/fig-number_of_editors-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-number_of_editors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.1: Number of editors (blue) and number of nodes per editor/week (black) based on statistics available online <a href="https://blackadder.dev.openstreetmap.org/OSMStats/">https://blackadder.dev.openstreetmap.org/OSMStats/</a>
+Figure&nbsp;2.1: Number of editors (blue) and number of nodes per editor/week (black) based on statistics available online <a href="https://blackadder.dev.openstreetmap.org/OSMStats/">https://blackadder.dev.openstreetmap.org/OSMStats/</a>
 </figcaption>
 </figure>
 </div>
@@ -325,13 +325,13 @@ Figure&nbsp;1.1: Number of editors (blue) and number of nodes per editor/week (b
 </div>
 <p>Data quality was assessed in various scientific studies, beginning with the comparison of OSM roads network with official data sets. <span class="citation" data-cites="haklayHowGoodVolunteered2010">Haklay (<a href="references.html#ref-haklayHowGoodVolunteered2010" role="doc-biblioref">2010</a>)</span> conducted a study for England, while <span class="citation" data-cites="kounadiAssessingQualityOpenStreetMap2009">Kounadi (<a href="references.html#ref-kounadiAssessingQualityOpenStreetMap2009" role="doc-biblioref">2009</a>)</span> focused on Athens, Greece, examining positional accuracy, completeness and thematic accuracy. Subsequent studies such as <span class="citation" data-cites="zielstraQuantitativeStudiesData2010">Zielstra and Zipf (<a href="references.html#ref-zielstraQuantitativeStudiesData2010" role="doc-biblioref">2010</a>)</span>, <span class="citation" data-cites="ludwigComparisonStreetNetworks2011">Ludwig, Voss, and Krause-Traudes (<a href="references.html#ref-ludwigComparisonStreetNetworks2011" role="doc-biblioref">2011</a>)</span> and <span class="citation" data-cites="neisStreetNetworkEvolution2011">Neis, Zielstra, and Zipf (<a href="references.html#ref-neisStreetNetworkEvolution2011" role="doc-biblioref">2011</a>)</span> delved into the quality of the road network in Germany.</p>
 <p>The quality of other features has also been assessed. For instance, <span class="citation" data-cites="mooneyStudyDataRepresentation2010">Mooney, Corcoran, and Winstanley (<a href="references.html#ref-mooneyStudyDataRepresentation2010" role="doc-biblioref">2010</a>)</span> compared land cover data with Ordnance Survey Ireland, while <span class="citation" data-cites="girresQualityAssessmentFrench2010">Girres and Touya (<a href="references.html#ref-girresQualityAssessmentFrench2010" role="doc-biblioref">2010</a>)</span> evaluated data quality principles in accordance with <a href="https://www.iso.org/standard/26018.html">ISO 19113:2002</a><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> for France.</p>
-<section id="data-access-and-available-formats" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="data-access-and-available-formats"><span class="header-section-number">1.1</span> Data access and available formats</h2>
+<section id="data-access-and-available-formats" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="data-access-and-available-formats"><span class="header-section-number">2.1</span> Data access and available formats</h2>
 <p>There are several ways to access the OpenStreetMap data. The entire planet data, currently approximately 73 GB in a binary (packed) PBF file, can be downloaded from planet.osm <span class="citation" data-cites="PlanetOSM">(<a href="references.html#ref-PlanetOSM" role="doc-biblioref"><span>“Planet <span>OSM</span>”</span> 2024</a>)</span>. Alternatively, smaller snapshots can be obtained from <a href="http://download.geofabrik.de/">GeoFabrik.de</a> or <a href="https://download.bbbike.org/osm/">BBBike.org</a>. Those sources provide data in OSM XML and/or PBF formats. Subsequently, tools like <a href="https://osm2pgsql.org/"><code>osm2pgsql</code></a> can be used to import the data into Postgresql/PostGIS database, <a href="https://wiki.openstreetmap.org/wiki/Osmosis"><code>osmosis</code></a> for data manipulation and filtering, or QGIS for direct processing.</p>
 <p>For those seeking direct access to the data, the <a href="https://www.overpass-api.de/">Overpass API</a> is available with <a href="https://overpass-turbo.eu/">Overpass Turbo</a> serving as a front-end where users can build and execute the queries instantly. Further details about data access are described on the <a href="https://wiki.openstreetmap.org/wiki/Planet.osm">wiki</a>.</p>
 <p>To access OSM spatial data from R, there are several libraries available. The {osmextract} <span class="citation" data-cites="osmextract">(<a href="references.html#ref-osmextract" role="doc-biblioref">Gilardi and Lovelace 2023</a>)</span> library enables the download and import data extracts, for instance, from GeoFabrik. Additionally, the {osmdata} package <span class="citation" data-cites="osmdata">(<a href="references.html#ref-osmdata" role="doc-biblioref">Mark Padgham et al. 2017</a>)</span> can be utilized, which leverages the Overpass API to import data as Simple Features {sf} or Spatial Objects {sp}.</p>
-<section id="osmextract" class="level3" data-number="1.1.1">
-<h3 data-number="1.1.1" class="anchored" data-anchor-id="osmextract"><span class="header-section-number">1.1.1</span> osmextract</h3>
+<section id="osmextract" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="osmextract"><span class="header-section-number">2.1.1</span> osmextract</h3>
 <p>As the name suggest, the package allows you to search, download and process the data extracts available online. Per default it uses 3 providers:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>osmextract<span class="sc">::</span><span class="fu">oe_providers</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -345,14 +345,14 @@ Figure&nbsp;1.1: Number of editors (blue) and number of nodes per editor/week (b
 3    openstreetmap_fr openstreetmap_fr_zones            1135                6</code></pre>
 </div>
 </div>
-<p>Each of these providers has a specific set of areas, for example BBBike.org offers data sets for the biggest cities around the globe, while GeoFabrik.de and openstreetmap.fr cover the entire world. <a href="#fig-oe_provider_zones" class="quarto-xref">Figure&nbsp;<span>1.2</span></a> visualizes the areas covered by these providers. The typical workflow consists of few steps:</p>
+<p>Each of these providers has a specific set of areas, for example BBBike.org offers data sets for the biggest cities around the globe, while GeoFabrik.de and openstreetmap.fr cover the entire world. <a href="#fig-oe_provider_zones" class="quarto-xref">Figure&nbsp;<span>2.2</span></a> visualizes the areas covered by these providers. The typical workflow consists of few steps:</p>
 <ul>
 <li>Find the area of interest by matching it with one of the files/areas stored by providers using <code>oe_match()</code>;</li>
 <li>Download the <code>.pbf</code> file with <code>oe_download()</code>;</li>
 <li>Convert the <code>.pbf</code> file to <code>.gpkg</code> file with <code>oe_vectortranslate()</code>;</li>
 <li>Read the data using <code>oe_read()</code> function.</li>
 </ul>
-<p><a href="#sec-postal_code" class="quarto-xref"><span>Section 1.2.3.2</span></a> shows an example of {osmextract} usage for postal code areas around Leipzig, Germany.</p>
+<p><a href="#sec-postal_code" class="quarto-xref"><span>Section 2.2.3.2</span></a> shows an example of {osmextract} usage for postal code areas around Leipzig, Germany.</p>
 <div id="fig-oe_provider_zones" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-oe_provider_zones-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -396,13 +396,13 @@ Figure&nbsp;1.1: Number of editors (blue) and number of nodes per editor/week (b
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-oe_provider_zones-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.2: Area covered by different providers.
+Figure&nbsp;2.2: Area covered by different providers.
 </figcaption>
 </figure>
 </div>
 </section>
-<section id="osmdata" class="level3" data-number="1.1.2">
-<h3 data-number="1.1.2" class="anchored" data-anchor-id="osmdata"><span class="header-section-number">1.1.2</span> osmdata</h3>
+<section id="osmdata" class="level3" data-number="2.1.2">
+<h3 data-number="2.1.2" class="anchored" data-anchor-id="osmdata"><span class="header-section-number">2.1.2</span> osmdata</h3>
 <p>The {osmdata} package enables the construction of a query to retrieve data from Overpass server. The initial step involves creating a bounding box around the geographical area of interest. The <code>getbb()</code> function serves as a helper; it queries the Nominatim service for coordinates and downloads the bounding box for the specified location, as demonstrated in our example with the Czech Republic.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> osmdata<span class="sc">::</span><span class="fu">getbb</span>(<span class="st">"Czech Republic"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -459,11 +459,11 @@ Geodetic CRS:  WGS 84
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="er">out</span> <span class="er">geom;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section id="boundaries" class="level2 page-columns page-full" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="boundaries"><span class="header-section-number">1.2</span> Boundaries</h2>
-<section id="administrative-boundaries" class="level3 page-columns page-full" data-number="1.2.1">
-<h3 data-number="1.2.1" class="anchored" data-anchor-id="administrative-boundaries"><span class="header-section-number">1.2.1</span> Administrative boundaries</h3>
-<p>Let’s proceed with our straightforward example of OSM-based spatial data: administrative boundaries. Typically, administrative areas are depicted as polygons, with their geometries highlighted by color or the shape of their borders. The examples of administrative borders are illustrated in the <a href="#fig-borders-example" class="quarto-xref">Figure&nbsp;<span>1.3</span></a>.</p>
+<section id="boundaries" class="level2 page-columns page-full" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="boundaries"><span class="header-section-number">2.2</span> Boundaries</h2>
+<section id="administrative-boundaries" class="level3 page-columns page-full" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="administrative-boundaries"><span class="header-section-number">2.2.1</span> Administrative boundaries</h3>
+<p>Let’s proceed with our straightforward example of OSM-based spatial data: administrative boundaries. Typically, administrative areas are depicted as polygons, with their geometries highlighted by color or the shape of their borders. The examples of administrative borders are illustrated in the <a href="#fig-borders-example" class="quarto-xref">Figure&nbsp;<span>2.3</span></a>.</p>
 <div id="fig-borders-example" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-borders-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -487,11 +487,11 @@ Geodetic CRS:  WGS 84
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-borders-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.3: Examples of country boundaries on different maps, source: <a href="http://english.mapywig.org">Archiwum Map WIG 1919-1939</a>
+Figure&nbsp;2.3: Examples of country boundaries on different maps, source: <a href="http://english.mapywig.org">Archiwum Map WIG 1919-1939</a>
 </figcaption>
 </figure>
 </div>
-<p>There are several openly available datasets that offer administrative boundaries, such as <code>world</code> country polygons from the {spData} package <span class="citation" data-cites="spData">(<a href="references.html#ref-spData" role="doc-biblioref">Bivand, Nowosad, and Lovelace 2023</a>)</span>, Natural Earth<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> accessible via {rnaturalearthdata} package <span class="citation" data-cites="rnaturalearthdata">(<a href="references.html#ref-rnaturalearthdata" role="doc-biblioref">South 2017</a>)</span>, {geodata} <span class="citation" data-cites="geodata">(<a href="references.html#ref-geodata" role="doc-biblioref">Hijmans et al. 2023</a>)</span>, etc. For those who like point-and-click, there is a <a href="https://osm-boundaries.com/">osm-boundaries.com</a> service, where you can pick the boundaries and download it in few different formats including GeoJSON. <a href="#fig-osm-czech-boundary" class="quarto-xref">Figure&nbsp;<span>1.4</span></a> displays few sets of freely available boundary data for a section of the Czech Republic boundary. You may observe a significant difference between these lines and the administrative boundary from the OpenStreetMap map layer below. Despite both datasets being prepared based on OSM data, they have undergone simplification. Please exercise caution when selecting your data set and utilize it judiciously.</p>
+<p>There are several openly available datasets that offer administrative boundaries, such as <code>world</code> country polygons from the {spData} package <span class="citation" data-cites="spData">(<a href="references.html#ref-spData" role="doc-biblioref">Bivand, Nowosad, and Lovelace 2023</a>)</span>, Natural Earth<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> accessible via {rnaturalearthdata} package <span class="citation" data-cites="rnaturalearthdata">(<a href="references.html#ref-rnaturalearthdata" role="doc-biblioref">South 2017</a>)</span>, {geodata} <span class="citation" data-cites="geodata">(<a href="references.html#ref-geodata" role="doc-biblioref">Hijmans et al. 2023</a>)</span>, etc. For those who like point-and-click, there is a <a href="https://osm-boundaries.com/">osm-boundaries.com</a> service, where you can pick the boundaries and download it in few different formats including GeoJSON. <a href="#fig-osm-czech-boundary" class="quarto-xref">Figure&nbsp;<span>2.4</span></a> displays few sets of freely available boundary data for a section of the Czech Republic boundary. You may observe a significant difference between these lines and the administrative boundary from the OpenStreetMap map layer below. Despite both datasets being prepared based on OSM data, they have undergone simplification. Please exercise caution when selecting your data set and utilize it judiciously.</p>
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"World"</span>, <span class="at">package =</span> <span class="st">"tmap"</span>)</span>
@@ -530,7 +530,7 @@ Figure&nbsp;1.3: Examples of country boundaries on different maps, source: <a hr
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-osm-czech-boundary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.4: Different boundary lines shown on OSM background: <code>World</code> data set from {tmap} package <span class="citation" data-cites="tmap">(<a href="references.html#ref-tmap" role="doc-biblioref">Tennekes 2018</a>)</span> <span style="color:orange;">in orange</span> and Czech Republic administrative boundary data from <a href="https://gadm.org/">GADM</a> by {geodata} package <span style="color:blue;">in blue</span>.
+Figure&nbsp;2.4: Different boundary lines shown on OSM background: <code>World</code> data set from {tmap} package <span class="citation" data-cites="tmap">(<a href="references.html#ref-tmap" role="doc-biblioref">Tennekes 2018</a>)</span> <span style="color:orange;">in orange</span> and Czech Republic administrative boundary data from <a href="https://gadm.org/">GADM</a> by {geodata} package <span style="color:blue;">in blue</span>.
 </figcaption>
 </figure>
 </div>
@@ -561,7 +561,7 @@ Figure&nbsp;1.4: Different boundary lines shown on OSM background: <code>World</
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-osmdata-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.5: And with Czech Republic boundary based on OpenStreetMap data (<span style="color:darkgreen;">green</span>).
+Figure&nbsp;2.5: And with Czech Republic boundary based on OpenStreetMap data (<span style="color:darkgreen;">green</span>).
 </figcaption>
 </figure>
 </div>
@@ -598,7 +598,7 @@ Figure&nbsp;1.5: And with Czech Republic boundary based on OpenStreetMap data (<
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-italy_with_territorial_waters-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.6: Border of the Italy including territorial waters
+Figure&nbsp;2.6: Border of the Italy including territorial waters
 </figcaption>
 </figure>
 </div>
@@ -630,7 +630,7 @@ Figure&nbsp;1.6: Border of the Italy including territorial waters
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-italy_without_water-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.7: Italy land border created with gluing the lower administrative boundaries with <code>st_union()</code>.
+Figure&nbsp;2.7: Italy land border created with gluing the lower administrative boundaries with <code>st_union()</code>.
 </figcaption>
 </figure>
 </div>
@@ -645,14 +645,14 @@ Figure&nbsp;1.7: Italy land border created with gluing the lower administrative 
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="er">out</span> <span class="er">geom;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div><p>Such trick will work for some countries like Italy, France or Spain, however it will not for all of them because their lower level boundaries may also include territorial waters like in Poland or Germany. For other countries you can try to use other <code>admin_level</code> (i.e.&nbsp;7 for Greece will work). To deal with such <em>issue</em> one can use water polygons<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> and subtract it from boundaries.</p>
 </section>
-<section id="below-country-level" class="level3 page-columns page-full" data-number="1.2.2">
-<h3 data-number="1.2.2" class="anchored" data-anchor-id="below-country-level"><span class="header-section-number">1.2.2</span> Below country level</h3>
+<section id="below-country-level" class="level3 page-columns page-full" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="below-country-level"><span class="header-section-number">2.2.2</span> Below country level</h3>
 <p>Sub-national borders like province, state, region, district, parish, municipality or any other country-specific administrative areas are marked with <code>admin_level = 3</code> to <code>11</code>. The details for almost all countries can be found on <a href="https://wiki.openstreetmap.org/wiki/Tag:boundary%3Dadministrative#admin_level=*_Country_specific_values">wiki</a>, but there is a general pattern across OSM data:</p>
 <div class="cell">
 <div id="tbl-admin_levels" class="cell quarto-float anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-admin_levels-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;1.1: General administrative levels of OSM boundaries
+Table&nbsp;2.1: General administrative levels of OSM boundaries
 </figcaption>
 <div aria-describedby="tbl-admin_levels-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -840,11 +840,11 @@ Table&nbsp;1.1: General administrative levels of OSM boundaries
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-prusice_population-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.8: Population and population density in Prusice municipality based on OSM data
+Figure&nbsp;2.8: Population and population density in Prusice municipality based on OSM data
 </figcaption>
 </figure>
 </div>
-<p>A very similar approach can be used for other administrative levels, like municipal arrondissements (subdivisions of the commune) of Paris, France, where boundaries are on <code>admin_level=9</code> (<a href="#fig-paris_france" class="quarto-xref">Figure&nbsp;<span>1.9</span></a>).</p>
+<p>A very similar approach can be used for other administrative levels, like municipal arrondissements (subdivisions of the commune) of Paris, France, where boundaries are on <code>admin_level=9</code> (<a href="#fig-paris_france" class="quarto-xref">Figure&nbsp;<span>2.9</span></a>).</p>
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>paris_bbox <span class="ot">&lt;-</span> osmdata<span class="sc">::</span><span class="fu">getbb</span>(<span class="st">"Paris, France"</span>)</span>
@@ -875,7 +875,7 @@ Figure&nbsp;1.8: Population and population density in Prusice municipality based
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-paris_france-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.9: Arrondissements of Paris
+Figure&nbsp;2.9: Arrondissements of Paris
 </figcaption>
 </figure>
 </div>
@@ -888,8 +888,8 @@ Figure&nbsp;1.9: Arrondissements of Paris
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="ot">[</span><span class="er">boundary=administrative</span><span class="ot">]</span><span class="er">(area);</span></span>
 <span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="er">out</span> <span class="er">geom;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></section>
-<section id="other-kind-of-boundaries" class="level3" data-number="1.2.3">
-<h3 data-number="1.2.3" class="anchored" data-anchor-id="other-kind-of-boundaries"><span class="header-section-number">1.2.3</span> Other kind of boundaries</h3>
+<section id="other-kind-of-boundaries" class="level3" data-number="2.2.3">
+<h3 data-number="2.2.3" class="anchored" data-anchor-id="other-kind-of-boundaries"><span class="header-section-number">2.2.3</span> Other kind of boundaries</h3>
 <p>In addition to administrative boundaries, OpenStreetMap has other types of boundaries. They can be shortlisted using the <code>osmdata::available_tags("boundary")</code> function. But to see the frequency of each tag, you can look at <a href="https://taginfo.openstreetmap.org/keys/boundary#values">taginfo</a>.</p>
 <div class="cell">
 <details class="code-fold">
@@ -906,7 +906,7 @@ Figure&nbsp;1.9: Arrondissements of Paris
 <div id="tbl-other_boundaries" class="cell quarto-float anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-other_boundaries-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;1.2: 10 most popular <code>boundary=</code> values in OpenStreetMap
+Table&nbsp;2.2: 10 most popular <code>boundary=</code> values in OpenStreetMap
 </figcaption>
 <div aria-describedby="tbl-other_boundaries-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -1028,7 +1028,7 @@ Table&nbsp;1.2: 10 most popular <code>boundary=</code> values in OpenStreetMap
 <img src="osm_files/figure-html/fig-national_parks_in_peru-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-national_parks_in_peru-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.10: National parks in Peru
+Figure&nbsp;2.10: National parks in Peru
 </figcaption>
 </figure>
 </div>
@@ -1162,7 +1162,7 @@ Figure&nbsp;1.10: National parks in Peru
 <div id="tbl-park_details" class="cell tbl-column-body-outset-right quarto-float anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-park_details-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;1.3: Some details about Parque Nacional Alto Purús from OpenStreetMap data
+Table&nbsp;2.3: Some details about Parque Nacional Alto Purús from OpenStreetMap data
 </figcaption>
 <div aria-describedby="tbl-park_details-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -1248,14 +1248,14 @@ Note
 </section>
 <section id="sec-postal_code" class="level4">
 <h4 class="anchored" data-anchor-id="sec-postal_code">Postal code areas</h4>
-<p>Postal code boundaries are the third most common boundaries in OSM, however please be aware, that such information doesn’t exist in each country. <a href="#fig-postal_code_distribution_map" class="quarto-xref">Figure&nbsp;<span>1.11</span></a> displays the distribution of this tag — mostly used in Belgium, Germany, Vietnam and in few other spots across the globe.</p>
+<p>Postal code boundaries are the third most common boundaries in OSM, however please be aware, that such information doesn’t exist in each country. <a href="#fig-postal_code_distribution_map" class="quarto-xref">Figure&nbsp;<span>2.11</span></a> displays the distribution of this tag — mostly used in Belgium, Germany, Vietnam and in few other spots across the globe.</p>
 <div id="fig-postal_code_distribution_map" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-postal_code_distribution_map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/postal_codes_distribution.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-postal_code_distribution_map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.11: Postal code boundaries distribution, source: <a href="https://taginfo.openstreetmap.org/tags/boundary=postal_code#map">taginfo</a>
+Figure&nbsp;2.11: Postal code boundaries distribution, source: <a href="https://taginfo.openstreetmap.org/tags/boundary=postal_code#map">taginfo</a>
 </figcaption>
 </figure>
 </div>
@@ -1331,7 +1331,7 @@ First 10 features:
 <img src="osm_files/figure-html/fig-oe_leipzig_addresses-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-oe_leipzig_addresses-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.12: Postal prefixes in and around Lepizig
+Figure&nbsp;2.12: Postal prefixes in and around Lepizig
 </figcaption>
 </figure>
 </div>
@@ -1396,7 +1396,7 @@ Tip
 <div id="tbl-with_postal_codes" class="cell quarto-float anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-with_postal_codes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;1.4: Example of administrative areas with postal code assigned
+Table&nbsp;2.4: Example of administrative areas with postal code assigned
 </figcaption>
 <div aria-describedby="tbl-with_postal_codes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -1488,7 +1488,7 @@ Table&nbsp;1.4: Example of administrative areas with postal code assigned
 <img src="osm_files/figure-html/fig-administrative_areas_by_code_prefixes-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-administrative_areas_by_code_prefixes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.13: Administrative areas with postal codes from Wikidata, grouped by prefix
+Figure&nbsp;2.13: Administrative areas with postal codes from Wikidata, grouped by prefix
 </figcaption>
 </figure>
 </div>
@@ -1500,10 +1500,10 @@ Figure&nbsp;1.13: Administrative areas with postal codes from Wikidata, grouped 
 </section>
 </section>
 </section>
-<section id="sec-land_coverage" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="sec-land_coverage"><span class="header-section-number">1.3</span> Land coverage and use</h2>
+<section id="sec-land_coverage" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="sec-land_coverage"><span class="header-section-number">2.3</span> Land coverage and use</h2>
 <p>Land coverage (representation of physical surface on the Earth like grass, asphalt, trees, ground, water) and land use (how humans modified and managed the natural environment into arable fields, pastures or settlements) is another area where you can use OpenStreetMap data. In mid of 2010’s Jacinto Estima and Marco Painho investigated the coverage of OSM data in Portugal <span class="citation" data-cites="estimaExploratoryAnalysisOpenStreetMap2013 estimaInvestigatingPotentialOpenstreetmap2015">(<a href="references.html#ref-estimaExploratoryAnalysisOpenStreetMap2013" role="doc-biblioref">Estima and Painho 2013</a>, <a href="references.html#ref-estimaInvestigatingPotentialOpenstreetmap2015" role="doc-biblioref">2015</a>)</span>, followed later by others <span class="citation" data-cites="schultzOpenLandCover2017a schottOpenstreetmapElementVectorisation2022a">(<a href="references.html#ref-schultzOpenLandCover2017a" role="doc-biblioref">Schultz et al. 2017</a>; <a href="references.html#ref-schottOpenstreetmapElementVectorisation2022a" role="doc-biblioref">Schott et al. 2022</a>)</span>. Based on those works there is even an <a href="https://osmlanduse.org/">osmlanduse.org</a> service build and hosted by Heidelberg Institute for Geoinformation Technology. Recently the topic was discussed by <span class="citation" data-cites="fonteUsingOpenStreetMapCreate2019">Fonte et al. (<a href="references.html#ref-fonteUsingOpenStreetMapCreate2019" role="doc-biblioref">2019</a>)</span> where they compared OSM data with two European LULC products: the Urban Atlas and CORINE Land Cover.</p>
-<p>The main keys which describes those features are <code>natural</code> and <code>landuse</code>. <a href="#tbl-corine-to-osm" class="quarto-xref">Table&nbsp;<span>1.5</span></a> shows the mapping between Corine Land Cover database and OSM data. Corine data was used in the past to map the surface of Europe, nowadays the data is replaced by other sources, mainly ortophoto maps, however the table gives a good overview of tag-value combinations for area mapping.</p>
+<p>The main keys which describes those features are <code>natural</code> and <code>landuse</code>. <a href="#tbl-corine-to-osm" class="quarto-xref">Table&nbsp;<span>2.5</span></a> shows the mapping between Corine Land Cover database and OSM data. Corine data was used in the past to map the surface of Europe, nowadays the data is replaced by other sources, mainly ortophoto maps, however the table gives a good overview of tag-value combinations for area mapping.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -1525,7 +1525,7 @@ Figure&nbsp;1.13: Administrative areas with postal codes from Wikidata, grouped 
 <div id="tbl-corine-to-osm" class="cell quarto-float anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-corine-to-osm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;1.5: Corine Land Cover classess and corresponding OpenStreetMap taging system. Source: <a href="https://wiki.openstreetmap.org/wiki/Corine_Land_Cover">wiki</a>.
+Table&nbsp;2.5: Corine Land Cover classess and corresponding OpenStreetMap taging system. Source: <a href="https://wiki.openstreetmap.org/wiki/Corine_Land_Cover">wiki</a>.
 </figcaption>
 <div aria-describedby="tbl-corine-to-osm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -1923,7 +1923,7 @@ from data source `/home/sapi/projekty/open_data/data/bbbike_Leipzig.gpkg' using 
 [47] "village_green"           "vineyard"               </code></pre>
 </div>
 </div>
-<p>You may observe that a forest can be described as either <code>natural = wood</code> or <code>landuse = forest</code> so, it’s necessary to combine those pairs. Similarly, various classes of of industrial areas, such as <code>industrial</code>, <code>commercial</code>, <code>construction</code> etc., can be aggregated. It’s important to note that there might be instances <code>boundary = forest_compartment</code> (refer to <a href="#tbl-other_boundaries" class="quarto-xref">Table&nbsp;<span>1.2</span></a>), which should be examined and potentially included as well. The code chunk below is just one example of numerous possible ways to extract the information. Please note <code>query =</code> parameter, which queries the database <a href="https://gdal.org/user/ogr__dialect.html">in OGR dialect</a>.</p>
+<p>You may observe that a forest can be described as either <code>natural = wood</code> or <code>landuse = forest</code> so, it’s necessary to combine those pairs. Similarly, various classes of of industrial areas, such as <code>industrial</code>, <code>commercial</code>, <code>construction</code> etc., can be aggregated. It’s important to note that there might be instances <code>boundary = forest_compartment</code> (refer to <a href="#tbl-other_boundaries" class="quarto-xref">Table&nbsp;<span>2.2</span></a>), which should be examined and potentially included as well. The code chunk below is just one example of numerous possible ways to extract the information. Please note <code>query =</code> parameter, which queries the database <a href="https://gdal.org/user/ogr__dialect.html">in OGR dialect</a>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">sf_use_s2</span>(<span class="cn">FALSE</span>)</span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>lu <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_read</span>(<span class="st">"data/bbbike_Leipzig.gpkg"</span>,</span>
@@ -1951,17 +1951,17 @@ from data source `/home/sapi/projekty/open_data/data/bbbike_Leipzig.gpkg' using 
 <img src="osm_files/figure-html/fig-leipzig_land_use-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-leipzig_land_use-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.14: Example of land use around Leipzig, Germany
+Figure&nbsp;2.14: Example of land use around Leipzig, Germany
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A freely accessible global land cover product at 10 m resolution, based on Sentinel-1 and Sentinel-2 data, containing 11 land cover classes, is available online at <a href="https://esa-worldcover.org">https://esa-worldcover.org</a>. More information in <a href="environments.html#sec-esa_worlcover" class="quarto-xref"><span>Section 2.1.1</span></a>.</p>
+<p>A freely accessible global land cover product at 10 m resolution, based on Sentinel-1 and Sentinel-2 data, containing 11 land cover classes, is available online at <a href="https://esa-worldcover.org">https://esa-worldcover.org</a>. More information in <a href="environments.html#sec-esa_worldcover" class="quarto-xref"><span>Section 3.1.1</span></a>.</p>
 </section>
-<section id="where-the-streets-have-no-names" class="level2 page-columns page-full" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="where-the-streets-have-no-names"><span class="header-section-number">1.4</span> Where the streets have no names</h2>
-<p>Streets, roads or paths — all have <code>highway</code> key within OSM. The main road types, their values and meaning is shown in <a href="#tbl-osm_highways" class="quarto-xref">Table&nbsp;<span>1.6</span></a>. Except those highways, there is a bunch of others like <code>living_street</code> <code>pedestrian</code> or just a <code>track</code> in forest — details are available on <a href="https://wiki.openstreetmap.org/wiki/Key:highway">wiki</a>. The OSM roads network data is probably most used data around the world. It’s a base for different navigation systems (including OSMAnd), for visualization of bus routes, it is also used in online games.</p>
+<section id="where-the-streets-have-no-names" class="level2 page-columns page-full" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="where-the-streets-have-no-names"><span class="header-section-number">2.4</span> Where the streets have no names</h2>
+<p>Streets, roads or paths — all have <code>highway</code> key within OSM. The main road types, their values and meaning is shown in <a href="#tbl-osm_highways" class="quarto-xref">Table&nbsp;<span>2.6</span></a>. Except those highways, there is a bunch of others like <code>living_street</code> <code>pedestrian</code> or just a <code>track</code> in forest — details are available on <a href="https://wiki.openstreetmap.org/wiki/Key:highway">wiki</a>. The OSM roads network data is probably most used data around the world. It’s a base for different navigation systems (including OSMAnd), for visualization of bus routes, it is also used in online games.</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
 <div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/GzZWSrr5wFI" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
@@ -1969,7 +1969,7 @@ Figure&nbsp;1.14: Example of land use around Leipzig, Germany
 <div id="tbl-osm_highways" class="cell quarto-float anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-osm_highways-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;1.6: Roads and their coding values in OpenStreetMap data. Source: <a href="https://wiki.openstreetmap.org/wiki/Key:highway">wiki</a>
+Table&nbsp;2.6: Roads and their coding values in OpenStreetMap data. Source: <a href="https://wiki.openstreetmap.org/wiki/Key:highway">wiki</a>
 </figcaption>
 <div aria-describedby="tbl-osm_highways-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -2047,7 +2047,7 @@ Table&nbsp;1.6: Roads and their coding values in OpenStreetMap data. Source: <a 
 [13] "trunk_link"    "steps"         "proposed"     </code></pre>
 </div>
 </div>
-<p>Comparing with <a href="#tbl-osm_highways" class="quarto-xref">Table&nbsp;<span>1.6</span></a> we can see <code>trunk</code> and <code>trunk_link</code> as the main road categories, followed by <code>secondary</code>, <code>tertiary</code>, etc. Let’s add them to our map.</p>
+<p>Comparing with <a href="#tbl-osm_highways" class="quarto-xref">Table&nbsp;<span>2.6</span></a> we can see <code>trunk</code> and <code>trunk_link</code> as the main road categories, followed by <code>secondary</code>, <code>tertiary</code>, etc. Let’s add them to our map.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -2086,7 +2086,7 @@ Table&nbsp;1.6: Roads and their coding values in OpenStreetMap data. Source: <a 
 <img src="osm_files/figure-html/fig-prusice_highways-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-prusice_highways-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.15: Different roads classes in Prusice municipality based on OSM data
+Figure&nbsp;2.15: Different roads classes in Prusice municipality based on OSM data
 </figcaption>
 </figure>
 </div>
@@ -2096,8 +2096,8 @@ Figure&nbsp;1.15: Different roads classes in Prusice municipality based on OSM d
 <div class="no-row-height column-margin column-container"><div class="">
 <p>For those who prefer to use QGIS for styling and maps production, there is couple of resources to start with, including Anita’s Graser blog posts <span class="citation" data-cites="underdarkGuideAdvancedLabeling2011 underdarkGoogleMapsStyle2011 underdarkGuideGoogleMapslikeMaps2014">(<a href="references.html#ref-underdarkGuideAdvancedLabeling2011" role="doc-biblioref">underdark 2011a</a>, <a href="references.html#ref-underdarkGoogleMapsStyle2011" role="doc-biblioref">2011b</a>, <a href="references.html#ref-underdarkGuideGoogleMapslikeMaps2014" role="doc-biblioref">2014</a>)</span>. Look around and you will find <a href="https://gitlab.com/champs-libres/public/champs-libres-qgis-osm-style">nice examples</a>.</p>
 </div></div><p>You can use other tags associated with highways to check if it goes over bridge (<code>bridge = yes</code> or <code>viaduct</code>) or in tunnel (<code>tunell = yes</code>), what’s the max allowed speeds (various tags starting with <code>maxspeed</code>), what’s the road number (<code>ref</code> tag) or <code>name</code>, what’s the <code>surface</code> or <code>smoothness</code>, etc.</p>
-<section id="bike-infrastructure" class="level3 page-columns page-full" data-number="1.4.1">
-<h3 data-number="1.4.1" class="anchored" data-anchor-id="bike-infrastructure"><span class="header-section-number">1.4.1</span> Bike infrastructure</h3>
+<section id="bike-infrastructure" class="level3 page-columns page-full" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="bike-infrastructure"><span class="header-section-number">2.4.1</span> Bike infrastructure</h3>
 <p>In OpenStreetMap database the roads designated for bicycle can be described in different ways. The lanes can be separate, can be part of highway, or shared with pedestrians (and in some countries even with other vehicles). Let’s have a quick overview of the used tags.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -2153,7 +2153,7 @@ network = icn
 ref = EV9
 colour = green
 icn_ref = 9</code></pre>
-<p>As we already know and understand the attributes of the data, let’s play with it a bit. In next steps we will assess quantitatively the bicycle infrastructure in Leipzig, based on the data we already downloaded in <a href="#sec-postal_code" class="quarto-xref"><span>Section 1.2.3.2</span></a>.</p>
+<p>As we already know and understand the attributes of the data, let’s play with it a bit. In next steps we will assess quantitatively the bicycle infrastructure in Leipzig, based on the data we already downloaded in <a href="#sec-postal_code" class="quarto-xref"><span>Section 2.2.3.2</span></a>.</p>
 <p>First step would be to extract points, lines and polygons related bo bike infrastructure and convert it to <code>.gpkg</code> file using <code>osmextract::oe_vectortranslate()</code> function.</p>
 <div class="cell">
 <details class="code-fold">
@@ -2258,7 +2258,7 @@ Available layers:
 <div id="tbl-bikes_pedestrians_cars" class="cell quarto-float anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-bikes_pedestrians_cars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;1.7: Total length of roads by it’s type
+Table&nbsp;2.7: Total length of roads by it’s type
 </figcaption>
 <div aria-describedby="tbl-bikes_pedestrians_cars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -2289,7 +2289,7 @@ Table&nbsp;1.7: Total length of roads by it’s type
 </figure>
 </div>
 </div>
-<p>If you would like to split it by surface (asphalt, concrete, etc), then we can just group our highways by that column. <a href="#tbl-bike_only_by_surface" class="quarto-xref">Table&nbsp;<span>1.8</span></a> provides the data.</p>
+<p>If you would like to split it by surface (asphalt, concrete, etc), then we can just group our highways by that column. <a href="#tbl-bike_only_by_surface" class="quarto-xref">Table&nbsp;<span>2.8</span></a> provides the data.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -2317,7 +2317,7 @@ Table&nbsp;1.7: Total length of roads by it’s type
 <div id="tbl-bike_only_by_surface" class="cell quarto-float anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-bike_only_by_surface-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;1.8: Length of bike only roads by surface
+Table&nbsp;2.8: Length of bike only roads by surface
 </figcaption>
 <div aria-describedby="tbl-bike_only_by_surface-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -2384,7 +2384,7 @@ Table&nbsp;1.8: Length of bike only roads by surface
 </figure>
 </div>
 </div>
-<p><a href="#fig-leipzig_plots" class="quarto-xref">Figure&nbsp;<span>1.16</span></a> visualizes road networks and it’s density.</p>
+<p><a href="#fig-leipzig_plots" class="quarto-xref">Figure&nbsp;<span>2.16</span></a> visualizes road networks and it’s density.</p>
 <div id="fig-leipzig_plots" class="quarto-layout-panel page-columns page-full">
 <figure class="quarto-float quarto-float-fig figure page-columns page-full">
 <div aria-describedby="fig-leipzig_plots-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
@@ -2416,14 +2416,14 @@ Table&nbsp;1.8: Length of bike only roads by surface
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-leipzig_plots-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.16: Highways in Leipzig
+Figure&nbsp;2.16: Highways in Leipzig
 </figcaption>
 </figure>
 </div>
 </section>
 </section>
-<section id="routing-and-accessibility" class="level3 page-columns page-full" data-number="1.4.2">
-<h3 data-number="1.4.2" class="anchored" data-anchor-id="routing-and-accessibility"><span class="header-section-number">1.4.2</span> Routing and accessibility</h3>
+<section id="routing-and-accessibility" class="level3 page-columns page-full" data-number="2.4.2">
+<h3 data-number="2.4.2" class="anchored" data-anchor-id="routing-and-accessibility"><span class="header-section-number">2.4.2</span> Routing and accessibility</h3>
 <p>But roads are not just lines on a map. It is also a network of connections that allow you to move from city to city, from one point to another. A network of connections that can be represented using graphs. It can be used both for routing and for analyzing the accessibility of various goods and resources: school, work or library.</p>
 <p>There’s a lot of routing software on the market, both free and commercial, online and offline, which uses OSM and proprietary maps. The overview of those using OSM data can be found under <a href="https://wiki.openstreetmap.org/wiki/Routing/online_routers">https://wiki.openstreetmap.org/wiki/Routing/online_routers</a>. Some of them provides API, which may be used in various tools (R, QGIS), some of them like <a href="https://brouter.de/brouter/">BRouter</a> integrates with different Android based map software (<a href="http://osmand.net/">OSMAnd</a> for example). There is a PostGIS/PostgreSQL <a href="https://pgrouting.org/">pgRouting</a> library which extends geospatial database capabilities by routing functionality with various algorithms.</p>
 <div class="page-columns page-full">
@@ -2433,12 +2433,12 @@ Figure&nbsp;1.16: Highways in Leipzig
 <img src="images/qgis_ors_routes.png" class="img-fluid figure-img column-body-outset">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-qgis_ors_routes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.17: Example of routes generated by openroutingservice.org using QGIS <a href="https://github.com/GIScience/orstools-qgis-plugin/wiki/">ORS plugin</a> for cars and bikes.
+Figure&nbsp;2.17: Example of routes generated by openroutingservice.org using QGIS <a href="https://github.com/GIScience/orstools-qgis-plugin/wiki/">ORS plugin</a> for cars and bikes.
 </figcaption>
 </figure>
 </div>
 </div>
-<p><a href="https://openrouteservice.org/">ORS</a> provides isochrones as well. Isochrones reflect the area/extent that can be reached within a given period of time. They are typically used to visualize reachability analysis, which is one of the fundamental tasks in urban planning. It can be used to measure the service area covered by schools, hospitals <span class="citation" data-cites="reinmuthPhysicalAccessibilityHospitals">(<a href="references.html#ref-reinmuthPhysicalAccessibilityHospitals" role="doc-biblioref">Reinmuth and Zipf, n.d.</a>)</span>, fire brigades, restaurants <span class="citation" data-cites="benhlimaIsochronicMeasurementAnalysis2023">(<a href="references.html#ref-benhlimaIsochronicMeasurementAnalysis2023" role="doc-biblioref">Benhlima et al. 2023</a>)</span> or train stations <span class="citation" data-cites="fazio15minutesStationCase2023">(<a href="references.html#ref-fazio15minutesStationCase2023" role="doc-biblioref">Fazio et al. 2023</a>)</span>. It is used to run multimodal transport analysis and to optimize public transport facilities <span class="citation" data-cites="bauerComputingIsochronesMultimodal2008 marciuskaDeterminingObjectsIsochrones2010 kondratevaIsochronesBasedPublic2017">(<a href="references.html#ref-bauerComputingIsochronesMultimodal2008" role="doc-biblioref">Bauer et al. 2008</a>; <a href="references.html#ref-marciuskaDeterminingObjectsIsochrones2010" role="doc-biblioref">Marciuska and Gamper 2010</a>; <a href="references.html#ref-kondratevaIsochronesBasedPublic2017" role="doc-biblioref">Kondrateva, Sidorov, and Saprykin 2017</a>)</span>. <a href="#fig-prusice_osp_access" class="quarto-xref">Figure&nbsp;<span>1.18</span></a> displays example of areas which can be reach-out by 3, 6, and 9 minutes from fire stations in Prusice municipality. The isochrones were provided by openroutingservice API using {openrouteservice} package <span class="citation" data-cites="openrouteservice">(<a href="references.html#ref-openrouteservice" role="doc-biblioref">Oleś 2024</a>)</span>.</p>
+<p><a href="https://openrouteservice.org/">ORS</a> provides isochrones as well. Isochrones reflect the area/extent that can be reached within a given period of time. They are typically used to visualize reachability analysis, which is one of the fundamental tasks in urban planning. It can be used to measure the service area covered by schools, hospitals <span class="citation" data-cites="reinmuthPhysicalAccessibilityHospitals">(<a href="references.html#ref-reinmuthPhysicalAccessibilityHospitals" role="doc-biblioref">Reinmuth and Zipf, n.d.</a>)</span>, fire brigades, restaurants <span class="citation" data-cites="benhlimaIsochronicMeasurementAnalysis2023">(<a href="references.html#ref-benhlimaIsochronicMeasurementAnalysis2023" role="doc-biblioref">Benhlima et al. 2023</a>)</span> or train stations <span class="citation" data-cites="fazio15minutesStationCase2023">(<a href="references.html#ref-fazio15minutesStationCase2023" role="doc-biblioref">Fazio et al. 2023</a>)</span>. It is used to run multimodal transport analysis and to optimize public transport facilities <span class="citation" data-cites="bauerComputingIsochronesMultimodal2008 marciuskaDeterminingObjectsIsochrones2010 kondratevaIsochronesBasedPublic2017">(<a href="references.html#ref-bauerComputingIsochronesMultimodal2008" role="doc-biblioref">Bauer et al. 2008</a>; <a href="references.html#ref-marciuskaDeterminingObjectsIsochrones2010" role="doc-biblioref">Marciuska and Gamper 2010</a>; <a href="references.html#ref-kondratevaIsochronesBasedPublic2017" role="doc-biblioref">Kondrateva, Sidorov, and Saprykin 2017</a>)</span>. <a href="#fig-prusice_osp_access" class="quarto-xref">Figure&nbsp;<span>2.18</span></a> displays example of areas which can be reach-out by 3, 6, and 9 minutes from fire stations in Prusice municipality. The isochrones were provided by openroutingservice API using {openrouteservice} package <span class="citation" data-cites="openrouteservice">(<a href="references.html#ref-openrouteservice" role="doc-biblioref">Oleś 2024</a>)</span>.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -2488,7 +2488,7 @@ Figure&nbsp;1.17: Example of routes generated by openroutingservice.org using QG
 <img src="osm_files/figure-html/fig-prusice_osp_access-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-prusice_osp_access-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.18: Areas reachable in 3, 6, and 9 minutes from fire stations in Prusice municipality.
+Figure&nbsp;2.18: Areas reachable in 3, 6, and 9 minutes from fire stations in Prusice municipality.
 </figcaption>
 </figure>
 </div>
@@ -2496,8 +2496,8 @@ Figure&nbsp;1.18: Areas reachable in 3, 6, and 9 minutes from fire stations in P
 </div>
 </section>
 </section>
-<section id="power-grid" class="level2 page-columns page-full" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="power-grid"><span class="header-section-number">1.5</span> Power grid</h2>
+<section id="power-grid" class="level2 page-columns page-full" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="power-grid"><span class="header-section-number">2.5</span> Power grid</h2>
 <p>OSM is not just roads. There are several other features mapped, one of them is power grid. You can see the grid features mapped on <a href="https://openinframap.org/#6.13/57.227/14.383/L,P,S">Open Infrastructure Map</a>.</p>
 <div class="cell">
 <details class="code-fold">
@@ -2514,7 +2514,7 @@ Figure&nbsp;1.18: Areas reachable in 3, 6, and 9 minutes from fire stations in P
 <div id="tbl-grid_featues" class="cell quarto-float anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-grid_featues-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;1.9: 10 most popular <code>power=</code> values in OpenStreetMap
+Table&nbsp;2.9: 10 most popular <code>power=</code> values in OpenStreetMap
 </figcaption>
 <div aria-describedby="tbl-grid_featues-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -2662,7 +2662,7 @@ Table&nbsp;1.9: 10 most popular <code>power=</code> values in OpenStreetMap
 <img src="osm_files/figure-html/fig-power_grid_sweden-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-power_grid_sweden-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.19: Power grid of Sweden
+Figure&nbsp;2.19: Power grid of Sweden
 </figcaption>
 </figure>
 </div>
@@ -3222,12 +3222,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./index.html" class="pagination-link" aria-label="Introduction">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Introduction</span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./environments.html" class="pagination-link" aria-label="Environmental data">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Environmental data</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Environmental data</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

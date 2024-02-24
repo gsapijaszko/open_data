@@ -1,13 +1,13 @@
 project:
   type: book
   output-dir: docs
-  post-render: scripts/post_script.R
+#  post-render: scripts/post_script.R
 
 book:
   title: "Open Data sources"
   subtitle: "(and how to deal with it)"
   author: "Grzegorz Sapijaszko"
-  date: "2024-01-07"
+  date: "2024-02-24"
   site-url: https://gsapijaszko.github.io/open_data/
   repo-url: https://github.com/gsapijaszko/open_data
   repo-actions: [edit, issue]
@@ -58,5 +58,10 @@ comments:
     repo: gsapijaszko/open_data
  
   hypothesis: true
+
+crossref:
+    chapters: true
+numberSections: true
+sectionsDepth: 0
 
 # reference-location: margin
