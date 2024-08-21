@@ -628,7 +628,7 @@ nat_parks <- nat_parks$osm_multipolygons |>
 tmap::tm_shape(nat_parks) +
   tmap::tm_basemap() +
   tmap::tm_borders(col = "darkgreen", lwd = 2) +
-  tmap::tm_credits("(C) OpenStreetMap contributors", position =  c(0,0))
+  tmap::tm_credits("(C) OpenStreetMap contributors", position =  c(0,0.05))
 
 ```
 

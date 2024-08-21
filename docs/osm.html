@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.8">
+<meta name="generator" content="quarto-1.5.21">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -441,7 +441,7 @@ Figure&nbsp;2.4: Area covered by different providers.
 <div class="cell-output cell-output-stdout">
 <pre><code>       min      max
 x 12.09058 18.85925
-y 48.55181 51.05569</code></pre>
+y 48.55181 51.05570</code></pre>
 </div>
 </div>
 <p>The subsequent step involves generating an Overpass query using the <code>opq()</code> function, which searches for requested features within the specified bounding box. By utilizing <code>add_osm_feature()</code> function and specifying key-value pairs, we narrow down the search criteria. In our example, we focus on administrative boundaries at the 2nd level (corresponding to countries) and further narrow it to Czechia. The pipe <code>|&gt;</code> functions as the <strong>AND</strong> operator in the query.</p>
@@ -471,14 +471,14 @@ y 48.55181 51.05569</code></pre>
 <pre><code>Simple feature collection with 2 features and 2 fields
 Geometry type: POINT
 Dimension:     XY
-Bounding box:  xmin: 13.04717 ymin: 49.26365 xmax: 14.23419 ymax: 50.88782
+Bounding box:  xmin: 12.32725 ymin: 50.21367 xmax: 14.23419 ymax: 50.88782
 Geodetic CRS:  WGS 84
-           osm_id                                        name
-27300178 27300178                          Schmilka - Hřensko
-28310825 28310825 Hraniční přechod Svatá Kateřina - Rittsteig
+           osm_id                                                   name
+27300178 27300178                                     Schmilka - Hřensko
+33381986 33381986 Železniční hraniční přechod  Vojtanov - Bad Brambach 3
                           geometry
 27300178 POINT (14.23419 50.88782)
-28310825 POINT (13.04717 49.26365)</code></pre>
+33381986 POINT (12.32725 50.21367)</code></pre>
 </div>
 </div>
 <p>Corresponding <a href="https://overpass-turbo.eu/s/1FS3">Overpass query</a> for Czech Republic boundary looks like:</p>
@@ -952,61 +952,61 @@ Table&nbsp;2.2: 10 most popular <code>boundary=</code> values in OpenStreetMap
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">administrative</td>
-<td style="text-align: right;">2011827</td>
+<td style="text-align: right;">2045683</td>
 <td style="text-align: right;">0.84</td>
 <td style="text-align: left;">An administrative boundary recognised by governments for administrative purposes.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">protected_area</td>
-<td style="text-align: right;">113754</td>
+<td style="text-align: right;">116358</td>
 <td style="text-align: right;">0.05</td>
 <td style="text-align: left;">Used to mark boundaries of protected areas including national parks, wilderness, marine protection areas, heritage sites and other, similar areas.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">postal_code</td>
-<td style="text-align: right;">53164</td>
+<td style="text-align: right;">53787</td>
 <td style="text-align: right;">0.02</td>
 <td style="text-align: left;">A postal code boundary</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">census</td>
-<td style="text-align: right;">24760</td>
+<td style="text-align: right;">24852</td>
 <td style="text-align: right;">0.01</td>
 <td style="text-align: left;">A census-designated boundary delineating a statistical area, not necessarily observable on the ground</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">marker</td>
-<td style="text-align: right;">21722</td>
+<td style="text-align: right;">24492</td>
 <td style="text-align: right;">0.01</td>
 <td style="text-align: left;">A physical marker that identifies a boundary</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">landuse</td>
-<td style="text-align: right;">16364</td>
-<td style="text-align: right;">0.01</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
 <td style="text-align: left;">local_authority</td>
-<td style="text-align: right;">15884</td>
+<td style="text-align: right;">16273</td>
 <td style="text-align: right;">0.01</td>
 <td style="text-align: left;">Describes the territory of a local authority</td>
 </tr>
+<tr class="odd">
+<td style="text-align: left;">landuse</td>
+<td style="text-align: right;">16204</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: left;"></td>
+</tr>
 <tr class="even">
 <td style="text-align: left;">forest_compartment</td>
-<td style="text-align: right;">14981</td>
+<td style="text-align: right;">15752</td>
 <td style="text-align: right;">0.01</td>
 <td style="text-align: left;">A marked subdivision of delimited forest, which is used for planning, management &amp; navigation</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">political</td>
-<td style="text-align: right;">13918</td>
+<td style="text-align: right;">14014</td>
 <td style="text-align: right;">0.01</td>
 <td style="text-align: left;">Political boundary, such as an electoral ward or parliamentary constituency</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">health</td>
-<td style="text-align: right;">12756</td>
+<td style="text-align: right;">12744</td>
 <td style="text-align: right;">0.01</td>
 <td style="text-align: left;"></td>
 </tr>
@@ -1048,7 +1048,7 @@ Table&nbsp;2.2: 10 most popular <code>boundary=</code> values in OpenStreetMap
 <span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>tmap<span class="sc">::</span><span class="fu">tm_shape</span>(nat_parks) <span class="sc">+</span></span>
 <span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a>  tmap<span class="sc">::</span><span class="fu">tm_basemap</span>() <span class="sc">+</span></span>
 <span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>  tmap<span class="sc">::</span><span class="fu">tm_borders</span>(<span class="at">col =</span> <span class="st">"darkgreen"</span>, <span class="at">lwd =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>  tmap<span class="sc">::</span><span class="fu">tm_credits</span>(<span class="st">"(C) OpenStreetMap contributors"</span>, <span class="at">position =</span>  <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>  tmap<span class="sc">::</span><span class="fu">tm_credits</span>(<span class="st">"(C) OpenStreetMap contributors"</span>, <span class="at">position =</span>  <span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.05</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div id="fig-national_parks_in_peru" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -1175,8 +1175,8 @@ Figure&nbsp;2.12: National parks in Peru
 [61] "source"                 "source:date"            "start_date"            
 [64] "type"                   "url"                    "website"               
 [67] "whc:criteria"           "whc:inscription_date"   "wikidata"              
-[70] "wikipedia"              "wikipedia:de"           "wikipedia:es"          
-[73] "wikipedia:qu"           "geometry"              </code></pre>
+[70] "wikipedia"              "wikipedia:de"           "wikipedia:qu"          
+[73] "geometry"              </code></pre>
 </div>
 </div>
 <p>Let’s take the <strong>Parque Nacional Alto Purús</strong> as an example and display some of those fields.</p>
@@ -1258,7 +1258,7 @@ Table&nbsp;2.3: Some details about Parque Nacional Alto Purús from OpenStreetMa
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Pur%C3%BAs_peruano_1.png/320px-Pur%C3%BAs_peruano_1.png" class="img-fluid figure-img"></p>
-<figcaption>Image by FUERZA AÉREA DEL PERÚ, licence: <a href="https://creativecommons.org/licenses/by/3.0/deed.en">Creative Commons Attribution 3.0 Unported</a></figcaption>
+<figcaption>Image by NA, licence: <a href="NA"></a></figcaption>
 </figure>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -2073,7 +2073,7 @@ Table&nbsp;2.6: Roads and their coding values in OpenStreetMap data. Source: <a 
 <pre><code> [1] "unclassified"  "residential"   "track"         "tertiary"     
  [5] "service"       "secondary"     "living_street" "footway"      
  [9] "trunk"         "pedestrian"    "path"          "cycleway"     
-[13] "trunk_link"    "steps"         "proposed"     </code></pre>
+[13] "trunk_link"    "construction"  "steps"         "proposed"     </code></pre>
 </div>
 </div>
 <p>Comparing with <a href="#tbl-osm_highways" class="quarto-xref">Table&nbsp;<span>2.6</span></a> we can see <code>trunk</code> and <code>trunk_link</code> as the main road categories, followed by <code>secondary</code>, <code>tertiary</code>, etc. Let’s add them to our map.</p>
@@ -2476,39 +2476,46 @@ Figure&nbsp;2.19: Example of routes generated by openroutingservice.org using QG
 <span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>  osmdata<span class="sc">::</span><span class="fu">osmdata_sf</span>()</span>
 <span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a>osp <span class="ot">&lt;-</span> fire_stations<span class="sc">$</span>osm_polygons[, <span class="st">"amenity"</span> <span class="sc">==</span> <span class="st">"fire_station"</span>] <span class="sc">|&gt;</span></span>
-<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_centroid</span>()</span>
-<span id="cb63-7"><a href="#cb63-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb63-8"><a href="#cb63-8" aria-hidden="true" tabindex="-1"></a>osp <span class="ot">&lt;-</span> osp <span class="sc">|&gt;</span></span>
-<span id="cb63-9"><a href="#cb63-9" aria-hidden="true" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_transform</span>(<span class="at">crs =</span> sf<span class="sc">::</span><span class="fu">st_crs</span>(prusice_mun)) <span class="sc">|&gt;</span></span>
-<span id="cb63-10"><a href="#cb63-10" aria-hidden="true" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_filter</span>(prusice_mun, <span class="at">.predicate=</span>sf<span class="sc">::</span>st_within)</span>
-<span id="cb63-11"><a href="#cb63-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb63-12"><a href="#cb63-12" aria-hidden="true" tabindex="-1"></a>loc <span class="ot">&lt;-</span> osp <span class="sc">|&gt;</span></span>
-<span id="cb63-13"><a href="#cb63-13" aria-hidden="true" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_transform</span>(<span class="at">crs =</span> <span class="st">"EPSG:4326"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb63-14"><a href="#cb63-14" aria-hidden="true" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_coordinates</span>() <span class="sc">|&gt;</span></span>
-<span id="cb63-15"><a href="#cb63-15" aria-hidden="true" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_drop_geometry</span>()</span>
-<span id="cb63-16"><a href="#cb63-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb63-17"><a href="#cb63-17" aria-hidden="true" tabindex="-1"></a>iso <span class="ot">&lt;-</span> openrouteservice<span class="sc">::</span><span class="fu">ors_isochrones</span>(<span class="at">locations =</span> loc, </span>
-<span id="cb63-18"><a href="#cb63-18" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">range =</span> <span class="fu">c</span>(<span class="dv">3</span><span class="sc">*</span><span class="dv">60</span>, <span class="dv">6</span><span class="sc">*</span><span class="dv">60</span>, <span class="dv">9</span><span class="sc">*</span><span class="dv">60</span>), </span>
-<span id="cb63-19"><a href="#cb63-19" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">api_key =</span> <span class="st">"5b3ce3597851110001cf6248ec03277a4e17441bb853daa715874de4"</span>,</span>
-<span id="cb63-20"><a href="#cb63-20" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">output =</span> <span class="st">"sf"</span>)</span>
-<span id="cb63-21"><a href="#cb63-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb63-22"><a href="#cb63-22" aria-hidden="true" tabindex="-1"></a>tm <span class="sc">+</span></span>
-<span id="cb63-23"><a href="#cb63-23" aria-hidden="true" tabindex="-1"></a>  tmap<span class="sc">::</span><span class="fu">tm_shape</span>(iso) <span class="sc">+</span> </span>
-<span id="cb63-24"><a href="#cb63-24" aria-hidden="true" tabindex="-1"></a>  tmap<span class="sc">::</span><span class="fu">tm_polygons</span>(<span class="st">"value"</span>, </span>
-<span id="cb63-25"><a href="#cb63-25" aria-hidden="true" tabindex="-1"></a>                    <span class="at">fill.scale =</span> tmap<span class="sc">::</span><span class="fu">tm_scale_discrete</span>(</span>
-<span id="cb63-26"><a href="#cb63-26" aria-hidden="true" tabindex="-1"></a>                      <span class="at">ticks =</span> <span class="fu">unique</span>(iso<span class="sc">$</span>value)</span>
-<span id="cb63-27"><a href="#cb63-27" aria-hidden="true" tabindex="-1"></a>                    ),</span>
-<span id="cb63-28"><a href="#cb63-28" aria-hidden="true" tabindex="-1"></a>                    <span class="at">fill_alpha =</span> <span class="fl">0.7</span>,</span>
-<span id="cb63-29"><a href="#cb63-29" aria-hidden="true" tabindex="-1"></a>                    <span class="at">col =</span> <span class="st">"white"</span>, <span class="at">col_alpha =</span> <span class="dv">0</span>,</span>
-<span id="cb63-30"><a href="#cb63-30" aria-hidden="true" tabindex="-1"></a>                    <span class="at">fill.legend =</span> tmap<span class="sc">::</span><span class="fu">tm_legend</span>(</span>
-<span id="cb63-31"><a href="#cb63-31" aria-hidden="true" tabindex="-1"></a>                      <span class="at">title =</span> <span class="st">"access in min"</span>,</span>
-<span id="cb63-32"><a href="#cb63-32" aria-hidden="true" tabindex="-1"></a>                      <span class="at">labels =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">6</span>, <span class="dv">9</span>),</span>
-<span id="cb63-33"><a href="#cb63-33" aria-hidden="true" tabindex="-1"></a>                      <span class="at">position =</span> <span class="fu">c</span>(<span class="st">"left"</span>, <span class="st">"top"</span>),</span>
-<span id="cb63-34"><a href="#cb63-34" aria-hidden="true" tabindex="-1"></a>                      <span class="at">bg.color =</span> <span class="st">"white"</span></span>
-<span id="cb63-35"><a href="#cb63-35" aria-hidden="true" tabindex="-1"></a>                    ),</span>
-<span id="cb63-36"><a href="#cb63-36" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb63-37"><a href="#cb63-37" aria-hidden="true" tabindex="-1"></a>  tmap<span class="sc">::</span><span class="fu">tm_shape</span>(osp) <span class="sc">+</span></span>
-<span id="cb63-38"><a href="#cb63-38" aria-hidden="true" tabindex="-1"></a>  tmap<span class="sc">::</span><span class="fu">tm_dots</span>(<span class="at">size =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_centroid</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in st_centroid.sfc(st_geometry(x), of_largest_polygon =
+of_largest_polygon): st_centroid does not give correct centroids for
+longitude/latitude data</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>osp <span class="ot">&lt;-</span> osp <span class="sc">|&gt;</span></span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_transform</span>(<span class="at">crs =</span> sf<span class="sc">::</span><span class="fu">st_crs</span>(prusice_mun)) <span class="sc">|&gt;</span></span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_filter</span>(prusice_mun, <span class="at">.predicate=</span>sf<span class="sc">::</span>st_within)</span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a>loc <span class="ot">&lt;-</span> osp <span class="sc">|&gt;</span></span>
+<span id="cb65-6"><a href="#cb65-6" aria-hidden="true" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_transform</span>(<span class="at">crs =</span> <span class="st">"EPSG:4326"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb65-7"><a href="#cb65-7" aria-hidden="true" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_coordinates</span>() <span class="sc">|&gt;</span></span>
+<span id="cb65-8"><a href="#cb65-8" aria-hidden="true" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_drop_geometry</span>()</span>
+<span id="cb65-9"><a href="#cb65-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-10"><a href="#cb65-10" aria-hidden="true" tabindex="-1"></a>iso <span class="ot">&lt;-</span> openrouteservice<span class="sc">::</span><span class="fu">ors_isochrones</span>(<span class="at">locations =</span> loc, </span>
+<span id="cb65-11"><a href="#cb65-11" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">range =</span> <span class="fu">c</span>(<span class="dv">3</span><span class="sc">*</span><span class="dv">60</span>, <span class="dv">6</span><span class="sc">*</span><span class="dv">60</span>, <span class="dv">9</span><span class="sc">*</span><span class="dv">60</span>), </span>
+<span id="cb65-12"><a href="#cb65-12" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">api_key =</span> <span class="st">"5b3ce3597851110001cf6248ec03277a4e17441bb853daa715874de4"</span>,</span>
+<span id="cb65-13"><a href="#cb65-13" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">output =</span> <span class="st">"sf"</span>)</span>
+<span id="cb65-14"><a href="#cb65-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-15"><a href="#cb65-15" aria-hidden="true" tabindex="-1"></a>tm <span class="sc">+</span></span>
+<span id="cb65-16"><a href="#cb65-16" aria-hidden="true" tabindex="-1"></a>  tmap<span class="sc">::</span><span class="fu">tm_shape</span>(iso) <span class="sc">+</span> </span>
+<span id="cb65-17"><a href="#cb65-17" aria-hidden="true" tabindex="-1"></a>  tmap<span class="sc">::</span><span class="fu">tm_polygons</span>(<span class="st">"value"</span>, </span>
+<span id="cb65-18"><a href="#cb65-18" aria-hidden="true" tabindex="-1"></a>                    <span class="at">fill.scale =</span> tmap<span class="sc">::</span><span class="fu">tm_scale_discrete</span>(</span>
+<span id="cb65-19"><a href="#cb65-19" aria-hidden="true" tabindex="-1"></a>                      <span class="at">ticks =</span> <span class="fu">unique</span>(iso<span class="sc">$</span>value)</span>
+<span id="cb65-20"><a href="#cb65-20" aria-hidden="true" tabindex="-1"></a>                    ),</span>
+<span id="cb65-21"><a href="#cb65-21" aria-hidden="true" tabindex="-1"></a>                    <span class="at">fill_alpha =</span> <span class="fl">0.7</span>,</span>
+<span id="cb65-22"><a href="#cb65-22" aria-hidden="true" tabindex="-1"></a>                    <span class="at">col =</span> <span class="st">"white"</span>, <span class="at">col_alpha =</span> <span class="dv">0</span>,</span>
+<span id="cb65-23"><a href="#cb65-23" aria-hidden="true" tabindex="-1"></a>                    <span class="at">fill.legend =</span> tmap<span class="sc">::</span><span class="fu">tm_legend</span>(</span>
+<span id="cb65-24"><a href="#cb65-24" aria-hidden="true" tabindex="-1"></a>                      <span class="at">title =</span> <span class="st">"access in min"</span>,</span>
+<span id="cb65-25"><a href="#cb65-25" aria-hidden="true" tabindex="-1"></a>                      <span class="at">labels =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">6</span>, <span class="dv">9</span>),</span>
+<span id="cb65-26"><a href="#cb65-26" aria-hidden="true" tabindex="-1"></a>                      <span class="at">position =</span> <span class="fu">c</span>(<span class="st">"left"</span>, <span class="st">"top"</span>),</span>
+<span id="cb65-27"><a href="#cb65-27" aria-hidden="true" tabindex="-1"></a>                      <span class="at">bg.color =</span> <span class="st">"white"</span></span>
+<span id="cb65-28"><a href="#cb65-28" aria-hidden="true" tabindex="-1"></a>                    ),</span>
+<span id="cb65-29"><a href="#cb65-29" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb65-30"><a href="#cb65-30" aria-hidden="true" tabindex="-1"></a>  tmap<span class="sc">::</span><span class="fu">tm_shape</span>(osp) <span class="sc">+</span></span>
+<span id="cb65-31"><a href="#cb65-31" aria-hidden="true" tabindex="-1"></a>  tmap<span class="sc">::</span><span class="fu">tm_dots</span>(<span class="at">size =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div id="fig-prusice_osp_access" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -2531,14 +2538,14 @@ Figure&nbsp;2.20: Areas reachable in 3, 6, and 9 minutes from fire stations in P
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">knitr.kable.NA =</span> <span class="st">''</span>)</span>
-<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> jsonlite<span class="sc">::</span><span class="fu">read_json</span>(<span class="st">"https://taginfo.openstreetmap.org/api/4/key/values?key=power&amp;filter=all&amp;lang=en&amp;sortname=count&amp;sortorder=desc&amp;rp=10&amp;page=1"</span>, <span class="at">simplifyVector =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>a<span class="sc">$</span>data <span class="sc">|&gt;</span></span>
-<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(<span class="at">select =</span> <span class="fu">c</span>(value, count, fraction, description)) <span class="sc">|&gt;</span></span>
-<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>, </span>
-<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">format.args =</span> <span class="fu">list</span>(<span class="at">decimal.mark =</span> <span class="st">"."</span>, <span class="at">big.mark =</span> <span class="st">""</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb64-8"><a href="#cb64-8" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_classic_2</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">knitr.kable.NA =</span> <span class="st">''</span>)</span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> jsonlite<span class="sc">::</span><span class="fu">read_json</span>(<span class="st">"https://taginfo.openstreetmap.org/api/4/key/values?key=power&amp;filter=all&amp;lang=en&amp;sortname=count&amp;sortorder=desc&amp;rp=10&amp;page=1"</span>, <span class="at">simplifyVector =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>a<span class="sc">$</span>data <span class="sc">|&gt;</span></span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(<span class="at">select =</span> <span class="fu">c</span>(value, count, fraction, description)) <span class="sc">|&gt;</span></span>
+<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>, </span>
+<span id="cb66-7"><a href="#cb66-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">format.args =</span> <span class="fu">list</span>(<span class="at">decimal.mark =</span> <span class="st">"."</span>, <span class="at">big.mark =</span> <span class="st">""</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb66-8"><a href="#cb66-8" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_classic_2</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div id="tbl-grid_featues" class="cell quarto-float anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -2560,61 +2567,61 @@ Table&nbsp;2.9: 10 most popular <code>power=</code> values in OpenStreetMap
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">tower</td>
-<td style="text-align: right;">16089907</td>
-<td style="text-align: right;">0.46</td>
+<td style="text-align: right;">16505568</td>
+<td style="text-align: right;">0.43</td>
 <td style="text-align: left;">A tower or pylon carrying high voltage electricity cables. Often constructed from steel latticework but tubular or solid pylons are also used.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">pole</td>
-<td style="text-align: right;">13189726</td>
-<td style="text-align: right;">0.37</td>
+<td style="text-align: right;">14242412</td>
+<td style="text-align: right;">0.38</td>
 <td style="text-align: left;">A single pole supporting power lines, often a wood, steel, or concrete mast designed to carry minor power lines.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">generator</td>
-<td style="text-align: right;">2508120</td>
-<td style="text-align: right;">0.07</td>
+<td style="text-align: right;">3473446</td>
+<td style="text-align: right;">0.09</td>
 <td style="text-align: left;">A device which converts one form of energy to another, for example, an electrical generator.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">line</td>
-<td style="text-align: right;">922709</td>
+<td style="text-align: right;">979682</td>
 <td style="text-align: right;">0.03</td>
 <td style="text-align: left;">High-voltage power lines used for power transmission, usually supported by towers or pylons</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">minor_line</td>
-<td style="text-align: right;">883016</td>
+<td style="text-align: right;">967060</td>
 <td style="text-align: right;">0.03</td>
 <td style="text-align: left;">Minor power lines forming the distribution grid, usually carried by poles.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">substation</td>
-<td style="text-align: right;">661210</td>
+<td style="text-align: right;">693870</td>
 <td style="text-align: right;">0.02</td>
 <td style="text-align: left;">A facility which controls the flow of electricity in a power network with transformers, switchgear or compensators.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">portal</td>
-<td style="text-align: right;">195721</td>
+<td style="text-align: right;">215782</td>
 <td style="text-align: right;">0.01</td>
 <td style="text-align: left;">A supporting structure for power lines, composed of vertical legs with cables between them attached to a horizontal crossarm.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">transformer</td>
-<td style="text-align: right;">180990</td>
+<td style="text-align: right;">198526</td>
 <td style="text-align: right;">0.01</td>
 <td style="text-align: left;">A device for stepping up or down electric voltage. Large power transformers are typically located inside substations</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">catenary_mast</td>
-<td style="text-align: right;">176976</td>
-<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">197810</td>
+<td style="text-align: right;">0.01</td>
 <td style="text-align: left;">A pole supporting the overhead wires used to supply electricity to vehicles equipped with a pantograph such as trams and trains</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">switch</td>
-<td style="text-align: right;">111941</td>
+<td style="text-align: right;">121622</td>
 <td style="text-align: right;">0.00</td>
 <td style="text-align: left;">A device which allows electrical network operators to power up &amp; down lines and transformers in substations or along the power grid.</td>
 </tr>
@@ -2635,54 +2642,54 @@ Table&nbsp;2.9: 10 most popular <code>power=</code> values in OpenStreetMap
 </div></div><div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>bbox <span class="ot">&lt;-</span> osmdata<span class="sc">::</span><span class="fu">getbb</span>(<span class="st">"Sweden"</span>, <span class="at">featuretype =</span> <span class="st">"country"</span>)</span>
-<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>sw <span class="ot">&lt;-</span> osmdata<span class="sc">::</span><span class="fu">opq</span>(bbox, <span class="at">timeout =</span> <span class="dv">60</span><span class="sc">*</span><span class="dv">30</span>) <span class="sc">|&gt;</span></span>
-<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>  osmdata<span class="sc">::</span><span class="fu">add_osm_feature</span>(<span class="at">key =</span> <span class="st">"boundary"</span>, <span class="at">value =</span> <span class="st">"administrative"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a>  osmdata<span class="sc">::</span><span class="fu">add_osm_feature</span>(<span class="at">key =</span> <span class="st">"admin_level"</span>, <span class="at">value =</span> <span class="st">"2"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb65-6"><a href="#cb65-6" aria-hidden="true" tabindex="-1"></a>  osmdata<span class="sc">::</span><span class="fu">add_osm_feature</span>(<span class="at">key =</span> <span class="st">"name:en"</span>, <span class="at">value =</span> <span class="st">"Sweden"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb65-7"><a href="#cb65-7" aria-hidden="true" tabindex="-1"></a>  osmdata<span class="sc">::</span><span class="fu">osmdata_sf</span>() <span class="sc">|&gt;</span></span>
-<span id="cb65-8"><a href="#cb65-8" aria-hidden="true" tabindex="-1"></a>  osmdata<span class="sc">::</span><span class="fu">unique_osmdata</span>() <span class="sc">|&gt;</span></span>
-<span id="cb65-9"><a href="#cb65-9" aria-hidden="true" tabindex="-1"></a>  osmdata<span class="sc">::</span><span class="fu">unname_osmdata_sf</span>()</span>
-<span id="cb65-10"><a href="#cb65-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb65-11"><a href="#cb65-11" aria-hidden="true" tabindex="-1"></a>sw_boundary <span class="ot">&lt;-</span> sw<span class="sc">$</span>osm_multipolygons[sw<span class="sc">$</span>osm_multipolygons<span class="sc">$</span><span class="st">`</span><span class="at">ISO3166-1</span><span class="st">`</span> <span class="sc">==</span> <span class="st">"SE"</span>,][, <span class="fu">c</span>(<span class="st">"name"</span>, <span class="st">"geometry"</span>)]</span>
-<span id="cb65-12"><a href="#cb65-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb65-13"><a href="#cb65-13" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> osmdata<span class="sc">::</span><span class="fu">opq</span>(bbox, <span class="at">timeout =</span> <span class="dv">60</span><span class="sc">*</span><span class="dv">30</span>) <span class="sc">|&gt;</span></span>
-<span id="cb65-14"><a href="#cb65-14" aria-hidden="true" tabindex="-1"></a>  osmdata<span class="sc">::</span><span class="fu">add_osm_feature</span>(<span class="at">key =</span> <span class="st">"power"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb65-15"><a href="#cb65-15" aria-hidden="true" tabindex="-1"></a>  osmdata<span class="sc">::</span><span class="fu">osmdata_sf</span>() <span class="sc">|&gt;</span></span>
-<span id="cb65-16"><a href="#cb65-16" aria-hidden="true" tabindex="-1"></a>  osmdata<span class="sc">::</span><span class="fu">unique_osmdata</span>()</span>
-<span id="cb65-17"><a href="#cb65-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb65-18"><a href="#cb65-18" aria-hidden="true" tabindex="-1"></a>grid <span class="ot">&lt;-</span> p<span class="sc">$</span>osm_lines <span class="sc">|&gt;</span></span>
-<span id="cb65-19"><a href="#cb65-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(power <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"cable"</span>, <span class="st">"line"</span>, <span class="st">"minor_line"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb65-20"><a href="#cb65-20" aria-hidden="true" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_filter</span>(sw_boundary) <span class="sc">|&gt;</span></span>
-<span id="cb65-21"><a href="#cb65-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(<span class="at">select =</span> <span class="fu">c</span>(<span class="st">"osm_id"</span>, <span class="st">"voltage"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb65-22"><a href="#cb65-22" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">separate_rows</span>(voltage) <span class="sc">|&gt;</span></span>
-<span id="cb65-23"><a href="#cb65-23" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">distinct</span>(<span class="at">.keep_all =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb65-24"><a href="#cb65-24" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">voltage =</span> <span class="fu">as.numeric</span>(voltage)<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">3</span>)</span>
-<span id="cb65-25"><a href="#cb65-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb65-26"><a href="#cb65-26" aria-hidden="true" tabindex="-1"></a>substations <span class="ot">&lt;-</span> p<span class="sc">$</span>osm_polygons <span class="sc">|&gt;</span></span>
-<span id="cb65-27"><a href="#cb65-27" aria-hidden="true" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_filter</span>(sw_boundary) <span class="sc">|&gt;</span></span>
-<span id="cb65-28"><a href="#cb65-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(power <span class="sc">==</span> <span class="st">"substation"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb65-29"><a href="#cb65-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(<span class="at">select =</span> <span class="fu">c</span>(<span class="st">"osm_id"</span>, <span class="st">"power"</span>, <span class="st">"voltage"</span>, <span class="st">"name"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb65-30"><a href="#cb65-30" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">separate_rows</span>(voltage) <span class="sc">|&gt;</span></span>
-<span id="cb65-31"><a href="#cb65-31" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">distinct</span>(<span class="at">.keep_all =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb65-32"><a href="#cb65-32" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">voltage =</span> <span class="fu">as.numeric</span>(voltage)<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">3</span>)</span>
-<span id="cb65-33"><a href="#cb65-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb65-34"><a href="#cb65-34" aria-hidden="true" tabindex="-1"></a>substations <span class="ot">&lt;-</span> p<span class="sc">$</span>osm_points <span class="sc">|&gt;</span></span>
-<span id="cb65-35"><a href="#cb65-35" aria-hidden="true" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_filter</span>(sw_boundary) <span class="sc">|&gt;</span></span>
-<span id="cb65-36"><a href="#cb65-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(power <span class="sc">==</span> <span class="st">"substation"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb65-37"><a href="#cb65-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(<span class="at">select =</span> <span class="fu">c</span>(<span class="st">"osm_id"</span>, <span class="st">"power"</span>, <span class="st">"voltage"</span>, <span class="st">"name"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb65-38"><a href="#cb65-38" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">separate_rows</span>(voltage) <span class="sc">|&gt;</span></span>
-<span id="cb65-39"><a href="#cb65-39" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">distinct</span>(<span class="at">.keep_all =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb65-40"><a href="#cb65-40" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">voltage =</span> <span class="fu">as.numeric</span>(voltage)<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">3</span>) <span class="sc">|&gt;</span></span>
-<span id="cb65-41"><a href="#cb65-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rbind</span>(substations)</span>
-<span id="cb65-42"><a href="#cb65-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb65-43"><a href="#cb65-43" aria-hidden="true" tabindex="-1"></a>tmap<span class="sc">::</span><span class="fu">tm_shape</span>(sw_boundary) <span class="sc">+</span></span>
-<span id="cb65-44"><a href="#cb65-44" aria-hidden="true" tabindex="-1"></a>  tmap<span class="sc">::</span><span class="fu">tm_polygons</span>(<span class="at">fill =</span> <span class="st">"gray95"</span>) <span class="sc">+</span></span>
-<span id="cb65-45"><a href="#cb65-45" aria-hidden="true" tabindex="-1"></a>  tmap<span class="sc">::</span><span class="fu">tm_shape</span>(grid) <span class="sc">+</span></span>
-<span id="cb65-46"><a href="#cb65-46" aria-hidden="true" tabindex="-1"></a>  tmap<span class="sc">::</span><span class="fu">tm_lines</span>(<span class="st">"voltage"</span>, <span class="at">col.legend =</span> tmap<span class="sc">::</span><span class="fu">tm_legend</span>(<span class="at">title =</span> <span class="st">"Power grid [kV]"</span>)) <span class="sc">+</span></span>
-<span id="cb65-47"><a href="#cb65-47" aria-hidden="true" tabindex="-1"></a>  tmap<span class="sc">::</span><span class="fu">tm_shape</span>(substations) <span class="sc">+</span></span>
-<span id="cb65-48"><a href="#cb65-48" aria-hidden="true" tabindex="-1"></a>  tmap<span class="sc">::</span><span class="fu">tm_dots</span>(<span class="at">size =</span> <span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>bbox <span class="ot">&lt;-</span> osmdata<span class="sc">::</span><span class="fu">getbb</span>(<span class="st">"Sweden"</span>, <span class="at">featuretype =</span> <span class="st">"country"</span>)</span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a>sw <span class="ot">&lt;-</span> osmdata<span class="sc">::</span><span class="fu">opq</span>(bbox, <span class="at">timeout =</span> <span class="dv">60</span><span class="sc">*</span><span class="dv">30</span>) <span class="sc">|&gt;</span></span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a>  osmdata<span class="sc">::</span><span class="fu">add_osm_feature</span>(<span class="at">key =</span> <span class="st">"boundary"</span>, <span class="at">value =</span> <span class="st">"administrative"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a>  osmdata<span class="sc">::</span><span class="fu">add_osm_feature</span>(<span class="at">key =</span> <span class="st">"admin_level"</span>, <span class="at">value =</span> <span class="st">"2"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb67-6"><a href="#cb67-6" aria-hidden="true" tabindex="-1"></a>  osmdata<span class="sc">::</span><span class="fu">add_osm_feature</span>(<span class="at">key =</span> <span class="st">"name:en"</span>, <span class="at">value =</span> <span class="st">"Sweden"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb67-7"><a href="#cb67-7" aria-hidden="true" tabindex="-1"></a>  osmdata<span class="sc">::</span><span class="fu">osmdata_sf</span>() <span class="sc">|&gt;</span></span>
+<span id="cb67-8"><a href="#cb67-8" aria-hidden="true" tabindex="-1"></a>  osmdata<span class="sc">::</span><span class="fu">unique_osmdata</span>() <span class="sc">|&gt;</span></span>
+<span id="cb67-9"><a href="#cb67-9" aria-hidden="true" tabindex="-1"></a>  osmdata<span class="sc">::</span><span class="fu">unname_osmdata_sf</span>()</span>
+<span id="cb67-10"><a href="#cb67-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-11"><a href="#cb67-11" aria-hidden="true" tabindex="-1"></a>sw_boundary <span class="ot">&lt;-</span> sw<span class="sc">$</span>osm_multipolygons[sw<span class="sc">$</span>osm_multipolygons<span class="sc">$</span><span class="st">`</span><span class="at">ISO3166-1</span><span class="st">`</span> <span class="sc">==</span> <span class="st">"SE"</span>,][, <span class="fu">c</span>(<span class="st">"name"</span>, <span class="st">"geometry"</span>)]</span>
+<span id="cb67-12"><a href="#cb67-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-13"><a href="#cb67-13" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> osmdata<span class="sc">::</span><span class="fu">opq</span>(bbox, <span class="at">timeout =</span> <span class="dv">60</span><span class="sc">*</span><span class="dv">30</span>) <span class="sc">|&gt;</span></span>
+<span id="cb67-14"><a href="#cb67-14" aria-hidden="true" tabindex="-1"></a>  osmdata<span class="sc">::</span><span class="fu">add_osm_feature</span>(<span class="at">key =</span> <span class="st">"power"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb67-15"><a href="#cb67-15" aria-hidden="true" tabindex="-1"></a>  osmdata<span class="sc">::</span><span class="fu">osmdata_sf</span>() <span class="sc">|&gt;</span></span>
+<span id="cb67-16"><a href="#cb67-16" aria-hidden="true" tabindex="-1"></a>  osmdata<span class="sc">::</span><span class="fu">unique_osmdata</span>()</span>
+<span id="cb67-17"><a href="#cb67-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-18"><a href="#cb67-18" aria-hidden="true" tabindex="-1"></a>grid <span class="ot">&lt;-</span> p<span class="sc">$</span>osm_lines <span class="sc">|&gt;</span></span>
+<span id="cb67-19"><a href="#cb67-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(power <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"cable"</span>, <span class="st">"line"</span>, <span class="st">"minor_line"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb67-20"><a href="#cb67-20" aria-hidden="true" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_filter</span>(sw_boundary) <span class="sc">|&gt;</span></span>
+<span id="cb67-21"><a href="#cb67-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(<span class="at">select =</span> <span class="fu">c</span>(<span class="st">"osm_id"</span>, <span class="st">"voltage"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb67-22"><a href="#cb67-22" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">separate_rows</span>(voltage) <span class="sc">|&gt;</span></span>
+<span id="cb67-23"><a href="#cb67-23" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">distinct</span>(<span class="at">.keep_all =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb67-24"><a href="#cb67-24" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">voltage =</span> <span class="fu">as.numeric</span>(voltage)<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">3</span>)</span>
+<span id="cb67-25"><a href="#cb67-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-26"><a href="#cb67-26" aria-hidden="true" tabindex="-1"></a>substations <span class="ot">&lt;-</span> p<span class="sc">$</span>osm_polygons <span class="sc">|&gt;</span></span>
+<span id="cb67-27"><a href="#cb67-27" aria-hidden="true" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_filter</span>(sw_boundary) <span class="sc">|&gt;</span></span>
+<span id="cb67-28"><a href="#cb67-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(power <span class="sc">==</span> <span class="st">"substation"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb67-29"><a href="#cb67-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(<span class="at">select =</span> <span class="fu">c</span>(<span class="st">"osm_id"</span>, <span class="st">"power"</span>, <span class="st">"voltage"</span>, <span class="st">"name"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb67-30"><a href="#cb67-30" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">separate_rows</span>(voltage) <span class="sc">|&gt;</span></span>
+<span id="cb67-31"><a href="#cb67-31" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">distinct</span>(<span class="at">.keep_all =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb67-32"><a href="#cb67-32" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">voltage =</span> <span class="fu">as.numeric</span>(voltage)<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">3</span>)</span>
+<span id="cb67-33"><a href="#cb67-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-34"><a href="#cb67-34" aria-hidden="true" tabindex="-1"></a>substations <span class="ot">&lt;-</span> p<span class="sc">$</span>osm_points <span class="sc">|&gt;</span></span>
+<span id="cb67-35"><a href="#cb67-35" aria-hidden="true" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_filter</span>(sw_boundary) <span class="sc">|&gt;</span></span>
+<span id="cb67-36"><a href="#cb67-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(power <span class="sc">==</span> <span class="st">"substation"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb67-37"><a href="#cb67-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(<span class="at">select =</span> <span class="fu">c</span>(<span class="st">"osm_id"</span>, <span class="st">"power"</span>, <span class="st">"voltage"</span>, <span class="st">"name"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb67-38"><a href="#cb67-38" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">separate_rows</span>(voltage) <span class="sc">|&gt;</span></span>
+<span id="cb67-39"><a href="#cb67-39" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">distinct</span>(<span class="at">.keep_all =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb67-40"><a href="#cb67-40" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">voltage =</span> <span class="fu">as.numeric</span>(voltage)<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">3</span>) <span class="sc">|&gt;</span></span>
+<span id="cb67-41"><a href="#cb67-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rbind</span>(substations)</span>
+<span id="cb67-42"><a href="#cb67-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-43"><a href="#cb67-43" aria-hidden="true" tabindex="-1"></a>tmap<span class="sc">::</span><span class="fu">tm_shape</span>(sw_boundary) <span class="sc">+</span></span>
+<span id="cb67-44"><a href="#cb67-44" aria-hidden="true" tabindex="-1"></a>  tmap<span class="sc">::</span><span class="fu">tm_polygons</span>(<span class="at">fill =</span> <span class="st">"gray95"</span>) <span class="sc">+</span></span>
+<span id="cb67-45"><a href="#cb67-45" aria-hidden="true" tabindex="-1"></a>  tmap<span class="sc">::</span><span class="fu">tm_shape</span>(grid) <span class="sc">+</span></span>
+<span id="cb67-46"><a href="#cb67-46" aria-hidden="true" tabindex="-1"></a>  tmap<span class="sc">::</span><span class="fu">tm_lines</span>(<span class="st">"voltage"</span>, <span class="at">col.legend =</span> tmap<span class="sc">::</span><span class="fu">tm_legend</span>(<span class="at">title =</span> <span class="st">"Power grid [kV]"</span>)) <span class="sc">+</span></span>
+<span id="cb67-47"><a href="#cb67-47" aria-hidden="true" tabindex="-1"></a>  tmap<span class="sc">::</span><span class="fu">tm_shape</span>(substations) <span class="sc">+</span></span>
+<span id="cb67-48"><a href="#cb67-48" aria-hidden="true" tabindex="-1"></a>  tmap<span class="sc">::</span><span class="fu">tm_dots</span>(<span class="at">size =</span> <span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div id="fig-power_grid_sweden" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -2929,6 +2936,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
           // target, if specified
           link.setAttribute("target", "_blank");
           if (link.getAttribute("rel") === null) {
@@ -2970,7 +2982,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');

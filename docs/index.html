@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.8">
+<meta name="generator" content="quarto-1.5.21">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -214,7 +214,7 @@ div.csl-indent {
 <h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
 <p>Open Data is powerful concept that embodies freedom. Freedom of choice, access to information, and, after processing — the attainment of knowledge. It grants us the ability to gain insights into the world around us and understand the processes occurring within it. The accessibility of data also signifies the capacity to discover connections between disparate pieces of information and seamlessly integrate them.</p>
 <p>These few chapters aim to illustrate the availability and possibilities of working with open data, particularly focusing on spatial data.</p>
-<p>The book may have a focus on R <span class="citation" data-cites="base">(<a href="references.html#ref-base" role="doc-biblioref">R Core Team 2023</a>)</span>, however in certain cases I have attempted to show alternative methods for obtaining and working with data. But, to be candid: in my humble opinion R stands out as a holy grail in the realm of data mining, wrangling, and visualization. With quarto (or bookdown/rmarkdown/latex) as the backbone, it provides fantastic environment not only to exploring data but also for sharing the output. What’s even more crucial is its reproducibility. This implies that when you play with provided examples, you should achieve the same (or at least very similar results). Keep in mind that OpenStreetMap which is used to acquire spatial data in chapter <a href="osm.html" class="quarto-xref"><span>Chapter 2</span></a> is growing every day (with around 4 million map changes per day according to <a href="https://wiki.openstreetmap.org/wiki/Stats">wiki</a>) and some data might have already changed or become obsolete.</p>
+<p>The book may have a focus on R <span class="citation" data-cites="base">(<a href="references.html#ref-base" role="doc-biblioref">R Core Team 2023</a>)</span>, however in certain cases I have attempted to show alternative methods for obtaining and working with data. But, to be candid: in my humble opinion R stands out as a holy grail in the realm of data mining, wrangling, and visualization. With quarto (or bookdown/rmarkdown/latex) as the backbone, it provides fantastic environment not only to exploring data but also for sharing the output. What’s even more crucial is its reproducibility. This implies that when you play with provided examples, you should achieve the same (or at least very similar results). Keep in mind that OpenStreetMap which is used to acquire spatial data in <a href="osm.html" class="quarto-xref"><span>Chapter 2</span></a> is growing every day (with around 4 million map changes per day according to <a href="https://wiki.openstreetmap.org/wiki/Stats">wiki</a>) and some data might have already changed or become obsolete.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -330,6 +330,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
           // target, if specified
           link.setAttribute("target", "_blank");
           if (link.getAttribute("rel") === null) {
@@ -371,7 +376,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');

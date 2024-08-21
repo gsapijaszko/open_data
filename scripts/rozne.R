@@ -350,3 +350,11 @@ chelsaDL::ch_queries(variables = "temp", layers = 1, timeframes = "1979-2013")
 as.numeric(httr::HEAD("https://os.zhdk.cloud.switch.ch/envicloud/chelsa/chelsa_V2/GLOBAL/climatologies/1981-2010/tas/CHELSA_tas_01_1981-2010_V.2.1.tif")$headers$`content-length`)
 
 file.size("/home/sapi/projekty/open_data/data/temp/ChelsaV2.1Climatologies/CHELSA_tas_01_1981-2010_V2.1.tif")
+
+
+# -------------------------------------------------------------------------------------------------------
+
+
+a <- worldmet::getMeta(country = "PL")
+a |>
+  print(n = 30)
