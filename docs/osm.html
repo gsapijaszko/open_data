@@ -332,7 +332,7 @@ Figure&nbsp;2.1: Number of editors (blue) and number of nodes per editor/week (b
 <img src="osm_files/figure-html/fig-osm_bibliography_per_year-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-osm_bibliography_per_year-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.2: OpenStreetMap related bibliography by year
+Figure&nbsp;2.2: OpenStreetMap related bibliography by year as of January 2024
 </figcaption>
 </figure>
 </div>
@@ -633,7 +633,7 @@ Figure&nbsp;2.8: Border of the Italy including territorial waters
 </div>
 <p>If there is a requirement to preserve landmass only boundaries, a useful ‘trick’ is to download lower-level areas and then combine them. For example:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>it_regions <span class="ot">&lt;-</span> osmdata<span class="sc">::</span><span class="fu">opq</span>(<span class="at">bbox =</span> it_bbox, <span class="at">timeout =</span> <span class="dv">60</span><span class="sc">*</span><span class="dv">20</span>) <span class="sc">|&gt;</span></span>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>it_regions <span class="ot">&lt;-</span> osmdata<span class="sc">::</span><span class="fu">opq</span>(<span class="at">bbox =</span> it_bbox, <span class="at">timeout =</span> <span class="dv">60</span><span class="sc">*</span><span class="dv">120</span>) <span class="sc">|&gt;</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  osmdata<span class="sc">::</span><span class="fu">add_osm_feature</span>(<span class="at">key =</span> <span class="st">"boundary"</span>, <span class="at">value =</span> <span class="st">"administrative"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  osmdata<span class="sc">::</span><span class="fu">add_osm_feature</span>(<span class="at">key =</span> <span class="st">"admin_level"</span>, <span class="at">value =</span> <span class="st">"4"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  osmdata<span class="sc">::</span><span class="fu">add_osm_feature</span>(<span class="at">key =</span> <span class="st">"ISO3166-2"</span>, <span class="at">value =</span> <span class="st">"IT"</span>, <span class="at">value_exact =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
@@ -952,43 +952,43 @@ Table&nbsp;2.2: 10 most popular <code>boundary=</code> values in OpenStreetMap
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">administrative</td>
-<td style="text-align: right;">2045683</td>
+<td style="text-align: right;">2047792</td>
 <td style="text-align: right;">0.84</td>
 <td style="text-align: left;">An administrative boundary recognised by governments for administrative purposes.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">protected_area</td>
-<td style="text-align: right;">116358</td>
+<td style="text-align: right;">116584</td>
 <td style="text-align: right;">0.05</td>
 <td style="text-align: left;">Used to mark boundaries of protected areas including national parks, wilderness, marine protection areas, heritage sites and other, similar areas.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">postal_code</td>
-<td style="text-align: right;">53787</td>
+<td style="text-align: right;">53783</td>
 <td style="text-align: right;">0.02</td>
 <td style="text-align: left;">A postal code boundary</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">census</td>
-<td style="text-align: right;">24852</td>
+<td style="text-align: right;">24898</td>
 <td style="text-align: right;">0.01</td>
 <td style="text-align: left;">A census-designated boundary delineating a statistical area, not necessarily observable on the ground</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">marker</td>
-<td style="text-align: right;">24492</td>
+<td style="text-align: right;">24510</td>
 <td style="text-align: right;">0.01</td>
 <td style="text-align: left;">A physical marker that identifies a boundary</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">local_authority</td>
-<td style="text-align: right;">16273</td>
+<td style="text-align: right;">16341</td>
 <td style="text-align: right;">0.01</td>
 <td style="text-align: left;">Describes the territory of a local authority</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">landuse</td>
-<td style="text-align: right;">16204</td>
+<td style="text-align: right;">16203</td>
 <td style="text-align: right;">0.01</td>
 <td style="text-align: left;"></td>
 </tr>
@@ -1000,7 +1000,7 @@ Table&nbsp;2.2: 10 most popular <code>boundary=</code> values in OpenStreetMap
 </tr>
 <tr class="odd">
 <td style="text-align: left;">political</td>
-<td style="text-align: right;">14014</td>
+<td style="text-align: right;">14016</td>
 <td style="text-align: right;">0.01</td>
 <td style="text-align: left;">Political boundary, such as an electoral ward or parliamentary constituency</td>
 </tr>
@@ -1991,10 +1991,25 @@ Figure&nbsp;2.16: Example of land use around Leipzig, Germany
 <section id="where-the-streets-have-no-names" class="level2 page-columns page-full" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="where-the-streets-have-no-names"><span class="header-section-number">2.4</span> Where the streets have no names</h2>
 <p>Streets, roads or paths — all have <code>highway</code> key within OSM. The main road types, their values and meaning is shown in <a href="#tbl-osm_highways" class="quarto-xref">Table&nbsp;<span>2.6</span></a>. Except those highways, there is a bunch of others like <code>living_street</code> <code>pedestrian</code> or just a <code>track</code> in forest — details are available on <a href="https://wiki.openstreetmap.org/wiki/Key:highway">wiki</a>. The OSM roads network data is probably most used data around the world. It’s a base for different navigation systems (including OSMAnd), for visualization of bus routes, it is also used in online games.</p>
+<!--
 
-<div class="no-row-height column-margin column-container"><div class="">
-<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/GzZWSrr5wFI" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
-</div></div><div class="cell">
+::: column-margin
+
+
+
+
+
+
+
+
+
+
+
+
+:::
+
+-->
+<div class="cell">
 <div id="tbl-osm_highways" class="cell quarto-float anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-osm_highways-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -2567,61 +2582,61 @@ Table&nbsp;2.9: 10 most popular <code>power=</code> values in OpenStreetMap
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">tower</td>
-<td style="text-align: right;">16505568</td>
+<td style="text-align: right;">16514287</td>
 <td style="text-align: right;">0.43</td>
 <td style="text-align: left;">A tower or pylon carrying high voltage electricity cables. Often constructed from steel latticework but tubular or solid pylons are also used.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">pole</td>
-<td style="text-align: right;">14242412</td>
+<td style="text-align: right;">14283418</td>
 <td style="text-align: right;">0.38</td>
 <td style="text-align: left;">A single pole supporting power lines, often a wood, steel, or concrete mast designed to carry minor power lines.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">generator</td>
-<td style="text-align: right;">3473446</td>
+<td style="text-align: right;">3476127</td>
 <td style="text-align: right;">0.09</td>
 <td style="text-align: left;">A device which converts one form of energy to another, for example, an electrical generator.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">line</td>
-<td style="text-align: right;">979682</td>
+<td style="text-align: right;">980642</td>
 <td style="text-align: right;">0.03</td>
 <td style="text-align: left;">High-voltage power lines used for power transmission, usually supported by towers or pylons</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">minor_line</td>
-<td style="text-align: right;">967060</td>
+<td style="text-align: right;">970524</td>
 <td style="text-align: right;">0.03</td>
 <td style="text-align: left;">Minor power lines forming the distribution grid, usually carried by poles.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">substation</td>
-<td style="text-align: right;">693870</td>
+<td style="text-align: right;">694838</td>
 <td style="text-align: right;">0.02</td>
 <td style="text-align: left;">A facility which controls the flow of electricity in a power network with transformers, switchgear or compensators.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">portal</td>
-<td style="text-align: right;">215782</td>
+<td style="text-align: right;">216101</td>
 <td style="text-align: right;">0.01</td>
 <td style="text-align: left;">A supporting structure for power lines, composed of vertical legs with cables between them attached to a horizontal crossarm.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">transformer</td>
-<td style="text-align: right;">198526</td>
+<td style="text-align: right;">198608</td>
 <td style="text-align: right;">0.01</td>
 <td style="text-align: left;">A device for stepping up or down electric voltage. Large power transformers are typically located inside substations</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">catenary_mast</td>
-<td style="text-align: right;">197810</td>
+<td style="text-align: right;">197987</td>
 <td style="text-align: right;">0.01</td>
 <td style="text-align: left;">A pole supporting the overhead wires used to supply electricity to vehicles equipped with a pantograph such as trams and trains</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">switch</td>
-<td style="text-align: right;">121622</td>
+<td style="text-align: right;">121815</td>
 <td style="text-align: right;">0.00</td>
 <td style="text-align: left;">A device which allows electrical network operators to power up &amp; down lines and transformers in substations or along the power grid.</td>
 </tr>

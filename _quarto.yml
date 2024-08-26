@@ -60,8 +60,9 @@ comments:
   hypothesis: true
 
 crossref:
-    chapters: true
-numberSections: true
+  chapters: true
+
+number-sections: true
 sectionsDepth: 0
 
 # reference-location: margin

@@ -65,7 +65,7 @@ OpenStreetMap has grown enormously. It's data is used quite often by researchers
 
 ```{r}
 #| label: fig-osm_bibliography_per_year
-#| fig-cap: "OpenStreetMap related bibliography by year"
+#| fig-cap: "OpenStreetMap related bibliography by year as of January 2024"
 #| echo: false
 #| warning: false
 
@@ -363,8 +363,9 @@ If there is a requirement to preserve landmass only boundaries, a useful 'trick'
 
 ```{r}
 #| label: it_level_4
+#| cache-lazy: false
 
-it_regions <- osmdata::opq(bbox = it_bbox, timeout = 60*20) |>
+it_regions <- osmdata::opq(bbox = it_bbox, timeout = 60*120) |>
   osmdata::add_osm_feature(key = "boundary", value = "administrative") |>
   osmdata::add_osm_feature(key = "admin_level", value = "4") |>
   osmdata::add_osm_feature(key = "ISO3166-2", value = "IT", value_exact = FALSE) |>
@@ -1031,9 +1032,13 @@ A freely accessible global land cover product at 10 m resolution, based on Senti
 
 Streets, roads or paths --- all have `highway` key within OSM. The main road types, their values and meaning is shown in @tbl-osm_highways. Except those highways, there is a bunch of others like `living_street` `pedestrian` or just a `track` in forest --- details are available on [wiki](https://wiki.openstreetmap.org/wiki/Key:highway). The OSM roads network data is probably most used data around the world. It's a base for different navigation systems (including OSMAnd), for visualization of bus routes, it is also used in online games.
 
+<!--
+
 ::: column-margin
 {{< video https://www.youtube.com/watch?v=GzZWSrr5wFI >}}
 :::
+
+-->
 
 ```{r}
 #| label: tbl-osm_highways
