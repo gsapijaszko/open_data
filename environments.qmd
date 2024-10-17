@@ -26,46 +26,51 @@ if(!file.exists(worldcover_file)) {
   worldcover_file <- "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/docs/WorldCover_PUM_V2.0.pdf"  
 }
 
-t <- tabulizer::extract_tables(file = worldcover_file,
-                               pages = 15,
-                               method = "stream",
-                               output = "data.frame")[[1]]
-
-colnames(t) <- c("map_code", "land_cover_class", "lccs_code", "definition", "color_code_rgb")
-t <- t[2:nrow(t),]
-t$map_code <- as.numeric(t$map_code)
-
-map_codes <- t$map_code[!is.na(t$map_code)]
-
-merge_cels <- function(column = "", start = 10) {
-  stop <- map_codes[which(map_codes == start)+1]
-  a <- which(t$map_code == start)
-  if(is.na(stop)) {
-    b <- nrow(t)
-  } else {
-    b <- which(t$map_code == stop)-1
+esa_worldcover_maps_data <- "data/esa_worldcover.rds"
+if(!file.exists(esa_worldcover_maps_data)) {
+  t <- tabulizer::extract_tables(file = worldcover_file,
+                                 pages = 15,
+                                 method = "stream",
+                                 output = "data.frame")[[1]]
+  
+  colnames(t) <- c("map_code", "land_cover_class", "lccs_code", "definition", "color_code_rgb")
+  t <- t[2:nrow(t),]
+  t$map_code <- as.numeric(t$map_code)
+  
+  map_codes <- t$map_code[!is.na(t$map_code)]
+  
+  merge_cels <- function(column = "", start = 10) {
+    stop <- map_codes[which(map_codes == start)+1]
+    a <- which(t$map_code == start)
+    if(is.na(stop)) {
+      b <- nrow(t)
+    } else {
+      b <- which(t$map_code == stop)-1
+    }
+    t[a:b, column] |>
+      paste(collapse = " ") |>
+      stringr::str_trim()
   }
-  t[a:b, column] |>
-    paste(collapse = " ") |>
-    stringr::str_trim()
+  
+  n <- t[1:11,] 
+  
+  n$map_code <- map_codes
+  
+  n <- n |>
+    dplyr::rowwise() |>
+    dplyr::mutate(land_cover_class = merge_cels(column = "land_cover_class", start = map_code),
+                  lccs_code = merge_cels(column = "lccs_code", start = map_code),
+                  definition = merge_cels(column = "definition", start = map_code),
+                  color_code_rgb = merge_cels(column = "color_code_rgb", start = map_code),
+                  color = rgb(red = strsplit(color_code_rgb[[1]], split = "[,]")[[1]][1],
+                              green = strsplit(color_code_rgb[[1]], split = "[,]")[[1]][2],
+                              blue = strsplit(color_code_rgb[[1]], split = "[,]")[[1]][3],
+                              maxColorValue = 255)
+    )
+  saveRDS(n, file = "data/esa_worldcover.rds")
+} else {
+  n <- readRDS(file = "data/esa_worldcover.rds")
 }
-
-n <- t[1:11,] 
-
-n$map_code <- map_codes
-
-n <- n |>
-  dplyr::rowwise() |>
-  dplyr::mutate(land_cover_class = merge_cels(column = "land_cover_class", start = map_code),
-                lccs_code = merge_cels(column = "lccs_code", start = map_code),
-                definition = merge_cels(column = "definition", start = map_code),
-                color_code_rgb = merge_cels(column = "color_code_rgb", start = map_code),
-                color = rgb(red = strsplit(color_code_rgb[[1]], split = "[,]")[[1]][1],
-                            green = strsplit(color_code_rgb[[1]], split = "[,]")[[1]][2],
-                            blue = strsplit(color_code_rgb[[1]], split = "[,]")[[1]][3],
-                            maxColorValue = 255)
-  )
-
 
 n[,1:5] |>
   kableExtra::kable(escape = FALSE,
@@ -577,11 +582,43 @@ axis(1,
 
 TerraClimate [@abatzoglouTerraClimateHighresolutionGlobal2018] is a dataset of monthly climate and climatic water balance for global terrestrial surfaces from 1958 to 2023. All data have monthly temporal resolution and a ~4-km (1/24th degree) spatial resolution. 
 
-Primary climate variables covers: maximum and minimum temperature, vapor pressure, precipitation accumulation, downward surface shortwave radiation and wind-speed. Derived variables are: reference evapotranspiration (ASCE Penman-Montieth), runoff, actual evapotranspiration, climate water deficit, soil moisture, snow water equivalent, palmer drought severity index and vapor pressure deficit. Detailed description is provided on [Climatology Lab](https://www.climatologylab.org/terraclimate.html). The data is available as netCDF files from [THREDDS web server](http://thredds.northwestknowledge.net:8080/thredds/catalog/TERRACLIMATE_ALL/data/catalog.html). 
+Primary climate variables covers: maximum and minimum temperature, vapor pressure, precipitation accumulation, downward surface shortwave radiation and wind-speed. Derived variables are: reference evapotranspiration (ASCE Penman-Montieth), runoff, actual evapotranspiration, climate water deficit, soil moisture, snow water equivalent, palmer drought severity index and vapor pressure deficit. Detailed description is provided on [Climatology Lab](https://www.climatologylab.org/terraclimate.html). The data is available as netCDF files from [THREDDS web server](http://thredds.northwestknowledge.net:8080/thredds/catalog/TERRACLIMATE_ALL/data/catalog.html). You can use `getTerraClim()` function from {climateR} package [@R-climateR] to access the data in R.
+
+
+```{r}
+#| label: tbl-terra_climate_abreviations
+#| echo: false
+#| tbl-cap: Abbreviation of the variables used by TerraClimate
+
+read.table(text = 
+               "Abbreviation  | Description                                    | Units    
+                aet           | Actual Evapotranspiration, monthly total       | mm       
+                def           | Climate Water Deficit, monthly total           | mm       
+                pet           | Potential evapotranspiration, monthly total    | mm       
+                ppt           | Precipitation, monthly total                   | mm       
+                q             | Runoff, monthly total                          | mm       
+                soil          | Soil Moisture, total column - at end of month  | mm       
+                srad          | Downward surface shortwave radiation           | W/m2     
+                swe           | Snow water equivalent - at end of month        | mm       
+                tmax          | Max Temperature, average for month             | C        
+                tmin          | Min Temperature, average for month             | C        
+                vap           | Vapor pressure, average for month              | kPa      
+                ws            | Wind speed, average for month                  | m/s      
+                vpd           | Vapor Pressure Deficit, average for month      | kpa      
+                PDSI          | Palmer Drought Severity Index, at end of month | unitless",
+           sep = "|",
+           header = TRUE,
+           strip.white = TRUE) |>
+  kableExtra::kable() |>
+  kableExtra::kable_classic_2() |>
+  kableExtra::footnote(general = "Taken from <a href = \"https://www.climatologylab.org/terraclimate-variables.html\"> TerraClimate</a>",
+                       escape = FALSE)
+
+```
 
 #### Global Maps from NASA Earth Observatory and other products
 
-[Earth Observatory](https://earthobservatory.nasa.gov/global-maps) by NASA provides global monthly images at 10 km spatial resolution and covers years 2000-2022.
+[Earth Observatory](https://earthobservatory.nasa.gov/global-maps) by NASA provides global monthly images at 10 km spatial resolution and covers years 2000-2024.
 
 @maGlobalLongterm19812020 created global land surface temperature (LST) dataset, which was generated from NOAA advanced very-high-resolution radiometer (AVHRR) data (1981–2000) and includes three data layers: 
 

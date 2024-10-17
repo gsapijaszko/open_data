@@ -1,5 +1,99 @@
 # -------------------------------------------------------------------------------------------------------
 
+#' bivariate maps color schemes
+#' from https://web.archive.org/web/20190306141924/http://www.personal.psu.edu/cab38/ColorSch/SchHTMLs/CBColorSeqSeq.html
+
+c("#F3F3F3", "#B4D3E1", "#509DC2", 
+  "#F3E6B3", "#B3B3B3", "#376387",
+  "#F3B300", "#B36600", "#000000")
+
+c("#E8E6F2", "#B5D3E7", "#4FADD0",
+  "#E5B4D9", "#B8B3D8", "#3983BB",
+  "#DE4FA6", "#B03598", "#2A1A8A")
+
+
+pl <- geodata::gadm("POL", level = 1, path = "data")
+
+temperature = climateR::getTerraClim(AOI = pl,
+                                     varname = c("tmax", "tmin"),
+                                     startDate = "2023-01-01",
+                                     endDate  = "2023-12-31")
+temperature$tmax
+monthly_mean_temperature <- (temperature$tmax + temperature$tmin) / 2
+annual_mean_temperature <- terra::mean(monthly_mean_temperature, na.rm = TRUE)
+# new_res <- 0.025
+r <- terra::rast(terra::ext(annual_mean_temperature),
+                 resolution = 0.025,
+                 crs = terra::crs(annual_mean_temperature))
+annual_mean_temperature <- terra::resample(annual_mean_temperature, r, method="bilinear") |>
+  terra::crop(y = pl, mask = TRUE)
+
+precipitation = climateR::getTerraClim(AOI = pl,
+                                       varname = "ppt",
+                                       startDate = "2023-01-01",
+                                       endDate  = "2023-12-31")
+
+# Calculate annual mean precipitation
+annual_mean_precipitation <- terra::mean(precipitation$ppt, na.rm = TRUE) |>
+  terra::resample(y = r, method = "bilinear") |>
+  terra::crop(y = pl, mask = TRUE)
+
+bivariatemaps::colmat(
+  nquantiles = 4,
+  upperleft = "#488FB0",
+  upperright = "#4C6E01",
+  bottomleft = "#D3D3D3",
+  bottomright = "#DEA301",
+  xlab = "temperature",
+  ylab = "precipitation"
+)
+
+b <- bivariatemaps::bivariate.map(annual_mean_temperature, 
+                             annual_precipitation, 
+                             colormatrix = c, 
+                             nquantiles = 4)
+
+terra::plot(annual_mean_precipitation)
+
+annual_mean_precipitation |>
+  terra::minmax()
+
+annual_precipitation <- terra::app(precipitation$ppt, sum) |>
+  terra::resample(y = r, method = "bilinear") |>
+  terra::crop(y = pl, mask = TRUE)
+
+terra::plot(annual_precipitation)
+terra::plot(b,
+            axes=TRUE,
+            legend=FALSE,
+            col=as.vector(c))
+
+terra::polys(pl)
+# graphics::points(x = c(15, 15.2, 15.4, 15.6), 
+#                  y = c(49.5, 49.5, 49.5, 49.5), pch = 15, cex = 1.5, col = c("#D3D3D3", "#D6C38D", "#DAB347", "#DEA301"))
+
+legend(x = 14.2, y = 49, 
+       legend = rep("", 16), 
+       fill = as.character(c[5:2, 2:5]),
+       border = as.character(c[5:2, 2:5]),
+       ncol = 4,
+       cex = 1,
+       xjust = 0,
+       yjust = 0,
+       x.intersp = -1,
+       y.intersp = 0.5,
+       box.lwd = 1,
+       bty = "n")
+text(x = 15.3, y = 49.15, "temperature")
+# -------------------------------------------------------------------------------------------------------
+
+as.character(c[5:2, 2:5])
+
+[,1]      [,2]      [,3]      [,4]     
+[1,] "#488FB0" "#498475" "#4A793B" "#4C6E01"
+[2,] "#76A5BB" "#78987D" "#7A8B3F" "#7C7F01"
+[3,] "#A4BCC7" "#A7AD85" "#AA9F43" "#AD9101"
+[4,] "#D3D3D3" "#D6C38D" "#DAB347" "#DEA301"
 
 sf::st_delete(dsn = "data/bbbike_Leipzig.gpkg", layer = "highways")
 
@@ -14,7 +108,6 @@ tmap::tm_shape(c_osm, crs = "EPSG:4839", bbox = sf::st_bbox(sf::st_buffer(leipzi
   tmap::tm_lines(lwd = 0.2)
 map_c
 tmap_save(map_c, filename="map_c.png")
-
 
 # -------------------------------------------------------------------------------------------------------
 
@@ -222,18 +315,61 @@ a$data$doi
 
 options(openalexR.mailto = "grzegorz@sapijaszko.net")
 
-# a <- openalexR::oa_fetch(search = "OpenStreetMap", mailto = "grzegorz@sapijaszko.net")
-# saveRDS(a, file = "data/openalexer_osm_query.rds")
+a <- openalexR::oa_fetch(entity = "works", 
+                         search = "OpenStreetMap OR osm", 
+                         mailto = "grzegorz@sapijaszko.net")
+
+saveRDS(a, file = "data/openalexer_osm_query.rds")
+readRDS("data/openalexer_osm_query.rds")
+openalexR::oa_fetch(entity = "works", doi = a[3, "doi"])
+a[1,1]
+a |>
+  dplyr::mutate(publication_date = as.Date(publication_date)) |>
+  subset(publication_date >= as.Date("2023-12-31"), select = c("title"))
 
 a <- readRDS(file = "data/openalexer_osm_query.rds")
 
-a[1, "display_name"]
+snowball_docs <- openalexR::oa_snowball(
+  identifier = c("W2184645388"),
+  citing_params = list(),
+  cited_by_params = list(),
+  verbose = TRUE
+)
+snowball_docs[[1]][2, 1:5]
+snowball_docs |>
+  saveRDS(file = "data/snowball.rds")
 
-b <- a$doi[1:100] |>
+snowball_docs$nodes |>
+  dplyr::mutate(publication_date = as.Date(publication_date)) |>
+  subset(publication_date >= as.Date("2023-12-31"), select = c("title"))
+
+b <- snowball_docs2$nodes$doi |>
+  subset(!is.na(snowball_docs2$nodes$doi)) |>
   stringr::str_remove_all(pattern = "https://doi.org/") |>
-  rcrossref::cr_cn(samo_doi, format = "bibtex")
+  rcrossref::cr_cn(format = "bibtex")
 
-b  
+b|> unlist() |>
+  writeLines(con = file("data/b.bib"))
+
+
+calystegia <- openalexR::oa_fetch(search = "Calystegia pulchra", mailto = "grzegorz@sapijaszko.net")
+
+calystegia[3, ] |>
+  as.list()
+
+
+b <- a |>
+  dplyr::mutate(publication_date = as.Date(publication_date)) |>
+  subset(publication_date > as.Date("2023-12-31") & grepl(pattern = "GIS|gis|map|Lidar|lidar|open|Open|OSM", title))
+
+c <- a$doi |>
+  stringr::str_remove_all(pattern = "https://doi.org/") |>
+  rcrossref::cr_cn(format = "bibtex")
+
+c |>
+  unlist() |>
+  writeLines(con = file("data/b.bib"))
+  
 
 all <- RefManageR::ReadBib("data/bibliography/all.bib")
 
@@ -466,3 +602,4 @@ length(l)
 # 
 
 
+knitr::write_bib("climateR")

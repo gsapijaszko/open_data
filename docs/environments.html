@@ -317,53 +317,58 @@ https://openlandmap.github.io/book/012-compendium.html
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  worldcover_file <span class="ot">&lt;-</span> <span class="st">"https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/docs/WorldCover_PUM_V2.0.pdf"</span>  </span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> tabulizer<span class="sc">::</span><span class="fu">extract_tables</span>(<span class="at">file =</span> worldcover_file,</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>                               <span class="at">pages =</span> <span class="dv">15</span>,</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>                               <span class="at">method =</span> <span class="st">"stream"</span>,</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>                               <span class="at">output =</span> <span class="st">"data.frame"</span>)[[<span class="dv">1</span>]]</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(t) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"map_code"</span>, <span class="st">"land_cover_class"</span>, <span class="st">"lccs_code"</span>, <span class="st">"definition"</span>, <span class="st">"color_code_rgb"</span>)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> t[<span class="dv">2</span><span class="sc">:</span><span class="fu">nrow</span>(t),]</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>t<span class="sc">$</span>map_code <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(t<span class="sc">$</span>map_code)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>map_codes <span class="ot">&lt;-</span> t<span class="sc">$</span>map_code[<span class="sc">!</span><span class="fu">is.na</span>(t<span class="sc">$</span>map_code)]</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>merge_cels <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">column =</span> <span class="st">""</span>, <span class="at">start =</span> <span class="dv">10</span>) {</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  stop <span class="ot">&lt;-</span> map_codes[<span class="fu">which</span>(map_codes <span class="sc">==</span> start)<span class="sc">+</span><span class="dv">1</span>]</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  a <span class="ot">&lt;-</span> <span class="fu">which</span>(t<span class="sc">$</span>map_code <span class="sc">==</span> start)</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">is.na</span>(stop)) {</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    b <span class="ot">&lt;-</span> <span class="fu">nrow</span>(t)</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    b <span class="ot">&lt;-</span> <span class="fu">which</span>(t<span class="sc">$</span>map_code <span class="sc">==</span> stop)<span class="sc">-</span><span class="dv">1</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  t[a<span class="sc">:</span>b, column] <span class="sc">|&gt;</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste</span>(<span class="at">collapse =</span> <span class="st">" "</span>) <span class="sc">|&gt;</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    stringr<span class="sc">::</span><span class="fu">str_trim</span>()</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> t[<span class="dv">1</span><span class="sc">:</span><span class="dv">11</span>,] </span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>n<span class="sc">$</span>map_code <span class="ot">&lt;-</span> map_codes</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> n <span class="sc">|&gt;</span></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">rowwise</span>() <span class="sc">|&gt;</span></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">land_cover_class =</span> <span class="fu">merge_cels</span>(<span class="at">column =</span> <span class="st">"land_cover_class"</span>, <span class="at">start =</span> map_code),</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>                <span class="at">lccs_code =</span> <span class="fu">merge_cels</span>(<span class="at">column =</span> <span class="st">"lccs_code"</span>, <span class="at">start =</span> map_code),</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>                <span class="at">definition =</span> <span class="fu">merge_cels</span>(<span class="at">column =</span> <span class="st">"definition"</span>, <span class="at">start =</span> map_code),</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>                <span class="at">color_code_rgb =</span> <span class="fu">merge_cels</span>(<span class="at">column =</span> <span class="st">"color_code_rgb"</span>, <span class="at">start =</span> map_code),</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>                <span class="at">color =</span> <span class="fu">rgb</span>(<span class="at">red =</span> <span class="fu">strsplit</span>(color_code_rgb[[<span class="dv">1</span>]], <span class="at">split =</span> <span class="st">"[,]"</span>)[[<span class="dv">1</span>]][<span class="dv">1</span>],</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>                            <span class="at">green =</span> <span class="fu">strsplit</span>(color_code_rgb[[<span class="dv">1</span>]], <span class="at">split =</span> <span class="st">"[,]"</span>)[[<span class="dv">1</span>]][<span class="dv">2</span>],</span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>                            <span class="at">blue =</span> <span class="fu">strsplit</span>(color_code_rgb[[<span class="dv">1</span>]], <span class="at">split =</span> <span class="st">"[,]"</span>)[[<span class="dv">1</span>]][<span class="dv">3</span>],</span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>                            <span class="at">maxColorValue =</span> <span class="dv">255</span>)</span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>n[,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>] <span class="sc">|&gt;</span></span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable</span>(<span class="at">escape =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>                    <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Map code"</span>, <span class="st">"Land cover class"</span>,</span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">"LCCS code"</span>, <span class="st">"Definition"</span>, <span class="st">"Color code (RGB)"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_classic_2</span>() <span class="sc">|&gt;</span></span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">column_spec</span>(<span class="dv">5</span>, <span class="at">background =</span> n<span class="sc">$</span>color, <span class="at">width =</span> <span class="st">"12%"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>esa_worldcover_maps_data <span class="ot">&lt;-</span> <span class="st">"data/esa_worldcover.rds"</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">file.exists</span>(esa_worldcover_maps_data)) {</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  t <span class="ot">&lt;-</span> tabulizer<span class="sc">::</span><span class="fu">extract_tables</span>(<span class="at">file =</span> worldcover_file,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">pages =</span> <span class="dv">15</span>,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">method =</span> <span class="st">"stream"</span>,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">output =</span> <span class="st">"data.frame"</span>)[[<span class="dv">1</span>]]</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">colnames</span>(t) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"map_code"</span>, <span class="st">"land_cover_class"</span>, <span class="st">"lccs_code"</span>, <span class="st">"definition"</span>, <span class="st">"color_code_rgb"</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  t <span class="ot">&lt;-</span> t[<span class="dv">2</span><span class="sc">:</span><span class="fu">nrow</span>(t),]</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  t<span class="sc">$</span>map_code <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(t<span class="sc">$</span>map_code)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  map_codes <span class="ot">&lt;-</span> t<span class="sc">$</span>map_code[<span class="sc">!</span><span class="fu">is.na</span>(t<span class="sc">$</span>map_code)]</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  merge_cels <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">column =</span> <span class="st">""</span>, <span class="at">start =</span> <span class="dv">10</span>) {</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    stop <span class="ot">&lt;-</span> map_codes[<span class="fu">which</span>(map_codes <span class="sc">==</span> start)<span class="sc">+</span><span class="dv">1</span>]</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    a <span class="ot">&lt;-</span> <span class="fu">which</span>(t<span class="sc">$</span>map_code <span class="sc">==</span> start)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(<span class="fu">is.na</span>(stop)) {</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>      b <span class="ot">&lt;-</span> <span class="fu">nrow</span>(t)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>      b <span class="ot">&lt;-</span> <span class="fu">which</span>(t<span class="sc">$</span>map_code <span class="sc">==</span> stop)<span class="sc">-</span><span class="dv">1</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    t[a<span class="sc">:</span>b, column] <span class="sc">|&gt;</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste</span>(<span class="at">collapse =</span> <span class="st">" "</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>      stringr<span class="sc">::</span><span class="fu">str_trim</span>()</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> t[<span class="dv">1</span><span class="sc">:</span><span class="dv">11</span>,] </span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>  n<span class="sc">$</span>map_code <span class="ot">&lt;-</span> map_codes</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> n <span class="sc">|&gt;</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">rowwise</span>() <span class="sc">|&gt;</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">land_cover_class =</span> <span class="fu">merge_cels</span>(<span class="at">column =</span> <span class="st">"land_cover_class"</span>, <span class="at">start =</span> map_code),</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>                  <span class="at">lccs_code =</span> <span class="fu">merge_cels</span>(<span class="at">column =</span> <span class="st">"lccs_code"</span>, <span class="at">start =</span> map_code),</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>                  <span class="at">definition =</span> <span class="fu">merge_cels</span>(<span class="at">column =</span> <span class="st">"definition"</span>, <span class="at">start =</span> map_code),</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>                  <span class="at">color_code_rgb =</span> <span class="fu">merge_cels</span>(<span class="at">column =</span> <span class="st">"color_code_rgb"</span>, <span class="at">start =</span> map_code),</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>                  <span class="at">color =</span> <span class="fu">rgb</span>(<span class="at">red =</span> <span class="fu">strsplit</span>(color_code_rgb[[<span class="dv">1</span>]], <span class="at">split =</span> <span class="st">"[,]"</span>)[[<span class="dv">1</span>]][<span class="dv">1</span>],</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>                              <span class="at">green =</span> <span class="fu">strsplit</span>(color_code_rgb[[<span class="dv">1</span>]], <span class="at">split =</span> <span class="st">"[,]"</span>)[[<span class="dv">1</span>]][<span class="dv">2</span>],</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>                              <span class="at">blue =</span> <span class="fu">strsplit</span>(color_code_rgb[[<span class="dv">1</span>]], <span class="at">split =</span> <span class="st">"[,]"</span>)[[<span class="dv">1</span>]][<span class="dv">3</span>],</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>                              <span class="at">maxColorValue =</span> <span class="dv">255</span>)</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">saveRDS</span>(n, <span class="at">file =</span> <span class="st">"data/esa_worldcover.rds"</span>)</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="at">file =</span> <span class="st">"data/esa_worldcover.rds"</span>)</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>n[,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>] <span class="sc">|&gt;</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable</span>(<span class="at">escape =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>                    <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Map code"</span>, <span class="st">"Land cover class"</span>,</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">"LCCS code"</span>, <span class="st">"Definition"</span>, <span class="st">"Color code (RGB)"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_classic_2</span>() <span class="sc">|&gt;</span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">column_spec</span>(<span class="dv">5</span>, <span class="at">background =</span> n<span class="sc">$</span>color, <span class="at">width =</span> <span class="st">"12%"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div id="tbl-esa_world_cover_classes" class="cell quarto-float anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -1607,11 +1612,121 @@ Figure&nbsp;3.4: Precipitation in Remagen, Germany during April and May 1945
 <section id="terraclimate" class="level4">
 <h4 class="anchored" data-anchor-id="terraclimate">TerraClimate</h4>
 <p>TerraClimate <span class="citation" data-cites="abatzoglouTerraClimateHighresolutionGlobal2018">(<a href="references.html#ref-abatzoglouTerraClimateHighresolutionGlobal2018" role="doc-biblioref">Abatzoglou et al. 2018</a>)</span> is a dataset of monthly climate and climatic water balance for global terrestrial surfaces from 1958 to 2023. All data have monthly temporal resolution and a ~4-km (1/24th degree) spatial resolution.</p>
-<p>Primary climate variables covers: maximum and minimum temperature, vapor pressure, precipitation accumulation, downward surface shortwave radiation and wind-speed. Derived variables are: reference evapotranspiration (ASCE Penman-Montieth), runoff, actual evapotranspiration, climate water deficit, soil moisture, snow water equivalent, palmer drought severity index and vapor pressure deficit. Detailed description is provided on <a href="https://www.climatologylab.org/terraclimate.html">Climatology Lab</a>. The data is available as netCDF files from <a href="http://thredds.northwestknowledge.net:8080/thredds/catalog/TERRACLIMATE_ALL/data/catalog.html">THREDDS web server</a>.</p>
+<p>Primary climate variables covers: maximum and minimum temperature, vapor pressure, precipitation accumulation, downward surface shortwave radiation and wind-speed. Derived variables are: reference evapotranspiration (ASCE Penman-Montieth), runoff, actual evapotranspiration, climate water deficit, soil moisture, snow water equivalent, palmer drought severity index and vapor pressure deficit. Detailed description is provided on <a href="https://www.climatologylab.org/terraclimate.html">Climatology Lab</a>. The data is available as netCDF files from <a href="http://thredds.northwestknowledge.net:8080/thredds/catalog/TERRACLIMATE_ALL/data/catalog.html">THREDDS web server</a>. You can use <code>getTerraClim()</code> function from {climateR} package <span class="citation" data-cites="R-climateR">(<a href="references.html#ref-R-climateR" role="doc-biblioref">Johnson 2024</a>)</span> to access the data in R.</p>
+<div class="cell">
+<div id="tbl-terra_climate_abreviations" class="cell quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-terra_climate_abreviations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3.5: Abbreviation of the variables used by TerraClimate
+</figcaption>
+<div aria-describedby="tbl-terra_climate_abreviations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div>
+<table class="lightable-classic-2 do-not-create-environment cell table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Abbreviation</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Description</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Units</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">aet</td>
+<td style="text-align: left;">Actual Evapotranspiration, monthly total</td>
+<td style="text-align: left;">mm</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">def</td>
+<td style="text-align: left;">Climate Water Deficit, monthly total</td>
+<td style="text-align: left;">mm</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">pet</td>
+<td style="text-align: left;">Potential evapotranspiration, monthly total</td>
+<td style="text-align: left;">mm</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ppt</td>
+<td style="text-align: left;">Precipitation, monthly total</td>
+<td style="text-align: left;">mm</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">q</td>
+<td style="text-align: left;">Runoff, monthly total</td>
+<td style="text-align: left;">mm</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">soil</td>
+<td style="text-align: left;">Soil Moisture, total column - at end of month</td>
+<td style="text-align: left;">mm</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">srad</td>
+<td style="text-align: left;">Downward surface shortwave radiation</td>
+<td style="text-align: left;">W/m2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">swe</td>
+<td style="text-align: left;">Snow water equivalent - at end of month</td>
+<td style="text-align: left;">mm</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">tmax</td>
+<td style="text-align: left;">Max Temperature, average for month</td>
+<td style="text-align: left;">C</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">tmin</td>
+<td style="text-align: left;">Min Temperature, average for month</td>
+<td style="text-align: left;">C</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">vap</td>
+<td style="text-align: left;">Vapor pressure, average for month</td>
+<td style="text-align: left;">kPa</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ws</td>
+<td style="text-align: left;">Wind speed, average for month</td>
+<td style="text-align: left;">m/s</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">vpd</td>
+<td style="text-align: left;">Vapor Pressure Deficit, average for month</td>
+<td style="text-align: left;">kpa</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">PDSI</td>
+<td style="text-align: left;">Palmer Drought Severity Index, at end of month</td>
+<td style="text-align: left;">unitless</td>
+</tr>
+</tbody><tfoot>
+<tr class="odd">
+<td style="text-align: left; padding: 0;"><span style="font-style: italic;">Note: </span></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0;"><sup></sup> Taken from <a href="https://www.climatologylab.org/terraclimate-variables.html">TerraClimate</a></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tfoot>
+
+</table>
+
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
 </section>
 <section id="global-maps-from-nasa-earth-observatory-and-other-products" class="level4">
 <h4 class="anchored" data-anchor-id="global-maps-from-nasa-earth-observatory-and-other-products">Global Maps from NASA Earth Observatory and other products</h4>
-<p><a href="https://earthobservatory.nasa.gov/global-maps">Earth Observatory</a> by NASA provides global monthly images at 10 km spatial resolution and covers years 2000-2022.</p>
+<p><a href="https://earthobservatory.nasa.gov/global-maps">Earth Observatory</a> by NASA provides global monthly images at 10 km spatial resolution and covers years 2000-2024.</p>
 <p><span class="citation" data-cites="maGlobalLongterm19812020">Ma, Zhou, Göttsche, Liang, Wang, and Li (<a href="references.html#ref-maGlobalLongterm19812020" role="doc-biblioref">2020</a>)</span> created global land surface temperature (LST) dataset, which was generated from NOAA advanced very-high-resolution radiometer (AVHRR) data (1981–2000) and includes three data layers:</p>
 <ul>
 <li><p>instantaneous LST, a product generated by integrating several split-window algorithms with a random forest (RF-SWA)<span class="citation" data-cites="maGLASSLandSurface2020">(<a href="references.html#ref-maGLASSLandSurface2020" role="doc-biblioref">Ma, Zhou, Göttsche, Liang, and Wang 2020</a>)</span>;</p></li>
@@ -1679,6 +1794,9 @@ Hufkens, Koen, Reto Stauffer, and Elio Campitelli. 2019. <span>“The Ecwmfr Pac
 </div>
 <div id="ref-ClimDatDownloadR" class="csl-entry" role="listitem">
 Jentsch, Helge, Maria Bobrowski, and Johannes Weidinger. 2024. <em>ClimDatDownloadR: Downloads Climate Data from Chelsa and WorldClim</em>. <a href="https://doi.org/10.5281/zenodo.7924343">https://doi.org/10.5281/zenodo.7924343</a>.
+</div>
+<div id="ref-R-climateR" class="csl-entry" role="listitem">
+Johnson, Mike. 2024. <em>climateR: climateR</em>. <a href="https://github.com/mikejohnson51/climateR">https://github.com/mikejohnson51/climateR</a>.
 </div>
 <div id="ref-kargerBIOCLIMNovelSet2022" class="csl-entry" role="listitem">
 Karger, Dirk Nikolaus, Philipp Brun, and Niklaus E. Zimmermann. 2022. <span>“<span>BIOCLIM</span>+ <span>A</span> Novel Set of Global Climate-Related Predictors at Kilometre-Resolution: <span>Technical</span> Specification.”</span> <span>Swiss Federal Research Institute WSL</span>. <a href="https://www.envidat.ch/dataset/21d662b7-9c59-41da-aa82-7d8a879b8db7/resource/aa676d1f-5f7f-479b-af20-26066b0537d1/download/chelsa_file_specification_bioclim_plus.pdf">https://www.envidat.ch/dataset/21d662b7-9c59-41da-aa82-7d8a879b8db7/resource/aa676d1f-5f7f-479b-af20-26066b0537d1/download/chelsa_file_specification_bioclim_plus.pdf</a>.
