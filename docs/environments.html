@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.21">
+<meta name="generator" content="quarto-1.6.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Open Data sources – 3&nbsp; Environmental data</title>
+<title>3&nbsp; Environmental data – Open Data sources</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -91,10 +91,10 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2486e1f0a3ee9ee1fc393803a1361cdb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-ce698f4e766efdae66301126e4b723a1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -147,7 +147,7 @@ div.csl-indent {
 <script src="site_libs/leaflet-markercluster-1.0.5/leaflet.markercluster.freezable.js"></script>
 <script src="site_libs/leaflet-markercluster-1.0.5/leaflet.markercluster.layersupport.js"></script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -186,13 +186,13 @@ window.Quarto = {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./environments.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Environmental data</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -298,6 +298,7 @@ window.Quarto = {
 
 <!---
 https://openlandmap.github.io/book/012-compendium.html
+https://climatedataguide.ucar.edu/ - review of datasets
 -->
 <section id="sec-land_cover" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="sec-land_cover"><span class="header-section-number">3.1</span> Land Cover and Land Use</h2>
@@ -370,15 +371,14 @@ https://openlandmap.github.io/book/012-compendium.html
 <span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_classic_2</span>() <span class="sc">|&gt;</span></span>
 <span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">column_spec</span>(<span class="dv">5</span>, <span class="at">background =</span> n<span class="sc">$</span>color, <span class="at">width =</span> <span class="st">"12%"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div id="tbl-esa_world_cover_classes" class="cell quarto-float anchored">
+<div id="tbl-esa_world_cover_classes" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-esa_world_cover_classes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;3.1: ESA WorldCover classes definition and color codes for layers <span class="citation" data-cites="vandekerchoveWorldCoverProductUser2022">(<a href="references.html#ref-vandekerchoveWorldCoverProductUser2022" role="doc-biblioref">Van De Kerchove 2022</a>)</span>
 </figcaption>
 <div aria-describedby="tbl-esa_world_cover_classes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div>
-<table class="lightable-classic-2 do-not-create-environment cell table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="lightable-classic-2 do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: right;" data-quarto-table-cell-role="th">Map code</th>
@@ -472,7 +472,6 @@ Table&nbsp;3.1: ESA WorldCover classes definition and color codes for layers <sp
 
 </div>
 </div>
-</div>
 </figure>
 </div>
 </div>
@@ -510,7 +509,7 @@ Geodetic CRS:  WGS 84
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-esa_worldcover_flat_geobufer" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-esa_worldcover_flat_geobufer" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-esa_worldcover_flat_geobufer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="environments_files/figure-html/fig-esa_worldcover_flat_geobufer-1.png" class="img-fluid figure-img" width="672">
@@ -602,15 +601,14 @@ Figure&nbsp;3.1: Spatial coverage of WorlCover data
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable</span>() <span class="sc">|&gt;</span></span>
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_classic_2</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div id="tbl-isd_stations" class="cell quarto-float anchored">
+<div id="tbl-isd_stations" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-isd_stations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;3.2: A sample of ISD stations description file which can be used to translate station code to its location
 </figcaption>
 <div aria-describedby="tbl-isd_stations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div>
-<table class="lightable-classic-2 do-not-create-environment cell table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="lightable-classic-2 do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">USAF</th>
@@ -763,7 +761,6 @@ Table&nbsp;3.2: A sample of ISD stations description file which can be used to t
 
 </div>
 </div>
-</div>
 </figure>
 </div>
 </div>
@@ -834,7 +831,7 @@ Table&nbsp;3.2: A sample of ISD stations description file which can be used to t
 <div aria-describedby="fig-station_data_examples-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row">
 <div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-station_data_examples" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-station_data_examples-1" class="quarto-figure quarto-figure-center quarto-float anchored" width="672">
+<div id="fig-station_data_examples-1" class="quarto-float quarto-figure quarto-figure-center anchored" width="672">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-station_data_examples-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="environments_files/figure-html/fig-station_data_examples-1.png" id="fig-station_data_examples-1" class="img-fluid figure-img" data-ref-parent="fig-station_data_examples" width="672">
@@ -846,7 +843,7 @@ Table&nbsp;3.2: A sample of ISD stations description file which can be used to t
 </div>
 </div>
 <div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-station_data_examples" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-station_data_examples-2" class="quarto-figure quarto-figure-center quarto-float anchored" width="672">
+<div id="fig-station_data_examples-2" class="quarto-float quarto-figure quarto-figure-center anchored" width="672">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-station_data_examples-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="environments_files/figure-html/fig-station_data_examples-2.png" id="fig-station_data_examples-2" class="img-fluid figure-img" data-ref-parent="fig-station_data_examples" width="672">
@@ -892,15 +889,14 @@ Figure&nbsp;3.2: Examples of station’s data vizualization: direction and wind 
 <span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable</span>() <span class="sc">|&gt;</span></span>
 <span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_classic_2</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div id="tbl-pmetar_EPWR" class="cell quarto-float anchored">
+<div id="tbl-pmetar_EPWR" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-pmetar_EPWR-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;3.3: Decoded METARs for Wrocław-Strachowice airport
 </figcaption>
 <div aria-describedby="tbl-pmetar_EPWR-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div>
-<table class="lightable-classic-2 do-not-create-environment cell table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="lightable-classic-2 do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">date</th>
@@ -1014,7 +1010,6 @@ Table&nbsp;3.3: Decoded METARs for Wrocław-Strachowice airport
 
 </div>
 </div>
-</div>
 </figure>
 </div>
 </div>
@@ -1032,15 +1027,14 @@ Table&nbsp;3.3: Decoded METARs for Wrocław-Strachowice airport
 <pre><code>CHELSA_[short_name]_[timeperiod]_[model] _[ssp] _[Version].tif</code></pre>
 <p>Available variable names are listed in <a href="#tbl-chelsa_variable_names" class="quarto-xref">Table&nbsp;<span>3.4</span></a>. TREELIM model and details (variables: <code>gsl</code>, <code>gsp ... fgd</code> was described by <span class="citation" data-cites="paulsenClimatebasedModelPredict2014">Paulsen and Körner (<a href="references.html#ref-paulsenClimatebasedModelPredict2014" role="doc-biblioref">2014</a>)</span>. Köppen-Geiger <code>kg0</code> and <code>kg1</code> after <span class="citation" data-cites="koeppenGeographischeSystemKlimate1936">Köppen (<a href="references.html#ref-koeppenGeographischeSystemKlimate1936" role="doc-biblioref">1936</a>)</span>, <code>kg2</code> classification was updated by <span class="citation" data-cites="peelUpdatedWorldMap2007">Peel, Finlayson, and McMahon (<a href="references.html#ref-peelUpdatedWorldMap2007" role="doc-biblioref">2007</a>)</span>, <code>kg3</code> according to <span class="citation" data-cites="wissmannKlimaundVegetationsgebieteEurasiens1939">Wissmann (<a href="references.html#ref-wissmannKlimaundVegetationsgebieteEurasiens1939" role="doc-biblioref">1939</a>)</span>, <code>kg4</code> — new classification by <span class="citation" data-cites="thornthwaiteClimatesNorthAmerica1931">Thornthwaite (<a href="references.html#ref-thornthwaiteClimatesNorthAmerica1931" role="doc-biblioref">1931</a>)</span> and for details of <code>kg5</code> see <span class="citation" data-cites="trollKarteJahreszeitenKlimateErde1964">(<a href="references.html#ref-trollKarteJahreszeitenKlimateErde1964" role="doc-biblioref">Troll 1964</a>)</span>. Miami model for <code>npp</code> variable was described by <span class="citation" data-cites="liethModelingPrimaryProductivity1975">Lieth (<a href="references.html#ref-liethModelingPrimaryProductivity1975" role="doc-biblioref">1975</a>)</span>.</p>
 <div class="cell page-columns page-full">
-<div id="tbl-chelsa_variable_names" class="cell quarto-float anchored page-columns page-full">
+<div id="tbl-chelsa_variable_names" class="cell quarto-float quarto-figure quarto-figure-center anchored page-columns page-full">
 <figure class="quarto-float quarto-float-tbl figure page-columns page-full">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-chelsa_variable_names-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;3.4: Chelsa variable names <span class="citation" data-cites="kargerCHELSAV2Technical2021">(<a href="references.html#ref-kargerCHELSAV2Technical2021" role="doc-biblioref">Dirk Nikolaus Karger and Zimmermann 2021</a>)</span>
 </figcaption>
 <div aria-describedby="tbl-chelsa_variable_names-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
 <div class="cell-output-display column-body-outset">
-<div>
-<table class="lightable-classic-2 do-not-create-environment cell table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="lightable-classic-2 do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Short name</th>
@@ -1458,7 +1452,6 @@ Table&nbsp;3.4: Chelsa variable names <span class="citation" data-cites="kargerC
 
 </div>
 </div>
-</div>
 </figure>
 </div>
 </div>
@@ -1582,7 +1575,7 @@ Downloading file
 <span id="cb30-44"><a href="#cb30-44" aria-hidden="true" tabindex="-1"></a>       )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-remagen_plot" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-remagen_plot" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-remagen_plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="environments_files/figure-html/fig-remagen_plot-1.png" class="img-fluid figure-img" width="672">
@@ -1596,7 +1589,7 @@ Figure&nbsp;3.3: Temperature in Remagen, Germany during April and May 1945
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-remagen_precipitation" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-remagen_precipitation" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-remagen_precipitation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="environments_files/figure-html/fig-remagen_precipitation-1.png" class="img-fluid figure-img" width="672">
@@ -1614,15 +1607,14 @@ Figure&nbsp;3.4: Precipitation in Remagen, Germany during April and May 1945
 <p>TerraClimate <span class="citation" data-cites="abatzoglouTerraClimateHighresolutionGlobal2018">(<a href="references.html#ref-abatzoglouTerraClimateHighresolutionGlobal2018" role="doc-biblioref">Abatzoglou et al. 2018</a>)</span> is a dataset of monthly climate and climatic water balance for global terrestrial surfaces from 1958 to 2023. All data have monthly temporal resolution and a ~4-km (1/24th degree) spatial resolution.</p>
 <p>Primary climate variables covers: maximum and minimum temperature, vapor pressure, precipitation accumulation, downward surface shortwave radiation and wind-speed. Derived variables are: reference evapotranspiration (ASCE Penman-Montieth), runoff, actual evapotranspiration, climate water deficit, soil moisture, snow water equivalent, palmer drought severity index and vapor pressure deficit. Detailed description is provided on <a href="https://www.climatologylab.org/terraclimate.html">Climatology Lab</a>. The data is available as netCDF files from <a href="http://thredds.northwestknowledge.net:8080/thredds/catalog/TERRACLIMATE_ALL/data/catalog.html">THREDDS web server</a>. You can use <code>getTerraClim()</code> function from {climateR} package <span class="citation" data-cites="R-climateR">(<a href="references.html#ref-R-climateR" role="doc-biblioref">Johnson 2024</a>)</span> to access the data in R.</p>
 <div class="cell">
-<div id="tbl-terra_climate_abreviations" class="cell quarto-float anchored">
+<div id="tbl-terra_climate_abreviations" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-terra_climate_abreviations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;3.5: Abbreviation of the variables used by TerraClimate
 </figcaption>
 <div aria-describedby="tbl-terra_climate_abreviations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div>
-<table class="lightable-classic-2 do-not-create-environment cell table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="lightable-classic-2 do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Abbreviation</th>
@@ -1717,7 +1709,6 @@ Table&nbsp;3.5: Abbreviation of the variables used by TerraClimate
 </table>
 
 
-</div>
 </div>
 </div>
 </figure>
@@ -1934,18 +1925,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1977,7 +1957,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp("https:\/\/gsapijaszko\.github\.io\/open_data\/");
@@ -1985,7 +1987,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

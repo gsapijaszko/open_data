@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.21">
+<meta name="generator" content="quarto-1.6.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Open Data sources – 2&nbsp; OpenStreetMap as a universal spatial data source</title>
+<title>2&nbsp; OpenStreetMap as a universal spatial data source – Open Data sources</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -91,10 +91,10 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2486e1f0a3ee9ee1fc393803a1361cdb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-ce698f4e766efdae66301126e4b723a1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -141,13 +141,13 @@ div.csl-indent {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./osm.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">OpenStreetMap as a universal spatial data source</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -308,7 +308,7 @@ OSM Data at a glance
 <span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-number_of_editors" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-number_of_editors" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-number_of_editors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="osm_files/figure-html/fig-number_of_editors-1.png" class="img-fluid figure-img" width="672">
@@ -326,7 +326,7 @@ Figure&nbsp;2.1: Number of editors (blue) and number of nodes per editor/week (b
 <p>OpenStreetMap has grown enormously. It’s data is used quite often by researchers of various fields. File <code>data/OpenStreetMap.bib</code> contains bibliography where either OSM, OpenStreetMap or Volunteered Geographic Information appears in title and/or abstract. The articled published in first years concentrated mostly on data quality and volunteered phenomenon of spatial data collection. Few years later we can observe shift from assessment to use of the OSM data as base spatial set in the analyses. <a href="#fig-osm_bibliography_per_year" class="quarto-xref">Figure&nbsp;<span>2.2</span></a> display the number of scientific papers by year, while <a href="#fig-osm_most_common_words" class="quarto-xref">Figure&nbsp;<span>2.3</span></a> shows most common words used in titles.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-osm_bibliography_per_year" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-osm_bibliography_per_year" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-osm_bibliography_per_year-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="osm_files/figure-html/fig-osm_bibliography_per_year-1.png" class="img-fluid figure-img" width="672">
@@ -340,7 +340,7 @@ Figure&nbsp;2.2: OpenStreetMap related bibliography by year as of January 2024
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-osm_most_common_words" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-osm_most_common_words" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-osm_most_common_words-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="osm_files/figure-html/fig-osm_most_common_words-1.png" class="img-fluid figure-img" width="672">
@@ -387,7 +387,7 @@ Figure&nbsp;2.3: Most common words in OSM bibliography
 <div aria-describedby="fig-oe_provider_zones-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row">
 <div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-oe_provider_zones" style="flex-basis: 33.3%;justify-content: flex-start;">
-<div id="fig-oe_provider_zones-1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-oe_provider_zones-1" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-oe_provider_zones-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="osm_files/figure-html/fig-oe_provider_zones-1.png" class="img-fluid figure-img" data-ref-parent="fig-oe_provider_zones" width="672">
@@ -399,7 +399,7 @@ Figure&nbsp;2.3: Most common words in OSM bibliography
 </div>
 </div>
 <div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-oe_provider_zones" style="flex-basis: 33.3%;justify-content: flex-start;">
-<div id="fig-oe_provider_zones-2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-oe_provider_zones-2" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-oe_provider_zones-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="osm_files/figure-html/fig-oe_provider_zones-2.png" class="img-fluid figure-img" data-ref-parent="fig-oe_provider_zones" width="672">
@@ -411,7 +411,7 @@ Figure&nbsp;2.3: Most common words in OSM bibliography
 </div>
 </div>
 <div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-oe_provider_zones" style="flex-basis: 33.3%;justify-content: flex-start;">
-<div id="fig-oe_provider_zones-3" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-oe_provider_zones-3" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-oe_provider_zones-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="osm_files/figure-html/fig-oe_provider_zones-3.png" class="img-fluid figure-img" data-ref-parent="fig-oe_provider_zones" width="672">
@@ -545,7 +545,7 @@ Figure&nbsp;2.5: Examples of country boundaries on different maps, source: <a hr
 <span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>tmpl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div id="fig-osm-czech-boundary" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-osm-czech-boundary" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-osm-czech-boundary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell">
@@ -576,7 +576,7 @@ Figure&nbsp;2.6: Different boundary lines shown on OSM background: <code>World</
 <span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  tmap<span class="sc">::</span><span class="fu">tm_shape</span>(d) <span class="sc">+</span></span>
 <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  tmap<span class="sc">::</span><span class="fu">tm_lines</span>(<span class="at">col =</span> <span class="st">"darkgreen"</span>, <span class="at">lwd =</span> <span class="dv">2</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div id="fig-osmdata-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-osmdata-plot" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-osmdata-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell">
@@ -613,7 +613,7 @@ Figure&nbsp;2.7: And with Czech Republic boundary based on OpenStreetMap data (<
 <span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>  tmap<span class="sc">::</span><span class="fu">tm_basemap</span>(<span class="st">"OpenStreetMap"</span>) <span class="sc">+</span></span>
 <span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>  tmap<span class="sc">::</span><span class="fu">tm_borders</span>(<span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"orange"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div id="fig-italy_with_territorial_waters" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-italy_with_territorial_waters" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-italy_with_territorial_waters-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell">
@@ -645,7 +645,7 @@ Figure&nbsp;2.8: Border of the Italy including territorial waters
 <span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_union</span>() <span class="sc">|&gt;</span></span>
 <span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_sf</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="fig-italy_without_water" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-italy_without_water" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-italy_without_water-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell">
@@ -678,15 +678,14 @@ Figure&nbsp;2.9: Italy land border created with gluing the lower administrative 
 <h3 data-number="2.2.2" class="anchored" data-anchor-id="below-country-level"><span class="header-section-number">2.2.2</span> Below country level</h3>
 <p>Sub-national borders like province, state, region, district, parish, municipality or any other country-specific administrative areas are marked with <code>admin_level = 3</code> to <code>11</code>. The details for almost all countries can be found on <a href="https://wiki.openstreetmap.org/wiki/Tag:boundary%3Dadministrative#admin_level=*_Country_specific_values">wiki</a>, but there is a general pattern across OSM data:</p>
 <div class="cell">
-<div id="tbl-admin_levels" class="cell quarto-float anchored">
+<div id="tbl-admin_levels" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-admin_levels-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;2.1: General administrative levels of OSM boundaries
 </figcaption>
 <div aria-describedby="tbl-admin_levels-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div>
-<table class="lightable-classic-2 do-not-create-environment cell table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="lightable-classic-2 do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: right;" data-quarto-table-cell-role="th">admin_level</th>
@@ -714,7 +713,6 @@ Table&nbsp;2.1: General administrative levels of OSM boundaries
 </table>
 
 
-</div>
 </div>
 </div>
 </figure>
@@ -843,7 +841,7 @@ Table&nbsp;2.1: General administrative levels of OSM boundaries
 <div aria-describedby="fig-prusice_population-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row">
 <div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-prusice_population" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-prusice_population-1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-prusice_population-1" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-prusice_population-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="osm_files/figure-html/fig-prusice_population-1.png" class="img-fluid figure-img" data-ref-parent="fig-prusice_population" width="672">
@@ -855,7 +853,7 @@ Table&nbsp;2.1: General administrative levels of OSM boundaries
 </div>
 </div>
 <div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-prusice_population" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-prusice_population-2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-prusice_population-2" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-prusice_population-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="osm_files/figure-html/fig-prusice_population-2.png" class="img-fluid figure-img" data-ref-parent="fig-prusice_population" width="672">
@@ -890,7 +888,7 @@ Figure&nbsp;2.10: Population and population density in Prusice municipality base
 <span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>  tmap<span class="sc">::</span><span class="fu">tm_basemap</span>(<span class="st">"Esri.WorldGrayCanvas"</span>) <span class="sc">+</span></span>
 <span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>  tmap<span class="sc">::</span><span class="fu">tm_borders</span>(<span class="at">col =</span> <span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div id="fig-paris_france" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-paris_france" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-paris_france-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell">
@@ -932,15 +930,14 @@ Figure&nbsp;2.11: Arrondissements of Paris
 <span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">format.args =</span> <span class="fu">list</span>(<span class="at">decimal.mark =</span> <span class="st">"."</span>, <span class="at">big.mark =</span> <span class="st">""</span>)) <span class="sc">|&gt;</span></span>
 <span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_classic_2</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div id="tbl-other_boundaries" class="cell quarto-float anchored">
+<div id="tbl-other_boundaries" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-other_boundaries-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;2.2: 10 most popular <code>boundary=</code> values in OpenStreetMap
 </figcaption>
 <div aria-describedby="tbl-other_boundaries-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div>
-<table class="lightable-classic-2 do-not-create-environment cell table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="lightable-classic-2 do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">value</th>
@@ -1016,7 +1013,6 @@ Table&nbsp;2.2: 10 most popular <code>boundary=</code> values in OpenStreetMap
 
 </div>
 </div>
-</div>
 </figure>
 </div>
 </div>
@@ -1051,7 +1047,7 @@ Table&nbsp;2.2: 10 most popular <code>boundary=</code> values in OpenStreetMap
 <span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>  tmap<span class="sc">::</span><span class="fu">tm_credits</span>(<span class="st">"(C) OpenStreetMap contributors"</span>, <span class="at">position =</span>  <span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.05</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-national_parks_in_peru" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-national_parks_in_peru" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-national_parks_in_peru-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="osm_files/figure-html/fig-national_parks_in_peru-1.png" class="img-fluid figure-img" width="672">
@@ -1072,8 +1068,7 @@ Figure&nbsp;2.12: National parks in Peru
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div>
-<table class="lightable-classic-2 table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="lightable-classic-2 caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>National parks in Peru with their area</caption>
 <thead>
 <tr class="header">
@@ -1148,7 +1143,6 @@ Figure&nbsp;2.12: National parks in Peru
 
 </div>
 </div>
-</div>
 <p>Let’s have a look a bit deeper what kind of information is associated with those parks in OSM by displaying all column names:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -1188,15 +1182,14 @@ Figure&nbsp;2.12: National parks in Peru
 <span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_drop_geometry</span>() <span class="sc">|&gt;</span></span>
 <span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable</span>(<span class="at">row.names =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
 <span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_classic_2</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="tbl-park_details" class="cell tbl-column-body-outset-right quarto-float anchored">
+<div id="tbl-park_details" class="cell tbl-column-body-outset-right quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-park_details-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;2.3: Some details about Parque Nacional Alto Purús from OpenStreetMap data
 </figcaption>
 <div aria-describedby="tbl-park_details-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div>
-<table class="lightable-classic-2 do-not-create-environment cell tbl-column-body-outset-right table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="lightable-classic-2 do-not-create-environment cell tbl-column-body-outset-right caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">short_name</th>
@@ -1220,7 +1213,6 @@ Table&nbsp;2.3: Some details about Parque Nacional Alto Purús from OpenStreetMa
 </table>
 
 
-</div>
 </div>
 </div>
 </figure>
@@ -1278,7 +1270,7 @@ Note
 <section id="sec-postal_code" class="level4">
 <h4 class="anchored" data-anchor-id="sec-postal_code">Postal code areas</h4>
 <p>Postal code boundaries are the third most common boundaries in OSM, however please be aware, that such information doesn’t exist in each country. <a href="#fig-postal_code_distribution_map" class="quarto-xref">Figure&nbsp;<span>2.13</span></a> displays the distribution of this tag — mostly used in Belgium, Germany, Vietnam and in few other spots across the globe.</p>
-<div id="fig-postal_code_distribution_map" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-postal_code_distribution_map" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-postal_code_distribution_map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/postal_codes_distribution.png" class="img-fluid figure-img">
@@ -1354,7 +1346,7 @@ First 10 features:
 <span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">fill.legend =</span> tmap<span class="sc">::</span><span class="fu">tm_legend</span>(<span class="at">title =</span> <span class="st">"Postal prefix"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-oe_leipzig_addresses" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-oe_leipzig_addresses" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-oe_leipzig_addresses-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="osm_files/figure-html/fig-oe_leipzig_addresses-1.png" class="img-fluid figure-img" width="672">
@@ -1422,15 +1414,14 @@ Tip
 <span id="cb40-22"><a href="#cb40-22" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">postal_code =</span> <span class="fu">get_postal_code_from_wikidata</span>(wikidata))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div id="tbl-with_postal_codes" class="cell quarto-float anchored">
+<div id="tbl-with_postal_codes" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-with_postal_codes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;2.4: Example of administrative areas with postal code assigned
 </figcaption>
 <div aria-describedby="tbl-with_postal_codes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div>
-<table class="lightable-classic-2 do-not-create-environment cell table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="lightable-classic-2 do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">name</th>
@@ -1505,13 +1496,12 @@ Table&nbsp;2.4: Example of administrative areas with postal code assigned
 
 </div>
 </div>
-</div>
 </figure>
 </div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-administrative_areas_by_code_prefixes" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-administrative_areas_by_code_prefixes" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-administrative_areas_by_code_prefixes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="osm_files/figure-html/fig-administrative_areas_by_code_prefixes-1.png" class="img-fluid figure-img" width="672">
@@ -1551,15 +1541,14 @@ Figure&nbsp;2.15: Administrative areas with postal codes from Wikidata, grouped 
 <span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable</span>() <span class="sc">|&gt;</span></span>
 <span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_classic_2</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div id="tbl-corine-to-osm" class="cell quarto-float anchored">
+<div id="tbl-corine-to-osm" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-corine-to-osm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;2.5: Corine Land Cover classess and corresponding OpenStreetMap taging system. Source: <a href="https://wiki.openstreetmap.org/wiki/Corine_Land_Cover">wiki</a>.
 </figcaption>
 <div aria-describedby="tbl-corine-to-osm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div>
-<table class="lightable-classic-2 do-not-create-environment cell table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="lightable-classic-2 do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Code</th>
@@ -1894,7 +1883,6 @@ Table&nbsp;2.5: Corine Land Cover classess and corresponding OpenStreetMap tagin
 
 </div>
 </div>
-</div>
 </figure>
 </div>
 </div>
@@ -1974,7 +1962,7 @@ from data source `/home/sapi/projekty/open_data/data/bbbike_Leipzig.gpkg' using 
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-leipzig_land_use" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-leipzig_land_use" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-leipzig_land_use-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="osm_files/figure-html/fig-leipzig_land_use-1.png" class="img-fluid figure-img" width="672">
@@ -2010,15 +1998,14 @@ Figure&nbsp;2.16: Example of land use around Leipzig, Germany
 
 -->
 <div class="cell">
-<div id="tbl-osm_highways" class="cell quarto-float anchored">
+<div id="tbl-osm_highways" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-osm_highways-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;2.6: Roads and their coding values in OpenStreetMap data. Source: <a href="https://wiki.openstreetmap.org/wiki/Key:highway">wiki</a>
 </figcaption>
 <div aria-describedby="tbl-osm_highways-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div>
-<table class="lightable-classic-2 do-not-create-environment cell table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="lightable-classic-2 do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Key</th>
@@ -2066,7 +2053,6 @@ Table&nbsp;2.6: Roads and their coding values in OpenStreetMap data. Source: <a 
 </table>
 
 
-</div>
 </div>
 </div>
 </figure>
@@ -2124,7 +2110,7 @@ Table&nbsp;2.6: Roads and their coding values in OpenStreetMap data. Source: <a 
 <span id="cb51-27"><a href="#cb51-27" aria-hidden="true" tabindex="-1"></a>tm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-prusice_highways" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-prusice_highways" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-prusice_highways-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="osm_files/figure-html/fig-prusice_highways-1.png" class="img-fluid figure-img" width="672">
@@ -2299,15 +2285,14 @@ Available layers:
 <span id="cb61-26"><a href="#cb61-26" aria-hidden="true" tabindex="-1"></a>                  <span class="at">align =</span> <span class="fu">c</span>(<span class="st">"crrr"</span>)) <span class="sc">|&gt;</span></span>
 <span id="cb61-27"><a href="#cb61-27" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_classic_2</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div id="tbl-bikes_pedestrians_cars" class="cell quarto-float anchored">
+<div id="tbl-bikes_pedestrians_cars" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-bikes_pedestrians_cars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;2.7: Total length of roads by it’s type
 </figcaption>
 <div aria-describedby="tbl-bikes_pedestrians_cars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div>
-<table class="lightable-classic-2 do-not-create-environment cell table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="lightable-classic-2 do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: center;" data-quarto-table-cell-role="th"></th>
@@ -2327,7 +2312,6 @@ Table&nbsp;2.7: Total length of roads by it’s type
 </table>
 
 
-</div>
 </div>
 </div>
 </figure>
@@ -2358,15 +2342,14 @@ Table&nbsp;2.7: Total length of roads by it’s type
 <span id="cb62-19"><a href="#cb62-19" aria-hidden="true" tabindex="-1"></a>                  <span class="at">align =</span> <span class="fu">c</span>(<span class="st">"lr"</span>)) <span class="sc">|&gt;</span></span>
 <span id="cb62-20"><a href="#cb62-20" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_classic_2</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div id="tbl-bike_only_by_surface" class="cell quarto-float anchored">
+<div id="tbl-bike_only_by_surface" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-bike_only_by_surface-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;2.8: Length of bike only roads by surface
 </figcaption>
 <div aria-describedby="tbl-bike_only_by_surface-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div>
-<table class="lightable-classic-2 do-not-create-environment cell table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="lightable-classic-2 do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Surface</th>
@@ -2424,7 +2407,6 @@ Table&nbsp;2.8: Length of bike only roads by surface
 
 </div>
 </div>
-</div>
 </figure>
 </div>
 </div>
@@ -2432,9 +2414,9 @@ Table&nbsp;2.8: Length of bike only roads by surface
 <div id="fig-leipzig_plots" class="quarto-layout-panel page-columns page-full">
 <figure class="quarto-float quarto-float-fig figure page-columns page-full">
 <div aria-describedby="fig-leipzig_plots-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
-<div class="quarto-layout-row page-columns page-full">
+<div class="quarto-layout-row page-full">
 <div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell page-columns page-full" data-ref-parent="fig-leipzig_plots" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-leipzig_plots-1" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full">
+<div id="fig-leipzig_plots-1" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full">
 <figure class="quarto-float quarto-subfloat-fig figure page-columns page-full">
 <div aria-describedby="fig-leipzig_plots-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
 <img src="osm_files/figure-html/fig-leipzig_plots-1.png" class="img-fluid figure-img column-body-outset" data-ref-parent="fig-leipzig_plots" width="672">
@@ -2446,7 +2428,7 @@ Table&nbsp;2.8: Length of bike only roads by surface
 </div>
 </div>
 <div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell page-columns page-full" data-ref-parent="fig-leipzig_plots" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-leipzig_plots-2" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full">
+<div id="fig-leipzig_plots-2" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full">
 <figure class="quarto-float quarto-subfloat-fig figure page-columns page-full">
 <div aria-describedby="fig-leipzig_plots-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
 <img src="osm_files/figure-html/fig-leipzig_plots-2.png" class="img-fluid figure-img column-body-outset" data-ref-parent="fig-leipzig_plots" width="672">
@@ -2471,7 +2453,7 @@ Figure&nbsp;2.18: Highways in Leipzig
 <p>But roads are not just lines on a map. It is also a network of connections that allow you to move from city to city, from one point to another. A network of connections that can be represented using graphs. It can be used both for routing and for analyzing the accessibility of various goods and resources: school, work or library.</p>
 <p>There’s a lot of routing software on the market, both free and commercial, online and offline, which uses OSM and proprietary maps. The overview of those using OSM data can be found under <a href="https://wiki.openstreetmap.org/wiki/Routing/online_routers">https://wiki.openstreetmap.org/wiki/Routing/online_routers</a>. Some of them provides API, which may be used in various tools (R, QGIS), some of them like <a href="https://brouter.de/brouter/">BRouter</a> integrates with different Android based map software (<a href="http://osmand.net/">OSMAnd</a> for example). There is a PostGIS/PostgreSQL <a href="https://pgrouting.org/">pgRouting</a> library which extends geospatial database capabilities by routing functionality with various algorithms.</p>
 <div class="page-columns page-full">
-<div id="fig-qgis_ors_routes" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full">
+<div id="fig-qgis_ors_routes" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full">
 <figure class="quarto-float quarto-float-fig figure page-columns page-full">
 <div aria-describedby="fig-qgis_ors_routes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
 <img src="images/qgis_ors_routes.png" class="img-fluid figure-img column-body-outset">
@@ -2526,7 +2508,7 @@ Figure&nbsp;2.19: Example of routes generated by openroutingservice.org using QG
 <span id="cb63-38"><a href="#cb63-38" aria-hidden="true" tabindex="-1"></a>  tmap<span class="sc">::</span><span class="fu">tm_dots</span>(<span class="at">size =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-prusice_osp_access" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-prusice_osp_access" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-prusice_osp_access-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="osm_files/figure-html/fig-prusice_osp_access-1.png" class="img-fluid figure-img" width="672">
@@ -2555,15 +2537,14 @@ Figure&nbsp;2.20: Areas reachable in 3, 6, and 9 minutes from fire stations in P
 <span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">format.args =</span> <span class="fu">list</span>(<span class="at">decimal.mark =</span> <span class="st">"."</span>, <span class="at">big.mark =</span> <span class="st">""</span>)) <span class="sc">|&gt;</span></span>
 <span id="cb64-8"><a href="#cb64-8" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_classic_2</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div id="tbl-grid_featues" class="cell quarto-float anchored">
+<div id="tbl-grid_featues" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-grid_featues-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;2.9: 10 most popular <code>power=</code> values in OpenStreetMap
 </figcaption>
 <div aria-describedby="tbl-grid_featues-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div>
-<table class="lightable-classic-2 do-not-create-environment cell table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="lightable-classic-2 do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">value</th>
@@ -2639,7 +2620,6 @@ Table&nbsp;2.9: 10 most popular <code>power=</code> values in OpenStreetMap
 
 </div>
 </div>
-</div>
 </figure>
 </div>
 </div>
@@ -2700,7 +2680,7 @@ Table&nbsp;2.9: 10 most popular <code>power=</code> values in OpenStreetMap
 <span id="cb65-48"><a href="#cb65-48" aria-hidden="true" tabindex="-1"></a>  tmap<span class="sc">::</span><span class="fu">tm_dots</span>(<span class="at">size =</span> <span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-power_grid_sweden" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-power_grid_sweden" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-power_grid_sweden-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="osm_files/figure-html/fig-power_grid_sweden-1.png" class="img-fluid figure-img" width="672">
@@ -2732,7 +2712,7 @@ Z adresami związany geocoding i reversal - Nominatim + pakiety do tego
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-bauerComputingIsochronesMultimodal2008" class="csl-entry" role="listitem">
-Bauer, Veronika, Johann Gamper, Roberto Loperfido, Sylvia Profanter, Stefan Putzer, and Igor Timko. 2008. <span>“Computing Isochrones in Multi-Modal, Schedule-Based Transport Networks.”</span> In <em>Proceedings of the 16th <span>ACM SIGSPATIAL</span> International Conference on <span>Advances</span> in Geographic Information Systems</em>, 1–2. <span>GIS</span> ’08. <span>New York, NY, USA</span>: <span>Association for Computing Machinery</span>. <a href="https://doi.org/b9xqfg">https://doi.org/b9xqfg</a>.
+Bauer, Veronika, Johann Gamper, Roberto Loperfido, Sylvia Profanter, Stefan Putzer, and Igor Timko. 2008. <span>“Computing Isochrones in Multi-Modal, Schedule-Based Transport Networks.”</span> In <em>Proceedings of the 16th <span>ACM SIGSPATIAL</span> International Conference on <span>Advances</span> in Geographic Information Systems</em>, 1–2. <span>GIS</span> ’08. <span>New York, NY, USA</span>: <span>Association for Computing Machinery</span>. <a href="https://doi.org/10/b9xqfg">https://doi.org/10/b9xqfg</a>.
 </div>
 <div id="ref-benhlimaIsochronicMeasurementAnalysis2023" class="csl-entry" role="listitem">
 Benhlima, Ouidad, Fouad Riane, Jakob Puchinger, and Hicham Bahi. 2023. <span>“An Isochronic Measurement for the Analysis of Proximity to Restaurants and Locations of Food Delivery Parking.”</span> In <em>The 9th <span>International Conference</span> on <span>Modeling</span>, <span>Simulation</span> and <span>Applied Optimization</span> (<span>ICMSAO</span>’23)</em>. <span>Marrakech (Maroc), Morocco</span>. <a href="https://hal.science/hal-04086908">https://hal.science/hal-04086908</a>.
@@ -2747,7 +2727,7 @@ Estima, Jacinto, and Marco Painho. 2013. <span>“Exploratory Analysis of <span>
 ———. 2015. <span>“Investigating the <span>Potential</span> of <span>Openstreetmap</span> for <span>Land Use</span>/<span>Land Cover Production</span>: <span>A Case Study</span> for <span>Continental Portugal</span>.”</span> In <em><span>OpenStreetMap</span> in <span>GIScience</span>: <span>Experiences</span>, <span>Research</span>, and <span>Applications</span></em>, edited by Jamal Jokar Arsanjani, Alexander Zipf, Peter Mooney, and Marco Helbich, 273–93. <span>Cham</span>: <span>Springer International Publishing</span>. <a href="https://doi.org/10.1007/978-3-319-14280-7_14">https://doi.org/10.1007/978-3-319-14280-7_14</a>.
 </div>
 <div id="ref-fazio15minutesStationCase2023" class="csl-entry" role="listitem">
-Fazio, Martina, Fabio Borghetti, Nadia Giuffrida, Michela Le Pira, Michela Longo, Matteo Ignaccolo, Giuseppe Inturri, and Roberto Maja. 2023. <span>“The <span>‘15-Minutes Station’</span>: A Case Study to Evaluate the Pedestrian Accessibility of Railway Transport in <span>Southern Italy</span>.”</span> <em>Transportation Research Procedia</em>, <span>AIIT</span> 3rd <span>International Conference</span> on <span>Transport Infrastructure</span> and <span>Systems</span> (<span>TIS ROMA</span> 2022), 15th-16th <span>September</span> 2022, <span>Rome</span>, <span>Italy</span>, 69 (January): 536–43. <a href="https://doi.org/gtg74p">https://doi.org/gtg74p</a>.
+Fazio, Martina, Fabio Borghetti, Nadia Giuffrida, Michela Le Pira, Michela Longo, Matteo Ignaccolo, Giuseppe Inturri, and Roberto Maja. 2023. <span>“The <span>‘15-Minutes Station’</span>: A Case Study to Evaluate the Pedestrian Accessibility of Railway Transport in <span>Southern Italy</span>.”</span> <em>Transportation Research Procedia</em>, <span>AIIT</span> 3rd <span>International Conference</span> on <span>Transport Infrastructure</span> and <span>Systems</span> (<span>TIS ROMA</span> 2022), 15th-16th <span>September</span> 2022, <span>Rome</span>, <span>Italy</span>, 69 (January): 536–43. <a href="https://doi.org/10/gtg74p">https://doi.org/10/gtg74p</a>.
 </div>
 <div id="ref-fonteUsingOpenStreetMapCreate2019" class="csl-entry" role="listitem">
 Fonte, Cid’alia Costa, Joaquim Ant’onio Patriarca, Marco Minghini, Vyron Antoniou, Linda See, and Maria Antonia Brovelli. 2019. <span>“Using <span>OpenStreetMap</span> to <span>Create Land Use</span> and <span>Land Cover Maps</span>: <span>Development</span> of an <span>Application</span>.”</span> In <em>Geospatial <span>Intelligence</span>: <span>Concepts</span>, <span>Methodologies</span>, <span>Tools</span>, and <span>Applications</span> (3 <span>Volumes</span>)</em>, edited by Information Resources Management Association, 1100–1123. <span>Hershey PA, USA</span>: <span>IGI Global</span>. <a href="https://www.igi-global.com/book/geospatial-intelligence-concepts-methodologies-tools/213224">https://www.igi-global.com/book/geospatial-intelligence-concepts-methodologies-tools/213224</a>.
@@ -2765,7 +2745,7 @@ Haklay, Mordechai. 2010. <span>“How Good Is Volunteered Geographical Informati
 Hijmans, Robert J., M’arcia Barbosa, Aniruddha Ghosh, and Alex Mandel. 2023. <em>Geodata: Download Geographic Data</em>. <a href="https://CRAN.R-project.org/package=geodata">https://CRAN.R-project.org/package=geodata</a>.
 </div>
 <div id="ref-kondratevaIsochronesBasedPublic2017" class="csl-entry" role="listitem">
-Kondrateva, Elena, Alexander Sidorov, and Oleg Saprykin. 2017. <span>“An Isochrones Based Public Transport Stops Optimization Technique.”</span> In <em>2017 5th <span>IEEE International Conference</span> on <span>Models</span> and <span>Technologies</span> for <span>Intelligent Transportation Systems</span> (<span>MT-ITS</span>)</em>, 182–87. <a href="https://doi.org/gtg72p">https://doi.org/gtg72p</a>.
+Kondrateva, Elena, Alexander Sidorov, and Oleg Saprykin. 2017. <span>“An Isochrones Based Public Transport Stops Optimization Technique.”</span> In <em>2017 5th <span>IEEE International Conference</span> on <span>Models</span> and <span>Technologies</span> for <span>Intelligent Transportation Systems</span> (<span>MT-ITS</span>)</em>, 182–87. <a href="https://doi.org/10/gtg72p">https://doi.org/10/gtg72p</a>.
 </div>
 <div id="ref-kounadiAssessingQualityOpenStreetMap2009" class="csl-entry" role="listitem">
 Kounadi, Ourania. 2009. <span>“Assessing the <span>Quality</span> of <span>OpenStreetMap Data</span>.”</span> <span>London</span>: <span>University College of London, Department of Civil, Environmental And Geomatic Engineering</span>.
@@ -2798,10 +2778,10 @@ Pebesma, Edzer, Thomas Mailund, and James Hiebert. 2016. <span>“Measurement Un
 Reinmuth, Marcel, and Alexander Zipf. n.d. <span>“Physical Accessibility of Hospitals in Sub-<span>Saharan Africa</span>: <span>An</span> Exemplary Analysis of the Potential of Open Geodata in the Health Sector.”</span>
 </div>
 <div id="ref-schottOpenstreetmapElementVectorisation2022a" class="csl-entry" role="listitem">
-Schott, M., S. Lautenbach, L. Größchen, and A. Zipf. 2022. <span>“Openstreetmap Element Vectorisation - a Tool for High Resolution Data Insights and Its Usability in the Land-Use and Land-Cover Domain.”</span> <em>The International Archives of the Photogrammetry, Remote Sensing and Spatial Information Sciences</em> XLVIII-4-W1-2022 (August): 395–402. <a href="https://doi.org/gtdww7">https://doi.org/gtdww7</a>.
+Schott, M., S. Lautenbach, L. Größchen, and A. Zipf. 2022. <span>“Openstreetmap Element Vectorisation - a Tool for High Resolution Data Insights and Its Usability in the Land-Use and Land-Cover Domain.”</span> <em>The International Archives of the Photogrammetry, Remote Sensing and Spatial Information Sciences</em> XLVIII-4-W1-2022 (August): 395–402. <a href="https://doi.org/10/gtdww7">https://doi.org/10/gtdww7</a>.
 </div>
 <div id="ref-schultzOpenLandCover2017a" class="csl-entry" role="listitem">
-Schultz, Michael, Janek Voss, Michael Auer, Sarah Carter, and Alexander Zipf. 2017. <span>“Open Land Cover from <span>OpenStreetMap</span> and Remote Sensing.”</span> <em>International Journal of Applied Earth Observation and Geoinformation</em> 63 (December): 206–13. <a href="https://doi.org/gddfn6">https://doi.org/gddfn6</a>.
+Schultz, Michael, Janek Voss, Michael Auer, Sarah Carter, and Alexander Zipf. 2017. <span>“Open Land Cover from <span>OpenStreetMap</span> and Remote Sensing.”</span> <em>International Journal of Applied Earth Observation and Geoinformation</em> 63 (December): 206–13. <a href="https://doi.org/10/gddfn6">https://doi.org/10/gddfn6</a>.
 </div>
 <div id="ref-WikidataR" class="csl-entry" role="listitem">
 Shafee, Thomas, Os Keyes, and Serena Signorelli. 2021. <em>WikidataR: Read-Write API Client Library for Wikidata</em>. <a href="https://CRAN.R-project.org/package=WikidataR">https://CRAN.R-project.org/package=WikidataR</a>.
@@ -2889,18 +2869,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -2932,7 +2901,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp("https:\/\/gsapijaszko\.github\.io\/open_data\/");
@@ -2940,7 +2931,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

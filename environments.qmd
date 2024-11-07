@@ -1,5 +1,6 @@
 <!---
 https://openlandmap.github.io/book/012-compendium.html
+https://climatedataguide.ucar.edu/ - review of datasets
 -->
 
 # Environmental data {#sec-environmental_data}

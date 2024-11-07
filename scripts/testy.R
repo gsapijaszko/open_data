@@ -316,11 +316,32 @@ a$data$doi
 options(openalexR.mailto = "grzegorz@sapijaszko.net")
 
 a <- openalexR::oa_fetch(entity = "works", 
-                         search = "OpenStreetMap OR osm", 
+                         search = "", 
+                         doi = "10.1109/ICNGCIS.2017.35",
                          mailto = "grzegorz@sapijaszko.net")
 
+a
+
+a |>
+  openalexR::show_works(simp_func = identity) |>
+  subset(select = id) |>
+  head(2) |>
+  as.list() |>
+  purrr::pluck(1) |>
+  openalexR::oa_snowball()
+
+bib <- a$doi |>
+  subset(!is.na(a$doi)) |>
+  stringr::str_remove_all(pattern = "https://doi.org/") |>
+  rcrossref::cr_cn(format = "bibtex")
+
+bib |>
+  unlist() |>
+  writeLines(con = file("data/b.bib"))
+
+
 saveRDS(a, file = "data/openalexer_osm_query.rds")
-readRDS("data/openalexer_osm_query.rds")
+b <- readRDS("data/openalexer_osm_query.rds")
 openalexR::oa_fetch(entity = "works", doi = a[3, "doi"])
 a[1,1]
 a |>
@@ -328,16 +349,19 @@ a |>
   subset(publication_date >= as.Date("2023-12-31"), select = c("title"))
 
 a <- readRDS(file = "data/openalexer_osm_query.rds")
-
+a$related_works
 snowball_docs <- openalexR::oa_snowball(
-  identifier = c("W2184645388"),
+  identifier = c("W2900092898"),
   citing_params = list(),
   cited_by_params = list(),
   verbose = TRUE
 )
-snowball_docs[[1]][2, 1:5]
-snowball_docs |>
-  saveRDS(file = "data/snowball.rds")
+snowball_docs[[1]][, c("id", "doi", "title")] |>
+  tail(20) |>
+  dplyr::arrange(id)
+snowball_docs 
+  ]
+saveRDS(file = "data/snowball.rds")
 
 snowball_docs$nodes |>
   dplyr::mutate(publication_date = as.Date(publication_date)) |>
