@@ -20,6 +20,7 @@
 
 -   50 cm and 1 m resolution [DTM, DEM and shading ](https://www.tirol.gv.at/sicherheit/geoinformation/geodaten-tiris/laserscandaten/)
 
+<!-- 
 ```{r}
 #| label: geodata
 #| message: false
@@ -31,7 +32,7 @@ tmap::tmap_mode("view")
 tmap::tm_shape(sf::st_as_sf(a)) +
   tmap::tm_polygons(col = "GID_1")
 ```
-
+-->
 
 ### Belgium
 
