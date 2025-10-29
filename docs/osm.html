@@ -198,14 +198,8 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lidar.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Lidar data and its derivatives</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./sources.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Sources of LIDAR and/or DTM data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Sources of LIDAR and/or DTM data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -2831,7 +2825,7 @@ Zielstra, Dennis, and Alexander Zipf. 2010. <span>“Quantitative <span>Studies<
 <li id="fn2"><p>see <a href="https://www.naturalearthdata.com/">www.naturalearthdata.com</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn3"><p>available on <a href="https://osmdata.openstreetmap.de/data/water-polygons.html">osmdata.openstreetmap.de</a><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn4"><p>You can use <code>dplyr::filter()</code> as well.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn5"><p>Other option would be load all fields including <code>other_tags</code> (which are like <code>hstore</code> type field in Postgresql) and then massage it a bit with <code>tidyverse</code> functions:</p>
+<li id="fn5"><p>Other option would be load in all fields including <code>other_tags</code> (which are like <code>hstore</code> type field in Postgresql) and then massage it a bit with <code>tidyverse</code> functions:</p>
 <pre>  l &lt;- osmextract::oe_read("data/bbbike_Leipzig.gpkg", 
          query = "SELECT * FROM multipolygons WHERE boundary = 'postal_code'")
 

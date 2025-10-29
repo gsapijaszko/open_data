@@ -17,7 +17,7 @@ book:
     - osm.qmd
     - environments.qmd
     - dem.qmd
-    - lidar.qmd
+#    - lidar.qmd
     - sources.qmd
 #    - summary.qmd
     - references.qmd
