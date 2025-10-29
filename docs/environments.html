@@ -84,7 +84,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./references.html" rel="next">
+<link href="./dem.html" rel="next">
 <link href="./osm.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -237,6 +237,24 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./dem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Digital elevation data sets</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lidar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Lidar data and its derivatives</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Sources of LIDAR and/or DTM data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
@@ -255,9 +273,9 @@ window.Quarto = {
   <ul>
   <li><a href="#sec-esa_worldcover" id="toc-sec-esa_worldcover" class="nav-link" data-scroll-target="#sec-esa_worldcover"><span class="header-section-number">3.1.1</span> ESA WorldCover</a></li>
   </ul></li>
-  <li><a href="#sec-climate" id="toc-sec-climate" class="nav-link" data-scroll-target="#sec-climate"><span class="header-section-number">3.2</span> Climate</a>
+  <li><a href="#sec-climate" id="toc-sec-climate" class="nav-link" data-scroll-target="#sec-climate"><span class="header-section-number">3.2</span> Climate data</a>
   <ul>
-  <li><a href="#stations-data" id="toc-stations-data" class="nav-link" data-scroll-target="#stations-data"><span class="header-section-number">3.2.1</span> Stations data</a>
+  <li><a href="#data-of-individual-meteostations" id="toc-data-of-individual-meteostations" class="nav-link" data-scroll-target="#data-of-individual-meteostations"><span class="header-section-number">3.2.1</span> Data of individual (meteo)stations</a>
   <ul class="collapse">
   <li><a href="#integrated-surface-database" id="toc-integrated-surface-database" class="nav-link" data-scroll-target="#integrated-surface-database">Integrated Surface Database</a></li>
   <li><a href="#meteorological-aerodrome-report-metar-data" id="toc-meteorological-aerodrome-report-metar-data" class="nav-link" data-scroll-target="#meteorological-aerodrome-report-metar-data">Meteorological Aerodrome Report (METAR) data</a></li>
@@ -574,7 +592,7 @@ Figure&nbsp;3.1: Spatial coverage of WorlCover data
 </section>
 </section>
 <section id="sec-climate" class="level2 page-columns page-full" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="sec-climate"><span class="header-section-number">3.2</span> Climate</h2>
+<h2 data-number="3.2" class="anchored" data-anchor-id="sec-climate"><span class="header-section-number">3.2</span> Climate data</h2>
 <p>Key climatic variables are:</p>
 <ul>
 <li>temperature (°C) (minimum, maximum, average, above ground or at 2&nbsp;m height)</li>
@@ -586,8 +604,8 @@ Figure&nbsp;3.1: Spatial coverage of WorlCover data
 <li>soil moisture (cm liquid water),</li>
 </ul>
 <p>Those data can be provided as point data sets (per station) or as gridded data sets obtained from analysis or modeling of the past and current climate data.</p>
-<section id="stations-data" class="level3" data-number="3.2.1">
-<h3 data-number="3.2.1" class="anchored" data-anchor-id="stations-data"><span class="header-section-number">3.2.1</span> Stations data</h3>
+<section id="data-of-individual-meteostations" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="data-of-individual-meteostations"><span class="header-section-number">3.2.1</span> Data of individual (meteo)stations</h3>
 <section id="integrated-surface-database" class="level4">
 <h4 class="anchored" data-anchor-id="integrated-surface-database">Integrated Surface Database</h4>
 <p>The Integrated Surface Database (ISD) <span class="citation" data-cites="smithIntegratedSurfaceDatabase2011 delgrecoSurfaceDataIntegration2006 lottQualityControlIntegrated2004">(<a href="references.html#ref-smithIntegratedSurfaceDatabase2011" role="doc-biblioref">Smith, Lott, and Vose 2011</a>; <a href="references.html#ref-delgrecoSurfaceDataIntegration2006" role="doc-biblioref">Del Greco et al. 2006</a>; <a href="references.html#ref-lottQualityControlIntegrated2004" role="doc-biblioref">Lott 2004</a>)</span> is a global database that consists of hourly surface observations compiled from numerous sources into a single common ASCII format and common data model. It integrated data from numerous data sources and provides many parameters like temperature and dew point, wind speed and direction, precipitation etc. Data can be accessed from <a href="https://www.ncei.noaa.gov/products/land-based-station/integrated-surface-database">ncei.noaa.gov</a> portal or directly from <a href="https://www.ncei.noaa.gov/pub/data/noaa/">server</a> where the data is divided by year, and for every station a gziped text file is provided. Data format, described in <span class="citation" data-cites="FederalClimateComplex2018"><span>“Federal Climate Complex Data Documentation for <span>Integrated Surface Data</span> (<span>ISD</span>)”</span> (<a href="references.html#ref-FederalClimateComplex2018" role="doc-biblioref">2018</a>)</span>, covers among others: date and time of observation, longitude, latitude and elevation of station, wind direction and speed, sky conditions, visibility distance, air temperature and dev point temperature, atmospheric pressure, precipitation and snow depth. Stations, coded like <code>040180-16201</code> can be translated to station names and their physical locations using <a href="https://www.ncei.noaa.gov/pub/data/noaa/isd-history.csv">isd-history.csv</a> file.</p>
@@ -2326,8 +2344,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./references.html" class="pagination-link" aria-label="References">
-        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./dem.html" class="pagination-link" aria-label="Digital elevation data sets">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Digital elevation data sets</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

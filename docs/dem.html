@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>4&nbsp; Digital elevation data sets – Open Data sources</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./lidar.html" rel="next">
+<link href="./environments.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2486e1f0a3ee9ee1fc393803a1361cdb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-ce698f4e766efdae66301126e4b723a1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://hypothes.is/embed.js"></script>
+<script>
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    document.body.classList.add('hypothesis-enabled');
+  });
+</script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./dem.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Digital elevation data sets</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Open Data sources</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/gsapijaszko/open_data" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./osm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">OpenStreetMap as a universal spatial data source</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./environments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Environmental data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dem.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Digital elevation data sets</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lidar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Lidar data and its derivatives</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Sources of LIDAR and/or DTM data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#sources-of-data-for-digital-terrain-models" id="toc-sources-of-data-for-digital-terrain-models" class="nav-link active" data-scroll-target="#sources-of-data-for-digital-terrain-models"><span class="header-section-number">4.1</span> Sources of data for Digital Terrain Models</a></li>
+  <li><a href="#data-processing" id="toc-data-processing" class="nav-link" data-scroll-target="#data-processing"><span class="header-section-number">4.2</span> Data processing</a>
+  <ul>
+  <li><a href="#species-occurence-data" id="toc-species-occurence-data" class="nav-link" data-scroll-target="#species-occurence-data">Species occurence data</a></li>
+  <li><a href="#tandem-x" id="toc-tandem-x" class="nav-link" data-scroll-target="#tandem-x"><span class="header-section-number">4.2.1</span> TanDEM-X</a></li>
+  <li><a href="#copernicus-data" id="toc-copernicus-data" class="nav-link" data-scroll-target="#copernicus-data"><span class="header-section-number">4.2.2</span> Copernicus data</a></li>
+  <li><a href="#elevatr---the-black-horse" id="toc-elevatr---the-black-horse" class="nav-link" data-scroll-target="#elevatr---the-black-horse"><span class="header-section-number">4.2.3</span> ElevatR - the black horse</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/gsapijaszko/open_data/edit/main/dem.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/gsapijaszko/open_data/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Digital elevation data sets</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="sources-of-data-for-digital-terrain-models" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="sources-of-data-for-digital-terrain-models"><span class="header-section-number">4.1</span> Sources of data for Digital Terrain Models</h2>
+<p>On the global scale there are few sources available, including:</p>
+<ul>
+<li>SRTM90, SRTM30</li>
+<li>TanDEM-X</li>
+<li>Copernicus DEM</li>
+</ul>
+<p>NASA held the SRTM (Shuttle Radar Topography Mission) in 2000 <span class="citation" data-cites="vanzylShuttleRadarTopography2001">(<a href="references.html#ref-vanzylShuttleRadarTopography2001" role="doc-biblioref">van Zyl 2001</a>)</span>. The first set of data was released in 2005, however the regions outside the United States were sampled at 3 arc-seconds, which is 1/1200th of a degree of latitude and longitude, or roughly 90 meters on equator <span class="citation" data-cites="farrShuttleRadarTopography2007">(<a href="references.html#ref-farrShuttleRadarTopography2007" role="doc-biblioref">Farr et al. 2007</a>)</span>. In 2014 NASA released brand-new dataset with a resolution of 1 arc-second, or roughly 30 meters. <a href="http://earthexplorer.usgs.gov/">Earth Explorer</a> provides the data. The accuracy of the data was assessed by <span class="citation" data-cites="smithAccuracyResolutionShuttle2003">Smith and Sandwell (<a href="references.html#ref-smithAccuracyResolutionShuttle2003" role="doc-biblioref">2003</a>)</span> and later by <span class="citation" data-cites="rodriguezAssessmentSRTMTopographic2005">Rodriguez et al. (<a href="references.html#ref-rodriguezAssessmentSRTMTopographic2005" role="doc-biblioref">2005</a>)</span>.</p>
+<p>TanDEM-X (TerraSAR-X add-on for Digital Elevation Measurements) data produced by SAR interferometry was acquired in January 2015 <span class="citation" data-cites="kriegerTanDEMXRadarInterferometer2013 zinkTanDEMXNewGlobal2014">(<a href="references.html#ref-kriegerTanDEMXRadarInterferometer2013" role="doc-biblioref">Krieger et al. 2013</a>; <a href="references.html#ref-zinkTanDEMXNewGlobal2014" role="doc-biblioref">Zink et al. 2014</a>)</span>; the production of the global DEM was completed in September 2016. The absolute height error is within about 1&nbsp;m. The TanDEM-X 90m DEM publicly available has a pixel spacing of 3 arc-seconds, similar to SRTM90. <span class="citation" data-cites="wesselTanDEMXGroundSegment2018">(<a href="references.html#ref-wesselTanDEMXGroundSegment2018" role="doc-biblioref">Wessel 2018</a>)</span> It covers with 150 Mio sqkm all Earth’s landmasses from pole to pole. More information and data available from <a href="https://geoservice.dlr.de/web/dataguide/tdm90/">EOC Geoservice</a> portal. The assessment of the data was performed by <span class="citation" data-cites="wesselAccuracyAssessmentGlobal2018">Wessel et al. (<a href="references.html#ref-wesselAccuracyAssessmentGlobal2018" role="doc-biblioref">2018</a>)</span> and <span class="citation" data-cites="grohmannEvaluationTanDEMXDEMs2018">Grohmann (<a href="references.html#ref-grohmannEvaluationTanDEMXDEMs2018" role="doc-biblioref">2018</a>)</span> (for part of Brasil). The 12&nbsp;m and 30&nbsp;m global TanDEM-X DEMs can be ordered by scientific users via a proposal submission.</p>
+<p>For the Europe, there is a set released by Copernicus Programme named EU-DEM v1.0 (or v1.1) — it’s a digital surface model (DSM)<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> of European Economic Area countries. It is a hybrid product based on SRTM and ASTER GDEM data fused by a weighted averaging approach. Detailed description of the dataset and links for download are available under <a href="https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM">their portal</a>. Global 30&nbsp;m and 90&nbsp;m datasets are available worldwide with a free license.</p>
+<p>All of the above models are characterized by a spatial resolution of 30/90 meters. If more accurate data is needed, look for national sites, where you can download (or buy) the dataset. A few examples are covered in <a href="sources.html" class="quarto-xref"><span>Chapter 6</span></a>.</p>
+</section>
+<section id="data-processing" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="data-processing"><span class="header-section-number">4.2</span> Data processing</h2>
+<p><a href="https://opendata.stackexchange.com/questions/20498/looking-for-a-dem-elevation-model-for-entire-uk-not-in-tile-form">Looking for a DEM elevation model for entire UK - not in tile form</a> is the query on Open Data StackExchange that will be used as an example of extraction of elevation data from DTM/DEM. The initial question was:</p>
+<blockquote class="blockquote">
+<p>I need to calculate the elevation of 1600 survey plots covering all of the UK - I have these formatted as a point shapefile. I have looked at the OS50 dataset but this is only available as tiles and it would take forever to process each tile individually - my points cover the entire country. Is there free-to-use raster elevation data anywhere that is not split into many tiles?</p>
+</blockquote>
+<p>Let’s acquire and process the data. To download the SRTM rasters we can use one of <code>elevation_xx()</code> functions from <code>geodata</code> package <span class="citation" data-cites="geodata">(<a href="references.html#ref-geodata" role="doc-biblioref">Hijmans et al. 2023</a>)</span>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ele <span class="ot">&lt;-</span> geodata<span class="sc">::</span><span class="fu">elevation_30s</span>(<span class="st">"United Kingdom"</span>, <span class="at">path =</span> <span class="st">"data"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>terra<span class="sc">::</span><span class="fu">plot</span>(ele)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dem_files/figure-html/ele-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><code>elevation_30s()</code> function returns an aggregated data with spatial resolution about 1 km (30 arc seconds). The data was prepared based on SRTM 90 m and supplemented with the GTOP30 data for latitudes greater than 60 degrees.</p>
+<section id="species-occurence-data" class="level4">
+<h4 class="anchored" data-anchor-id="species-occurence-data">Species occurence data</h4>
+<p>We will use species occurrence data as an example of points for altitude sampling over the UK. Sample occurrence data for <em>Calystegia x pulchra</em> is taken from GBIF database using <code>rgbif</code> package <span class="citation" data-cites="rgbif1 rgbif2">(<a href="references.html#ref-rgbif1" role="doc-biblioref">Chamberlain et al. 2024</a>; <a href="references.html#ref-rgbif2" role="doc-biblioref">Chamberlain and Boettiger 2017</a>)</span>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>occ <span class="ot">&lt;-</span> rgbif<span class="sc">::</span><span class="fu">occ_data</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">scientificName =</span> <span class="st">"Calystegia pulchra"</span>, </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">country =</span> <span class="st">"GB"</span>, </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">hasCoordinate =</span> <span class="cn">TRUE</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>occ <span class="ot">&lt;-</span> <span class="fu">head</span>(occ<span class="sc">$</span>data, <span class="dv">20</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_as_sf</span>(<span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"decimalLongitude"</span>, <span class="st">"decimalLatitude"</span>), <span class="at">crs =</span> terra<span class="sc">::</span><span class="fu">crs</span>(ele)) <span class="sc">|&gt;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(<span class="at">select =</span> <span class="fu">c</span>(<span class="st">"key"</span>, <span class="st">"scientificName"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Let’s add the observations to the plot:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>terra<span class="sc">::</span><span class="fu">plot</span>(ele, <span class="at">main =</span> <span class="st">"Sample of C. pulchra distribution in UK"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>occ <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_geometry</span>() <span class="sc">|&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="at">pch =</span> <span class="dv">21</span>, <span class="at">bg =</span> <span class="st">"white"</span>,  <span class="at">add =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dem_files/figure-html/ele_plot-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Having our sample data prepared (which is class of sf, tbl_df, tbl, data.frame) we can add the elevation to the set using <code>extract()</code> function form <code>terra</code>. It requires an object of class SpatVector.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>occ <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">ele_30s =</span> terra<span class="sc">::</span><span class="fu">extract</span>(ele, terra<span class="sc">::</span><span class="fu">vect</span>(geometry))<span class="sc">$</span>GBR_elv_msk) <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Simple feature collection with 5 features and 3 fields
+Geometry type: POINT
+Dimension:     XY
+Bounding box:  xmin: -6.393662 ymin: 52.40178 xmax: -1.35372 ymax: 56.33171
+Geodetic CRS:  WGS 84
+# A tibble: 5 × 4
+  key        scientificName                                geometry ele_30s
+  &lt;chr&gt;      &lt;chr&gt;                                      &lt;POINT [°]&gt;   &lt;dbl&gt;
+1 5198908964 Calystegia × pulchra Brumm. &amp; He… (-2.925498 52.40178)     184
+2 5215772352 Calystegia × pulchra Brumm. &amp; He… (-2.075628 53.41154)     114
+3 5292006986 Calystegia × pulchra Brumm. &amp; He… (-6.393662 56.33171)      NA
+4 5762910665 Calystegia × pulchra Brumm. &amp; He…  (-1.35372 53.01439)     119
+5 5231426363 Calystegia × pulchra Brumm. &amp; He… (-5.898201 54.20297)       5</code></pre>
+</div>
+</div>
+<p>Points with no value (<code>elevation = NaN</code>) may be caused by inaccuracy or rounding of coordinates when data is normalized by GBIF. In fact, if we checked the third point, it would turn out to be at sea.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> Elevations are given in meters.</p>
+<p>Let’s try more accurate data for UK with 3 arcs sec resolution. Function <code>elevation_3s(lon, lat, ...)</code> from <code>geodata</code> will help to acquire all necessary tiles. To get the <code>lon</code> and <code>lat</code> parameters we will download the UK boundaries and check the bounding box.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>uk <span class="ot">&lt;-</span> geodata<span class="sc">::</span><span class="fu">gadm</span>(<span class="st">"United Kingdom"</span>, <span class="at">path =</span> <span class="st">"data"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  terra<span class="sc">::</span><span class="fu">project</span>(terra<span class="sc">::</span><span class="fu">crs</span>(ele))</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>bbox <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_bbox</span>(uk)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (x <span class="cf">in</span> <span class="fu">floor</span>(bbox[<span class="dv">1</span>])<span class="sc">:</span><span class="fu">ceiling</span>(bbox[<span class="dv">3</span>])) {</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (y <span class="cf">in</span> <span class="fu">floor</span>(bbox[<span class="dv">2</span>])<span class="sc">:</span><span class="fu">ceiling</span>(bbox[<span class="dv">4</span>])) {</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    geodata<span class="sc">::</span><span class="fu">elevation_3s</span>(<span class="at">lon =</span> x, <span class="at">lat =</span> y, <span class="at">path =</span> <span class="st">"data"</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in geodata::elevation_3s(lon = x, lat = y, path = "data"): lat &gt;= -60 &amp; lat &lt;= 60 is not TRUE</code></pre>
+</div>
+</div>
+<p>Hmm… In fact the boundary of UK exceeds the 60° N, so, let’s modify our loop (we sacrificed the Shetland Islands, sorry):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (x <span class="cf">in</span> <span class="fu">floor</span>(bbox[<span class="dv">1</span>])<span class="sc">:</span><span class="fu">ceiling</span>(bbox[<span class="dv">3</span>])) {</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (y <span class="cf">in</span> <span class="fu">floor</span>(bbox[<span class="dv">2</span>])<span class="sc">:</span><span class="dv">60</span>) {</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    geodata<span class="sc">::</span><span class="fu">elevation_3s</span>(<span class="at">lon =</span> x, <span class="at">lat =</span> y, <span class="at">path =</span> <span class="st">"data"</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Having all files downloaded we can build an virtual raster and work with it:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="at">path =</span> <span class="st">"data/elevation"</span>, <span class="at">pattern =</span> <span class="st">"srtm_.+.tif"</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>vrt <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">vrt</span>(r, <span class="st">"data/elevation_vrt.vrt"</span>, <span class="at">overwrite =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  terra<span class="sc">::</span><span class="fu">crop</span>(uk) <span class="sc">|&gt;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  terra<span class="sc">::</span><span class="fu">mask</span>(uk)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<!-- 
+
+
+
+
+::: {.cell}
+::: {.cell-output-display}
+![3 sec elevation data for UK obtained with {geodata} package.](dem_files/figure-html/virtual_srtm_plot-1.png){width=672}
+:::
+:::
+
+
+
+
+-->
+<p>Let’s extract the elevation from our more accurate data sets:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>occ <span class="ot">&lt;-</span> occ <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">ele_30s =</span> terra<span class="sc">::</span><span class="fu">extract</span>(ele, terra<span class="sc">::</span><span class="fu">vect</span>(geometry))<span class="sc">$</span>GBR_elv_msk) <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">ele_3s =</span> terra<span class="sc">::</span><span class="fu">extract</span>(vrt, terra<span class="sc">::</span><span class="fu">vect</span>(geometry))<span class="sc">$</span>elevation_vrt)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>occ <span class="sc">|&gt;</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Simple feature collection with 5 features and 4 fields
+Geometry type: POINT
+Dimension:     XY
+Bounding box:  xmin: -6.393662 ymin: 52.40178 xmax: -1.35372 ymax: 56.33171
+Geodetic CRS:  WGS 84
+# A tibble: 5 × 5
+  key        scientificName                         geometry ele_30s ele_3s
+  &lt;chr&gt;      &lt;chr&gt;                               &lt;POINT [°]&gt;   &lt;dbl&gt;  &lt;int&gt;
+1 5198908964 Calystegia × pulchra Brum… (-2.925498 52.40178)     184    180
+2 5215772352 Calystegia × pulchra Brum… (-2.075628 53.41154)     114    117
+3 5292006986 Calystegia × pulchra Brum… (-6.393662 56.33171)      NA     17
+4 5762910665 Calystegia × pulchra Brum…  (-1.35372 53.01439)     119    126
+5 5231426363 Calystegia × pulchra Brum… (-5.898201 54.20297)       5     48</code></pre>
+</div>
+</div>
+<p>We got quite similar results regardless of resolution. On the other hand, if the your plots are located in mountainous region — the higher the raster resolution, the better.</p>
+</section>
+<section id="tandem-x" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="tandem-x"><span class="header-section-number">4.2.1</span> TanDEM-X</h3>
+<p>TanDEM data is available from <a href="https://download.geoservice.dlr.de/TDM90/">https://download.geoservice.dlr.de/TDM90/</a> service. To download the necessary data <code>TanDEM</code> package <span class="citation" data-cites="TanDEM">(<a href="references.html#ref-TanDEM" role="doc-biblioref">Simon 2020</a>)</span> can be used, available on <a href="https://github.com/meteosimon/TanDEM-R">GitHub</a>.</p>
+<!--
+Please remember to set up the keyring with your user name, like:
+
+
+
+
+
+::: {.cell}
+
+```{.r .cell-code}
+keyring::key_set(service = "geoservice.dlr", username = "gsapijaszko")
+```
+:::
+
+::: {.cell}
+
+```{.r .cell-code}
+if(!dir.exists("data/tandem")) { dir.create("data/tandem") }
+TanDEM::download_TanDEM(
+  lon = c(bbox[1], bbox[3]),
+  lat = c(bbox[2], bbox[4]),
+  usr = "gsapijaszko",
+  srv = "geoservice.dlr",
+  dstdir = "data/tandem"
+)
+```
+:::
+
+
+
+
+
+In next step we will build virtual raster and assign `NA` for cells with no data:
+-->
+<!--
+Finally, we can extract elevations:
+-->
+</section>
+<section id="copernicus-data" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="copernicus-data"><span class="header-section-number">4.2.2</span> Copernicus data</h3>
+<p>The original EU-DEM v1.0 (or v1.1) data can be accessed from <a href="https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM">copernicus.eu</a> portal. It’s divided in 10x10 degree tiles, which results in quite huge files (up to 5 GB per tile). The similar data set, in smaller tiles is available from <a href="https://registry.opendata.aws/copernicus-dem/">AWS Opendata Registry</a>. Details in <a href="https://copernicus-dem-30m.s3.amazonaws.com/readme.html">readme</a>. This set can be downloaded by <code>CopernicusDEM</code> package <span class="citation" data-cites="CopernicusDEM">(<a href="references.html#ref-CopernicusDEM" role="doc-biblioref">Mouselimis 2024</a>)</span>. Please note, that this dataset is a Digital Surface Model (DSM) that represents the surface of the Earth including buildings, infrastructure and vegetation..</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(CopernicusDEM)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>polygon <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_as_sf</span>(uk)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">sf_use_s2</span>(<span class="at">use_s2 =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">dir.exists</span>(<span class="st">"data/copernicus"</span>)) { <span class="fu">dir.create</span>(<span class="st">"data/copernicus"</span>)}</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="fu">aoi_geom_save_tif_matches</span>(</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">sf_or_file =</span> polygon,</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">dir_save_tifs =</span> <span class="st">"data/copernicus"</span>,</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">resolution =</span> <span class="dv">30</span>,</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">crs_value =</span> <span class="dv">4326</span>,</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">threads =</span> parallel<span class="sc">::</span><span class="fu">detectCores</span>(),</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">TRUE</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="at">path =</span> <span class="st">"data/copernicus/"</span>, <span class="at">pattern =</span> <span class="st">"Copernicus_.+.tif"</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>cop <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">vrt</span>(r, <span class="st">"data/copernicus_vrt.vrt"</span>, <span class="at">overwrite =</span> <span class="cn">TRUE</span>) </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>occ <span class="ot">&lt;-</span> occ <span class="sc">|&gt;</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">ele_cop =</span> terra<span class="sc">::</span><span class="fu">extract</span>(cop, terra<span class="sc">::</span><span class="fu">vect</span>(geometry))<span class="sc">$</span>copernicus_vrt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="elevatr---the-black-horse" class="level3" data-number="4.2.3">
+<h3 data-number="4.2.3" class="anchored" data-anchor-id="elevatr---the-black-horse"><span class="header-section-number">4.2.3</span> ElevatR - the black horse</h3>
+<p>As the name suggests, <code>elevatr</code> is a package <span class="citation" data-cites="elevatr">(<a href="references.html#ref-elevatr" role="doc-biblioref">Hollister et al. 2023</a>)</span> to access elevation (or tiles) data from various sources. For global coverage (outside USA) it uses <a href="https://registry.opendata.aws/terrain-tiles/">AWS Terrain Tiles</a> service. With help of <code>get_elev_point()</code> function obtaining the elevation is quite simple, it doesn’t require to fetch and load in any raster tiles:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>occ <span class="ot">&lt;-</span> occ <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">ele_aws =</span> elevatr<span class="sc">::</span><span class="fu">get_elev_point</span>(occ, <span class="at">src =</span> <span class="st">"aws"</span>)<span class="sc">$</span>elevation) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>All values extracted (or obtained) from various sources are presented in <a href="#tbl-elevations" class="quarto-xref">Table&nbsp;<span>4.1</span></a>. Please note the difference in values, especially TanDEM-X, which is elevation not terrain model.</p>
+<div class="cell">
+<div id="tbl-elevations" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-elevations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4.1: Elevations obtained from different DEM/DSM models for locations of <em>Calystegia x pulchra</em> in UK
+</figcaption>
+<div aria-describedby="tbl-elevations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="lightable-classic-2 do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">key</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">30s SRTM</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">3s SRTM</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">TanDEM-X</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Copernicus DEM</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">AWS Terrain Tiles</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">5198908964</td>
+<td style="text-align: right;">184</td>
+<td style="text-align: right;">180</td>
+<td style="text-align: right;">229.22</td>
+<td style="text-align: right;">178.06</td>
+<td style="text-align: right;">165</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">5215772352</td>
+<td style="text-align: right;">114</td>
+<td style="text-align: right;">117</td>
+<td style="text-align: right;">165.12</td>
+<td style="text-align: right;">115.99</td>
+<td style="text-align: right;">127</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">5292006986</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">69.48</td>
+<td style="text-align: right;">13.65</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">5762910665</td>
+<td style="text-align: right;">119</td>
+<td style="text-align: right;">126</td>
+<td style="text-align: right;">173.13</td>
+<td style="text-align: right;">117.69</td>
+<td style="text-align: right;">92</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">5231426363</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">102.35</td>
+<td style="text-align: right;">39.71</td>
+<td style="text-align: right;">74</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">5231511273</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">111.20</td>
+<td style="text-align: right;">44.21</td>
+<td style="text-align: right;">74</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</figure>
+</div>
+</div>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-rgbif1" class="csl-entry" role="listitem">
+Chamberlain, Scott, Vijay Barve, Dan Mcglinn, Damiano Oldoni, Peter Desmet, Laurens Geffert, and Karthik Ram. 2024. <em>Rgbif: Interface to the Global Biodiversity Information Facility API</em>. <a href="https://CRAN.R-project.org/package=rgbif">https://CRAN.R-project.org/package=rgbif</a>.
+</div>
+<div id="ref-rgbif2" class="csl-entry" role="listitem">
+Chamberlain, Scott, and Carl Boettiger. 2017. <span>“R Python, and Ruby Clients for GBIF Species Occurrence Data.”</span> <em>PeerJ PrePrints</em>. <a href="https://doi.org/10.7287/peerj.preprints.3304v1">https://doi.org/10.7287/peerj.preprints.3304v1</a>.
+</div>
+<div id="ref-farrShuttleRadarTopography2007" class="csl-entry" role="listitem">
+Farr, Tom G., Paul A. Rosen, Edward Caro, Robert Crippen, Riley Duren, Scott Hensley, Michael Kobrick, et al. 2007. <span>“The <span>Shuttle Radar Topography Mission</span>.”</span> <em>Reviews of Geophysics</em> 45 (2). <a href="https://doi.org/10/dct747">https://doi.org/10/dct747</a>.
+</div>
+<div id="ref-grohmannEvaluationTanDEMXDEMs2018" class="csl-entry" role="listitem">
+Grohmann, Carlos H. 2018. <span>“Evaluation of <span>TanDEM-X DEMs</span> on Selected <span>Brazilian</span> Sites: <span>Comparison</span> with <span>SRTM</span>, <span>ASTER GDEM</span> and <span>ALOS AW3D30</span>.”</span> <em>Remote Sensing of Environment</em> 212 (June): 121–33. <a href="https://doi.org/10.1016/j.rse.2018.04.043">https://doi.org/10.1016/j.rse.2018.04.043</a>.
+</div>
+<div id="ref-geodata" class="csl-entry" role="listitem">
+Hijmans, Robert J., M’arcia Barbosa, Aniruddha Ghosh, and Alex Mandel. 2023. <em>Geodata: Download Geographic Data</em>. <a href="https://CRAN.R-project.org/package=geodata">https://CRAN.R-project.org/package=geodata</a>.
+</div>
+<div id="ref-elevatr" class="csl-entry" role="listitem">
+Hollister, Jeffrey, Tarak Shah, Jakub Nowosad, Alec L. Robitaille, Marcus W. Beck, and Mike Johnson. 2023. <em>Elevatr: Access Elevation Data from Various APIs</em>. <a href="https://doi.org/10.5281/zenodo.8335450">https://doi.org/10.5281/zenodo.8335450</a>.
+</div>
+<div id="ref-kriegerTanDEMXRadarInterferometer2013" class="csl-entry" role="listitem">
+Krieger, Gerhard, Manfred Zink, Markus Bachmann, Benjamin Bräutigam, Daniel Schulze, Michele Martone, Paola Rizzoli, et al. 2013. <span>“<span>TanDEM-X</span>: <span>A</span> Radar Interferometer with Two Formation-Flying Satellites.”</span> <em>Acta Astronautica</em> 89 (August): 83–98. <a href="https://doi.org/10.1016/j.actaastro.2013.03.008">https://doi.org/10.1016/j.actaastro.2013.03.008</a>.
+</div>
+<div id="ref-CopernicusDEM" class="csl-entry" role="listitem">
+Mouselimis, Lampros. 2024. <em><span>CopernicusDEM</span>: Copernicus Digital Elevation Models</em>. <a href="https://CRAN.R-project.org/package=CopernicusDEM">https://CRAN.R-project.org/package=CopernicusDEM</a>.
+</div>
+<div id="ref-rodriguezAssessmentSRTMTopographic2005" class="csl-entry" role="listitem">
+Rodriguez, Ernesto, C. S. Morris, J. E. Belz, Elaine Chapin, Jan Martin, W. Daffer, and Scott Hensley. 2005. <span>“An Assessment of the <span>SRTM</span> Topographic Products.”</span> Technical Report JPL D-31639. Pasadena, California: Jet Propulsion Laboratory.
+</div>
+<div id="ref-TanDEM" class="csl-entry" role="listitem">
+Simon, Thorsten. 2020. <em>TanDEM: An r-Interface for Downloading TanDEM-x Data</em>.
+</div>
+<div id="ref-smithAccuracyResolutionShuttle2003" class="csl-entry" role="listitem">
+Smith, Bridget, and David Sandwell. 2003. <span>“Accuracy and Resolution of Shuttle Radar Topography Mission Data.”</span> <em>Geophysical Research Letters</em> 30 (9). <a href="https://doi.org/10.1029/2002GL016643">https://doi.org/10.1029/2002GL016643</a>.
+</div>
+<div id="ref-wesselTanDEMXGroundSegment2018" class="csl-entry" role="listitem">
+Wessel, Birgit. 2018. <span>“<span>TanDEM-X Ground Segment</span> — <span>DEM Products Specification Document</span>.”</span> Oberpfaffenhofen, Germany: EOC – Earth Observation Center. <a href="https://tandemx-science.dlr.de/pdfs/TD-GS-PS-0021_DEM-Product-Specification_v3.2.pdf">https://tandemx-science.dlr.de/pdfs/TD-GS-PS-0021_DEM-Product-Specification_v3.2.pdf</a>.
+</div>
+<div id="ref-wesselAccuracyAssessmentGlobal2018" class="csl-entry" role="listitem">
+Wessel, Birgit, Martin Huber, Christian Wohlfart, Ursula Marschalk, Detlev Kosmann, and Achim Roth. 2018. <span>“Accuracy Assessment of the Global <span>TanDEM-X Digital Elevation Model</span> with <span>GPS</span> Data.”</span> <em>ISPRS Journal of Photogrammetry and Remote Sensing</em> 139 (May): 171–82. <a href="https://doi.org/10.1016/j.isprsjprs.2018.02.017">https://doi.org/10.1016/j.isprsjprs.2018.02.017</a>.
+</div>
+<div id="ref-zinkTanDEMXNewGlobal2014" class="csl-entry" role="listitem">
+Zink, Manfred, Markus Bachmann, Benjamin Brautigam, Thomas Fritz, Irena Hajnsek, Alberto Moreira, Birgit Wessel, and Gerhard Krieger. 2014. <span>“<span>TanDEM-X</span>: <span>The New Global DEM Takes Shape</span>.”</span> <em>IEEE Geoscience and Remote Sensing Magazine</em> 2 (2): 8–23. <a href="https://doi.org/10.1109/MGRS.2014.2318895">https://doi.org/10.1109/MGRS.2014.2318895</a>.
+</div>
+<div id="ref-vanzylShuttleRadarTopography2001" class="csl-entry" role="listitem">
+Zyl, Jakob J. van. 2001. <span>“The <span>Shuttle Radar Topography Mission</span> (<span>SRTM</span>): A Breakthrough in Remote Sensing of Topography.”</span> <em>Acta Astronautica</em> 48 (5): 559–65. <a href="https://doi.org/10.1016/S0094-5765(01)00020-0">https://doi.org/10.1016/S0094-5765(01)00020-0</a>.
+</div>
+</div>
+</section>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Digital Surface Model, not Digital Terrain Model!<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>There is a <a href="https://github.com/ropensci/CoordinateCleaner/">CoordinateCleaner</a> package to deal with such cases.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/gsapijaszko\.github\.io\/open_data\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="gsapijaszko/open_data" data-repo-id="R_kgDOLHf5ig" data-category="General" data-category-id="DIC_kwDOLHf5is4CdTas" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script>
+<input type="hidden" id="giscus-base-theme" value="light">
+<input type="hidden" id="giscus-alt-theme" value="dark">
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./environments.html" class="pagination-link" aria-label="Environmental data">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Environmental data</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./lidar.html" class="pagination-link" aria-label="Lidar data and its derivatives">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Lidar data and its derivatives</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/gsapijaszko/open_data/edit/main/dem.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/gsapijaszko/open_data/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

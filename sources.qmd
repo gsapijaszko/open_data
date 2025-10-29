@@ -1,0 +1,154 @@
+
+# Sources of LIDAR and/or DTM data {#sec-lidar_dtm_data}
+
+## Europe
+
+-   DTM at different scale, up to 20m, based on LIDAR data for many EU countries made by Sonny; <https://sonny.4lima.de/>. Another very helpful site is <https://www.opendem.info/>, where you can find a generated 1m DTM for most of the EU.
+
+### Albania
+  * https://geoportal.asig.gov.al/en/services, no LIDAR data
+
+### Austria
+
+* [Orthophoto](https://www.data.gv.at/katalog/dataset/254757be-69ef-4a6c-a4c1-1432815d7522) - WMTS
+
+#### Tirol
+
+-   [Orthophoto](https://www.tirol.gv.at/sicherheit/geoinformation/geodaten-tiris/orthofotos/) with:
+    -   [WMS](https://www.data.gv.at/katalog/dataset/35691b6c-9ed7-4517-b4b3-688b0569729a) with RGB photos 1:2000
+    -   [WMTS](https://www.data.gv.at/katalog/dataset/a0535d6d-4c34-4524-9591-e9e51e3d28c4)
+
+-   50 cm and 1 m resolution [DTM, DEM and shading ](https://www.tirol.gv.at/sicherheit/geoinformation/geodaten-tiris/laserscandaten/)
+
+```{r}
+#| label: geodata
+#| message: false
+
+a <- geodata::gadm(country = "AUT", level = 1, path = "data")
+
+library(tmap)
+tmap::tmap_mode("view")
+tmap::tm_shape(sf::st_as_sf(a)) +
+  tmap::tm_polygons(col = "GID_1")
+```
+
+
+### Belgium
+
+#### Flanders
+
+  -   [LiDAR Digital Height Model Flanders I, raw remote sensing data](https://metadata.vlaanderen.be/srv/dut/catalog.search#/metadata/7e40413e-9c17-492b-ac24-e72d37251e5a)
+  
+  Data collected over period of 2001--2004
+  
+  -   [LiDAR Digitaal Hoogtemodel Vlaanderen II, ruwe remote sensing data](https://metadata.vlaanderen.be/srv/dut/catalog.search#/metadata/242ddabc-3cbc-44f0-9623-bee874b29549)
+
+  Data collected over the period 2013-2015
+  
+  -   [DTM and DSM, 1m and 5m rasters](https://www.vlaanderen.be/digitaal-vlaanderen/onze-diensten-en-platformen/earth-observation-data-science-eodas/het-digitaal-hoogtemodel/download-het-dhm-vlaanderen)
+  
+#### Bruxelles and Wallonie
+
+  -   [LIDAR](https://geoportail.wallonie.be/lidar) -- data collected during 2021--2022. Available after registration?
+  
+  -   [DTM 0.5m ](https://geoportail.wallonie.be/catalogue/a004e570-99d6-4fe5-b83d-49b774409278.html)
+
+<!--
+
+### Bulgaria
+
+### Bosnia and Herz.
+
+### Belarus
+
+### Switzerland
+-->
+
+### Czech Rep.
+
+-   Different DTM with resolution up to 0.5 m (ZABAGED DMPOK) available on [CUZK Geoportal](https://geoportal.cuzk.gov.cz/(S(q5hup4mdp2ofggh5lqv1us0m))/Default.aspx?mode=TextMeta&text=vyskopisZBG&side=vyskopis&head_tab=sekce-02-gp&menu=30), provided as open data from 01/07/2023, free of charge under the Creative Commons CC BY 4.0 license.
+
+-   [Digitální model reliéfu České republiky 4. generace](https://ags.cuzk.cz/geoprohlizec/?atom=dmr4g)
+
+<!--
+### Germany
+
+### Denmark
+
+### Spain
+
+### Estonia
+
+### Finland
+
+### France
+
+### United Kingdom
+
+### Greece
+
+### Croatia
+
+### Hungary
+
+### Ireland
+
+### Iceland
+
+### Italy
+
+### Kosovo
+
+### Lithuania
+
+### Luxembourg
+
+### Latvia
+
+### Moldova
+
+### Macedonia
+
+### Montenegro
+
+### Netherlands
+
+### Norway
+
+### Poland
+
+### Portugal
+
+### Romania
+
+### Russia
+
+### Serbia
+-->
+
+### Slovakia
+
+  * DTM and DSM data from two LIDAR cycles: 2017--2022 and 2023 to 2026; available for download in TIFF fomat with resolution of 0.5 m for area of whole Slovakia from 1st cycle, for some of the areas from 2nd cycle. URL: [https://www.geoportal.sk/en/zbgis/als/provision-als-products/](https://www.geoportal.sk/en/zbgis/als/provision-als-products/)
+  
+  * LIDAR data - small chunks of data (up to 4 km^2^) available through [MAPKA](https://zbgis.skgeodesy.sk/mapka/en/teren/export) application.
+
+<!--
+### Slovenia
+-->
+
+### Sweden
+
+-   LIDAR data in form of 2.5x2.5 km sqares are available for download under [https://www.lantmateriet.se/en/geodata/our-products/product-list/](https://www.lantmateriet.se/en/geodata/our-products/product-list/), after account creation. The points are divided into classes:
+
+    - land
+    - water
+    - bridge
+    - low point (noise)
+    - high noise
+    - unclassified, points that are not classified in any of the other classes. 
+
+There is a terrain model in grid format as well, with coordinate-based elevation points in a regular grid with a 1-meter resolution and high elevation accuracy.
+
+<!--
+### Ukraine
+-->

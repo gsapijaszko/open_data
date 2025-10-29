@@ -700,15 +700,14 @@
     },
     "cols4all": {
       "Package": "cols4all",
-      "Version": "0.8",
+      "Version": "0.9-1",
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
-      "RemoteRepo": "cols4all",
       "RemoteUsername": "mtennekes",
-      "RemotePkgRef": "mtennekes/cols4all",
-      "RemoteRef": "HEAD",
-      "RemoteSha": "429845d39325bc614aff25f1229ed2df71466d7c",
+      "RemoteRepo": "cols4all",
+      "RemoteRef": "main",
+      "RemoteSha": "3e833a14aabe351742e8994dd2f3ba41087328ea",
       "Requirements": [
         "R",
         "abind",
@@ -720,7 +719,7 @@
         "stats",
         "stringdist"
       ],
-      "Hash": "6ef4f70a0809501777f8999c6e20621d"
+      "Hash": "1c546fb2bac55c15e16acf718846dba0"
     },
     "commonmark": {
       "Package": "commonmark",
@@ -1984,7 +1983,7 @@
     },
     "leafem": {
       "Package": "leafem",
-      "Version": "0.2.3",
+      "Version": "0.2.5",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
@@ -1993,19 +1992,26 @@
         "geojsonsf",
         "htmltools",
         "htmlwidgets",
+        "jsonlite",
         "leaflet",
         "methods",
         "png",
         "raster",
         "sf"
       ],
-      "Hash": "6b43f986a9a0c1c1810b2deec71bfdf2"
+      "Hash": "ae7e2cb1c20df1bd8a9ba82189cefdb3"
     },
     "leafgl": {
       "Package": "leafgl",
-      "Version": "0.1.1",
-      "Source": "Repository",
-      "Repository": "CRAN",
+      "Version": "0.2.2",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteRepo": "leafgl",
+      "RemoteUsername": "r-spatial",
+      "RemotePkgRef": "r-spatial/leafgl",
+      "RemoteRef": "HEAD",
+      "RemoteSha": "8cb22f781491025199b520a04a371837c48ad20d",
       "Requirements": [
         "geojsonsf",
         "grDevices",
@@ -2014,7 +2020,7 @@
         "leaflet",
         "sf"
       ],
-      "Hash": "d6b521a3382490f766de5fedf95fc1af"
+      "Hash": "bd1e5bee4f048ce4dd7c26fc4ab186f5"
     },
     "leaflegend": {
       "Package": "leaflegend",
@@ -2188,6 +2194,26 @@
         "utils"
       ],
       "Hash": "5f7886e53a3b39d4a110c7bd7fce9164"
+    },
+    "maptiles": {
+      "Package": "maptiles",
+      "Version": "0.8.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "curl",
+        "digest",
+        "grDevices",
+        "graphics",
+        "png",
+        "sf",
+        "slippymath",
+        "terra",
+        "tools",
+        "utils"
+      ],
+      "Hash": "fef18f7c7922f503d45e18a926e2002c"
     },
     "memoise": {
       "Package": "memoise",
@@ -2770,6 +2796,19 @@
       ],
       "Hash": "f753321fb12652ee189fea44ed9f67fb"
     },
+    "r2symbols": {
+      "Package": "r2symbols",
+      "Version": "1.4",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "htmltools",
+        "jsonlite",
+        "utils"
+      ],
+      "Hash": "15ff2d9ad210faa8e87f54dd41d50ede"
+    },
     "rJava": {
       "Package": "rJava",
       "Version": "1.0-11",
@@ -3212,6 +3251,20 @@
       ],
       "Hash": "3838071b66e0c566d55cc26bd6e27bf4"
     },
+    "servr": {
+      "Package": "servr",
+      "Version": "0.32",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "httpuv",
+        "jsonlite",
+        "mime",
+        "xfun"
+      ],
+      "Hash": "63e4ea2379e79cf18813dd0d8146d27c"
+    },
     "sessioninfo": {
       "Package": "sessioninfo",
       "Version": "1.2.2",
@@ -3228,8 +3281,14 @@
     "sf": {
       "Package": "sf",
       "Version": "1.0-19",
-      "Source": "Repository",
-      "Repository": "CRAN",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteRepo": "sf",
+      "RemoteUsername": "r-spatial",
+      "RemotePkgRef": "r-spatial/sf",
+      "RemoteRef": "HEAD",
+      "RemoteSha": "7dd4173f69db6ae6291d529ff333330c6ef18f75",
       "Requirements": [
         "DBI",
         "R",
@@ -3246,7 +3305,7 @@
         "units",
         "utils"
       ],
-      "Hash": "fe02eec2f6b3ba0e24afe83d5ccfb528"
+      "Hash": "09729c9d1d4a975ede8502898c0be13a"
     },
     "sfheaders": {
       "Package": "sfheaders",
@@ -3688,17 +3747,17 @@
     },
     "tmap": {
       "Package": "tmap",
-      "Version": "3.99.9002",
+      "Version": "4.2.0.9000",
       "Source": "GitHub",
       "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteRepo": "tmap",
       "RemoteUsername": "r-tmap",
-      "RemotePkgRef": "r-tmap/tmap",
+      "RemoteRepo": "tmap",
       "RemoteRef": "HEAD",
-      "RemoteSha": "6ccd06dd99634fa64cdea4d7f44c4d261e7d0dbe",
+      "RemoteSha": "61b692331329967360e45f560fde1a948b82f69b",
+      "RemoteHost": "api.github.com",
       "Requirements": [
         "R",
+        "base64enc",
         "classInt",
         "cli",
         "cols4all",
@@ -3711,16 +3770,18 @@
         "leaflegend",
         "leaflet",
         "leafsync",
+        "maptiles",
         "methods",
         "rlang",
         "s2",
+        "servr",
         "sf",
         "stars",
         "stats",
         "tmaptools",
         "units"
       ],
-      "Hash": "b8a886d70067fcccb023e72c3feea0c8"
+      "Hash": "759b6edc42ce58f78a237a10c233dc8b"
     },
     "tmaptools": {
       "Package": "tmaptools",

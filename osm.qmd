@@ -796,7 +796,7 @@ l <- osmextract::oe_get("Leipzig",
 
 As the layer contains `r nrow (l)` different features (including land usage, buildings, parks, forests etc.) and it takes `r format(as.numeric(object.size(l)/10^6), digits = 1)` Mb, it not necessary make sense to load it in whole. As we are interested in postal area boundaries, let utilize `query=` parameter and `hstore_get_value()` function.[^osm-5]
 
-[^osm-5]: Other option would be load all fields including `other_tags` (which are like `hstore` type field in Postgresql) and then massage it a bit with `tidyverse` functions:
+[^osm-5]: Other option would be load in all fields including `other_tags` (which are like `hstore` type field in Postgresql) and then massage it a bit with `tidyverse` functions:
 
     ```{=html}
     <pre>
@@ -940,8 +940,6 @@ tmap::tm_shape(adm_b) +
 <!--
 #TODO https://gis.stackexchange.com/questions/2682/seeking-sources-for-us-zip-code-boundaries
 -->
-
-
 
 ## Land coverage and use {#sec-land_coverage}
 

@@ -360,7 +360,7 @@ snowball_docs[[1]][, c("id", "doi", "title")] |>
   tail(20) |>
   dplyr::arrange(id)
 snowball_docs 
-  ]
+
 saveRDS(file = "data/snowball.rds")
 
 snowball_docs$nodes |>

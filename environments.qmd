@@ -190,7 +190,7 @@ geodata::landcover(var = "moss", path = tempdir())
 ```
 
 
-## Climate {#sec-climate}
+## Climate data {#sec-climate}
 
 Key climatic variables are:
 
@@ -204,7 +204,7 @@ Key climatic variables are:
 
 Those data can be provided as point data sets (per station) or as gridded data sets obtained from analysis or modeling of the past and current climate data. 
 
-### Stations data
+### Data of individual (meteo)stations
 
 #### Integrated Surface Database
 
