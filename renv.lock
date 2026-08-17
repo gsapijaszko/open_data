@@ -9,6 +9,13 @@
     ]
   },
   "Packages": {
+    "BH": {
+      "Package": "BH",
+      "Version": "1.87.0-1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "468d9a03ba57f22ebde50060fd13ba9f"
+    },
     "ClimDatDownloadR": {
       "Package": "ClimDatDownloadR",
       "Version": "0.1.7-6",
@@ -152,18 +159,6 @@
       ],
       "Hash": "4006dffe49958d2dd591c17e61e60591"
     },
-    "PROJ": {
-      "Package": "PROJ",
-      "Version": "0.5.0",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "lifecycle",
-        "wk"
-      ],
-      "Hash": "68559a7a9a83099c73928262cd8c52bb"
-    },
     "R6": {
       "Package": "R6",
       "Version": "2.5.1",
@@ -206,6 +201,20 @@
         "utils"
       ],
       "Hash": "6b868847b365672d6c1677b1608da9ed"
+    },
+    "RcppArmadillo": {
+      "Package": "RcppArmadillo",
+      "Version": "15.0.2-2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "Rcpp",
+        "methods",
+        "stats",
+        "utils"
+      ],
+      "Hash": "58f3d2b5e2b8d44756c2d21e24b719e9"
     },
     "RcppEigen": {
       "Package": "RcppEigen",
@@ -250,6 +259,17 @@
         "xml2"
       ],
       "Hash": "d22e94d9088f55cc112e722888afcc70"
+    },
+    "Rnanoflann": {
+      "Package": "Rnanoflann",
+      "Version": "0.0.3",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "Rcpp",
+        "RcppArmadillo"
+      ],
+      "Hash": "048461b3b89d64c145afc1e6866408be"
     },
     "SnowballC": {
       "Package": "SnowballC",
@@ -799,17 +819,6 @@
         "lazyeval"
       ],
       "Hash": "ab12c7b080a57475248a30f4db6298c0"
-    },
-    "crsmeta": {
-      "Package": "crsmeta",
-      "Version": "0.3.0",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "methods"
-      ],
-      "Hash": "76ad515a0acb138c0e93f017c7aefd11"
     },
     "crul": {
       "Package": "crul",
@@ -2087,6 +2096,34 @@
       ],
       "Hash": "819d7169c7d39f0f952473e943375da1"
     },
+    "lidR": {
+      "Package": "lidR",
+      "Version": "4.2.2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "BH",
+        "R",
+        "Rcpp",
+        "RcppArmadillo",
+        "Rnanoflann",
+        "classInt",
+        "data.table",
+        "glue",
+        "grDevices",
+        "lazyeval",
+        "methods",
+        "rgl",
+        "rlas",
+        "sf",
+        "stars",
+        "stats",
+        "terra",
+        "tools",
+        "utils"
+      ],
+      "Hash": "4f85399ab1790ebab5a6f7402dc7fb24"
+    },
     "lifecycle": {
       "Package": "lifecycle",
       "Version": "1.0.4",
@@ -2415,7 +2452,7 @@
     },
     "osmdata": {
       "Package": "osmdata",
-      "Version": "0.2.5",
+      "Version": "0.3.0",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
@@ -2423,16 +2460,13 @@
         "Rcpp",
         "curl",
         "httr2",
-        "lubridate",
-        "magrittr",
         "methods",
-        "reproj",
         "rvest",
         "tibble",
         "utils",
         "xml2"
       ],
-      "Hash": "484fb25b6267ae0a885511dbac53f193"
+      "Hash": "bb7044059aa3b8bfcd6076897c726114"
     },
     "osmextract": {
       "Package": "osmextract",
@@ -2709,16 +2743,6 @@
         "utils"
       ],
       "Hash": "b3727a8cfc03525cc44a5f2854d6e025"
-    },
-    "proj4": {
-      "Package": "proj4",
-      "Version": "1.0-14",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R"
-      ],
-      "Hash": "1e3f9f3e86ddcb8542794fec82eee6e2"
     },
     "promises": {
       "Package": "promises",
@@ -3008,19 +3032,6 @@
       ],
       "Hash": "97b1d5361a24d9fb588db7afe3e5bcbf"
     },
-    "reproj": {
-      "Package": "reproj",
-      "Version": "0.7.0",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "PROJ",
-        "R",
-        "crsmeta",
-        "proj4"
-      ],
-      "Hash": "4a602c9eb1bbf34e7b16c823686b5838"
-    },
     "rex": {
       "Package": "rex",
       "Version": "1.2.1",
@@ -3053,23 +3064,44 @@
       ],
       "Hash": "0165c045d2fa090bee9037cfddacefa1"
     },
+    "rgl": {
+      "Package": "rgl",
+      "Version": "1.3.24",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "R6",
+        "base64enc",
+        "grDevices",
+        "graphics",
+        "htmltools",
+        "htmlwidgets",
+        "jsonlite",
+        "knitr",
+        "magrittr",
+        "mime",
+        "stats",
+        "utils"
+      ],
+      "Hash": "3efb7e4ab88eb5499ff37024666b7659"
+    },
     "rgugik": {
       "Package": "rgugik",
-      "Version": "0.4.2",
+      "Version": "0.4.3",
       "Source": "GitHub",
       "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteRepo": "rgugik",
       "RemoteUsername": "kadyb",
-      "RemotePkgRef": "kadyb/rgugik",
+      "RemoteRepo": "rgugik",
       "RemoteRef": "HEAD",
-      "RemoteSha": "ec1897489a48f169df9f2ca0ed613c669ec189f0",
+      "RemoteSha": "6b9d80597d21267a194c24fdb3b3a33804646357",
+      "RemoteHost": "api.github.com",
       "Requirements": [
         "R",
         "jsonlite",
         "sf"
       ],
-      "Hash": "0ad4ebe202730786fc6a84bf13f0e3f9"
+      "Hash": "c7210312d0ccd0ba83f4287b2ebd5802"
     },
     "rlang": {
       "Package": "rlang",
@@ -3081,6 +3113,19 @@
         "utils"
       ],
       "Hash": "3eec01f8b1dee337674b2e34ab1f9bc1"
+    },
+    "rlas": {
+      "Package": "rlas",
+      "Version": "1.8.2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "Rcpp",
+        "data.table",
+        "utils"
+      ],
+      "Hash": "65a6b9d9f7ee8c5685ed00dab49f7ddc"
     },
     "rmarkdown": {
       "Package": "rmarkdown",

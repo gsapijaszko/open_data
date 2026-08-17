@@ -1,4 +1,218 @@
-# Lidar data and its derivatives
+# LiDAR data and its derivatives
+
+## A bit of history
+
+> Remote sensing encourages a wider, regional perspective, seeing sites within a landscape and recognizing the pathways that link them. [@sheetsHighTechWizardry1988]
+
+Probably the first use of LiDAR (at least published) was around 1988 in dense vegetation of rain forest area in Costa Rica at Arenal volcano area, and later in Ceren area, El Salvador. In the research an NASA airborne oceanographic LiDAR was used along with other sensing devices: side-looking airborne synthetic aperture radar and thermal infrared multispectral scanner [@sheetsHighTechWizardry1988; @sheetsVerytoBarelyRemoteSensing1991]. They wrote:
+
+> The laser beam pulses to the ground 400 times per second, striking the surface every three and half inches, and bounces back to its source. In most cases, the beam bounces off the top of the vegetation cover and off the ground surface; the difference between the two gives information on forest height, or even the height of grass in pastures. As the lidar passes over an eroded footpath that still affects the topography, the pathway's indentation is recorded by the laser beam.
+
+The first impression of results obtained from LiDAR measurements was a bit skeptical. Although they admit the possibility to reach under the trees canopy and therefore extract the DTM, the issue faced was linear measurement and therefore a need to fly a large number of parallel flight lines to generate microtopographic data. The another problem highlighted was impossibility to distinguish natural erosional channels from cultural erosional features like prehistoric footpaths --- see @sheetsPrehistoricFootpathsCosta1991; @mckeeRemoteSensingArenal1994; @mckeePrehistoricFootpathsCosta1994.
+
+Ten years have passed. Ten years without any mention of LiDAR measurements being used in archaeology. But it doesn't mean, that nothing happens in meantime. LiDAR was used to measure the altimetry of Greenland Ice Sheet [@ferraroComparisonRetrackingAlgorithms1995],  to measure the vegetation itself (forests), to capture and extract the buildings or even power lines and poles [@ackermannAirborneLaserScanning1999]. Firsts algorithms for LiDAR points filtration and creation of DTM started to appear: the one made by @krausDeterminationTerrainModels1998 based on linear prediction (interpolation) and another one, based on TIN models by @axelssonGenerationLaserScanner2000.
+
+A quarter of a century ago, in 2001 @holdenDigitalAirborneRemote2001 described the principles of LiDAR and @motkinAssessmentLIDARArchaeological2001 did the assessment of LiDAR data in archeaeological work based on data in form of xyz ASCII grid covering 71&nbsp;square kilometers. The data was then converted to 2&nbsp;m resolution DTM and examined. It was concluded that LiDAR has considerable potential in archaeology. That was the first time when a shaded relief models of hillfort and other earthwork enclosure was published.
+
+## DTM vs DEM
+
+There is many definitions of digital models: DSM --- digital surface model, DHM (height), DTM (terrain) etc. We will use the definitions defined by @el-sheimyDigitalTerrainModeling2005:
+
+  > The two most widely used terms are DEM and DTM. These terms are often used synonymously. Usually, the acronym DTM refers to the altitude of the ground itself. On the contrary, a DEM includes the maximum altitude everywhere (including roofs of buildings and tops of trees).
+  
+In next paragraphs we will use: DTM --- for terrain model (bare ground + water) and DEM --- for an elevation model, including buildings and trees. @fig-dem_dtm shows the difference.
+  
+::: {#fig-dem_dtm}
+
+tutaj ładnnie wygenerowane przekroje  z LiDARa dla zobrazowania
+
+:::
+
+
+## LiDAR processing
+
+The main use of LiDAR data is to create very detailed DTM -- a very common approach is to create DTM with resolution of 1 m, but it might be reasonable to go with higher resolution (at cost of data processing time and required storage). LiDAR data processing for DTM generation consist of the four main steps: error filtering, interpolation and/or resampling, filtration (classification) of the ground points and finally DTM generation through interpolation of the DTM surface based on those filtered ground points.
+
+1. Error filtering -- LiDAR point outliers are often randomly distributed in the dataset. Outliers may be caused by airplanes, birds, multi-path reflections or the sensor itself. These points have unreasonably high or low elevation values and must be removed during preprocessing. Those outliers can be removed using a elevation histogram examination: after setting up the elevation thresholds the lowest and highest tails can be removed from the distribution. The remaining outliers can be found using the minimum height difference of each point with respect to all its neighbors [@silvan-cardenasMultiresolutionApproachFiltering2006; @mengMultidirectionalGroundFiltering2009]. @koblerRepetitiveInterpolationRobust2007 computed the vertical displacement of the negative outliers to the average elevation of its neighboring points in X--Y plane to filter out those points.
+
+2. Interpolation and resampling -- some of the ground filtering techniques requires a raster dataset to be created form LiDAR points as a intermediate step [@hyyppaElevationAccuracyLaser2000; @wackDigitalTerrainModels2002; @nardinocchiClassificationFilteringLaser2003; @lloydDerivingGroundSurface2006; @forlaniCompleteClassificationRaw2006; @zhengFacetbasedAirborneLight2007].
+
+3. Ground filtering -- is the process of separating ground from non-ground points. Several methods are used: directional scanning, morphology-, interpolation- or segmentation-based.
+
+4. Generation of DTM -- by interpolation of the points identified in previous steps. Examples of the methods are: Inverse Distance Weighting (IDW), AMLE, kriging
+
+ tu dalej za Meng, Xuelian, Nate Currit, i Kaiguang Zhao. 2010. „Ground Filtering Algorithms for Airborne LiDAR Data: A Review of Critical Issues”. Remote Sensing 2 (3): 833–60. https://doi.org/10.3390/rs2030833.
+
+The evaluations of different algorithms developed for filtering and interpolation of LiDAR data were performed by, among others, @sitholeExperimentalComparisonFilter2004, @aguilarEffectsTerrainMorphology2005, @aguilarAccuracyAssessmentLidarderived2008, @baterEvaluatingErrorAssociated2009,  @heritageInfluenceSurveyStrategy2009 and @mengGroundFilteringAlgorithms2010.
+
+## Land surface parameters --- slope, aspect, and other derivatives
+
+Those land surface parameters are derived directly from DTM, and usually they are divided to "local" and "regional". While the "local" can be calculated usually using 3x3 window, the "regional" one includes additional parts of DTM apart from the exact area for which parameters are to be calculated [@florinskyAccuracyLocalTopographic1998; @olayaBasicLandSurfaceParameters2009]. Typical examples of local primary land surface parameters include slope, aspect, profile and tangential curvatures; non‐local primary land surface parameters include flow path length, proximity to nearest ridgeline or channel, and upslope contributing area. @wilsonEnvironmentalApplicationsDigital2018 provided the list of 68 most frequently used parameters.
+
+
 
 # Visualization methods in archeology
+
+We will use {lidR} package [@lidR1; @lidR2] for processing the LiDAR data, {terra} package [@terra] for rasters and {tmap} [@tmap] for visualizations.
+
+```{r}
+#| label: sec-visualization-setup
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tmap)
+library(tmaptools)
+library(lidR)
+```
+
+Możliwość patrzenia pod drzewa [@sittlerPotentialLIDARAssessing2006; @crowWoodlandVegetationIts2007]
+
+@challisReviewTrendsArchaeological2006 - reviewed remote sensing possibilities
+
+@mccoyNewDevelopmentsUse2009 - new developments in the use of spatial technology in archeology
+
+@challisGenericToolkitVisualization2011 -- zwrócić uwagę, gdyż jest to artykuł przeglądowy + introduces analytical workflow based on low and high relief and different earthwork types 
+
+
+> A range of techniques have become established for the visualization and analysis of airborne LiDAR elevation data within the field of archaeology. In this paper we discuss the visualization of test data representing archaeological features in a variety of terrains using a suite of techniques, all available through generic geographical information system or image processing software. These comprise elevation shading using constrained colour ramps, slope analysis, hillshading, principal component analysis of multi-azimuth hill-shading, local relief models and solar insolation modelling. The strengths and weaknesses of each technique are discussed and a generic toolkit, suited to the visualization of airborne LiDAR data for archaeological purposes, is presented.
+
+@stularUseLidarderivedRelief2011; @stularVisualizationLidarderivedRelief2012 -- przegląd
+
+> This paper presents visualisation techniques of high-resolution digital elevation models (DEMs) for visual detection of archaeological features. The methods commonly used in archaeology are reviewed and improvements are suggested. One straightforward technique that has so far not been used in archaeology e the shift method e is presented. The main purpose of this article is to compare and evaluate different visualisation methods. Two conclusions have been reached. Where a single method must be chosen e for printing or producing digital images for non-professionals e the use of sky view factor or slope gradient is endorsed, both presented in greyscale. Otherwise interpreters should choose different techniques on different terrain types: shift on flat terrain, sky view factor on mixed terrain, slope gradient on sloped terrain and sky view factor (preferably as a composite image with slope gradient) on rugged terrain.
+
+
+Basically everyone (at least in the first years of fascination with LiDAR datasets and DTM) uses hill-shading, although @devereuxPotentialAirborneLidar2005 have already pointed out that if the light is shining along a ridge in the micro-topography it will not cast a shadow and the feature might be missed. @fig-two_directions_hillshading shows an example of the same terrain illuminated from two different angles -45&deg; and +45&deg; from the north. The light source is placed 15 degrees above the horizon. For shading we use `shade()` function from {terra} package.
+
+```{r}
+#| label: fig-two_directions_hillshading
+#| message: false
+#| warning: false
+#| code-fold: true
+#| layout-ncol: 2
+#| fig-cap: "Shading with the light from two directions: 315&deg; and 45&deg; (0&deg; on the north). While the light is pararell, the remnants of the road are barely visible."
+#| fig-subcap: 
+#|    - "direction 315&deg;"
+#|    - "direction 45&deg;"
+
+ext <- terra::ext(c(326000, 327000, 383500, 384500))
+rt <- terra::vrt("data/krzydlina/dtm/rasterize_terrain.vrt") |>
+  terra::crop(ext)
+
+tr <- terra::terrain(3*terra::aggregate(rt, 6), v = c("slope", "aspect"), unit = "radians")
+
+ts1 <- terra::shade(tr$slope, tr$aspect, angle = 15, direction = 315)
+ts2 <- terra::shade(tr$slope, tr$aspect, angle = 15, direction = 45)
+
+tm_shape(ts1) +
+  tm_raster(col.scale = tm_scale_continuous(values = get_brewer_pal("-Greys", plot=FALSE))) +
+  tm_grid(n.x = 4, n.y = 4, lwd = 0.5, lines = FALSE) +
+  tm_layout(legend.show = FALSE)
+
+tm_shape(ts2) +
+  tm_raster(col.scale = tm_scale_continuous(values = get_brewer_pal("-Greys", plot=FALSE))) +
+  tm_grid(n.x = 4, n.y = 4, lwd = 0.5, lines = FALSE) +
+  tm_layout(legend.show = FALSE)
+
+```
+
+As a remedy @doneusAirborneLaserScanning2011 used combination of shaded relief with slope (see Figure 5.8 in their publication).
+
+::: {#fig-shaded_slope}
+
+tu może obrazek
+
+:::
+
+In later work @devereuxVisualisationLiDARTerrain2008 expanded the idea of multi-directional hill-shading and introduced principal component analysis (PCA) in archaeological aspects. Let's extend our example from @fig-two_directions_hillshading and illuminate it from 16 directions. Patrz też @loisiosMethodologyCreatingAnalytical2007
+
+Przejrzeć @rusinkiewiczExaggeratedShadingDepicting2006
+
+
+```{r}
+#| label: fig-16_directions_hillshading
+#| message: false
+#| warning: false
+#| code-fold: true
+#| fig-cap: "Shading from 16 directions, every 22.5&deg;"
+#| fig-asp: 1
+
+ts <- terra::shade(tr$slope, tr$aspect, angle = 15, direction = seq(22.5, 360, 22.5), normalize = TRUE)
+tm_shape(ts) +
+  tm_raster(col.scale = tm_scale_continuous(values = get_brewer_pal("-Greys", plot=FALSE))) +
+  tm_facets(ncol = 4) +
+  tm_layout(inner.margins = c(0.02, 0.02, 0.02, 0.02), legend.show = FALSE) 
+
+```
+
+@fig-16_directions_hillshading shows the same area illuminated from sixteen direction. It resulted in 16 similar (because the viewed scene is the same), however different images. Visually analyzing and interpretation of this number of images can be difficult, expensive and time consuming. But there is a help of relative old technique used in statistic to reduce the dimensions. 
+
+PCA is a mathematical procedure transforming a number of correlated variables into a smaller number of uncorrelated variables, called “principal components”. Used to image processing, it allows to reduce the number of image bands (in our case: raster layers) but retain most of the original variability in the multi-layer data. The first principal component accounts for as much of the variability in the data as possible, and each succeeding component accounts for as much of the remaining variability as possible. For detailed description of the technique refer to works of @matherComputerProcessingRemotelysensed2011 and @gonzalezDigitalImageProcessing2019.
+
+We can use 
+
+(gray and RGB visualisations).
+
+::: {#fig-PCA}
+
+tutaj przykład cieniowania z 8/16 kierunków i rozwinąć o PCA
+
+:::
+
+In 2011 the problems of directional hill-shading was addressed by @kokaljApplicationSkyviewFactor2011 (see @sec-sky_view_factor)
+
+Filtering out the large scale topography and emphasizes micro-reliefs is another possible method. While @doneusFullwaveformAirborneLaser2006 used subtraction of resampled (aggregated) DTM to emphasize the local relief, @hummeRevealingCelticFields2006 used the geostatistical kriging method to show Celtic fields on the plateau close to Doorwerth in The Netherlands. Another, less computationally expensive, workflow called Local Relief Model was provided by @hesseLiDARderivedLocalRelief2010. It consist of following steps:
+
+  1. DTM is produced from vegatation-filtered LiDAR points
+  
+  2. Low pass filter over DTM - to smooth it. The kernel size of the low-pass filter determines the spatial scale of features captured by LRM.
+  
+  3. Substraction this smoothed elevation model from original DTM
+  
+  4. Extraction of the zero-metre contour lines from the difference DTM
+  
+  5. Extraction of point elevations from DEM along the zero-metre contour lines and interpolation of new DEM 
+  
+  6. Substraction of the purged DEM from the original DEM
+  
+::: {.callout-warning}
+tu zaimplementować w terra
+:::
+
+Autocorrelaction analysis, Moran and Geary indexes were used by @coluzziLiDARContributionLandscape2010 for the detection and spatial characterization of microtopographic relief linked to ancient landscapes and palaeoenvironmental features.
+
+::: {.callout-warning}
+tu zaimplementować w terra, https://rdrr.io/cran/terra/man/autocor.html
+:::
+
+@mccoyAirborneLidarSurvey2011 described a procedure called slope contrast mapping, where slope is first calculated and then classified in a raster surface as flat, low, or high. Then the raster is vectorized into polygons representing microtopographical regions that can be used to easily distinguish certain types of construction forms from the natural landscape. @lasaponaraFlightsFullwaveformAirborne2011 presented the data processing chain along with the threshold-based algorithm, which was devised for the classification of ground and non-ground points and for the detection of archaeological features. The used method prooved that the devised data processing provides highly satisfactory results for different landscapes and enables the detection of archaeological microtopographic relief in sparsely as well as in densely vegetated areas.
+
+## Sky view factor {#sec-sky_view_factor}
+
+Sky-view factor is a relatively old technique of topographic analysis (see tu znaleźć kto i gdzie używał) but was adapted in archeology to address the directional problems of hill-shading. It give advantages over other techniques because it reveals small relief features while preserving the perception of general topography [@zaksekSkyViewFactorRelief2011; @kokaljApplicationSkyviewFactor2011]. SVF is a geophysical parameter --- it measures the portion of the sky visible from a certain point.
+
+::: {.callout-warning}
+archiwizowane - https://cran.r-project.org/src/contrib/Archive/horizon/, bazuje na @dozierRapidCalculationTerrain1990
+
+in SAGA: https://saga-gis.sourceforge.io/saga_tool_doc/2.2.2/ta_lighting_3.html
+
+w GRASSie: https://grass.osgeo.org/grass-stable/manuals/addons/r.skyview.html
+
+ale chyba nie warto, trza użyć gisprocessing
+:::
+
+@bennettComparisonVisualizationTechniques2012 compared several visualization techniques: slope, aspect, PCA of shaded relief, local relief model (LRM) and sky-view factor (SVF). They stated that
+
+> The PCA, LRM and SVF models outperformed the slope and aspect models in terms of number of features recorded [...], with PCA, LRM and SVF performed equally well in terms of feature identification overall although the PCA model returned fewer of the features already known from the NMP. The complementarity of different modelling techniques is shown by the fact that no single technique recorded more than 77% of the total number of features seen in the study. [Table 2 illustrates the percentage increase in the number of features recorded when combining two sources compared with the recovery from the single sources. [...] All combinations of two techniques recorded over 80% of the total number of features, but combining LRM and SVF or PCA and SVF recorded 93% of all features. The best performing combination of three models (SVF, PCA and aspect) recorded 97% of the total digitized features.
+
+
+```{r}
+#| label: write_bibliography
+#| echo: false
+#| include: false
+#| eval: false
+#| 
+file.remove("packages.bib")
+softbib::softbib(output = "packages.bib", output_dir = "/home/sapi/projekty/open_data/")
+```
 

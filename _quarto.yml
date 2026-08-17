@@ -17,7 +17,7 @@ book:
     - osm.qmd
     - environments.qmd
     - dem.qmd
-#    - lidar.qmd
+    - lidar.qmd
     - sources.qmd
 #    - summary.qmd
     - references.qmd
@@ -34,8 +34,8 @@ format:
     toc-depth: 4
     link-external-newwindow: true
     grid: 
-      margin-width: 350px
-      body-width: 850px
+      margin-width: 250px
+      body-width: 1000px
 
   # pdf:
   #   number-depth: 3

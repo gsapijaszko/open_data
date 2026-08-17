@@ -627,3 +627,307 @@ length(l)
 
 
 knitr::write_bib("climateR")
+
+
+
+# lidar -------------------------------------------------------------------------------------------------
+
+
+library(lidR)
+library(tmap)
+# laz <- lidR::readLAS("/home/sapi/projekty/lubnow/riemberg/73180_967890_M-33-34-B-a-4-1-3.laz")
+# laz@data |>
+#   head(10)
+# r <- lidR::rasterize_terrain(laz, rez = 1, algorithm = kriging())
+# s <- lidR::rasterize_terrain(laz, rez = 1, algorithm = tin())
+
+r <- terra::rast("data/r_tin.tif")
+s <- terra::rast("data/r_kriging.tif")
+terra::crs(r) <- "EPSG:2180"
+terra::crs(s) <- "EPSG:2180"
+
+terra::plot(r)
+# terra::writeRaster(s, filename = "data/r_tin.tif")
+tr <- terra::terrain(r, v = c("slope", "aspect"), unit = "radians")
+tr$aspect |>
+  terra::plot(col = gray(0:150/150))
+
+ts <- terra::shade(tr$slope, tr$aspect, angle = 45, direction = seq(15, 360, 15), normalize = TRUE)
+ts[[1]] |>
+terra::plot(col = gray(0:150/150))
+
+terra::crs(r) <- "EPSG:2180"
+terra::crs(r, describe = TRUE)
+pak:library(tmap)
+library(tmaptools)
+tm_shape(r) +
+  tm_raster(col.scale = tm_scale_continuous(
+    values = get_brewer_pal("-Greys", plot=FALSE))) +
+  tm_layout(legend.outside = TRUE, legend.reverse = TRUE)
+
+tmaptools::palette_explorer()
+
+library(lasR)
+#f <- system.file("extdata", "Topography.las", package = "lasR")
+f <- "/home/sapi/projekty/lubnow/riemberg/73180_967890_M-33-34-B-a-4-1-3.laz"
+
+read <- reader()
+tri  <- triangulate(filter = keep_ground(), ofile = "data/tri.gpkg")
+dtm  <- rasterize(1, tri)
+
+# pipeline <- reader() + rasterize(1, "zmax", filter = "Classification == c(2, 6)")
+pipeline <- read + tri + dtm
+ans <- exec(pipeline, on = f)
+ans
+terra::plot(ans[[2]])
+terra::writeRaster(ans, "data/ans.tif")
+a <- terra::rast("data/ans.tif")
+sf::st_read("data/tri.gpkg")
+
+# f <- system.file("extdata", "Topography.las", package="lasR")
+read <- reader()
+tri1 <- triangulate(25, filter = keep_ground(), ofile = "data/tri_1.gpkg")
+tri2 <- triangulate(5, ofile = "data/tri_2.gpkg")
+pipeline <- read + tri1 + tri2
+ans <- exec(pipeline, on = f)
+plot(ans[[1]])
+plot(ans[[2]])
+
+
+# -------------------------------------------------------------------------------------------------------
+library(terra)
+
+
+s <- terra::rast("data/r_kriging.tif")
+terra::crs(s) <- "EPSG:2180"
+
+terra::plot(s)
+tr <- terra::terrain(7*s, v = c("slope", "aspect"), unit = "radians")
+tr$aspect |>
+  terra::plot(col = gray(0:150/150))
+
+ts <- terra::shade(tr$slope, tr$aspect, angle = 45, direction = seq(45, 360, 45), normalize = TRUE)
+
+ts[[10]] |>
+  terra::plot(col = gray(0:150/150))
+
+terra::plotRGB(ts[[c(1, 2, 3)]])
+pca <- terra::prcomp(ts, scale = TRUE)
+
+pca
+# https://lemuscanovas.github.io/synoptreg/reference/raster_pca.html
+
+eigs <- pca$sdev^2
+info_variance <- rbind(
+  SD = sqrt(eigs),
+  Proportion = eigs/sum(eigs),
+  Cumulative = cumsum(eigs)/sum(eigs))
+
+info_variance
+plot(ts)
+sc <- terra::predict(ts, pca)
+sc |>
+  terra::plot()
+
+sc[[1:3]] |>
+  terra::stretch() |>
+  terra::plotRGB()
+
+sb <- terra::rast("../../Downloads/laz/sb_323000_324000.tif")
+terra::plotRGB(sb)
+
+if(!file.exists("data/moloczki/dtm/rasterize_terrain.vrt")) {
+  
+  bb <- osmdata::getbb("Mołoczki, gmina Boćki", format_out = "sf_polygon") |>
+    sf::st_transform(crs = "EPSG:2180")
+  
+  bb <- sf::st_point(x = c(783668, 534809)) |>
+    sf::st_sfc(crs = "EPSG:2180") |>
+    sf::st_sf() |>
+    sf::st_buffer(500)
+  
+  l <- rgugik::DEM_request(bb) |>
+    subset(product == "PointCloud")
+  
+  rgugik::tile_download(l, outdir = "data/moloczki/laz", 
+                        method = "wget",
+                        extra = "--no-check-certificate -c --progress=bar:force -T 120 -t 3")
+  
+  convertLAZ <- function(lazfile, outdir = "", filter = "-keep_class 2 9") {
+    if(!dir.exists({{outdir}})) { dir.create({{outdir}}, recursive = TRUE)}
+    print(lazfile)
+    .file <- stringi::stri_replace_all_regex({{lazfile}}, "^.*/", "")
+    .outfile <- paste0({{outdir}}, "/", stringi::stri_replace_all_fixed(.file, "laz", "las"))
+    if(!file.exists(.outfile)) {
+      las <- lidR::readLAS(files = {{lazfile}}, filter = {{filter}})
+      lidR::writeLAS(las, file = .outfile, index = TRUE)
+    }
+    else {
+      message("Output file ", .outfile, " already exists, skipping conversion.")
+    }
+  }
+  
+  f <- list.files("data/moloczki/laz", pattern = "*.laz", full.names = TRUE)
+  lapply(f, convertLAZ, outdir = "data/moloczki/las", filter = "")
+  
+  library(lidR)
+  
+  ctg <- readLAScatalog("data/moloczki/las")
+  crs(ctg) <- "EPSG:2180"
+  plot(ctg)
+  ctg@output_options$drivers$SpatRaster$param$overwrite <- TRUE
+  opt_output_files(ctg) <- "data/moloczki/dtm/tin_{XLEFT}_{YBOTTOM}"
+  opt_chunk_size(ctg) <- 700
+  opt_chunk_buffer(ctg) <- 100
+#  opt_filter(ctg) <- "-keep_class 3 4 5" # "-keep_class 2 9"
+  summary(ctg)
+  rt <- rasterize_terrain(ctg, 0.5, algorithm = tin(), use_class = c(2L, 9L))
+  #rt <- rasterize_terrain(ctg, 0.25, algorithm = kriging(k = 40))
+  plot(rt)
+} else {
+
+    rt <- terra::vrt("data/moloczki/dtm/rasterize_terrain.vrt")
+}
+dsm <- terra::vrt("data/moloczki/dsm/rasterize_terrain.vrt")
+dsm |>
+  plot()
+dtm <- terra::vrt("data/moloczki/dtm/rasterize_terrain.vrt")
+
+dtm_tr <- terra::terrain(5*terra::aggregate(dtm, 1), v = c("slope", "aspect"), unit = "radians")
+dsm_tr <- terra::terrain(7*terra::aggregate(dsm, 2), v = c("slope", "aspect"), unit = "radians")
+
+dtm_ts <- terra::shade(dtm_tr$slope, dtm_tr$aspect, angle = 45, direction = seq(15, 360, 15), normalize = TRUE)
+dsm_ts <- terra::shade(dsm_tr$slope, dsm_tr$aspect, angle = 45, direction = seq(15, 360, 15), normalize = TRUE)
+
+
+
+library(terra)
+
+#dtm_ts |>
+
+
+#   hist()
+# 
+# dtm_tr$slope |>
+
+
+agg <- aggregate(dtm, 20) |>
+  terra::resample(dtm)
+
+(dtm - agg) |>
+#  stretch(minv = 0, maxv = 255) |>
+#  stdev() |>
+  terra::plot(col = rev(gray(0:150/150)),
+              xlim = c(783600, 783800),
+              ylim = c(534700, 534900),
+              axes = TRUE,
+              mar=c(2,2,2,2))
+
+((dtm_ts[[1]] + (2*dtm_ts[[5]]) + dtm_ts[[11]] + dtm_ts[[17]])/5) |>
+  terra::plot(col = gray(0:150/150),
+              xlim = c(783400, 784100),
+              ylim = c(534500, 535200), 
+              axes = TRUE,
+              mar=c(2,2,2,2))
+
+dtm_ts[[1]] |>
+  terra::plot(col = gray(0:150/150),
+              xlim = c(783200, 784200),
+              ylim = c(534500, 535500),
+              legend = TRUE,
+              mar=c(2,2,2,2))
+
+terra::plotRGB(dtm_ts[[c(1, 2, 3)]], 
+               xlim = c(783200, 784200),
+               ylim = c(534500, 535500), 
+               axes = TRUE,
+               mar=c(2,2,2,2))
+
+terra::plotRGB(dtm_ts[[c(1, 2, 3)]], 
+               xlim = c(783400, 784100),
+               ylim = c(534500, 535200), 
+               axes = TRUE,
+               mar=c(2,2,2,2))
+
+dtm_ts[[8]] |>
+  terra::plot(col = gray(0:150/150),
+              xlim = c(783400, 784100),
+              ylim = c(534500, 535200), 
+              axes = TRUE,
+              mar=c(2,2,2,2))
+
+
+
+# lidar biblio ------------------------------------------------------------------------------------------
+
+
+options(openalexR.mailto = "grzegorz@sapijaszko.net")
+
+a <- openalexR::oa_fetch(entity = "works",
+                         search = "lidar",
+                         # doi = "10.1109/ICNGCIS.2017.35",
+                         mailto = "grzegorz@sapijaszko.net",
+                         paging = "cursor",
+                         output = "tibble")
+
+# saveRDS(a, file = "data/lidar_openalexr.rds")
+# a <- readRDS(file = "data/lidar_openalexr.rds")
+
+b <- readRDS(file = "data/lidar_openalexr.rds") |>
+  subset(grepl(pattern = "ALS|airborne|DEM|DTM", title, abstract) | grepl(pattern = "ALS|airborne|DEM|DTM",  abstract)) |>
+  subset(grepl(pattern = "algorithm", title, abstract) | grepl(pattern = "algorithm",  abstract))
+
+
+
+corp <- b$title |>
+  quanteda::corpus()
+
+t <- quanteda::tokens(
+  corp,
+  what = "word",
+  remove_numbers = TRUE,
+  remove_punct = TRUE,
+  remove_symbols = TRUE,
+  remove_separators = TRUE,
+  split_hyphens = TRUE
+)
+
+st <- c(
+  quanteda::stopwords(language = "english"),
+  "name",
+  "hello",
+  unique(weekdays(.leap.seconds)),
+  letters[1:26],
+  LETTERS[1:26],
+  "lidar",
+  "Lidar"
+)
+
+t <- quanteda::tokens_remove(t, pattern = st)
+
+myDFM <- quanteda::dfm(t) |>
+  quanteda::dfm_remove(st)
+
+a <- quanteda::topfeatures(myDFM, 100)
+set.seed(100)
+
+wordcloud::wordcloud(
+  words = names(a),
+  freq = a,
+  min.freq = 6,
+  random.order = FALSE,
+  colors = RColorBrewer::brewer.pal(8, "Dark2")
+)
+
+b
+
+b[1:20,]
+bib <- b$doi |>
+  subset(!is.na(b$doi)) |>
+  stringr::str_remove_all(pattern = "https://doi.org/") |>
+  rcrossref::cr_cn(format = "bibtex")
+
+bib |>
+  unlist() |>
+  writeLines(con = file("data/b.bib"))
+

@@ -94,7 +94,7 @@ div.csl-indent {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-2486e1f0a3ee9ee1fc393803a1361cdb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-ce698f4e766efdae66301126e4b723a1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-7ed3efb67119d6b2ef76f6fa448af285.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -198,8 +198,14 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./lidar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">LiDAR data and its derivatives</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./sources.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Sources of LIDAR and/or DTM data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Sources of LIDAR and/or DTM data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -335,7 +341,7 @@ Figure&nbsp;2.1: Number of editors (blue) and number of nodes per editor/week (b
 </div>
 </div>
 </div>
-<p>OpenStreetMap has grown enormously. It’s data is used quite often by researchers of various fields. File <code>data/OpenStreetMap.bib</code> contains bibliography where either OSM, OpenStreetMap or Volunteered Geographic Information appears in title and/or abstract. The articled published in first years concentrated mostly on data quality and volunteered phenomenon of spatial data collection. Few years later we can observe shift from assessment to use of the OSM data as base spatial set in the analyses. <a href="#fig-osm_bibliography_per_year" class="quarto-xref">Figure&nbsp;<span>2.2</span></a> display the number of scientific papers by year, while <a href="#fig-osm_most_common_words" class="quarto-xref">Figure&nbsp;<span>2.3</span></a> shows most common words used in titles.</p>
+<p>OpenStreetMap has grown enormously. It’s data is used quite often by researchers of various fields. File <code>data/OpenStreetMap.bib</code> contains bibliography where either OSM, OpenStreetMap or Volunteered Geographic Information appears in title and/or abstract. The articles published in first years concentrated mostly on data quality and volunteered phenomenon of spatial data collection. Few years later we can observe shift from assessment to use of the OSM data as base spatial set in the analyses. <a href="#fig-osm_bibliography_per_year" class="quarto-xref">Figure&nbsp;<span>2.2</span></a> display the number of scientific papers by year, while <a href="#fig-osm_most_common_words" class="quarto-xref">Figure&nbsp;<span>2.3</span></a> shows most common words used in titles.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-osm_bibliography_per_year" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -456,7 +462,7 @@ x 12.09058 18.85925
 y 48.55181 51.05570</code></pre>
 </div>
 </div>
-<p>The subsequent step involves generating an Overpass query using the <code>opq()</code> function, which searches for requested features within the specified bounding box. By utilizing <code>add_osm_feature()</code> function and specifying key-value pairs, we narrow down the search criteria. In our example, we focus on administrative boundaries at the 2nd level (corresponding to countries) and further narrow it to Czechia. The pipe <code>|&gt;</code> functions as the <strong>AND</strong> operator in the query.</p>
+<p>The subsequent step involves generating an Overpass query using the <code>opq()</code> function, which searches for requested features within the specified bounding box. By utilizing <code>add_osm_feature()</code> function and specifying key-value pairs, we narrow down the search criteria. In our example, we focus on administrative boundaries at the 2nd level (corresponding to countries) and further narrow it to Czechia. The pipe <code>|&gt;</code> function works as the <strong>AND</strong> operator in the query.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>osm <span class="ot">&lt;-</span> osmdata<span class="sc">::</span><span class="fu">opq</span>(<span class="at">bbox =</span> b, <span class="at">timeout =</span> <span class="dv">60</span> <span class="sc">*</span> <span class="dv">20</span>) <span class="sc">|&gt;</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  osmdata<span class="sc">::</span><span class="fu">add_osm_feature</span>(<span class="at">key =</span> <span class="st">"boundary"</span>, <span class="at">value =</span> <span class="st">"administrative"</span>) <span class="sc">|&gt;</span></span>
@@ -2006,6 +2012,9 @@ Figure&nbsp;2.16: Example of land use around Leipzig, Germany
 
 
 
+
+
+
 :::
 
 -->
@@ -2476,7 +2485,7 @@ Figure&nbsp;2.19: Example of routes generated by openroutingservice.org using QG
 </figure>
 </div>
 </div>
-<p><a href="https://openrouteservice.org/">ORS</a> provides isochrones as well. Isochrones reflect the area/extent that can be reached within a given period of time. They are typically used to visualize reachability analysis, which is one of the fundamental tasks in urban planning. It can be used to measure the service area covered by schools, hospitals <span class="citation" data-cites="reinmuthPhysicalAccessibilityHospitals">(<a href="references.html#ref-reinmuthPhysicalAccessibilityHospitals" role="doc-biblioref">Reinmuth and Zipf, n.d.</a>)</span>, fire brigades, restaurants <span class="citation" data-cites="benhlimaIsochronicMeasurementAnalysis2023">(<a href="references.html#ref-benhlimaIsochronicMeasurementAnalysis2023" role="doc-biblioref">Benhlima et al. 2023</a>)</span> or train stations <span class="citation" data-cites="fazio15minutesStationCase2023">(<a href="references.html#ref-fazio15minutesStationCase2023" role="doc-biblioref">Fazio et al. 2023</a>)</span>. It is used to run multimodal transport analysis and to optimize public transport facilities <span class="citation" data-cites="bauerComputingIsochronesMultimodal2008 marciuskaDeterminingObjectsIsochrones2010 kondratevaIsochronesBasedPublic2017">(<a href="references.html#ref-bauerComputingIsochronesMultimodal2008" role="doc-biblioref">Bauer et al. 2008</a>; <a href="references.html#ref-marciuskaDeterminingObjectsIsochrones2010" role="doc-biblioref">Marciuska and Gamper 2010</a>; <a href="references.html#ref-kondratevaIsochronesBasedPublic2017" role="doc-biblioref">Kondrateva, Sidorov, and Saprykin 2017</a>)</span>. <a href="#fig-prusice_osp_access" class="quarto-xref">Figure&nbsp;<span>2.20</span></a> displays example of areas which can be reach-out by 3, 6, and 9 minutes from fire stations in Prusice municipality. The isochrones were provided by openroutingservice API using {openrouteservice} package <span class="citation" data-cites="openrouteservice">(<a href="references.html#ref-openrouteservice" role="doc-biblioref">Oleś 2024</a>)</span>.</p>
+<p><a href="https://openrouteservice.org/">ORS</a> provides isochrones as well. Isochrones reflect the area/extent that can be reached within a given period of time. They are typically used to visualize reachability analysis, which is one of the fundamental tasks in urban planning. It can be used to measure the service area covered by schools, hospitals <span class="citation" data-cites="reinmuthPhysicalAccessibilityHospitals">(<a href="references.html#ref-reinmuthPhysicalAccessibilityHospitals" role="doc-biblioref">Reinmuth and Zipf n.d.</a>)</span>, fire brigades, restaurants <span class="citation" data-cites="benhlimaIsochronicMeasurementAnalysis2023">(<a href="references.html#ref-benhlimaIsochronicMeasurementAnalysis2023" role="doc-biblioref">Benhlima et al. 2023</a>)</span> or train stations <span class="citation" data-cites="fazio15minutesStationCase2023">(<a href="references.html#ref-fazio15minutesStationCase2023" role="doc-biblioref">Fazio et al. 2023</a>)</span>. It is used to run multimodal transport analysis and to optimize public transport facilities <span class="citation" data-cites="bauerComputingIsochronesMultimodal2008 marciuskaDeterminingObjectsIsochrones2010 kondratevaIsochronesBasedPublic2017">(<a href="references.html#ref-bauerComputingIsochronesMultimodal2008" role="doc-biblioref">Bauer et al. 2008</a>; <a href="references.html#ref-marciuskaDeterminingObjectsIsochrones2010" role="doc-biblioref">Marciuska and Gamper 2010</a>; <a href="references.html#ref-kondratevaIsochronesBasedPublic2017" role="doc-biblioref">Kondrateva, Sidorov, and Saprykin 2017</a>)</span>. <a href="#fig-prusice_osp_access" class="quarto-xref">Figure&nbsp;<span>2.20</span></a> displays example of areas which can be reach-out by 3, 6, and 9 minutes from fire stations in Prusice municipality. The isochrones were provided by openroutingservice API using {openrouteservice} package <span class="citation" data-cites="openrouteservice">(<a href="references.html#ref-openrouteservice" role="doc-biblioref">Oleś 2024</a>)</span>.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -2787,7 +2796,7 @@ Pebesma, Edzer, Thomas Mailund, and James Hiebert. 2016. <span>“Measurement Un
 <span>“Planet <span>OSM</span>.”</span> 2024. 2024. <a href="https://planet.osm.org/">https://planet.osm.org/</a>.
 </div>
 <div id="ref-reinmuthPhysicalAccessibilityHospitals" class="csl-entry" role="listitem">
-Reinmuth, Marcel, and Alexander Zipf. n.d. <span>“Physical Accessibility of Hospitals in Sub-<span>Saharan Africa</span>: <span>An</span> Exemplary Analysis of the Potential of Open Geodata in the Health Sector.”</span>
+Reinmuth, Marcel, and Alexander Zipf. n.d. <span>“Physical Accessibility of Hospitals in Sub-<span>Saharan Africa</span>: <span>An</span> Exemplary Analysis of the Potential of Open Geodata in the Health Sector.”</span> Accessed November 19, 2025. <a href="https://wp.med-geo.de/wp-content/uploads/2020/10/COVID19-Zaesur_Beitrag_Reinmuth_Zipf.pdf">https://wp.med-geo.de/wp-content/uploads/2020/10/COVID19-Zaesur_Beitrag_Reinmuth_Zipf.pdf</a>.
 </div>
 <div id="ref-schottOpenstreetmapElementVectorisation2022a" class="csl-entry" role="listitem">
 Schott, M., S. Lautenbach, L. Größchen, and A. Zipf. 2022. <span>“Openstreetmap Element Vectorisation - a Tool for High Resolution Data Insights and Its Usability in the Land-Use and Land-Cover Domain.”</span> <em>The International Archives of the Photogrammetry, Remote Sensing and Spatial Information Sciences</em> XLVIII-4-W1-2022 (August): 395–402. <a href="https://doi.org/10/gtdww7">https://doi.org/10/gtdww7</a>.

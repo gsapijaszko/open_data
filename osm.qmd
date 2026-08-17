@@ -1,4 +1,4 @@
-## OpenStreetMap as a universal spatial data source {#sec-openstreetmap}
+# OpenStreetMap as a universal spatial data source {#sec-openstreetmap}
 
 ```{r}
 #| label: osm-prep
@@ -61,7 +61,7 @@ legend("topleft",
 ```
 :::
 
-OpenStreetMap has grown enormously. It's data is used quite often by researchers of various fields. File `data/OpenStreetMap.bib` contains bibliography where either OSM, OpenStreetMap or Volunteered Geographic Information appears in title and/or abstract. The articled published in first years concentrated mostly on data quality and volunteered phenomenon of spatial data collection. Few years later we can observe shift from assessment to use of the OSM data as base spatial set in the analyses. @fig-osm_bibliography_per_year display the number of scientific papers by year, while [@fig-osm_most_common_words] shows most common words used in titles.
+OpenStreetMap has grown enormously. It's data is used quite often by researchers of various fields. File `data/OpenStreetMap.bib` contains bibliography where either OSM, OpenStreetMap or Volunteered Geographic Information appears in title and/or abstract. The articles published in first years concentrated mostly on data quality and volunteered phenomenon of spatial data collection. Few years later we can observe shift from assessment to use of the OSM data as base spatial set in the analyses. @fig-osm_bibliography_per_year display the number of scientific papers by year, while [@fig-osm_most_common_words] shows most common words used in titles.
 
 ```{r}
 #| label: fig-osm_bibliography_per_year
@@ -212,7 +212,7 @@ By default it returns a data in `matrix` form, like:
 b
 ```
 
-The subsequent step involves generating an Overpass query using the `opq()` function, which searches for requested features within the specified bounding box. By utilizing `add_osm_feature()` function and specifying key-value pairs, we narrow down the search criteria. In our example, we focus on administrative boundaries at the 2nd level (corresponding to countries) and further narrow it to Czechia. The pipe `|>` functions as the **AND** operator in the query.
+The subsequent step involves generating an Overpass query using the `opq()` function, which searches for requested features within the specified bounding box. By utilizing `add_osm_feature()` function and specifying key-value pairs, we narrow down the search criteria. In our example, we focus on administrative boundaries at the 2nd level (corresponding to countries) and further narrow it to Czechia. The pipe `|>` function works as the **AND** operator in the query.
 
 ```{r}
 #| label: osmdata_czech_republic

@@ -3,7 +3,7 @@
 
 ## Europe
 
--   DTM at different scale, up to 20m, based on LIDAR data for many EU countries made by Sonny; <https://sonny.4lima.de/>. Another very helpful site is <https://www.opendem.info/>, where you can find a generated 1m DTM for most of the EU.
+-   DTM at different scale, up to 20m, based on LIDAR data for many EU countries made by Sonny; <https://sonny.4lima.de/>. Another very helpful site is <https://www.opendem.info/>, where you can find a generated 1m DTM for most of the EU. <https://lidarandaerialarchaeology.com/europe/>
 
 #### Albania
   * https://geoportal.asig.gov.al/en/services, no LIDAR data
@@ -12,6 +12,10 @@
 
 * [Orthophoto](https://www.data.gv.at/katalog/dataset/254757be-69ef-4a6c-a4c1-1432815d7522) - WMTS
 
+##### Salzburg
+
+LAZ data of [DTM, DEM](https://www.salzburg.gv.at/themen/salzburg/sagis/als-befliegungen), also 0.5 and 1~m DTM/DEM as rasters (TIF) available <https://www.salzburg.gv.at/api5/datalinq/report/vektorpublik%40alsdownload%40alsdownload?#>
+
 ##### Tirol
 
 -   [Orthophoto](https://www.tirol.gv.at/sicherheit/geoinformation/geodaten-tiris/orthofotos/) with:
@@ -19,6 +23,7 @@
     -   [WMTS](https://www.data.gv.at/katalog/dataset/a0535d6d-4c34-4524-9591-e9e51e3d28c4)
 
 -   50 cm and 1 m resolution [DTM, DEM and shading ](https://www.tirol.gv.at/sicherheit/geoinformation/geodaten-tiris/laserscandaten/)
+
 
 <!-- 
 ```{r}
@@ -100,7 +105,13 @@ tmap::tm_shape(sf::st_as_sf(a)) +
 
 ### Luxembourg
 
-### Latvia
+-->
+
+#### Latvia
+
+https://www.lgia.gov.lv/lv/Digit%C4%81lais%20virsmas%20modelis
+
+<!-- 
 
 ### Moldova
 
@@ -114,8 +125,13 @@ tmap::tm_shape(sf::st_as_sf(a)) +
 
 ### Poland
 
-### Portugal
+-->
 
+#### Portugal
+
+LAZ data for mainland part available to download after registration using [Centro de Dados - DGT](https://cdd.dgterritorio.gov.pt/dgt-fe/mapa?collection=LAZ) portal. DTM and DSM of 0.5~m and 1~m resolution also available.
+
+<!--
 ### Romania
 
 ### Russia
@@ -129,9 +145,11 @@ tmap::tm_shape(sf::st_as_sf(a)) +
   
   * LIDAR data - small chunks of data (up to 4 km^2^) available through [MAPKA](https://zbgis.skgeodesy.sk/mapka/en/teren/export) application.
 
-<!--
-### Slovenia
--->
+
+#### Slovenia
+  
+  * https://gis.arso.gov.si/evode/profile.aspx?id=atlas_voda_Lidar@Arso&culture=en-US
+
 
 #### Sweden
 

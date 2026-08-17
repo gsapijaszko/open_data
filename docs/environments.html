@@ -94,7 +94,7 @@ div.csl-indent {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-2486e1f0a3ee9ee1fc393803a1361cdb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-ce698f4e766efdae66301126e4b723a1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-7ed3efb67119d6b2ef76f6fa448af285.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -243,8 +243,14 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./lidar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">LiDAR data and its derivatives</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./sources.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Sources of LIDAR and/or DTM data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Sources of LIDAR and/or DTM data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -1492,7 +1498,7 @@ There are few R packages which helps to download and manage CHELSA data: {climat
 </section>
 <section id="era5-hourly-data" class="level4">
 <h4 class="anchored" data-anchor-id="era5-hourly-data">ERA5 hourly data</h4>
-<p><a href="https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-single-levels">ERA5</a> is the fifth generation ECMWF reanalysis for the global climate and weather for the past 8 decades <span class="citation" data-cites="hersbachERA5GlobalReanalysis2020 hersbachERA5HourlyData2023">(<a href="references.html#ref-hersbachERA5GlobalReanalysis2020" role="doc-biblioref">Hersbach et al. 2020</a>; <a href="references.html#ref-hersbachERA5HourlyData2023" role="doc-biblioref">Hersbach et al. 2023</a>)</span>. Data is available from 1940 onwards with hourly temporal resolution. Horizontal resolution is 0.25 x 0.25° (atmosphere) and 0.5° x 0.5° (ocean waves). You can download it via <a href="https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-single-levels?tab=form">Copernicus portal</a>. There is a complementary data set named ERA5-Land <span class="citation" data-cites="munoz-sabaterERA5LandStateoftheartGlobal2021">(<a href="references.html#ref-munoz-sabaterERA5LandStateoftheartGlobal2021" role="doc-biblioref">Muñoz-Sabater et al. 2021</a>)</span> covering time period from 1981 till today with spatial of 11 km and 1 hour temporal resolutions.</p>
+<p><a href="https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-single-levels">ERA5</a> is the fifth generation ECMWF reanalysis for the global climate and weather for the past 8 decades <span class="citation" data-cites="hersbachERA5GlobalReanalysis2020 hersbachERA5HourlyData2023">(<a href="references.html#ref-hersbachERA5GlobalReanalysis2020" role="doc-biblioref">Hersbach et al. 2020</a>, <a href="references.html#ref-hersbachERA5HourlyData2023" role="doc-biblioref">2023</a>)</span>. Data is available from 1940 onwards with hourly temporal resolution. Horizontal resolution is 0.25 x 0.25° (atmosphere) and 0.5° x 0.5° (ocean waves). You can download it via <a href="https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-single-levels?tab=form">Copernicus portal</a>. There is a complementary data set named ERA5-Land <span class="citation" data-cites="munoz-sabaterERA5LandStateoftheartGlobal2021">(<a href="references.html#ref-munoz-sabaterERA5LandStateoftheartGlobal2021" role="doc-biblioref">Muñoz-Sabater et al. 2021</a>)</span> covering time period from 1981 till today with spatial of 11 km and 1 hour temporal resolutions.</p>
 <p>There are few packages which can be used to download the data: {KrigR} <span class="citation" data-cites="kuschKrigRToolDownloading2022">(<a href="references.html#ref-kuschKrigRToolDownloading2022" role="doc-biblioref">Kusch and Davy 2022</a>)</span> and {ecmwfr} <span class="citation" data-cites="ecmwfr ecmwfr2019">(<a href="references.html#ref-ecmwfr" role="doc-biblioref">Hufkens 2023</a>; <a href="references.html#ref-ecmwfr2019" role="doc-biblioref">Hufkens, Stauffer, and Campitelli 2019</a>)</span>. In below example, using {ecmwfr}, we are going to check weather conditions in April and May of 1945 in Remagen, Germany.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> After creating ECMWF account and setting up the key in keyring using <code>wf_set_key()</code><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> function we can create data request and download it.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> osmdata<span class="sc">::</span><span class="fu">getbb</span>(<span class="st">"Remagen, Germany"</span>)</span>
@@ -1751,7 +1757,7 @@ https://data.isric.org/geonetwork/srv/eng/catalog.search#/home
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-abatzoglouTerraClimateHighresolutionGlobal2018" class="csl-entry" role="listitem">
-Abatzoglou, John T., Solomon Z. Dobrowski, Sean A. Parks, and Katherine C. Hegewisch. 2018. <span>“<span>TerraClimate</span>, a High-Resolution Global Dataset of Monthly Climate and Climatic Water Balance from 1958–2015.”</span> <em>Scientific Data</em> 5 (1, 1): 170191. <a href="https://doi.org/10.1038/sdata.2017.191">https://doi.org/10.1038/sdata.2017.191</a>.
+Abatzoglou, John T., Solomon Z. Dobrowski, Sean A. Parks, and Katherine C. Hegewisch. 2018. <span>“<span>TerraClimate</span>, a High-Resolution Global Dataset of Monthly Climate and Climatic Water Balance from 1958–2015.”</span> <em>Scientific Data</em> 5 (1): 170191. <a href="https://doi.org/10.1038/sdata.2017.191">https://doi.org/10.1038/sdata.2017.191</a>.
 </div>
 <div id="ref-brunCHELSABIOCLIMNovelSet2022" class="csl-entry" role="listitem">
 Brun, Philipp, Niklaus E. Zimmermann, Chantal Hari, Loïc Pellissier, and Dirk Nikolaus Karger. 2022a. <span>“<span>CHELSA-BIOCLIM</span>+ <span>A</span> Novel Set of Global Climate-Related Predictors at Kilometre-Resolution.”</span> <span>EnviDat</span>. https://doi.org/<a href="http://dx.doi.org/10.16904/envidat.332">http://dx.doi.org/10.16904/envidat.332</a>.
@@ -1775,7 +1781,7 @@ Del Greco, Stephen A., Neal Lott, Kathy Hawkins, Rich Baldwin, Dee Dee Anders, R
 Fick, Stephen E., and Robert J. Hijmans. 2017. <span>“<span>WorldClim</span> 2: New 1-Km Spatial Resolution Climate Surfaces for Global Land Areas.”</span> <em>International Journal of Climatology</em> 37 (12): 4302–15. <a href="https://doi.org/10.1002/joc.5086">https://doi.org/10.1002/joc.5086</a>.
 </div>
 <div id="ref-harrisVersionCRUTS2020" class="csl-entry" role="listitem">
-Harris, Ian, Timothy J. Osborn, Phil Jones, and David Lister. 2020. <span>“Version 4 of the <span>CRU TS</span> Monthly High-Resolution Gridded Multivariate Climate Dataset.”</span> <em>Scientific Data</em> 7 (1, 1): 109. <a href="https://doi.org/10.1038/s41597-020-0453-3">https://doi.org/10.1038/s41597-020-0453-3</a>.
+Harris, Ian, Timothy J. Osborn, Phil Jones, and David Lister. 2020. <span>“Version 4 of the <span>CRU TS</span> Monthly High-Resolution Gridded Multivariate Climate Dataset.”</span> <em>Scientific Data</em> 7 (1): 109. <a href="https://doi.org/10.1038/s41597-020-0453-3">https://doi.org/10.1038/s41597-020-0453-3</a>.
 </div>
 <div id="ref-hersbachERA5HourlyData2023" class="csl-entry" role="listitem">
 Hersbach, Hans, Bill Bell, Paul Berrisford, Gionata Biavati, András Horányi, Joaquín Muñoz Sabater, Julien Nicolas, et al. 2023. <span>“<span>ERA5</span> Hourly Data on Single Levels from 1940 to Present. <span>Copernicus Climate Change Service</span> (<span>C3S</span>) <span>Climate Data Store</span> (<span>CDS</span>).”</span> <a href="https://doi.org/10.24381/cds.adbb2d47">https://doi.org/10.24381/cds.adbb2d47</a>.
@@ -1805,13 +1811,13 @@ Johnson, Mike. 2024. <em>climateR: climateR</em>. <a href="https://github.com/mi
 Karger, Dirk Nikolaus, Philipp Brun, and Niklaus E. Zimmermann. 2022. <span>“<span>BIOCLIM</span>+ <span>A</span> Novel Set of Global Climate-Related Predictors at Kilometre-Resolution: <span>Technical</span> Specification.”</span> <span>Swiss Federal Research Institute WSL</span>. <a href="https://www.envidat.ch/dataset/21d662b7-9c59-41da-aa82-7d8a879b8db7/resource/aa676d1f-5f7f-479b-af20-26066b0537d1/download/chelsa_file_specification_bioclim_plus.pdf">https://www.envidat.ch/dataset/21d662b7-9c59-41da-aa82-7d8a879b8db7/resource/aa676d1f-5f7f-479b-af20-26066b0537d1/download/chelsa_file_specification_bioclim_plus.pdf</a>.
 </div>
 <div id="ref-kargerClimatologiesHighResolution2017" class="csl-entry" role="listitem">
-Karger, Dirk Nikolaus, Olaf Conrad, Jürgen Böhner, Tobias Kawohl, Holger Kreft, Rodrigo Wilber Soria-Auza, Niklaus E. Zimmermann, H. Peter Linder, and Michael Kessler. 2017. <span>“Climatologies at High Resolution for the Earth’s Land Surface Areas.”</span> <em>Scientific Data</em> 4 (1, 1): 170122. <a href="https://doi.org/10.1038/sdata.2017.122">https://doi.org/10.1038/sdata.2017.122</a>.
+Karger, Dirk Nikolaus, Olaf Conrad, Jürgen Böhner, Tobias Kawohl, Holger Kreft, Rodrigo Wilber Soria-Auza, Niklaus E. Zimmermann, H. Peter Linder, and Michael Kessler. 2017. <span>“Climatologies at High Resolution for the Earth’s Land Surface Areas.”</span> <em>Scientific Data</em> 4 (1): 170122. <a href="https://doi.org/10.1038/sdata.2017.122">https://doi.org/10.1038/sdata.2017.122</a>.
 </div>
 <div id="ref-kargerClimatologiesHighResolution2021" class="csl-entry" role="listitem">
 ———. 2021. <span>“Climatologies at High Resolution for the Earth’s Land Surface Areas.”</span> <span>EnviDat</span>. https://doi.org/<a href="http://dx.doi.org/10.16904/envidat.228">http://dx.doi.org/10.16904/envidat.228</a>.
 </div>
 <div id="ref-kargerGlobalDailyKm2021" class="csl-entry" role="listitem">
-Karger, Dirk Nikolaus, Adam M. Wilson, Colin Mahony, Niklaus E. Zimmermann, and Walter Jetz. 2021. <span>“Global Daily 1 Km Land Surface Precipitation Based on Cloud Cover-Informed Downscaling.”</span> <em>Scientific Data</em> 8 (1, 1): 307. <a href="https://doi.org/10.1038/s41597-021-01084-6">https://doi.org/10.1038/s41597-021-01084-6</a>.
+Karger, Dirk Nikolaus, Adam M. Wilson, Colin Mahony, Niklaus E. Zimmermann, and Walter Jetz. 2021. <span>“Global Daily 1 Km Land Surface Precipitation Based on Cloud Cover-Informed Downscaling.”</span> <em>Scientific Data</em> 8 (1): 307. <a href="https://doi.org/10.1038/s41597-021-01084-6">https://doi.org/10.1038/s41597-021-01084-6</a>.
 </div>
 <div id="ref-kargerCHELSAV2Technical2021" class="csl-entry" role="listitem">
 Karger, Dirk Nikolaus, and Niklaus E. Zimmermann. 2021. <span>“<span>CHELSA V2</span>.1: <span>Technical</span> Specification.”</span> <span>Swiss Federal Research Institute WSL</span>. <a href="https://www.envidat.ch/dataset/2adb0c83-4653-4337-af28-f75c63ab7c74/resource/61fff0a7-6abb-45f7-a5f6-48f6e2c24851/download/chelsa_file_specification.pdf">https://www.envidat.ch/dataset/2adb0c83-4653-4337-af28-f75c63ab7c74/resource/61fff0a7-6abb-45f7-a5f6-48f6e2c24851/download/chelsa_file_specification.pdf</a>.
@@ -1820,7 +1826,7 @@ Karger, Dirk Nikolaus, and Niklaus E. Zimmermann. 2021. <span>“<span>CHELSA V2
 Karger, Dirk N., Stefan Lange, Chantal Hari, Christopher P. O. Reyer, and Niklaus E. Zimmermann. 2022. <span>“<span>CHELSA-W5E5</span> V1.0: <span>W5E5</span> V1.0 Downscaled with <span>CHELSA</span> V2.0.”</span> <span>ISIMIP Repository</span>. <a href="https://doi.org/10.48364/ISIMIP.836809.3">https://doi.org/10.48364/ISIMIP.836809.3</a>.
 </div>
 <div id="ref-koeppenGeographischeSystemKlimate1936" class="csl-entry" role="listitem">
-Köppen, Wladimir Peter. 1936. <span>“Das geographische System der Klimate (1936).”</span> In <em>Handbuch der Klimatologie</em>, edited by Wladimir Peter Köppen and Rudolf Geiger, Band I, Teil C:44. <span>Berlin</span>: <span>Verlag von Gebrüder Borntraeger</span>. <a href="https://koeppen-geiger.vu-wien.ac.at/pdf/Koppen_1936.pdf">https://koeppen-geiger.vu-wien.ac.at/pdf/Koppen_1936.pdf</a>.
+Köppen, Wladimir Peter. 1936. <span>“Das Geographische System Der Klimate (1936).”</span> In <em>Handbuch Der Klimatologie</em>, edited by Wladimir Peter Köppen and Rudolf Geiger, Band I, Teil C:44. <span>Berlin</span>: <span>Verlag von Gebrüder Borntraeger</span>. <a href="https://koeppen-geiger.vu-wien.ac.at/pdf/Koppen_1936.pdf">https://koeppen-geiger.vu-wien.ac.at/pdf/Koppen_1936.pdf</a>.
 </div>
 <div id="ref-kuschKrigRToolDownloading2022" class="csl-entry" role="listitem">
 Kusch, Erik, and Richard Davy. 2022. <span>“<span>KrigR</span>—a Tool for Downloading and Statistically Downscaling Climate Reanalysis Data.”</span> <em>Environmental Research Letters</em> 17 (2): 024005. <a href="https://doi.org/10.1088/1748-9326/ac48b3">https://doi.org/10.1088/1748-9326/ac48b3</a>.

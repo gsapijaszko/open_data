@@ -7,28 +7,61 @@
   url = {https://www.R-project.org/},
 }
 
-@Manual{biblio,
-  title = {biblio: Interacting with BibTeX Databases},
-  author = {Miguel Alvarez},
-  year = {2023},
-  note = {R package version 0.0.8},
-  url = {https://CRAN.R-project.org/package=biblio},
+@Article{cartography1,
+  doi = {10.21105/joss.00054},
+  url = {http://dx.doi.org/10.21105/joss.00054},
+  year = {2016},
+  month = {aug},
+  publisher = {The Open Journal},
+  volume = {1},
+  number = {4},
+  author = {Timothée Giraud and Nicolas Lambert},
+  title = {cartography: Create and Integrate Maps in your R Workflow},
+  journal = {JOSS},
 }
 
-@Manual{clipr,
-  title = {clipr: Read and Write from the System Clipboard},
-  author = {Matthew Lincoln},
-  year = {2022},
-  note = {R package version 0.8.0},
-  url = {https://CRAN.R-project.org/package=clipr},
+@InProceedings{cartography2,
+  booktitle = {Advances in Cartography and GIScience. ICACI 2017. Lecture Notes in Geoinformation and Cartography.},
+  author = {Timothée Giraud and Nicolas Lambert},
+  editor = {Michael Peterson},
+  title = {Reproducible Cartography},
+  chapter = {13},
+  publisher = {Springer},
+  address = {Cham, Switzerland},
+  year = {2017},
+  pages = {173-183},
+  doi = {10.1007/978-3-319-57336-6_13},
+}
+
+@Manual{chelsaDL,
+  title = {chelsaDL: Download raster files from the CHELSA climate data set},
+  author = {Who wrote it},
+  year = {2024},
+  note = {R package version 0.1.0},
+}
+
+@Manual{ClimDatDownloadR,
+  title = {ClimDatDownloadR: Downloads Climate Data from Chelsa and WorldClim},
+  author = {Helge Jentsch and Maria Bobrowski and Johannes Weidinger},
+  year = {2024},
+  note = {https://doi.org/10.5281/zenodo.7924343,
+https://github.com/HelgeJentsch/ClimDatDownloadR},
 }
 
 @Manual{CopernicusDEM,
   title = {{CopernicusDEM}: Copernicus Digital Elevation Models},
   author = {Lampros Mouselimis},
   year = {2024},
-  note = {R package version 1.0.3 produced using Copernicus WorldDEMTM-90 DLR e.V. 2010-2014 and Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved},
+  note = {R package version 1.0.4 produced using Copernicus WorldDEMTM-90 DLR e.V. 2010-2014 and Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved},
   url = {https://CRAN.R-project.org/package=CopernicusDEM},
+}
+
+@Manual{devtools,
+  title = {devtools: Tools to Make Developing R Packages Easier},
+  author = {Hadley Wickham and Jim Hester and Winston Chang and Jennifer Bryan},
+  year = {2022},
+  note = {R package version 2.4.5},
+  url = {https://CRAN.R-project.org/package=devtools},
 }
 
 @Manual{dplyr,
@@ -48,36 +81,57 @@
   url = {https://github.com/jhollist/elevatr/},
 }
 
+@Article{future,
+  author = {Henrik Bengtsson},
+  title = {A Unifying Framework for Parallel and Distributed Processing in R using Futures},
+  year = {2021},
+  journal = {The R Journal},
+  doi = {10.32614/RJ-2021-048},
+  url = {https://doi.org/10.32614/RJ-2021-048},
+  pages = {208--227},
+  volume = {13},
+  number = {2},
+}
+
 @Manual{geodata,
   title = {geodata: Download Geographic Data},
   author = {Robert J. Hijmans and Márcia Barbosa and Aniruddha Ghosh and Alex Mandel},
-  year = {2023},
-  note = {R package version 0.5-9},
+  year = {2024},
+  note = {R package version 0.6-2},
   url = {https://CRAN.R-project.org/package=geodata},
 }
 
-@Book{ggplot2,
-  author = {Hadley Wickham},
-  title = {ggplot2: Elegant Graphics for Data Analysis},
-  publisher = {Springer-Verlag New York},
-  year = {2016},
-  isbn = {978-3-319-24277-4},
-  url = {https://ggplot2.tidyverse.org},
+@Manual{giscoR,
+  title = {{giscoR}: Download Map Data from GISCO API - Eurostat},
+  doi = {10.32614/CRAN.package.giscoR},
+  author = {Diego Hernangómez},
+  year = {2025},
+  version = {0.6.0},
+  url = {https://ropengov.github.io/giscoR/},
+  abstract = {Tools to download data from the GISCO (Geographic Information System of the Commission) Eurostat database <https://ec.europa.eu/eurostat/web/gisco>. Global and European map data available. This package is in no way officially related to or endorsed by Eurostat.},
 }
 
 @Manual{glue,
   title = {glue: Interpreted String Literals},
   author = {Jim Hester and Jennifer Bryan},
   year = {2024},
-  note = {R package version 1.7.0},
+  note = {R package version 1.8.0},
   url = {https://CRAN.R-project.org/package=glue},
+}
+
+@Manual{httr,
+  title = {httr: Tools for Working with URLs and HTTP},
+  author = {Hadley Wickham},
+  year = {2023},
+  note = {R package version 1.4.7},
+  url = {https://CRAN.R-project.org/package=httr},
 }
 
 @Manual{imager,
   title = {imager: Image Processing Library Based on 'CImg'},
   author = {Simon Barthelme},
-  year = {2023},
-  note = {R package version 0.45.2},
+  year = {2024},
+  note = {R package version 1.0.2},
   url = {https://CRAN.R-project.org/package=imager},
 }
 
@@ -92,9 +146,30 @@
 @Manual{kableExtra,
   title = {kableExtra: Construct Complex Table with 'kable' and Pipe Syntax},
   author = {Hao Zhu},
-  year = {2021},
-  note = {R package version 1.3.4},
+  year = {2024},
+  note = {R package version 1.4.0},
   url = {https://CRAN.R-project.org/package=kableExtra},
+}
+
+@Article{lidR1,
+  author = {Jean-Romain Roussel and David Auty and Nicholas C. Coops and Piotr Tompalski and Tristan R.H. Goodbody and Andrew Sánchez Meador and Jean-François Bourdon and Florian {de Boissieu} and Alexis Achim},
+  title = {lidR: An R package for analysis of Airborne Laser Scanning (ALS) data},
+  journal = {Remote Sensing of Environment},
+  volume = {251},
+  pages = {112061},
+  year = {2020},
+  issn = {0034-4257},
+  doi = {10.1016/j.rse.2020.112061},
+  url = {https://doi.org/10.1016/j.rse.2020.112061},
+}
+
+@Manual{lidR2,
+  title = {Airborne LiDAR Data Manipulation and Visualization for Forestry
+Applications},
+  author = {Jean-Romain Roussel and David Auty},
+  year = {2025},
+  note = {R package version 4.2.2},
+  url = {https://cran.r-project.org/package=lidR},
 }
 
 @Article{lubridate,
@@ -111,8 +186,8 @@
 @Manual{magick,
   title = {magick: Advanced Graphics and Image-Processing in R},
   author = {Jeroen Ooms},
-  year = {2023},
-  note = {R package version 2.8.2},
+  year = {2024},
+  note = {R package version 2.8.5},
   url = {https://CRAN.R-project.org/package=magick},
 }
 
@@ -128,20 +203,11 @@
   doi = {10.1016/j.envsoft.2011.09.008},
 }
 
-@Manual{openalexR,
-  title = {openalexR: Getting Bibliographic Records from 'OpenAlex' Database Using
-'DSL' API},
-  author = {Massimo Aria and Trang Le},
-  year = {2023},
-  note = {R package version 1.2.3},
-  url = {https://CRAN.R-project.org/package=openalexR},
-}
-
 @Manual{openrouteservice,
-  title = {openrouteservice: Openrouteservice API Client},
-  author = {Andrzej Oleś},
+  title = {openrouteservice: An 'openrouteservice' API Client},
+  author = {Andrzej K. Oleś},
   year = {2024},
-  note = {R package version 0.4.2},
+  note = {R package version 0.6.1},
   url = {https://github.com/GIScience/openrouteservice-r},
 }
 
@@ -162,16 +228,30 @@
 @Manual{osmextract,
   title = {osmextract: Download and Import Open Street Map Data Extracts},
   author = {Andrea Gilardi and Robin Lovelace},
-  year = {2023},
-  note = {R package version 0.5.0},
+  year = {2024},
+  note = {R package version 0.5.1},
   url = {https://CRAN.R-project.org/package=osmextract},
+}
+
+@Article{osrm,
+  doi = {10.21105/joss.04574},
+  url = {https://doi.org/10.21105/joss.04574},
+  year = {2022},
+  month = {aug},
+  publisher = {The Open Journal},
+  volume = {7},
+  number = {78},
+  pages = {4574},
+  author = {Timothée Giraud},
+  title = {{osrm: Interface Between R and the OpenStreetMap-Based Routing Service OSRM}},
+  journal = {Journal of Open Source Software},
 }
 
 @Manual{pak,
   title = {pak: Another Approach to Package Installation},
   author = {Gábor Csárdi and Jim Hester},
-  year = {2023},
-  note = {R package version 0.7.1},
+  year = {2024},
+  note = {R package version 0.8.0},
   url = {https://CRAN.R-project.org/package=pak},
 }
 
@@ -182,6 +262,14 @@
   address = {Vienna, Austria},
   year = {2023},
   url = {https://www.R-project.org/},
+}
+
+@Manual{pmetar,
+  title = {pmetar: Processing METAR Weather Reports},
+  author = {Pawel Cwiek},
+  year = {2024},
+  note = {R package version 0.5.0},
+  url = {https://github.com/prcwiek/pmetar},
 }
 
 @Article{quanteda,
@@ -196,12 +284,12 @@
   year = {2018},
 }
 
-@Manual{rbibutils,
-  title = {rbibutils: Read 'Bibtex' Files and Convert Between Bibliography Formats},
-  author = {Georgi N. Boshnakov and Chris Putman},
+@Manual{r2symbols,
+  title = {r2symbols: Symbols for 'Markdown' and 'Shiny' Application},
+  author = {Obinna Obianom},
   year = {2023},
-  note = {R package version 2.2.16},
-  url = {https://CRAN.R-project.org/package=rbibutils},
+  note = {R package version 1.4},
+  url = {https://CRAN.R-project.org/package=r2symbols},
 }
 
 @Manual{RColorBrewer,
@@ -210,14 +298,6 @@
   year = {2022},
   note = {R package version 1.1-3},
   url = {https://CRAN.R-project.org/package=RColorBrewer},
-}
-
-@Manual{rcrossref,
-  title = {rcrossref: Client for Various 'CrossRef' 'APIs'},
-  author = {Scott Chamberlain and Hao Zhu and Najko Jahn and Carl Boettiger and Karthik Ram},
-  year = {2022},
-  note = {R package version 1.2.0},
-  url = {https://CRAN.R-project.org/package=rcrossref},
 }
 
 @Article{RefManageR1,
@@ -236,11 +316,19 @@
   url = {https://arxiv.org/abs/1403.2036},
 }
 
+@Manual{renv,
+  title = {renv: Project Environments},
+  author = {Kevin Ushey and Hadley Wickham},
+  year = {2023},
+  note = {R package version 1.0.3},
+  url = {https://CRAN.R-project.org/package=renv},
+}
+
 @Manual{rgbif1,
   title = {rgbif: Interface to the Global Biodiversity Information Facility API},
   author = {Scott Chamberlain and Vijay Barve and Dan Mcglinn and Damiano Oldoni and Peter Desmet and Laurens Geffert and Karthik Ram},
-  year = {2024},
-  note = {R package version 3.7.9},
+  year = {2025},
+  note = {R package version 3.8.1},
   url = {https://CRAN.R-project.org/package=rgbif},
 }
 
@@ -253,11 +341,23 @@
   url = {https://doi.org/10.7287/peerj.preprints.3304v1},
 }
 
+@Article{rgugik,
+  title = {rgugik: Search and Retrieve Spatial Data from the Polish Head Office of Geodesy and Cartography in R},
+  author = {Krzysztof Dyba and Jakub Nowosad},
+  journal = {Journal of Open Source Software},
+  year = {2021},
+  volume = {6},
+  number = {59},
+  pages = {2948},
+  doi = {10.21105/joss.02948},
+  url = {https://doi.org/10.21105/joss.02948},
+}
+
 @Manual{rmarkdown1,
   title = {rmarkdown: Dynamic Documents for R},
   author = {JJ Allaire and Yihui Xie and Christophe Dervieux and Jonathan McPherson and Javier Luraschi and Kevin Ushey and Aron Atkins and Hadley Wickham and Joe Cheng and Winston Chang and Richard Iannone},
-  year = {2023},
-  note = {R package version 2.25},
+  year = {2024},
+  note = {R package version 2.29},
   url = {https://github.com/rstudio/rmarkdown},
 }
 
@@ -281,36 +381,12 @@
   url = {https://bookdown.org/yihui/rmarkdown-cookbook},
 }
 
-@Manual{rnaturalearthdata,
-  title = {rnaturalearthdata: World Vector Map Data from Natural Earth Used in 'rnaturalearth'},
-  author = {Andy South},
-  year = {2017},
-  note = {R package version 0.1.0},
-  url = {https://CRAN.R-project.org/package=rnaturalearthdata},
-}
-
-@Manual{roadoi,
-  title = {roadoi: Find Free Versions of Scholarly Publications via Unpaywall},
-  author = {Najko Jahn},
-  year = {2022},
-  note = {R package version 0.7.2},
-  url = {https://CRAN.R-project.org/package=roadoi},
-}
-
 @Manual{rvest,
   title = {rvest: Easily Harvest (Scrape) Web Pages},
   author = {Hadley Wickham},
-  year = {2022},
-  note = {R package version 1.0.3},
+  year = {2024},
+  note = {R package version 1.0.4},
   url = {https://CRAN.R-project.org/package=rvest},
-}
-
-@Manual{scales,
-  title = {scales: Scale Functions for Visualization},
-  author = {Hadley Wickham and Thomas Lin Pedersen and Dana Seidel},
-  year = {2023},
-  note = {R package version 1.3.0},
-  url = {https://CRAN.R-project.org/package=scales},
 }
 
 @Book{sf1,
@@ -334,22 +410,33 @@
   number = {1},
 }
 
-@Article{softbib,
-  title = {Software Citations in Political Science.},
-  author = {Vincent Arel-Bundock and Joshua McCrain},
-  journal = {PS: Political Science & Politics},
-  year = {2023},
-  volume = {April},
-  pages = {1--4},
-  doi = {10.1017/S1049096523000239},
+@Article{sp1,
+  author = {Edzer J. Pebesma and Roger Bivand},
+  title = {Classes and methods for spatial data in {R}},
+  journal = {R News},
+  year = {2005},
+  volume = {5},
+  number = {2},
+  pages = {9--13},
+  month = {November},
+  url = {https://CRAN.R-project.org/doc/Rnews/},
 }
 
-@Manual{spData,
-  title = {spData: Datasets for Spatial Analysis},
-  author = {Roger Bivand and Jakub Nowosad and Robin Lovelace},
+@Book{sp2,
+  author = {Roger S. Bivand and Edzer Pebesma and Virgilio Gomez-Rubio},
+  title = {Applied spatial data analysis with {R}, Second edition},
+  year = {2013},
+  publisher = {Springer, NY},
+  url = {https://asdar-book.org/},
+}
+
+@Manual{stats,
+  title = {R: A Language and Environment for Statistical Computing},
+  author = {{R Core Team}},
+  organization = {R Foundation for Statistical Computing},
+  address = {Vienna, Austria},
   year = {2023},
-  note = {R package version 2.3.0},
-  url = {https://CRAN.R-project.org/package=spData},
+  url = {https://www.R-project.org/},
 }
 
 @Article{stringi,
@@ -388,16 +475,49 @@
   title = {terra: Spatial Data Analysis},
   author = {Robert J. Hijmans},
   year = {2024},
-  note = {R package version 1.7-71},
+  note = {R package version 1.7-83},
   url = {https://CRAN.R-project.org/package=terra},
+}
+
+@Manual{tibble,
+  title = {tibble: Simple Data Frames},
+  author = {Kirill Müller and Hadley Wickham},
+  year = {2023},
+  note = {R package version 3.2.1},
+  url = {https://CRAN.R-project.org/package=tibble},
+}
+
+@Article{tidygeocoder,
+  title = {tidygeocoder: An R package for geocoding},
+  author = {Jesse Cambon and Diego Hernangómez and Christopher Belanger and Daniel Possenriede},
+  year = {2021},
+  journal = {Journal of Open Source Software},
+  publisher = {The Open Journal},
+  doi = {10.21105/joss.03544},
+  url = {https://doi.org/10.21105/joss.03544},
+  volume = {6},
+  number = {65},
+  pages = {3544},
+  note = {R package version 1.0.5},
 }
 
 @Manual{tidyr,
   title = {tidyr: Tidy Messy Data},
   author = {Hadley Wickham and Davis Vaughan and Maximilian Girlich},
-  year = {2023},
-  note = {R package version 1.3.0},
+  year = {2024},
+  note = {R package version 1.3.1},
   url = {https://CRAN.R-project.org/package=tidyr},
+}
+
+@Article{tidyverse,
+  title = {Welcome to the {tidyverse}},
+  author = {Hadley Wickham and Mara Averick and Jennifer Bryan and Winston Chang and Lucy D'Agostino McGowan and Romain François and Garrett Grolemund and Alex Hayes and Lionel Henry and Jim Hester and Max Kuhn and Thomas Lin Pedersen and Evan Miller and Stephan Milton Bache and Kirill Müller and Jeroen Ooms and David Robinson and Dana Paige Seidel and Vitalie Spinu and Kohske Takahashi and Davis Vaughan and Claus Wilke and Kara Woo and Hiroaki Yutani},
+  year = {2019},
+  journal = {Journal of Open Source Software},
+  volume = {4},
+  number = {43},
+  pages = {1686},
+  doi = {10.21105/joss.01686},
 }
 
 @Article{tmap,
@@ -416,7 +536,7 @@
   author = {Martijn Tennekes},
   year = {2021},
   note = {R package version 3.1-1},
-  url = {https://github.com/mtennekes/tmaptools},
+  url = {https://CRAN.R-project.org/package=tmaptools},
 }
 
 @Article{units,
@@ -428,14 +548,6 @@
   pages = {486--494},
   volume = {8},
   number = {2},
-}
-
-@Manual{WikidataQueryServiceR,
-  title = {WikidataQueryServiceR: API Client Library for 'Wikidata Query Service'},
-  author = {Mikhail Popov},
-  year = {2020},
-  note = {R package version 1.0.0},
-  url = {https://CRAN.R-project.org/package=WikidataQueryServiceR},
 }
 
 @Manual{WikidataR,
@@ -459,8 +571,8 @@
 Database (ISD)},
   author = {David Carslaw},
   year = {2023},
-  note = {R package version 0.9.8},
-  url = {https://CRAN.R-project.org/package=worldmet},
+  note = {https://davidcarslaw.github.io/worldmet/,
+https://github.com/davidcarslaw/worldmet},
 }
 
 @Manual{xml2,
@@ -469,12 +581,4 @@ Database (ISD)},
   year = {2023},
   note = {R package version 1.3.6},
   url = {https://CRAN.R-project.org/package=xml2},
-}
-
-@Manual{R-climateR,
-  title = {climateR: climateR},
-  author = {Mike Johnson},
-  year = {2024},
-  note = {R package version 0.3.5},
-  url = {https://github.com/mikejohnson51/climateR},
 }
